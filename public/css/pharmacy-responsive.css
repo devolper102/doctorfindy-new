@@ -1,0 +1,295 @@
+@media (max-width: 1024px){
+
+.order-medicine-image{
+	flex-shrink: 0;
+    width: 40%;
+}
+.vitamin-bottle-box{
+  flex-direction: row !important;
+  gap: 20px;
+}
+.order-medicine-main, .category-medicine-main, 
+.delivery-section-main{
+	overflow-y: hidden;
+    overflow-x: auto;
+}
+.order-medicine-main::-webkit-scrollbar, 
+.category-medicine-main::-webkit-scrollbar, 
+.delivery-section-main::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+.order-medicine-image .order-medicine-box {
+    top: 32px !important;
+}
+.category-medicine-image{
+	flex-shrink: 0;
+    width: 25%;
+}
+.category-medicine-box {
+    top: 40px !important;
+    left: 25px !important;
+}
+
+.feedback-slide-icon .carousel-control-prev, 
+.feedback-slide-icon .carousel-control-next {
+    height: 32px;
+}
+
+.easy-return-box-main{
+    flex-shrink: 0;
+    width: 35%;
+}
+.bg-medicine-order-section{
+    background-color: #e5e5e5 !important;
+}
+.bg-medicine-order-section .circle-number{
+  border: 0 !important;
+}
+.feedbackSlider .slick-prev, .feedbackSlider .slick-next{
+  display: none !important;
+}
+
+.mega-wrapper .mega-overlay{
+    left: 0 !important;
+    width: 365px !important;
+    top: 75px !important;
+}
+.mega-wrapper .brand-box{
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+.selling-product-section .grid{
+    gap: 30px !important;
+}
+.selling-icon-product-image {
+    height: 100px !important;
+}
+.subcategories-panel{
+    left: 0 !important;
+}
+
+
+
+
+}
+
+@media (max-width: 991px){
+
+.category-medicine-box {
+    top: 20px !important;
+    left: 25px !important;
+}
+.shop-brand-slider .nav-buttons {
+  display: none !important;
+}
+.shop-brand-slider .brand-card {
+    min-width: 245px !important;
+}
+.order-medicine-image .order-medicine-box {
+    top: 15px !important;
+}
+.pharmacy-checkout-section .cart-left{
+    overflow-x: auto;
+  }
+.pharmacy-checkout-section .cart-left::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+  .pharmacy-checkout-section table{
+    min-width: 700px; /* jitni columns ki width ho */
+    width: 700px;
+  }
+
+  /* th ko visible rakho */
+  .pharmacy-checkout-section thead{
+    display: table-header-group;
+  }
+
+  /* td / th spacing thori compact */
+  .pharmacy-checkout-section thead th,
+  .pharmacy-checkout-section tbody td{
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  /* product column thori wide */
+  .pharmacy-checkout-section tbody td:first-child,
+  .pharmacy-checkout-section thead th:first-child{
+    min-width: 260px;
+  }
+
+  /* price / total width fix */
+  .pharmacy-checkout-section tbody td:nth-child(2),
+  .pharmacy-checkout-section tbody td:nth-child(4),
+  .pharmacy-checkout-section thead th:nth-child(2),
+  .pharmacy-checkout-section thead th:nth-child(4){
+    min-width: 90px;
+    text-align:left;
+  }
+
+  /* quantity column */
+  .pharmacy-checkout-section tbody td:nth-child(3),
+  .pharmacy-checkout-section thead th:nth-child(3){
+    min-width: 160px;
+  }
+
+
+}
+
+
+@media (max-width: 576px){
+
+.bg-medicine-order-section .circle-number{
+  border: 0;
+}
+.shop-brand-slider .brand-card {
+    min-width: 220px;
+}
+    .vitamin-bottle-box {
+        flex-direction: column !important;
+        gap: 5px;
+    }
+.pharmacy-upload-information .verification-code-btn {
+    right: 3px !important;
+    padding: 5px 5px !important;
+}
+.reviews-detail-wrapper .customer-review-image {
+    width: 20% !important;
+}
+.category-medicine-box {
+    top: 20px !important;
+    left: 5px !important;
+}
+.order-medicine-image .order-medicine-box {
+    top: 8px !important;
+}
+.category-medicine-image{
+    flex-shrink: 0;
+    width: 45%;
+}
+.order-medicine-image{
+    flex-shrink: 0;
+    width: 75%;
+}
+.d-xs-inline-block{
+    display: inline-block !important;
+}
+.easy-return-box-main{
+    flex-shrink: 0;
+    width: 78%;
+}
+.selling-product-section .grid{
+    gap: 17px !important;
+}
+
+.mega-wrapper .mega-overlay{
+    left: 0 !important;
+    width: 290px !important;
+    top: 75px !important;
+}
+.pharmacy-banner-main {
+    margin: 0 auto 35px !important;
+}
+.search-input-group{
+    border-radius: 10px !important;
+}
+.all-category-search .search-input-group{
+    border-right: 0 !important;
+}
+.pharmacy-banner-main .search-wrap {
+    border: 0 !important;
+}
+.categories-box{
+    right: -13px !important;
+}
+.subcategories-panel{
+    left: 0 !important;
+    width: 290px;
+}
+.cities-box{
+    left: -6px;
+}
+.search-col.right {
+    width: 100%;
+    max-width: 100% !important;
+}
+.selling-product-section .grid,  
+.trending-product-section .grid{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(250px, 1fr);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    grid-template-columns: inherit !important;
+  }
+.selling-product-section .grid::-webkit-scrollbar, 
+.trending-product-section .grid::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+
+
+
+}
+
+
+@media (max-width: 567px) {
+    .order-medicine-image .order-medicine-box {
+        top: 18px !important;
+    }
+
+
+    
+}
+
+@media (max-width: 390px) {
+    .order-medicine-image .order-medicine-box {
+        top: 12px !important;
+    }
+
+
+
+
+
+    
+}
+
+@media (max-width: 389px) {
+    .order-medicine-image .order-medicine-box {
+        top: 11px !important;
+    }
+
+
+
+
+
+    
+}
+
+@media (max-width: 360px) {
+    .order-medicine-image .order-medicine-box {
+        top: 10px !important;
+    }
+
+
+
+
+
+    
+}
+
+@media (max-width: 320px) {
+    .order-medicine-image .order-medicine-box {
+        top: 3px !important;
+    }
+
+
+
+
+
+
+}

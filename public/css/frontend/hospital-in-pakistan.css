@@ -1,0 +1,182 @@
+.bg-list-doctor-in-pakistan {
+    background: url(../images/banner-image.svg) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 160px;
+}
+
+.bg-title-doctor-in-pakistan h2 {
+    font-size: 30px;
+}
+.bg-title-doctor-in-pakistan h1 {
+    margin-top:0;
+}
+.hospital-circle{
+    background-color: #0E4D92 !important;
+}
+.specalities-image, .doctor-in-pakistan {
+    transition: all linear 0.25s;
+}
+.doctor_profile_right a {
+    line-height: 22px;
+}
+.finger-icon {
+    top: -11px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    padding-top: 2px;
+    right: -10px;
+}
+.finger-icon img {
+    height: 15px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+.mobile_search_btn {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+}
+.search_main input {
+    border-radius: 10px !important;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.34) !important;
+}
+.doctor-in-pakistan {
+    border-radius: 21px;
+}
+
+.doctor-in-pakistan:hover{
+    transform: scale(1.1);
+}
+.more-reviews{
+   padding:6px 45px;
+}
+.circle_anchor {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.red_circle {
+    background: #EA4335;
+}
+.green_circle {
+    background: #34A853;
+}
+.blue_circle {
+    background: #4285F4;
+}
+.prfile_detail a {
+    font-size: 15px;
+    font-weight: bold;
+}
+.clinic_detail {
+    line-height: 36px;
+}
+.knockdoc_doctor_profile_btn {
+    color: #ffffff;
+    background-color: #ea4335;
+    border: 1px solid #ea4335;
+    padding: 8px;
+}
+.cstm_border_left {
+    border-left: 1px solid #000000;
+}
+#simple_search .banner_input {
+    padding: .62rem 6rem .77rem .75rem!important;
+}
+.city-border a {
+    border: 1px solid #e5e5e5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.all-procedure a:hover {
+    background-color: #EA4335;
+    color: #fff !important;
+    border: 1px solid #EA4335;
+}
+.dropdown-divider {
+    margin: 0px;
+}
+.faq_accordian a {
+    padding-left: 0px !important;
+}
+.faq_accordian .collapsed:after {
+    content: "\f067" !important;
+    font-size: 14px;
+    float: right;
+}
+[data-toggle="collapse"].collapsed:after {
+    transform: rotate(
+0deg
+);
+}
+.icon_color .collapsed:after {
+    color: #08CD8F;
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    transition: all linear 0.25s;
+    top: 3px;
+    position: relative;
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f068";
+    transform: rotate(
+180deg
+);
+    transition: all linear 0.25s;
+    position: relative;
+    font-size: 16px;
+    margin-left: 5px;
+    top: 2px;
+    float: right;
+}
+.card_main [data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg) ;
+    transition: all linear 0.25s;
+    float: right;
+}
+.card_main [data-toggle="collapse"].collapsed:after {
+    transform: rotate(0deg) ;
+}
+/*.patient-date, .doctor-profile-image-and-detail, .shares-icon-2 {
+    border-bottom: 1px solid #9c9c9c;
+}*/
+.disease-allergy-immunology li {
+    white-space: nowrap;
+}
+.bread-crumb-listing li {
+    text-transform: capitalize;
+}
+.disease-allergy-immunology li {
+    background-color: #dddddd;
+    width: 18%;
+}
+.disease-allergy-immunology a:hover {
+    background-color: #ea4335;
+    color: #fff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

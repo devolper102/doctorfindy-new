@@ -1,0 +1,415 @@
+
+.bg-image-about-us{
+    background: url(../images/bg-image-about-us.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    display: inline-block;
+    /*min-height:485px;*/
+}
+.heading-about-us h1{
+    font-size:40px;
+}
+.heading-about-us{
+    margin-top:7rem;
+}
+.heading-about-us p{
+    font-size:27px;
+}
+.bg-we-are-hare{
+    background-color:#e5e5e5;
+}
+
+.bg-image-work-together{
+    background: url(../images/bg-image-work-together.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    min-height:500px;
+}
+.heading-we-are-hare h2{
+    font-size:30px;
+}
+.heading-we-are-hare{
+    margin-top:8rem;
+}
+.bg-image-our-dream{
+    background: url(/images/bg-image-our-dream.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    background-position: 100%;
+    margin-top: 87px;
+}
+.heading-our-dream h2{
+color: #2c2c2c;
+
+}
+.heading-our-dream p{
+font-size: 27px;
+    color: #414141;
+}
+.heading-our-dream{
+line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*.our-dream-content{
+    line-height: 560px;
+    height: 500px;
+}*/
+/*.heading-get-know-us h1{
+    font-size:35px;
+}*/
+/*.name-team-member span{
+    border-bottom:1px solid #bcbcbc;
+}*/
+.team-member-box{
+    top: 0;
+    left: 0;
+}
+.dynamesh.team-quotes {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15% 0 20%;
+
+}
+.mv100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.dynamesh.team-quotes>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.dynamesh.team-quotes>div>*:nth-child(16n+1), .dynamesh.team-quotes>div>*:nth-child(16n+2), .dynamesh.team-quotes>div>*:nth-child(16n+3), .dynamesh.team-quotes>div>*:nth-child(16n+4), .dynamesh.team-quotes>div>*:nth-child(16n+5), .dynamesh.team-quotes>div>*:nth-child(16n+6), .dynamesh.team-quotes>div>*:nth-child(16n+7), .dynamesh.team-quotes>div>*:nth-child(16n+8) {
+    left: -6.25%;
+}
+.dynamesh.team-quotes>div>* {
+    flex: 0 0 12.5%;
+}
+.team-quote.show, .team-quote:hover {
+    z-index: 1;
+    opacity: 1 !important;
+    -webkit-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    transform: scale(1) !important;
+}
+.team-quote {
+    position: relative;
+    padding: 1rem;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.team-quote:hover>div {
+    -webkit-box-shadow: 0px 48px 128px rgba(0,0,0,0.25);
+    box-shadow: 0px 48px 128px rgba(0,0,0,0.25);
+    opacity: 1;
+    -webkit-transform: translate(-50%, -100%);
+    -ms-transform: translate(-50%, -100%);
+    transform: translate(-50%, -100%);
+}
+.team-quote>div {
+    position: absolute;
+    left: 100%;
+    -webkit-transform: translate(-50%, -90%) scale(0.8);
+    -ms-transform: translate(-50%, -90%) scale(0.8);
+    transform: translate(-50%, -90%) scale(0.8);
+    top: 32px;
+    -webkit-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    background-color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 8px;
+    padding: 32px;
+    width: 400px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.team-quote .avatar {
+    position: relative;
+    opacity: 0.66;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+}
+.team-quote:hover .avatar {
+    -webkit-box-shadow: 0px 16px 48px rgba(0,0,0,0.25);
+    box-shadow: 0px 16px 48px rgba(0,0,0,0.25);
+    opacity: 1;
+}
+
+.text-subdued, figcaption {
+    color: rgba(119,119,119,0.65);
+}
+.dynamesh.team-quotes .team-quote .avatar, .dynamesh.team-quotes .team-quote .avatar img {
+    width:60px;
+    height:60px;
+}
+.avatar, .avatar img, .photo, .photo img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+}
+/*add new css date 11/4/2023*/
+.core-value-paragraph{
+    text-align: left;
+    font-weight: 400;
+}
+.core-value-sub-heading{
+    color: #0E4D92;
+}
+.bg-about-us-image {
+  background-image: url('/images/about-us-img.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+/*  background-position: center center;*/
+    width: 100%;
+    min-height: 380px;
+}
+.about-us-overview{
+        background: #F7F5F5;
+}
+.about-core-value-bg{
+    margin-top: -300px;
+    width: 100%;
+}
+.about-us-heading{
+    font-size: 33px;
+    color: #0E4D92;
+}
+.about-us-paragraph{
+    text-align: justify;
+    font-weight: 400;
+}
+.about-us-our-mission{
+        padding-left: 69px;
+}
+.about-our-vission{
+    padding-left: 80px;
+    margin-top: 133px;
+}
+.overview-image{
+    margin-left: -75px;
+}
+.about-core-value{
+    margin-left: -50px;
+}
+.ceo_profile_section{
+/*    background-image: url("/images/ceo-bg-img.png");*/
+    background: linear-gradient(to bottom, #135C94, #228D9B);
+    border-bottom: 3px solid #FFFFFF;
+}
+.ceo-profile-img{
+        width: 50%;
+    float: right;
+    padding-bottom: 49px;
+     margin-top: -73px; 
+    z-index: 1;
+    position: relative;
+    /*margin-top: 82px;*/
+}
+.ceo-msg{
+        padding-left: 29px;
+    padding-right: 104px;
+    margin-top: -10px;
+}
+.bg-msg-img{
+    background-image: url("/images/ceo-msg-img.png");
+}
+.bg-core-value-img{
+    background-image: url("/images/bg-image-about-us-corevalue.png");
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -57px;
+  width: 100%;
+  /*background: rgba(0, 0, 0, 0.5);*/
+}
+/*.top-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}*/
+.ceo-name{
+    margin-top: 194px;
+}
+.ceo-heading{
+    margin-top: 138px !important;
+/*    margin-left: 110px;*/
+}
+.ceo-msg-img{
+    padding-top: 89px;
+}
+/*.ceo-logo{
+    margin-left: -64px;
+}*/
+.message-for-ceo{
+        font-size: xxx-large;
+}
+.overview-img{
+    border-radius: 20px;
+}
+@media only screen and (max-width: 1200px)
+{
+    .about-core-value-bg{
+    margin-top: -190px;
+    width: 100% ;
+    }
+}
+@media only screen and (max-width: 768px) 
+{
+    .overview-img {
+    border-radius: 20px;
+    width: 100% !important;
+    }
+    .about-core-value-bg{
+    margin-top: -200px;
+    width: 100% ;
+    }
+    .about-us-heading {
+    font-size: 33px;
+    color: #0E4D92;
+    text-align: initial !important;
+    }
+    .about-us-paragraph {
+    font-size: 15px;
+    font-weight: 400;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    }
+    .company-overview{
+/*        width: 100% !important;*/
+        border-radius: 20px !important;
+    }
+    .about-us-our-mission {
+     padding-left: 0px !important; 
+    }
+    .about-our-vission {
+     padding-left: 0px !important; 
+     margin-top: 0px !important; 
+    }
+    .core-value-circle{
+        max-width: none !important;
+    }
+    .about-core-value-bg {
+     margin-top: -70px !important; 
+    }
+    .core-value-heading{
+        font-size: 33px;
+    color: #0E4D92;
+    }
+    .core-value-circle{
+    margin-right: inherit;
+    }
+    
+    .ceo-heading {
+    margin-top: 48px !important;
+    margin-left: -4px;
+    padding-left: 5px !important;
+    }
+    .message-for-ceo {
+        font-size: x-large;
+    }
+    .ceo-profile-img {
+        width: 100%;
+    float: left;
+    padding-bottom: 49px;
+    margin-top: -22px !important;
+    z-index: 1;
+    position: relative;
+    margin-top: 0px;
+    margin-left: 67px;
+    }
+    .ceo-name {
+    margin-top: 225px;
+    }
+    .ceo-msg-info{
+    margin-top: -406px;
+    }
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* margin-left: -57px; */
+    /* width: 100%; */
+    /* background: rgba(0, 0, 0, 0.5); */
+    /* margin-left: 85px; */
+    /* margin-top: -507px; */
+    width: 100%;
+    height: 252px;
+    margin-left: 0px;
+    }
+    .ceo-msg-img {
+    padding-top: 13px;
+    /* font-size: small; */
+    /* padding-left: 94px; */
+    /* width: 35%; */
+    }
+    .ceo-msg {
+    text-align: initial;
+    padding-left: 29px;
+    /* padding-right: 104px; */
+    margin-top: -10px;
+    font-size: 9px;
+    /* float: left; */
+    /* padding-left: 119px; */
+    padding-right: 0px;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 992px)
+{
+    .overview-img {
+    border-radius: 20px;
+    width: 100% !important;
+    }
+    .ceo-heading {
+    margin-top: 50px !important;
+     margin-left: 0px; 
+    }
+    .ceo-profile-img {
+    width: 56%;
+    float: right;
+    padding-bottom: 49px;
+    margin-top: -73px;
+    z-index: 1;
+    position: relative;
+    /* margin-top: 82px; */
+    margin-right: -40px;
+    }
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* margin-left: -57px; */
+    width: 100%;
+    /* background: rgba(0, 0, 0, 0.5); */
+    }
+    .ceo-msg-img {
+    padding-top: 26px;
+    }
+    .ceo-msg {
+    padding-left: 29px;
+    /* padding-right: 104px; */
+    margin-top: -10px;
+        font-size: 12px;
+        padding-right: 64px;
+    }
+}

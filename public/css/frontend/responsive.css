@@ -1,0 +1,3292 @@
+@media (max-width: 1024px){
+		.ipad_h_width{
+		
+			width: 75% !important;
+		}
+		.ipad_25{
+		
+			width: 25% !important;
+		}
+		.ipad_30{
+		
+			width: 30% !important;
+		}
+		.w-ipad-100{
+			width: 100% !important;
+		}
+	    /*.gallery-image img{
+		max-height: 70px;
+		}*/
+		.text_mdH_12{
+			font-size: 12px;
+		}
+		.pl-ipad{
+			padding-left: 0 !important;
+		}
+		.logo-responsive{
+			margin-right: 0 !important;
+		}
+		.book-lab-image img{
+	height: auto !important;
+}
+.scroll-appointment{
+	white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    display: flex !important;
+}
+.scroll-appointment::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.appointment-tabs .nav-tabs .nav-link{
+	margin-right:45px !important;
+}
+.blog-border-right:after{
+	border-right:inherit !important;
+	background: 0 !important;
+}
+.ride-box{
+	bottom:inherit;
+}
+.categorey-box {
+    bottom: -100px !important;
+}
+.skin-content {
+    bottom: -185px !important;
+}
+.skin-content .skin-text {
+    left: 5px !important;
+}
+.categories-blog-slider .slick-track{
+left:0 !important;
+}
+#all-speciality-content h2, #introduction-lab-content  h2{
+    font-size:16px !important;
+}
+
+#all-speciality-content ul, .procedure-faq-description ul, 
+.procedure-faq ul, #introduction-lab-content ul{
+	padding-left:25px !important;
+}
+#all-speciality-content table, #introduction-lab-content table{
+	width:100% !important;
+}
+.shoping-cart-btn sup span {
+    right: -33px !important;
+    top: -10px !important;
+    background-color: #EA1938;
+}
+.call-sticky {
+    right: 15px !important;
+    bottom: 25% !important;
+}
+
+.categories-blog-slider .slick-next{
+right:-9px !important;
+}
+.categories-blog-slider .slick-prev{
+	left:-9px !important;
+}
+.blog-main-slider {
+    height: 245px !important;
+}
+.bg-title-doctor-in-pakistan h1 {
+    margin-top: 0 !important;
+}
+
+.inner-works-main {
+    margin: 0 auto !important;
+}
+.specalities-main .border-speciality{
+border:0 !important;
+}
+.other-labs .lab_image img{
+	height:auto !important;
+}
+		.reviews-number {
+    width: 100% !important;
+}
+.question_main{
+	position: relative;
+}
+.lab-logo img{
+    height: 70px !important;
+}
+.lab_image img{
+	margin-right: 10px !important;
+	height:60px !important;
+}
+.lab-images .lab_image img{
+	height:80px !important;
+}
+.lab-images {
+    margin-right: 20px !important;
+}
+.sticky-section-btn a {
+    padding: 7px 5px !important;
+}
+.shedule_head {
+    width:80% !important;
+}
+.get-code a {
+    padding: 5px 2px !important;
+}
+.location_input input{
+	color: #243562 !important;
+    font-weight: bold;
+}
+.location_input i{
+	font-size: 18px !important;
+    color: #243562 !important;
+}
+/*.prfile_detail span img {
+     height:inherit !important; 
+}*/
+		.subscribe-btn {
+    right: 20px !important;
+}
+.location_input .banner_locationIcon{
+	font-size:18px;
+	color: #243562 !important;
+}
+#feedback_slider .carousel-control-next, 
+#feedback_slider .carousel-control-prev{
+	top: -23px !important;
+}
+.feedback-slide-icon .carousel-control-prev, 
+.feedback-slide-icon .carousel-control-next{
+width: 13% !important;
+}
+.feedback-slide-icon .carousel-control-prev {
+    left: 68% !important;
+}
+#home_location input{
+	color: #243562 !important;
+	font-weight: bold;
+}
+
+.book-discount a{
+	padding: 5px 5px !important;
+}
+#feedback_slider .slick-dots{
+			bottom: -10px !important;
+			margin: revert !important;
+		}
+		#feedback_slider .slick-dots li.slick-active button:before {
+    color: #088F8F !important;
+}
+#feedback_slider .slick-dots li button:before{
+	color: #9BD609 !important;
+	font-size: 12px !important;
+}
+
+		
+		.navigation_menu{
+    margin-left:0 !important;
+}
+/*.dummyinput{
+	border-radius:20px;
+}*/
+.faq_accordian [data-toggle="collapse"].collapsed:after, 
+.faq_accordian [data-toggle="collapse"]:after{
+	right: 7px !important;
+	top:9px !important;
+}
+.feedback-client-slider{
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.34);
+}
+
+		.navigation_menu li {
+			margin-right: 15px;
+		}
+		#header .navbar-light .navbar-nav .nav-link{
+			font-size: 11px;
+			padding: 3px 5px;
+		}
+		.header_cstm_border:after{
+			top:2px !important;
+		}
+		.usersInfo{
+			width: 25% !important;
+		}
+		.services_main_banner li {
+    margin-right: 22px !important;
+}
+		.doctor_list:after, .hospital_list:after, .services_list:after, .more_list:after{
+			top: 12px;
+		}
+		.overflow-md-auto {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.blog_height{
+	height:375px !important;
+}
+
+.overflow-md-auto::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+		.banner_right_img {
+			padding: 85px 0 30px 0;
+		}
+		.doctor_list .dropdown-menu{
+			left: 135px;
+		}
+		.hospital_list .dropdown-menu{
+			left:100px;
+		}
+		.hospital_list .dropdown-menu{
+			transform: translate(-44%,-7%);
+		}
+		.services_list .dropdown-menu{
+			transform: translate(-60%,-7%);
+			top: 53px !important;
+		}
+		.surgerie_categories li {
+    margin-right: 13px !important;
+}
+		.lab_list .dropdown-menu{
+			transform: translate(-56%,-7%);
+			left:75px;
+			top: 68px !important;
+		}
+		.lab_list:after{
+			top: 12px;
+			right: -12px;
+		}
+		.gallery-image > img{
+			min-width: auto;
+           	width: 63px;
+           	max-height: 80px;
+           	float: left; 
+        }
+        .dynamesh.team-quotes{
+			overflow: hidden;
+		}
+	}
+	@media (max-width: 991px){
+		/* Responsive Utilities*/
+
+        .knockdock-profile-tool h2{
+
+			font-size: 42px !important;
+			margin-top: 0px !important;
+		}
+		.banner-custom-margin{
+			margin-right:0 !important;
+		}
+		.software_management_text h2{
+
+			font-size: 22px !important;
+            margin-top: 2rem !important;
+		}
+		.knockdock-profile h2{
+
+			font-size: 42px;
+            margin-top: 8rem;
+		}
+		
+
+		.gallery-image > img{
+           width: 63px;
+           max-height: 80px;
+           float: left; 
+        }
+		.top_hospitals_month h2{
+
+			font-size: 37px !important;
+		}
+		.lab-heading h2{
+
+			font-size: 42px !important;
+		}
+		.top_hospitals_month {
+
+			font-size: 38px !important;
+		}
+		.overflow-md-auto{overflow-x: auto;overflow-y: hidden;}
+
+		.w-md-100{width: 100% !important;}
+
+		/*.reset_main{width: 75%;}*/
+
+		.w-md-90{width: 90%!important;}
+		.w-md-23{width: 23% !important;}
+		.w-md-60{width: 60% !important;}
+		.w-md-30{width: 30% !important;}
+		.w-md-32{width: 32% !important;}
+		.w-md-80{width: 80% !important;}
+
+		.details_layout{width: 80%;}
+
+		.w_md_70{width: 70% !important;}
+
+		.w-md-75{width: 75% !important;}
+
+		.w-md-65{width: 65% !important;}
+
+		.w-md-50{width: 50%!important}
+
+		.w-md-45{width: 45% !important;}
+
+		.w-md-48{width: 48% !important;}
+
+		/*.services_list{width: 33% !important;}*/
+		.w-md-48{width: 48% !important;}
+
+		.w-md-30{width: 30%;}
+
+		.w-md-20{width: 20%;}
+		.w-md-25{width: 25%;}
+		.w-md-15{width: 15%}
+		.w_md_40px {width: 40px;}
+		.w_md_80px {width: 80px;}
+		.w_md_50px {width: 50px;}
+		.w_md_60px {width: 60px;}
+		.w_md_70px {width: 70px;}
+		.h_md_80 {height: 80px !important;}
+		.h_md_50 {height: 50px !important;}
+		.h_md_60 {height: 60px !important;}
+		.h_md_70 {height: 70px !important;}
+
+		.h_md_40 {height: 40px !important;}
+
+		.text_md_left{
+			text-align: left !important;
+		}
+		.text_md_15{
+			font-size: 15px !important
+		}
+		.text_md_16{
+			font-size: 16px !important
+		}
+		.text_md_13{
+			font-size: 13px !important
+		}
+		.text_md_14{
+			font-size: 14px !important
+		}
+		.text_md_12{
+			font-size: 12px !important
+		}
+		.text_md_10{
+			font-size: 10px !important
+		}
+		.text_md_9{
+			font-size: 9px !important
+		}
+		.text_md_20{
+			font-size: 20px !important
+		}
+		.text_md_30{
+			font-size: 30px !important
+		}
+		.works_inner_main .works_box:after{
+			display: none !important;
+		}
+		.navbar-light .navbar-toggler-icon {
+			background-image: url('/images/mobile_menu.png');
+			background-size: 70%;
+		}
+
+		/* Responsive Utilities*/
+
+
+		/* Home page Responsive */
+		.navbar-toggler{
+			border: 0px;
+			padding: 0 5px;
+		}
+		.search-btn-position{
+			right: -37px !important;
+		}
+		.lab-images .lab_image img {
+    height: 100px !important;
+}
+		.speciality-list:after{
+			display: none !important;
+		}
+		.services-images{
+			width:30% !important;
+		}
+		.lab-image img{
+			right: -10px !important;
+    height: 130px !important;
+    width: 35% !important;
+    top: -66px !important;
+		}
+		
+.test_box {
+    min-height: 155px !important;
+}
+.book-us-img {
+    padding: 10px !important;
+}
+
+.speciality-list .speciality-list-menu{
+	top: 28px !important;
+	left: 0 !important;
+	background: #fff !important;
+}
+.speciality-list:after{
+	color:#fff !important;
+}
+.doctor-speciality-list:hover .doctor-speciality-list-menu, 
+.hospital-speciality-list:hover .hospital-speciality-list-menu, 
+.services-list:hover .services-list-menu, 
+.labs-list:hover .labs-list-menu{
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+.doctor-speciality-list .doctor-speciality-list-menu{
+	top: 0 !important;
+}
+.doctor-speciality-list .doctor-speciality-list-menu, 
+.hospital-speciality-list .hospital-speciality-list-menu, 
+.services-list .services-list-menu, 
+.labs-list .labs-list-menu{
+display: block;
+    opacity:0;
+    -webkit-transition: all 400ms ease-in;
+    -moz-transition: all 400ms ease-in;
+    -ms-transition: all 400ms ease-in;
+    -o-transition: all 400ms ease-in;
+    transition: all 400ms ease-in;
+    pointer-events: none;
+    top:0px;
+    border-radius: 5px;
+    width:100% !important;
+    right:0;
+    position: absolute;
+    background: #0E4D92;
+}
+/*.doctor-speciality-list:after, 
+.hospital-speciality-list:after, .services-list:after, 
+.labs-list:after{
+    border: none !important;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(0deg);
+    transition: all linear 0.25s;
+    color: #fff;
+    position: absolute;
+    top: 16px;
+    left:84px;
+    font-size:16px;
+}
+.doctor-speciality-list:hover:after, 
+.hospital-speciality-list:hover:after, 
+.services-list:hover:after, .labs-list:hover:after{
+    transform: rotate(180deg);
+}*/
+
+		#home_search{
+	margin-top: 0 !important;
+	margin-left: 10px;
+}
+		.book-discount a{
+	padding: 5px 13px !important;
+}
+		#feedback_slider .carousel-control-next, 
+		#feedback_slider .carousel-control-prev{
+			top: -25px !important;
+		}
+		.feedback-slide-icon .carousel-control-prev {
+    left: 53% !important;
+}
+		.feedback-slide-icon .carousel-control-next, 
+		.feedback-slide-icon .carousel-control-prev{
+			width: 20% !important;
+		}
+.discount-box-slider .slick-next, .symptoms-slider .slick-prev, 
+.symptoms-slider .slick-next .discount-box-slider .slick-prev {
+    top: 38% !important;
+}
+.discount-box-slider .slick-next, .discount-box-slider .slick-prev {
+    top: 38% !important;
+}
+.symptoms-slider .slick-prev, 
+.discount-box-slider .slick-prev{
+	left: -25px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+.discount-box-slider .slick-next, 
+.symptoms-slider .slick-next{
+	right: -25px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+.symptoms-slider .slick-prev:before, 
+.discount-box-slider .slick-prev:before{
+	left: 8px !important;
+	top: 5px !important;
+}
+.symptoms-slider .slick-next:before, 
+.discount-box-slider .slick-next:before{
+	right: 8px !important;
+	top: 5px !important;
+}
+		#header .navbar {
+    background: #0E4D92;
+}
+		#feedback_slider .slick-dots{
+			bottom: -10px !important;
+			margin: revert !important;
+		}
+		.lab-logo img{
+    height: 50px !important;
+}
+		.feedback-client-slider {
+    height: 175px !important;
+}
+
+		.services_main_banner li, .service-banner li{
+    margin-right: 15px !important;
+}
+.doctor-appointment-image img {
+    height: 70px !important;
+    right: -35px !important;
+}
+.treatment-list-menu{
+	left: -25px !important;
+}
+.white-border{
+	border-bottom: 1.5px solid #fff;
+}
+		.hospital-main {
+    margin: 6px auto 0 !important;
+}
+.navbar-collapse{
+			background: #0E4D92;
+    padding: 15px;
+    color: black;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+#collapseDoctorMain, #collapseHospitalMain, #collapseLabMain, 
+#collapseServiceMain{
+	 height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#collapseLabMain{
+	 height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#collapseDoctorMain::-webkit-scrollbar, 
+#collapseHospitalMain::-webkit-scrollbar, 
+#collapseLabMain::-webkit-scrollbar, 
+#collapseServiceMain::-webkit-scrollbar{
+    width: 0;
+}
+		.header_nav [data-toggle="collapse"]:after{
+			display: none;
+			top: 0px;
+		}
+		#header .navbar-brand{
+			margin-top: 5px;
+		}
+		#header .navbar-light .navbar-nav .nav-link{
+			margin: 10px 0 !important;
+			padding: 0px !important;
+		}
+		.disease_name {
+			width: 100%;
+			display: block !important;
+		}
+		.doctor_list, .hospital_list, .services_list{
+			width: 10%;
+		}
+		.more_list{
+			width: 10%;
+		}
+		.doctor_list:after, .hospital_list:after, .services_list:after, .more_list:after{
+			color: #ffffff;
+		}
+		.doctor_list .dropdown-menu:after, .hospital_list .dropdown-menu:after, .services_list .dropdown-menu:after, .user_dropdown_list:after, .more_submenu:after{
+			display: none;
+		}
+		.login_dropdown_list{
+			left: inherit;
+    		right: 0;
+    		top: 32px !important;
+    		min-width: 80px !important;
+		}
+		.dummyinput{
+			color: #666666;
+			box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.34);
+			padding: 10px 0.75rem !important;
+			font-size: 13px;
+		}
+		.dummyinput .dummytext{
+			display: inline-block;
+		}
+		/*.doctor_list .dropdown-menu, .hospital_list .dropdown-menu,.services_list .dropdown-menu,.more_list .dropdown-menu{
+		left: 0px;
+	    transform: translateX(14%);
+	    width: 100%;
+	    position: absolute;
+	    top: 0 !important;
+	    padding: 10px;
+	    font-size: 12px;
+	    min-width: 41rem;
+	    overflow-y: scroll;
+	    }*/
+	    .services_list .dropdown-menu{
+	    	top: 10px !important;
+	    }
+	    .doctor_list:after, .hospital_list:after, .services_list:after{
+	    	left: 60px;
+	    	right: inherit;
+	    }
+	    .more_list:after{
+	    	top: 4px;
+	    	right: 5px;
+	    }
+	    .allergy_services {
+	    	width: 23%;
+	    }
+	    .doctor_list:hover:after, .hospital_list:hover:after,.services_list:hover:after,.more_list:hover:after {
+	    	transform: rotate(-90deg);
+	    }
+	    .banner_left_section{
+	    	padding: 15px 0px;
+	    }
+	    .banner_heading h1 {
+	    	font-size: 17px;
+	    	text-shadow:none;
+	    	font-weight: normal !important;
+	    }
+	    .lab-images {
+    margin-right: 12px !important;
+}
+	    .banner_left_section .book-lab, 
+	    .banner_left_section .online-test{
+     letter-spacing: inherit !important; 
+}
+	    .banner_heading span{
+	    	font-size: 27px;
+	    }
+	    /*.services_main li{
+	    	width: 33%;
+	    	margin-right:0 !important;
+	    	height: inherit !important;
+	    }
+	    .services_main li:nth-of-type(1), .services_main li:nth-of-type(2), 
+	    .services_main li:nth-of-type(3){
+	    	background: 0 !important;
+	    }*/
+	    .services_main li a {
+	    	padding: 7px;
+	    	font-size: 12px;
+	    	text-align: center;
+	    	width: 48px;
+		    height: 48px;
+		    border-radius: 10px;
+	    }
+	    a.phpdebugbar-restore-btn{
+	    	display: none !important;
+	    }
+	    .services_main li a img{
+	    	margin-top: 5px;
+	    	height: 23px;
+	    }
+	    .services_main li a i{
+	    	/*display: block;*/
+	    	text-align: center;
+	    	margin-right: 2px;
+	    }
+	    
+	    .banner_services{
+	    	background: #fff;
+	    	position: relative;
+	    	width: 100%;
+	    	position: fixed;
+	    	bottom: -5px;
+	    	right: 0;
+	    	left: 0;
+	    	z-index: 9;
+	    	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.37);
+	    }
+	    .dropdown {
+	    	margin: 0 !important;
+	    }
+	    .user_dropdown_list{
+	    	left: inherit;
+	    	right: 0;
+	    }
+	    .doctor-text{
+	    	margin-left: 0px;
+	    	margin-top: 0;
+	    }
+	    .doctor-text h2, .mobile_section_heading h2 {
+	    	font-size: 35px;
+	    }
+		/* Start ask-a-doctor-online speciality dermatologist */
+		
+		.bg-doctor-section-btn {
+		    padding: 5px 14px;
+		    color: #838383;
+		    background-color: #e5e5e5;
+		    flex: 0 0 15em;
+		    text-align: center;
+		}
+
+		.input-doctor-onboard a {
+		    right: 4%;
+		}
+
+
+		/* End ask-a-doctor-online speciality dermatologist */
+
+
+
+	    /*Home Banner*/
+	    .txt-rotate > .wrap{
+	    	border-right: none !important;
+	    }
+		/*.banner_input{
+		padding:  0.75rem !important;
+		}*/
+		/*.subscribe-input{
+			padding: 0.5rem 0.75rem !important;
+		}*/
+		.mobile_search_btn{
+			/*padding: 10px !important; */
+			right: 5px !important;
+			top: 5px !important;
+			/*top: 5px;*/
+		}
+		.doctor_profile_right a {
+    line-height: 18px !important;
+}
+		.video_consult_search{
+			padding: 10px !important;
+		}
+		.fa fa-search{
+			color: #fff!important;
+		}
+		.trending_topic{
+			margin-top: 0;
+			margin-bottom: 35px
+		}
+		.img_side{
+			width: 40%;
+			left: 0;
+			top: -65px;
+		}
+		.alert_msg{
+			top: -30px;
+			right: 0;
+		}
+		.small_banner_img{
+			background-color: #FEDF3F;
+		}
+		.given_location li a img,.given_diseases li a img {
+			padding: 6px;
+		}
+		.given_location,.given_diseases {
+			height: 500px;
+			overflow: scroll;
+		}
+		.modal-dialog,.modal-dialog{
+			width: 100%;
+			height: 100%;
+			margin: 0 !important;
+			padding: 0;
+		}
+		.modal-content,.modal-content{
+			height: auto;
+			min-height: 100%;
+			border-radius: 0;
+		}
+		.given_diseases{
+			display: none;
+		}
+		.detect_btn{
+			padding: 3px;
+			color: #515151;
+			border-radius: 5px;
+			position: absolute;
+			right: 15px;
+			top: 10px;
+		}
+		.procedure_search .detect_btn{
+			top: 10px;
+		}
+		.mobile_modal_search_icon{
+			top: 14px;
+			right: 18px;
+			font-size: 16px;
+			color: #515151;
+		}
+		#location_input,#doctors_input{
+			height: auto;
+			padding: 12px 15px;
+		}
+		.given_location li:first-child, .mobile_filter_list li:first-child{
+			background-color: #E1E1E1;
+		}
+		.mobile_filter_list li{
+			width: 100%;
+		}
+		/*.banner_heading h1 span{
+			float: left;
+			margin-right: 5px;
+			}*/
+			/*Home Banner*/
+
+		/*.red_circle, .green_circle, .blue_circle{
+		height: auto;
+		}*/
+		.blogs_section{
+			background:none;
+		}
+		#header .container{
+			max-width: 100%;
+		}
+		.user_identity{
+			font-size: 14px;
+		}
+		.feedback_heading h2 {
+			font-size: 16px !important;
+		}
+		/*.doctor-hospital-bg-image{
+			margin-top: 30px;
+			}*/
+		/*.more_list .dropdown-menu{
+			left: 0;
+			top: 25px !important;
+			}*/
+			.bannerSearchImg img{
+				width: 40px;
+				padding: 0px;
+			}
+		/* Home page Responsive */
+
+		/* Footer Responsive */
+		.subscribe-btn{
+			right: 8px !important;
+		}
+		/* Footer Responsive */
+
+		/* Start Responsive Doctor Listing */
+		.choose_hospitals .select2-selection{
+			padding: 2px;
+			display: table !important;
+			width: 100%;
+		}
+		.select2-container--default .select2-selection--single .select2-selection__arrow{
+			width: 30px !important;
+			top: -4px !important;
+			right: 3px !important;
+		}
+		.select2-container--default .select2-selection--single .select2-selection__arrow b{
+			border-color: transparent transparent transparent !important;
+			background:url(../images/arrow_down.png) no-repeat center;
+			width: 12px !important;
+			height: 16px !important;
+		}
+		.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{
+			border-width: 5px 4px 0 4px !important;
+		}
+		.choose_fee{
+			width:24%;
+		}
+		.small_btn{
+			padding: 6px 8px !important;
+		}
+		#gmap_canvas{
+			margin-left: 0px;
+		}
+		.mobile_filter{
+			background-color: #F2F0F0;
+		}
+		.select2-container{
+			width: 100% !important;
+		}
+		/* End Responsive Doctor Listing */
+
+		/* Responsive Doctor Profile */
+
+		/*.total-reviews strong {
+			top: -20px;
+			font-size: 45px;
+			right: 10px;
+		}*/
+		.view-profile-btn a {
+			padding: 10px 24px;
+		}
+		/*.doctor_profile{
+			background-color: #ededed !important;
+		}*/
+		.close_modal{
+			position: absolute;
+			right: 0;
+			top: 0;
+			z-index: 1;
+		}
+		.doctor-skin-care-detail {
+			top: -30px;
+		}
+		/* End Responsive Doctor Profile */
+		.google_map{
+			height: 100vh !important;
+			width: 160vh !important;
+		}
+		/*.total-reviews .reviews-number {
+			margin-left: 1rem;
+		}*/
+		.total-reviews strong{
+    		font-size: 25px;
+    		margin-top: -43px;
+		}
+		.bg-image-data-protection , .bg-image-knockdock-pro{
+			background-image:none !important;
+
+		}
+		/*.bg-image-data-protection , .bg-image-knockdock-pro{
+		background-image:none !important;
+		}*/
+
+		.heading-data-protection h2 {
+			margin-top: 40px;
+		}
+		.banner_post_text{
+			max-height: 105px;
+		}
+		.banner_heading{
+			margin-bottom: 15px;
+		}
+
+		/* Start articles/ergreg */
+
+		.doctor-skin-care-detail {
+			top: -30px;
+		}	
+
+
+		/* End articles/ergreg */
+
+		/* Start articles/ergreg */
+
+		.bypass-grafting-popup{
+			left:17%;
+		}
+		/* End articles/ergreg */
+
+
+		/* Start procedure */
+
+		.cstm_border_left {
+			border-left:0;
+		}
+
+		/* End procedure */
+
+		.doctor_app{
+			right: 4px;
+		}
+		.disease-allergy-immunology li{
+			min-height: 30px;
+			margin-right:22px;
+		}
+		.blog_services{
+			height: 130;
+		}
+		.cstm_border_right:after{
+			display: none;
+		}
+		/*.gallery-image img {
+	    	width: 46%;
+		    margin-right: 10px;
+		    max-height: 150px;
+		    }*/
+	    .vgs__container img{
+	    	height: 85%;
+	    }
+	    .blog_height{
+	    	height:375px;
+	    }
+	    .phone_number span {
+		    right: 4px;
+		}
+		.services_main_banner li:nth-of-type(1), 
+		.services_main_banner li:nth-of-type(2), 
+		.services_main_banner li:nth-of-type(3), 
+		.services_main_banner li:nth-of-type(4){
+    min-height: 160px !important;
+}
+.services_main_banner li:nth-of-type(3), 
+.services_main_banner li:nth-of-type(4){
+	margin-top: 50px;
+}
+.services_main_banner li:nth-of-type(3) .doctor-appointment-image img, 
+.services_main_banner li:nth-of-type(4) .doctor-appointment-image img, 
+.services_main_banner li:nth-of-type(2) .doctor-appointment-image img, 
+.services_main_banner li:nth-of-type(1) .doctor-appointment-image img{
+    height: 100px !important;
+    right: 4px !important;
+    width: auto;
+}
+	    .blog_height::-webkit-scrollbar {
+  			display: none;
+		}
+		.blog_height{
+			-ms-overflow-style: none;  /* IE and Edge */
+  			scrollbar-width: none;  /* Firefox */
+		}
+	    .bg-title-doctor-in-pakistan h2 {
+	    	font-size: 30px;
+	    }
+	    .bg-list-doctor-in-pakistan{
+	    	min-height:125px;
+	    }
+	    /*.location_input .fa-map-marker{
+	    	display: none;
+	    }*/
+	    .procedure_locationInner{
+	    	width: 82% !important;
+	    }
+	   
+	    .fitness_articleLinks{
+	    	width: 50%;
+	    }
+	    .hospitalBanner:before,.labBanner:before{
+	    	display: none;
+	    }
+	    .section-doctoe-practice:before{
+	    	right: 37px;
+	    	top: 120px;
+	    	min-height: 200px;
+	    }
+	    #online-chat-slider .slick-next{
+	    	right: 0px;
+	    }
+	    #online-chat-slider .slick-prev{
+	    	left: 0px;
+	    }
+	    .wishlist_icon{
+	    	position: absolute;
+	    	top: 20px;
+	    	right: 15px;
+	    }
+	    .modal-dialog, .modal-dialog{
+	    	max-width: 100%;
+	    }
+	    .phone_number input, .phone_number input:focus{
+	    	width: 79% !important;
+	    }
+
+	    /*Temporary changes*/
+	    /*.banner_heading{
+	    	color: #212529;
+	    }*/
+	    .text-md-black{
+	    	color: #212529 !important;
+	    }
+	    #banner{
+	    	background: none;
+	    }
+	    /*.mobile_search_btn span i{
+	    	color: #A4A4A4;
+	    	margin-top: -1px;
+	    }*/
+		/*.mobile_border{
+			border-bottom: 1px solid #A4A4A4;
+			}*/
+			/*Temporary changes*/
+		/*.footer_col{
+			background-size: contain !important;
+			background-position: 100% 76% !important;
+			background-color: #f8f8f8;
+
+		}*/
+		.mobile_design .col-4:nth-of-type(4),.mobile_design .col-4:nth-of-type(5),.mobile_design .col-4:nth-of-type(6)
+		{
+			display: none !important;
+		}
+		.video_icon{
+			left: 0;
+		}
+		/*.doctor_list .dropdown-menu, .hospital_list .dropdown-menu, .services_list .dropdown-menu, .more_list{
+			display: none !important;
+			}*/
+		/*[data-toggle="collapse"]:after{
+			float: none;
+		}*/
+		#header .navbar-light .navbar-nav .nav-link{
+			font-size: 16px;
+		}
+		.trending_topic li > a:hover {
+			color: #212529 !important;
+			opacity: 0.8;
+		}
+		/*.banner-custom-margin{
+			margin-right: 80px;
+		}*/
+		.other_dropdown {
+			width: 665px;
+			right: 0 !important;
+			left: -45px !important;
+		}
+		.navigation_menu li{
+			width: 60px;
+		}
+		.banner_left_section{
+			max-width: 100%;
+		}
+		#search_doctor_on_device{
+			overflow-y: hidden;
+		}
+		#search_doctor_on_device .autosuggest__results {
+    		max-height: 85vh !important;
+		}
+		.doctor-experience, .doctor-fee{
+			border-right: 1px solid #cccccc;
+		}
+		.mobile_review{
+			max-height: 40px;
+    		overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.user_imgSec {
+    		flex: 0 70px;
+		}
+		.clinic_detail{
+			line-height: 35px;
+			margin-bottom: 0px !important;
+		}
+		.btn_layout{
+			width: 80%;
+		}
+		#simple_search .banner_input{
+			border-radius: 0px;
+			width: 100%;
+		}
+		#simple_search .mobile_search_btn{
+			position: absolute;
+    		top: 0;
+    		right: 0;
+		}
+		#simple_search .mobile_search_btn button{
+			background-color: transparent !important;
+		}
+		#question_slider .slick-prev {
+    		left: -35px;
+    		z-index: 1;
+    		width: 50px !important;
+    		height: 40px !important;
+		}
+		#question_slider .slick-next {
+    		right: -35px;
+    		z-index: 1;
+    		width: 50px !important;
+    		height: 40px !important;
+		}
+		#health_slider .slick-next{
+			    right: -15px;
+                /* font-size: 10px !important; */
+                height: 40px !important;
+                width: 50px !important;
+		}
+		#health_slider .slick-prev{
+                
+                left:-15px !important;
+			    height: 40px !important;
+                width: 50px !important;
+		}
+		.disease-allergy-immunology li:nth-child(odd){
+			margin-right: 28px !important;
+		}
+
+		.banner_heading span{
+
+			font-size: 25px !important;
+		}
+		.sidebar_dark{
+			width: 100%;
+		}
+		.sidebar .nav-item .nav-link{
+			width: 100%;
+    		text-align: left;
+    		border-bottom: 1px solid #fff;
+		}
+		.sidebar .nav-item .nav-link i{
+			float: left;
+    		margin-right: 10px;
+    		font-size: 16px;
+    		color: #fff !important;
+    		margin-top: 5px;
+		}
+		.sidebar .nav-item .nav-link span{
+			font-size: 16px !important;
+			color: #fff;
+		}
+		.topbar #sidebarToggleTop{
+			color: #fff !important;
+		}
+		.topbar #sidebarToggleTop:hover,.topbar #sidebarToggleTop:active{
+			background-color: transparent !important;
+		}
+		.sidebar_dark .nav-item .nav-link:active, .sidebar_dark .nav-item .nav-link:focus, .sidebar_dark .nav-item .nav-link:hover{
+			background-color: transparent !important;
+			border-radius: 0px !important;
+		}
+		.sidebar_dark .nav-item .nav-link:hover:before, .sidebar_dark .nav-item .nav-link:hover:after{
+			background-image: none !important;
+		}
+		.heading-about-us {
+    		margin-top: 1rem;
+		}
+		.sidebar_dark{
+			display: none;
+		}
+		.listing_main{
+			top:42%;
+		}
+
+	}
+	@media (max-width: 767px){
+		/* Responsive Utilities*/
+		h1{
+			font-size: 30px;
+			font-weight: bold;
+		}
+		/*h2{
+			font-size: 20px;
+			font-weight: bold;
+		}*/
+		.w-sm-100{width: 100%!important;}
+
+		.reset_main{width: 100% !important;}
+
+		.w-sm-90{width: 90%!important;}
+
+		.w-sm-80{width: 80%!important;}
+
+		.w-sm-70{width: 70%!important}
+		.w-sm-75{width: 75%!important}
+		.w-sm-60{width: 60%!important}
+
+		.w-sm-65{width: 65%!important}
+
+		.details_layout{width: 70%!important}
+
+		.w-sm-50{width: 50%!important}
+
+		.w-sm-48{width: 48%!important}
+
+		.w-sm-40{width: 40%!important;}
+
+		.w-sm-30{width: 30%!important;}
+
+		.w-sm-15{width: 15%!important}
+
+		.w-sm-70px{width: 70px!important;}
+
+		.h-sm-70{height: 70px!important}
+
+		.w-sm-60px{width: 60px!important;}
+
+		.h-sm-60{height: 60px!important}
+
+		.text_sm_12{font-size: 12px!important;}
+		.text_sm_9{font-size: 9px!important;}
+		.md_line_height{
+			line-height: 20px;
+		}
+		.flex-sm-shrink-0{
+			flex-shrink: 0;
+		}
+		.overflow-sm-auto{
+			overflow: auto;
+		}
+		.subscribe-btn {
+    right: -45px !important;
+}
+.lab-logo img{
+    height: 60px !important;
+}
+.doctor-bg-image{
+	background-image: none !important;
+    background: linear-gradient(#87ebeb, #7ad8de1f) !important;
+    height: 405px !important;
+}
+.book-discount a {
+    padding: 5px 3px !important;
+}
+.services_main_banner li, .service-banner li{
+    margin-right: 12px !important;
+}
+		/* Responsive Utilities*/
+		.user_imgSec {
+    		flex: 0 60px;
+		}
+		.text_sm_35 {
+			font-size: 35px !important;
+		}
+		.text_sm_15 {
+			font-size: 15px;
+		}
+		.gallery-image > img{
+           width: 63px;
+           max-height: 80px;
+           float: left; 
+        }
+		.w-sm-25{width: 25% !important;}
+		.w-sm-30{width: 30% !important;}
+		.w-sm-45{width: 45% !important;}
+
+		/*.services_list{width: 50%!important;}*/
+		/* Home page Responsive */
+		.listing_main{
+			top:42%;
+		}
+		.doctor-bg-image:before{
+			height: 170px;
+			margin-top: 0px;
+			position: absolute;
+			width: 45%;
+			right: 0;
+			top: 80px;
+
+		}
+		/*.doctor-bg-image{
+			background-image: none !important;
+		}*/
+		.blogs_section:before,.inner-banner:before{
+			display: none;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 10px;
+			height: 14px;
+		}
+		.feedback-slide-icon .carousel-control-prev {
+    left: 50% !important;
+}
+		.heading-doctor-city-pakistan a{
+			font-size: 16px;
+		}
+		.surgerie-bg-image,.surgerie-bg-image:before,.doctor-hospital-bg-image{
+			background-image: none;
+		}
+		.services_main li a i {
+			font-size: 20px;
+			position: relative;
+			top: 5px;
+		}
+		.blog_sm_img img {
+			height: 40px;
+		}
+		.other_dropdown{
+            width: 400px;
+            transform: translate3d(-11px, 18px, 0px);
+        }
+        .patientWelcomeText{
+        	width: 77%;
+        }
+        .welcome_text h2{
+
+        	font-size: 18px !important;   
+        }
+        .user_name_img h2{
+        	font-size: 20px;
+        }
+		/*.red_circle, .green_circle, .blue_circle{
+			height: 100px;
+			}*/
+		.dropdown-menu a {
+			min-width: auto;
+		}
+		/*.doctor_list .dropdown-menu, .hospital_list .dropdown-menu, .services_list .dropdown-menu{
+			max-width: 580px;
+			transform: translateX(16%);
+	    	width: 88%;
+	    	}*/
+    	.doctor_list, .hospital_list, .services_list{
+    		width: 10%;
+    	}
+    	.enter-email .subscribe-input {
+           padding: 8px 70px 8px 10px !important;
+           }
+		/*.doctor_list .dropdown-menu, .hospital_list .dropdown-menu,.services_list .dropdown-menu,.more_list .dropdown-menu{
+		    transform: translateX(30%);
+		    width: 80%;
+		    min-width: 13rem;
+		    }*/
+	    .services_list {
+	    	width: 33% !important;
+	    }
+	    .other_dropdown{
+	    	width: 86%;
+	    	left: -40px !important;
+	    }
+	    /* Home page Responsive */
+
+	    /* Start For Doctor Page */
+
+		/*.bg-knockdock-profile {
+	    	background: linear-gradient(90deg, rgba(70,35,98,0.7) 0%, rgba(70,0,124,0.7) 10%, rgba(151,102,190,8) 100%, rgba(196,196,196,0) 100%);
+	    	}*/
+    	.bg-image-knockdock-profile:before{
+    		width: 100%;
+    	}
+    	.bg-image-data-protection:before{
+    		position: relative;
+    		height: 300px;
+    	}
+    	.heading-data-protection h2{
+    		margin-top: 0px;
+    	}
+    	.bg-list-doctor-in-pakistan{
+    		min-height:102px;
+    		
+    	}
+    	
+    	/* End For Doctor Page */
+		/*.phone_number input, .phone_number input:focus{
+			width: 70% !important;
+			}*/
+
+		/* Start ask-a-doctor-online speciality dermatologist */
+		.bg-image-knockdock-pro {
+			margin-top: 3rem;
+		}
+		.fa-eye-slash:before{
+			right: 95px !important;
+		}
+        
+        .fa-eye:before{
+			right: 95px !important;
+		}
+		/* End ask-a-doctor-online speciality dermatologist */
+
+
+		/* Start practice-as-doctor */
+		/*
+		.bg-image-data-protection, .bg-image-knockdock-pro{
+			background-image:none;
+		}
+		*/
+		.bg-image-data-protection {
+			min-height: 340px;}
+
+
+		/* End practice-as-doctor */
+
+
+
+		/* Start procedures/anal fistulotomy */
+
+		.cstm_border_left{
+			border:0 !important;
+		}
+
+		.bypass-grafting-popup{
+			left:55px;
+		}
+		.laboratories_border:after{
+			display: none !important;
+		}
+		/* End procedures/anal fistulotomy */
+		/*.doctor_list .dropdown-menu, 
+		.hospital_list .dropdown-menu, 
+		.more_list .dropdown-menu{
+			width: 90%;
+			min-width: 30rem;
+			transform: translateX(32%);
+			}*/
+		.allergy_services{
+			width: 30% !important;
+		}
+		.services_list .dropdown-menu{
+			width: 100%;
+			min-width: 32rem;
+		}
+
+		/* Start subscribe now  */	
+		.subscribe-newsletter p {
+			font-size: 34px;
+		}
+
+		/* End subscribe now */
+		.cstm_border_right{
+			border-right: none;
+		}
+		.doctor-name-specialties{
+			min-height: auto;
+		}
+		.doctor-hospital-city li{
+			width: 100%;
+			margin-right: 5px;
+			margin-top: 10px;
+		}
+		.blog_height{
+			height: 420px;
+		}
+		.procedure_locationInner{
+			width: 75% !important;
+		}
+		.knockdock-profile-tool h2,.knockdock-profile h2{
+			margin-top:0px;
+			margin-bottom: 20px;
+		}
+		.software_management_text h2{
+			margin-top: 0px;
+			margin-bottom: 40px;
+		}
+		#online-chat-slider .box_shadow{
+			box-shadow: none;
+		}
+		#online-chat-slider .slick-prev{
+			left: 25px;
+		}
+		#online-chat-slider .slick-next{
+			right: 25px;
+		}
+		.section-doctoe-practice:before{
+			display: none;
+		}
+		.heading-doctor-practice h2, 
+		.heading-benifites-knockdock h2, 
+		.heading-signup h2, 
+		.heading-knockdock-profile h2, 
+		.heading-data-protection h2, 
+		.heading-doctor-video-calling h2, 
+		.heading-doctor-demo h2,
+		.section-heading h2{
+			font-size: 25px;
+		}
+		/*.footer_col{
+			background-size: contain !important;
+			background-position: 100% 71% !important;
+
+		}*/
+		.user_imgSec{
+			flex: 0 90px;
+		}
+		.cstm_border_right:after{
+			display: none;
+		}
+		/*.banner-custom-margin{
+			margin-right: 80px;
+		}*/
+		#search_doctor_on_device .autosuggest__results{
+			max-height: 75vh !important;
+		}
+		.choose_fee {
+    		width: 33%;
+		}
+		.btn_layout{
+			width: 100%;
+		}
+		.online-user-images-text {
+    		height: 200px !important;
+		}
+		.slider_answer {
+    		min-height: 160px;
+    	}
+    	.heading-about-us h1{
+
+        	font-size: 44px !important;
+        }
+        .heading-about-us{
+            margin-top: 1rem !important;
+        }
+
+        .heading-about-us p{
+
+        	font-size: 20px !important;
+        }
+        .heading-we-are-hare{
+            
+            text-align: center !important;
+		}
+		.heading-we-are-hare{
+            
+            margin-top: 2rem !important;
+		}
+		.bg-image-work-together{
+			min-height: 385px !important; 
+		}
+		.bg-image-our-dream {
+            margin-top: 16px !important;
+        }
+        .bg-image-work-together,.bg-image-our-dream {
+		    background:none !important;
+		}
+		.heading-our-dream{
+			line-height: normal;
+		}
+		.heading-our-dream p{
+			font-size: 20px !important;
+			text-align: center;
+		}
+		.disease-allergy-immunology li:nth-child(odd){
+			margin-right: 12px !important;
+		}
+		.disease-allergy-immunology li:nth-child(odd){
+			margin-right: 22px !important;
+		}
+
+		.choose_hospital_section{
+
+			width: 50% !important;
+		}
+		.hospitalFor_doctors {
+		    margin-top: 15px;
+		}
+		.services_main li:nth-of-type(2){
+    		display: block;
+		}
+		
+		.discount_labs_tests{
+			text-align: center;
+			border-bottom: 1px solid #8B8B8B;
+    		margin-bottom: 10px;
+		}
+		.discount_labs_tests ul {
+		    display: inline-block;
+		    width: 100%;
+		}
+		.discount_labs_tests ul li{
+			margin-bottom: 15px;
+			margin-right: 0px;
+		}
+		.discount_labs_tests label {
+    		font-size: 18px;
+		}
+		.test_description{
+    		min-height: auto !important;
+		}
+		.banner_input{
+			padding: 0.75rem 3rem 0.75rem 0.75rem !important
+		}
+		.lab-test-slider .sliderBox {
+    		margin: 20px 40px;
+		}
+		.lab-test-slider .slick-next {
+    		right: -5px;
+    		top: 40%;
+		}
+		.lab-test-slider .slick-prev {
+		    left: -5px;
+		    top: 40%;
+		}
+		.lab_titles{
+			flex-wrap: nowrap;
+    		white-space: nowrap;
+    		overflow: auto;
+		}
+		.lab_titles::-webkit-scrollbar {
+			height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+  			width: 4px;               /* width of vertical scrollbar */
+  			border: 1px solid #d5d5d5;
+		}
+		.custom_collapse{
+			padding: 10px 0;
+		}
+		.works_inner_main .works_box:after{
+			display: none;
+		}
+		.works_inner_main .works_box_2:after {
+    		display: none;
+		}
+	}
+	@media (max-width: 576px){
+		/* Responsive Utilities*/
+
+
+		/* Display Classes*/
+
+		.d-xs-none{
+			display: none;
+		}
+		.d-xs-block{
+			display: block !important;
+		}
+		.d-xs-flex{
+			display: flex !important;
+		}
+		.d-xs-inline-block{
+			display: inline-block;
+		}
+
+		/* Display Classes*/
+
+		/* Floating */
+		.float-xs-left{float: left!important;}
+		.float-xs-right{float: right!important;}
+		.float-xs-none{float: none!important;}
+		.text-xs-center{text-align: center!important;}
+		/* Floating */
+
+		/*Font Size for mobile*/
+		.text-xs-9{
+			font-size: 9px!important;
+		}
+		.text-xs-13{
+			font-size: 13px!important;
+		}
+		.text-xs-14{
+			font-size: 14px!important;
+		}
+		.text-xs-20{
+			font-size: 20px!important;
+		}
+		.text-xs-22{
+			font-size: 22px!important;
+		}
+		.font-xs-bold{
+			font-weight:bold !important
+		}
+		/*Font Size for mobile*/
+		.w-xs-100{width: 100%!important;}
+		.w-xs-90{width: 90%!important;}
+		.w-xs-55{width: 55%!important;}
+		.w-xs-30{width: 30%!important;}
+		.w-xs-35{width: 35%!important;}
+		.w-xs-75px{width:75px!important;}
+		.w-xs-60px{width:60px!important;}
+		.h_xs_75{height: 75px !important;}
+		.h_xs_60{height: 60px !important;}
+		.w-xs-50{width: 50%!important;}
+		.w-xs-52{width: 52%!important;}
+		.w-xs-48{width: 48% !important}
+		.w-xs-15{width: 15%!important;}
+
+		.w-xs-80{width: 80%!important;}
+		/*Grid for Mobile*/
+		/* Responsive Utilities*/
+
+		.w-xs-60{width: 60% !important;}
+		.w-xs-65{width: 65% !important;}
+		.w-xs-25{width: 25% !important;}
+		.w-xs-20{width: 20% !important;}
+		.w-xs-70{width: 70% !important;}
+		.w-xs-78{width: 78% !important;}
+		.w-xs-45{width: 45% !important;}
+		.w-xs-40{width: 40% !important;}
+		.w-xs-80{width: 80% !important;}
+		.w-xs-85{width: 85% !important;}
+		.w-xs-20px {width: 20px !important;}
+		.h-xs-16px {height: 16px !important;}
+		.h-xs-20px {height: 20px !important;}
+		.w-xs-40px {width: 40px !important;}
+		.h-xs-40px {height: 40px !important;}
+		.w_xs_60px {width: 60px !important;}
+		.procedure_locationInner{width: 60% !important;}
+		/* Home page Responsive */
+		.text_xs_15 {
+			font-size: 15px;
+		}
+		.listing_main{
+			top:40%;
+		}
+		.surgery-video-icon{
+			right:15px !important;
+		}
+		.doctor_image {
+    flex: 0 60px !important;
+}
+
+.blog-pagination{
+	overflow-x: auto;
+}
+.blog-pagination::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.modal-header{
+	border-radius: 0 !important;
+}
+.bg-about-us-image{
+	min-height: 107px;
+}
+.disease_name {
+     width: 85%; 
+    display: block !important;
+}
+.see-more-doctor-btn a{
+	padding: 7px 20px !important;
+}
+.bg-image-skin-care{
+    min-height: 164px;
+}
+
+.disease-content img{
+	height:200px !important;
+}
+.disease-content span h1{
+	font-size:20px !important;
+}
+.experience-image, .rs-image, .wait-icon{
+    height: 13px !important;
+}
+.doctor-profile .doctor-profile-name{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70%;
+}
+		.blog-main-slider {
+    height: 155px !important;
+}
+
+.blog-pagination{
+	margin: 10px auto 0 !important;
+}
+.blogs-date .date:before{
+	left:30% !important;
+}
+.blog-main-slider .slick-prev:before, 
+.blog-main-slider .slick-next:before{
+	top: 0px !important;
+	font-size:25px !important;
+}
+.ride-box {
+    bottom: -53px !important;
+}
+.skin-content {
+    bottom: -154px !important;
+}
+.categories-blog-slider .slick-next{
+	right: -5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    top:30% !important;
+}
+.categories-blog-slider .slick-next:before{
+	font-size: 12px !important;
+    right: 5px !important;
+    top: 4px !important;
+}
+.categories-blog-slider .slick-prev{
+	left: -5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    top:30% !important;
+}
+.categories-blog-slider .slick-prev:before{
+	font-size: 12px !important;
+    left: 5px !important;
+    top: 4px !important;
+}
+		.mobile_section_heading p {
+    font-size: 30px !important;
+}
+	.reports-section:after{
+		right: 20px !important;
+	}
+	.mobile_search_btn {
+    top: 8px !important;
+}
+.banner-search-icon {
+    top: 9px !important;
+}
+.banner-speciality-images img{
+	height:200px;
+}
+.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important;
+}
+.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 148px !important;
+    right: 0 !important;
+    top: -54px !important;
+}
+.service-banner li:nth-of-type(3) .lab-image img {
+    right: 5px !important;
+    height: 145px !important;
+}
+
+
+.service-banner li:nth-of-type(1){
+    background: #AFFFD4;
+}
+.service-banner li:nth-of-type(2){
+   background: #FFCFC5; 
+}
+.service-banner li:nth-of-type(3){
+    background: #C3DFFF;
+}
+.user_imgSec img{
+	height:auto !important;
+}
+.service-banner li{
+	margin-right: 0 !important;
+}
+		.feedback-slide-icon .carousel-control-prev, 
+		.feedback-slide-icon .carousel-control-next{
+			width:33% !important;
+		}
+		#feedback_slider .carousel-control-next-icon {
+    margin-right: 10px !important;
+    margin-top: 5px !important;
+}
+.p-xs-0{
+	padding:0 !important;
+}
+.p-xl-0{
+	padding:0 !important;
+}
+.detail-btn a {
+    padding: 3px 4px !important;
+    float: left;
+}
+
+.reports-section .reports-section-menu{
+	left:-4px !important;
+}
+.reports-section a {
+    padding: 5px 5px 5px 1px !important;
+}
+.discount-link a{
+	padding: 5px 5px !important;
+}
+.scroll-blog{
+flex-wrap: inherit !important;
+overflow: auto;
+}
+.scroll-blog::-webkit-scrollbar, 
+.disease-allergy-immunology::-webkit-scrollbar, 
+.filter-main::-webkit-scrollbar, .lab_titles::-webkit-scrollbar{
+	height:0 !important;
+}
+
+.allergy_services {
+    width: 100% !important;
+}
+.lab-icon-images span img{
+	height: 9px !important;
+}
+.percent_main sub{
+    right: 0px !important;
+    top: -10px !important;
+}
+#feedback_slider .carousel-control-prev-icon {
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+}
+		.row-inherit{
+			flex-wrap: inherit !important;
+			overflow-y: hidden;
+            overflow-x: auto;
+		}
+		.row-inherit::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.book-lab-image img{
+	height: auto !important;
+}
+.add-cart-btn {
+    margin-top: 20px !important;
+}
+.cart-icon-image .cart-icon{
+	padding:5px !important;
+}
+.appointment_slider {
+    height: auto !important;
+}
+.doctor_name h2 .doctor-name, .doctor-name-specialties .doctor-name{
+	border-bottom: 0 !important;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
+}
+.doctor-name-specialties .name {
+   border-bottom: 0 !important;
+}
+.doctor-description ul{
+	padding-left:17px !important;
+}
+.video_icon i {
+    font-size: 9px !important;
+    margin-top: 1px !important;
+}
+.small_btn {
+    padding: 6px 4px !important;
+}
+.feedback-slide-icon .carousel-control-prev {
+    left: 45px !important;
+}
+.faq_inner[data-toggle="collapse"].collapsed:after, 
+.faq_inner[data-toggle="collapse"]:after{
+	top:12px !important;
+    right: 5px !important;
+    position: absolute;
+}
+.hospitalFor_doctors .slick-prev, .hospitalFor_doctors .slick-next{
+    top: 55% !important;
+}
+#fee-range-modal .modal-header, #time-slot-modal .modal-header{
+	border-radius: 0 !important;
+}
+.slick-dots li{
+	margin:0 3px !important;
+}
+.services_main_banner li{
+	height: 155px !important;
+}
+span.banner_mobileimg img {
+    min-height:inherit !important;
+    max-height:inherit !important;
+    margin-top:0 !important;
+}
+.symptoms-slider .slick-prev:before, 
+.discount-box-slider .slick-prev:before{
+	left: 5px !important;
+	top:2px !important;
+	font-size:13px !important;
+}
+.symptoms-slider .slick-next:before, 
+.discount-box-slider .slick-next:before{
+	right: 5px !important;
+	top:2px !important;
+	font-size:13px !important;
+}
+.symptoms-slider .slick-prev, .discount-box-slider .slick-prev{
+	left: -10px !important;
+	width:20px !important;
+	height:20px !important;
+	top: 40% !important;
+} 
+.symptoms-slider .slick-next, .discount-box-slider .slick-next{
+	width:20px !important;
+	height:20px !important;
+	right: -10px !important;
+	top: 40% !important;
+}
+.feedback-client-slider{
+	height: 175px !important;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.34);
+}
+		.carousel-control-next-icon, 
+		.carousel-control-prev-icon {
+    width: 8px !important;
+    height: 12px !important;
+}
+#feedback_slider .carousel-control-next, 
+#feedback_slider .carousel-control-prev{
+	top:-25px !important;
+}
+.subscribe-btn a{
+	padding: 7px 14px !important;
+}
+.doctor-appointment-image img {
+    right: 0px !important;
+    height: 100px !important;
+    width: 68% !important;
+}
+.surgerie_categories li{
+	margin-right: 10px !important;
+}
+.blog_height {
+    height: 375px !important;
+}
+.surgerie_categories{
+	display: flex !important;
+}
+.scroll-flow{
+	overflow: auto;
+}
+.scroll-flow::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.scroll-flow::-webkit-scrollbar-thumb{
+	background:0 !important;
+}
+.title-margin{
+	margin-top:30px;
+}
+.services_main_banner li:nth-of-type(1), .services_main_banner li:nth-of-type(2) {
+    margin-bottom:55px !important;
+}
+.services_main_banner li:nth-of-type(1), 
+.services_main_banner li:nth-of-type(3){
+    margin-right:32px !important;
+}
+.service-banner li:nth-of-type(1){
+    margin-right:14px !important;
+}
+		.services_main_banner li{
+			margin-right:0 !important;
+		}
+		#home_search .autosuggest__results-container, 
+		.banner_location .autosuggest__results-container{
+			width:100% !important;
+			left:0 !important;
+		}
+		.booking_timmings li{
+            
+            min-width: 68px !important;
+            max-width: 75px !important; 
+		}
+		.gallery-image > img{
+           width: 63px;
+           max-height: 80px;
+           float: left; 
+        }
+        .doctor-description h3{
+    font-size: 14px !important;
+}
+.skin-care-text h3, .disease-content h3, #all-speciality-content h3, 
+#all-speciality-content h3 span, .procedure-faq-description h3, .procedure-faq h3, 
+#introduction-lab-content h3, #introduction-lab-content h3 span, 
+.disease-content h3 span{
+    font-size: 20px !important;
+}
+.skin-care-text h2, .disease-content h2, #all-speciality-content h2, 
+.procedure-faq-description h2, .procedure-faq h2, 
+#introduction-lab-content h2, .disease-content h2 span{
+    font-size: 22px !important;
+}
+.disease-video-icon{
+	right: 15px !important;
+}
+.skin-care-text h2 span{
+	font-size: 22px !important;
+}
+		#today_appointment h2{
+			font-size: 22px !important;
+		}
+		.search_detail .no-result{
+			margin-left: 0 !important;
+		}
+		#appointment_list{
+
+			text-align: center !important;
+		}
+		/*#sidebarToggleTop{
+			position: relative !important;
+			left: 16px!important;
+		}
+		*/
+		.text_xs_14 {
+			font-size: 14px;
+		}
+		.text_xs_11 {
+			font-size: 11px;
+		}
+		.text_xs_20 {
+			font-size: 20px;
+		}
+		.lab-heading h2, .top_hospitals_month h2, .benifits_heading h2, .knockdock-profile-tool h2, .knockdock-profile h2{
+
+			font-size: 25px !important; 
+		}
+		.text_xs_25 {
+			font-size: 25px !important;
+		}
+		.text_xs_12 {
+			font-size: 12px !important;
+		}
+		.text_xs_13 {
+			font-size: 13px !important;
+		}
+		/*Header*/
+		.text_side p{
+			font-size: 10px;
+		}
+		/*Header*/
+		.blog_sm_img img {
+			height: 25px;
+		}
+		.lab_reviews{
+
+			width: 80% !important;
+		}
+		/*.red_circle, .green_circle, .blue_circle{
+		height: auto;
+		}*/
+		.doctors_dropdown a, .hospitals_dropdown a, .services_dropdown a {
+			min-width: 48%;
+			/*max-width: 50%;*/
+
+		}
+		/*.banner-custom-margin {
+    margin-right: 30px;
+}*/
+.lab-logo img{
+    height: 60px !important;
+}
+.book-discount a {
+    padding: 5px 8px !important;
+}
+.pl-xs-0{
+	padding-left: 0 !important;
+}
+.get-code a {
+    padding: 5px 8px !important;
+}
+#home_search{
+	margin-top: 15px !important;
+	margin-left:0 !important;
+}
+.disease-allergy-immunology {
+	overflow-y: hidden;
+    overflow-x:auto;
+    max-width: 290px;
+    display: flex !important;
+}
+.disease-allergy-immunology::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.disease-allergy-immunology::-webkit-scrollbar-thumb {
+    background: linear-gradient(#52BCB9),
+    border-radius: 10px;
+}
+		.doctor-description h2{
+  font-size: 14px !important;
+}
+/*.procedure-faq-description h2, .procedure-faq h2{
+    font-size: 16px !important;
+}
+.procedure-faq h3, .procedure-faq-description h3{
+    font-size: 14px !important;
+}*/
+#all-speciality-content h2 span, #introduction-lab-content h2 span{
+    font-size: 22px !important;
+}
+#all-speciality-content ul li span, #introduction-lab-content ul li span{
+	width:93% !important;
+}
+
+
+		.software_management_text{
+
+			font-size: 25px !important;
+		}
+
+		#gallery_main .vgs .vgs__container{
+			margin: 0.5rem auto 0 !important;
+		}
+		
+		.vgs__container{
+
+			top:33% !important;
+		} 
+
+		.articles{
+           width:100% !important;
+           text-align: center;
+        }
+        .article-based-ealth p {
+
+        	font-size: 30px !important;
+        }
+
+        .article-based-ealth{
+
+        	text-align: center !important;
+        }
+        .other_list{
+
+        	width: 100% !important;
+        }
+        .other_dropdown{
+	        width: 400px;
+	       	transform: translate3d(-11px, 18px, 0px);
+        }
+        /*.our-dream-content{
+           line-height: 318px !important;
+           height: 354px !important;
+        }*/
+		/*.doctor_list .dropdown-menu, .hospital_list .dropdown-menu,.services_list .dropdown-menu{
+		left: 0;
+	    transform: translateX(30%);
+	    width: 80%;
+	    position: absolute;
+	    top: 0;
+	    padding: 10px;
+	    font-size: 12px;
+	    max-width: 500px;
+	    overflow-y: scroll;
+	    }*/
+	    .banner_heading span{
+	    	font-size: 28px;
+	    }
+	    .other_disese{
+	    	width: 45%;
+	    }
+	    .other_dropdown{
+	    	width: 100%;
+	    	left: -20px !important;
+	    }
+	    /* Home page Responsive */
+
+	    /* doctor listing responsive*/
+
+	    .text_xs_10{
+	    	font-size: 10px !important
+	    }
+	    /*.breadcrumb-item+.breadcrumb-item::before{
+	    	margin-top: 2px;
+	    }*/
+
+	    /* Start doctor profile  Css*/
+
+	    .reviews-number{
+	    	float:right;
+	    }
+	    /* End doctor profile  Css*/
+
+	     /* Start privacy policy Css*/
+        .introduction-heading a{
+			font-size:10px;
+		}
+		.introduction-heading p{
+
+			font-size: 15px;
+		}
+		.heading-privacy-policy h2{
+			font-size:24px;
+		}
+		.personal-information{
+			padding-left: 25px !important;
+		}
+		.personal-information span{
+
+		 font-size:15px;
+		}
+
+		/* End privacy policy Css*/
+
+	    /* doctor listing responsive*/
+
+	    /* Start video_consultation Css*/
+	    .care-section-circle{
+	    	height: auto;
+	    }
+	    .mobile_view{
+	    	margin-top: 50px;
+	    	display: inline-block;
+	    }
+
+	    .patient-detail-banner-image img{
+	    	height:45px;
+	    }
+
+	    /* End video_consultation Css*/
+
+
+	    /* Start For Doctor Page */
+	    .bg-doctor-practice{
+	    	padding-bottom: 90px;
+	    }
+	    .heading-doctor-practice h2{
+	    	font-size: 25px;
+	    }
+	    .user_imgSec{
+			flex: 0 40px;
+		}
+		.doctor-slider .slick-prev, .doctor-slider .slick-next{
+			top: 50% !important;
+		}
+		.doctor-slider .slick-prev{
+			left:-7px !important;
+		}
+		.doctor-video-icon {
+    right: 5px !important;
+    top: 6px !important;
+}
+.doctor-video-box{
+	bottom: 0px !important;
+    right: 0 !important;
+    left: inherit;
+}
+		.doctor-slider .slick-next{
+			right:-7px !important;
+		}
+	    /* End For Doctor Page */
+	    .phone_number span {
+	    	right: 8px !important;
+	    	top: 4px !important;
+	    }
+		/*.phone_number input, .phone_number input:focus{
+			width: 80% !important;
+		}*/
+		.doctor-skin-care-detail {
+			top: -28px;
+		}
+		.bg-list-doctor-in-pakistan{
+			min-height:0;
+		}
+		.bg-doctor-section-btn{
+			padding: 5px 14px;
+    		color: #838383;
+    		background-color: #e5e5e5;
+    		flex: 0 0 15em;
+    		text-align: center;
+		}
+		.input-doctor-onboard a {
+	    	right: 7%;
+        }
+
+		/*.services_list{width: 100% !important;}*/
+
+
+		/* Start doctors/pakistan */
+
+		.bg-list-doctor-in-pakistan{
+			min-height:0;
+		}
+
+		.subscribe-btn {
+			right: 5px !important;
+		}
+		
+
+		/* End doctors/pakistan */
+
+
+
+		/* Start articles/ergreg */
+
+		.doctor-skin-care-detail {
+			top: -28px;
+		}
+
+
+		/* End articles/ergreg */
+		
+
+		/* Start articles/categories */
+
+		.box_main{
+			width:33%;
+		}
+
+
+		/* End articles/categories */
+
+
+
+		/* Start articles profile mr-david */
+
+		.skin-doctor-image{
+			width:25%;
+		}
+
+		/*.doctor-name{
+			width:70% !important;
+		}
+		*/
+
+		.laboratories_border:after{
+			display: none !important;
+		}
+
+
+		/* End articles profile mr-david */
+
+
+
+		/* Start subscribe-now */
+
+		.subscribe-newsletter p {
+			font-size: 25px;
+		}
+
+		.subscribe-newsletter span {
+			font-size: 16px;
+		}
+
+
+		/* End subscribe-now */
+
+
+		/* Start practice-as-doctor */
+
+		.bg-image-data-protection, .bg-image-knockdock-pro{
+			background-image:none !important;
+
+		}
+		.bg-image-data-protection {
+			min-height: 415px !important;}
+
+		.bg-image-knockdock-pro{
+			margin-top: 2rem;
+		}
+
+
+		/* End practice-as-doctor */
+
+
+		/* Start procedures/anal fistulotomy */
+
+		.cstm_border_left{
+			border:0 !important;
+		}
+
+		.bypass-grafting-popup{
+			left:0;
+		}
+        
+        .welcome-login-text span{
+
+        	font-size: 25px !important;
+        }
+
+        .welcome-login-text p{
+
+        	font-size: 13px !important;
+
+        }
+
+        .email_text{
+
+        	font-size: 20px !important;
+        	margin-bottom: 10px !important;
+
+        }
+
+		/* End procedures/anal fistulotomy */
+
+
+		/* Start procedures */
+
+		.bg-procedure-network{
+			min-height:140px;
+		}
+
+		/* End procedures */
+		/*.doctor_list .dropdown-menu, 
+		.hospital_list .dropdown-menu, 
+		.services_list .dropdown-menu, 
+		.more_list .dropdown-menu{
+			width: 80%;
+			min-width: 16rem;
+		}*/
+		.book-dr-image {
+			bottom: 0;
+			left: 5px;
+			top: 30px;
+		}
+		.bg-title-doctor-in-pakistan h2 {
+			font-size: 16px;
+		}
+		.heading-skin-hair-care h1 {
+			font-size: 30px;
+		}
+		.fitness_articleLinks{
+			width: 100%;
+		}
+		.lab-heading h2,.top_hospitals_month h2, .benifits_heading h2,.knockdock-profile-tool h2,.knockdock-profile h2 {
+			font-size: 28px;
+			text-align: center;
+		}
+		/*.footer_col{
+			background-size: contain !important;
+			background-position: 100% 77.5% !important;
+		}*/
+		
+		.heading-subscribe-now p{
+			font-size: 12px !important;
+		}
+		.choose_fee {
+    		width: 48% !important;
+		}
+		.doctor_degree  p{
+			text-overflow: ellipsis;
+    		overflow: hidden;
+    		white-space: nowrap;
+		}
+		.laboratories_border:after{
+			display: none;
+		}
+		.google_map {
+    		height: 100vh !important;
+    		width: 47vh !important;
+		}
+		#question_slider .slick-prev {
+    		left: -5px;
+    		z-index: 1;
+    		width: 50px !important;
+    		height: 40px !important;
+		}
+		#question_slider .slick-next {
+    		right: -5px;
+    		z-index: 1;
+    		width: 50px !important;
+    		height: 40px !important;
+		}
+		#health_slider .slick-next{
+			    right: -15px;
+                /* font-size: 10px !important; */
+                height: 40px !important;
+                width: 50px !important;
+		}
+		#health_slider .slick-prev{
+                
+                left:-15px !important;
+			    height: 40px !important;
+                width: 50px !important;
+		}
+		#slide_title{
+			font-size:20px !important;
+		}
+		.disease-allergy-immunology li:nth-child(odd){
+			margin-right: 3px !important;
+			/*margin-left: 6px;*/
+		}
+		.hospital-section{
+			overflow: auto;
+            overflow-y: hidden;
+		}
+		.doctor-in-pakistan{
+			width: 100%;
+		}
+   
+		/* Booking Appointments in booking popups*/
+	}
+
+    @media (max-width: 567px){
+    	.listing_main{
+			top:42%;
+		}
+
+		.blog-social-icon {
+    left: 78px;
+}
+		.dropdown-add-to-cart-lab{
+	left: 18px !important;
+    width: 378px !important;
+}
+.categories-blog-slider .slick-prev, .categories-blog-slider .slick-next{
+	top:32% !important;
+}		
+		.blogs-date .date:before {
+    left: 25% !important;
+}
+		.get-code a {
+    padding: 5px 7px !important;
+}
+.book-discount a {
+    padding: 5px 18px !important;
+}
+		.lab-logo img{
+    height: 90px !important;
+}
+
+		#feedback_slider .slick-dots{
+			bottom: -42px !important;
+			margin: 0 !important;
+		}
+		.subscribe-btn {
+    right: -20px !important;
+}
+		.feedback-client-slider {
+    height: 200px !important;
+}
+#feedback_slider .slick-dots li button:before{
+	top: -38px !important;
+}
+    	.sidebar_dark{
+			float: left;
+            padding-top: 0px;
+            /* inset: 70px 0px 0px; */
+            z-index: 2;
+            display: none;
+            position: absolute;
+            top: 69px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow:inherit !important;
+            height: 100% !important;
+            border-top: 2px solid #fff; 
+		}
+    	.hospital_fee{
+
+			width: 100% !important;
+		}
+		.choose_hospital_section{
+
+			width: 100% !important;
+			margin-bottom: 10px !important; 
+		}
+		.banner_heading h2{
+			margin: 0px 10px 0 0; 
+		}
+		.disease-allergy-immunology {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 377px;
+    display: flex !important;
+}
+.blog-detail-breadcrumb .breadcrumb-item.active{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 65%;
+}
+.lab-images .lab_image img {
+    height: 100px !important;
+}
+.reports-section:after{
+		right: 45px !important;
+	}
+
+.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 142px !important;
+    right: 0 !important;
+    top: -63px !important;
+}
+.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 145px !important;
+    right: 0 !important;
+}
+.call-sticky {
+    right: 15px !important;
+    bottom: 17% !important;
+}
+.percent_main sub {
+    right: 32px !important;
+    top: 11px !important;
+}
+.share-icon a {
+    padding: 7px 37px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 37px !important;
+}
+
+
+
+    }
+
+
+@media (max-width: 400px){
+.get-code a {
+    padding: 5px 10px !important;
+}
+.share-icon a {
+    padding: 7px 34px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 34px !important;
+}
+.book-discount a {
+    padding: 5px 13px !important;
+}
+.lab-logo img {
+    height: 80px !important;
+    width: 80px !important;
+}
+.percent_main sub {
+    right: 32px !important;
+    top: 11px !important;
+}
+
+
+}
+
+@media (max-width: 390px){
+.percent_main sub {
+    right: 32px !important;
+    top: 11px !important;
+}
+.share-icon a {
+    padding: 7px 30px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 30px !important;
+}
+.lab-logo img {
+    height: 80px !important;
+    width: 80px !important;
+}
+.get-code a {
+    padding: 5px 6px !important;
+}
+.book-discount a {
+    padding: 5px 12px !important;
+}
+.lab-images .lab_image img {
+    height: 92px !important;
+}
+.reports-section:after {
+    right: 30px !important;
+}
+.doctor_name h2{
+	width:100% !important;
+}
+.call-sticky {
+    right: 15px !important;
+    bottom: 15% !important;
+}
+
+
+
+}
+
+@media (max-width: 389px){
+	.percent_main sub {
+    right: 0px !important;
+    top: -10px !important;
+}
+.share-icon a {
+    padding: 7px 32px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 32px !important;
+}
+.subscribe-btn {
+    right: -10px !important;
+}
+.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important;
+}
+.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 158px !important;
+    right: 0 !important;
+    top: -60px !important;
+}
+.lab-images .lab_image img {
+    height: 88px !important;
+}
+.blog-detail-breadcrumb .breadcrumb-item.active{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 65%;
+}
+.blog-social-icon {
+    left: 57px;
+}
+.categories-blog-slider .slick-prev, .categories-blog-slider .slick-next{
+	top:31% !important;
+}
+.blogs-date .date:before {
+    left: 28% !important;
+}
+.dropdown-add-to-cart-lab{
+	left: 16px !important;
+    width: 342px !important;
+}
+.get-code a {
+    padding: 5px 4px !important;
+}
+.book-discount a {
+    padding: 5px 8px !important;
+}
+.lab-logo img{
+    height: 80px !important;
+}
+
+.disease-allergy-immunology {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 340px;
+    display: flex !important;
+}
+.reports-section:after{
+		right: 30px !important;
+	}
+.call-sticky {
+    right: 15px !important;
+    bottom: 20% !important;
+}
+
+
+
+}
+
+
+@media (max-width: 360px){
+	.percent_main sub {
+    right: 0px !important;
+    top: -10px !important;
+}
+.share-icon a {
+    padding: 7px 30px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 30px !important;
+}
+	.call-sticky {
+    right: 15px !important;
+    bottom: 22% !important;
+}
+.subscribe-btn {
+    right: -5px !important;
+}
+.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important;
+}
+.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 148px !important;
+    right: 0 !important;
+    top: -54px !important;
+}
+.reports-section:after{
+		right: 20px !important;
+	}
+.lab-images .lab_image img {
+    height: 85px !important;
+}
+.blog-detail-breadcrumb .breadcrumb-item.active{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 65%;
+}
+.blog-social-icon {
+    left: 55px;
+}
+.categories-blog-slider .slick-prev, .categories-blog-slider .slick-next{
+	top:30% !important;
+}
+.dropdown-add-to-cart-lab{
+	left: 9px !important;
+}
+.get-code a {
+    padding: 5px 6px !important;
+}
+.book-discount a {
+    padding: 5px 8px !important;
+}
+.lab-logo img{
+    height: 75px !important;
+}
+
+#feedback_slider .slick-dots{
+			bottom: -40px !important;
+			margin: 0 !important;
+		}
+.disease-allergy-immunology {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 329px;
+    display: flex !important;
+}
+
+		
+	}
+    @media (max-width: 359px){
+    	.listing_main{
+			top:40%;
+		}
+		.choose_hospital_section{
+
+			width: 100% !important;
+			margin-bottom: 10px !important; 
+		}
+
+		.banner_heading h2{
+			font-size: 24px !important;  
+		}
+		.details_layout {
+		    width: 75%!important;
+		}
+	}
+
+	@media (max-width: 320px){
+		.listing_main{
+			top:37%;
+		}
+		#all-speciality-content ul li span, #introduction-lab-content ul li span{
+	width:90% !important;
+}
+		.reports-section:after{
+		right: 5px !important;
+	}
+	.surgery-video-icon {
+    right: 5px !important;
+}
+	.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important;
+}
+		.blog-social-icon {
+    left: 35px;
+}
+		#feedback_slider .slick-dots{
+			bottom: -17px !important;
+			margin: 0 !important;
+		}
+		.h-52{
+	height:52px !important;
+}
+.get-discount-btn{
+	padding: 7px 8px;
+}
+.text-9{
+	font-size:9px !important;
+}
+.text-8{
+	font-size:8px !important;
+}
+.text-10{
+	font-size:10px !important;
+}
+		.subscribe-btn {
+    right: 5px !important;
+}
+		.feedback-client-slider {
+    height: 175px !important;
+}
+.lab-logo img{
+    height: 60px !important;
+}
+#feedback_slider .slick-dots li button:before{
+	top:0 !important;
+}
+.doctor-bg-image {
+    height: 480px !important;
+}
+.get-code a, .book-discount a{
+    padding: 5px 3px !important;
+    font-size: 10px !important;
+}
+
+.shedule_head{
+	width:78% !important;
+}
+		.mobile_section_heading p {
+    		font-size: 40px;
+		}
+
+		.disease-allergy-immunology {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 290px;
+    display: flex !important;
+}
+.services_main_banner li:nth-of-type(1), 
+.services_main_banner li:nth-of-type(3){
+    margin-right: 28px !important;
+}
+.service-banner li:nth-of-type(1){
+    margin-right: 12px !important;
+}
+.blogs-date .date:before {
+    left: 34% !important;
+}
+.blog-pagination{
+	width:100% !important;
+}
+.dropdown-add-to-cart-lab{
+	left: 9px !important;
+    width: 300px !important;
+}
+.categories-blog-slider .slick-prev, .categories-blog-slider .slick-next{
+	top:29% !important;
+}
+
+.blog-detail-breadcrumb .breadcrumb-item.active{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+}
+.lab-images .lab_image img {
+    height: 72px !important;
+}
+.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 131px !important;
+    right: 0 !important;
+    top: -47px !important;
+}
+.service-banner li:nth-of-type(3) .lab-image img {
+    right: -15px !important;
+    height: 145px !important;
+}
+.call-sticky {
+    right: 15px !important;
+    bottom: 22% !important;
+}
+.percent_main sub {
+    right: 0px !important;
+    top: -10px !important;
+}
+.see-more-doctor-btn a{
+	padding: 7px 10px !important;
+}
+#collapseDoctorMain{
+	 height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#collapseHospitalMain{
+	 height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#collapseLabMain{
+	 height: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#collapseServiceMain{
+	 height: 190px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.share-icon a {
+    padding: 7px 25px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 25px !important;
+}
+.ride-box {
+    bottom: -35px !important;
+}
+.skin-content {
+    bottom: -135px !important;
+}
+
+
+
+	}
+
+
+
+	@media (max-width: 290px){
+		.percent_main sub {
+    right: 0px !important;
+    top: -10px !important;
+}
+.surgery-video-icon {
+    right: 0px !important;
+}
+.h-48{
+	height:48px !important;
+}
+.ride-box {
+    bottom: -24px !important;
+}
+.skin-content {
+    bottom: -124px !important;
+}
+.blog-main-slider {
+    height: 128px !important;
+}
+		.mt-small{
+			margin-top: 20px !important;
+		}
+		.service-banner li:nth-of-type(1) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important;
+}
+		.service-banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 118px !important;
+    right: 0 !important;
+    top: -41px !important;
+}
+		.blog-social-icon {
+    left: 22px;
+}
+		.faq_inner[data-toggle="collapse"].collapsed:after, .faq_inner[data-toggle="collapse"]:after {
+    top: -16px !important;
+}
+.blog-pagination .page-item .page-link {
+    margin-right: 5px !important;
+}
+.speciality-list .treatment-list-menu{
+width:235px !important;
+}
+.blogs-date .date:before{
+	left:40% !important;
+}
+
+		#feedback_slider .slick-dots{
+			bottom: -17px !important;
+			margin: 0 !important;
+		}
+		.surgeries-box{
+			width: 100px !important;
+			height: 100px !important;
+		}
+		.listing_main{
+			top:35%;
+		}
+		.surgerie_categories li {
+    height: 165px !important;
+}
+.get-code a, .book-discount a{
+    padding: 5px 4px !important;
+    font-size: 9px !important;
+}
+
+.services_main_banner li:nth-of-type(1), 
+.services_main_banner li:nth-of-type(3){
+    margin-right: 22px !important;
+}
+		.details_layout {
+    width: 60%!important;
+}
+.lab-logo img{
+    height: 50px !important;
+}
+.disease-allergy-immunology {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 255px;
+    display: flex !important;
+}
+.doctor-bg-image {
+    height: 515px !important;
+}
+.subscribe-btn a {
+    padding: 7px 8px !important;
+}
+.small_btn {
+    padding: 6px 3px !important;
+}
+.dropdown-add-to-cart-lab{
+	left: 5px !important;
+    width: 278px !important;
+}
+.categories-blog-slider .slick-prev, .categories-blog-slider .slick-next{
+	top:30% !important;
+}
+.blog-detail-breadcrumb .breadcrumb-item.active{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 52%;
+}
+
+.lab-images .lab_image img {
+    height: 62px !important;
+}
+.call-sticky {
+    right: 15px !important;
+    bottom: 20% !important;
+}
+.share-icon a {
+    padding: 7px 20px;
+}
+.share-icon .gmail-icon {
+    background-color: #FF0000;
+    padding: 6px 20px !important;
+}
+
+
+
+
+	}

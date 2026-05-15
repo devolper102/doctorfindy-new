@@ -1,0 +1,181 @@
+.bg-list-doctor-in-pakistan {
+    background: url(../images/banner-image.svg) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 160px;
+}
+
+.bg-title-doctor-in-pakistan h2 {
+    font-size: 30px;
+}
+
+.doctor-name-specialties .name{
+border-bottom: 1.5px solid #0E4D92;
+}
+.doctor_image{
+    flex: 0 100px;
+}
+.experience-image, .rs-image, .wait-icon, .finger-icon img {
+    height: 12px;
+}
+.doctor_fee_details li:nth-of-type(1), .doctor_fee_details li:nth-of-type(2) {
+    border-right: 1px solid #cccccc;
+}
+.tick-image, .image-sheild{
+    height: 13px;
+}
+.finger-icon {
+    top: -9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    right: -10px;
+}
+.finger-icon img{
+top: 3px;
+    left: 5px;
+}
+.video-cam-icon img{
+    top: 3px;
+    left: 4px;
+}
+.specalities-image, .doctor-in-pakistan {
+    transition: all linear 0.25s;
+}
+.hospital-circle {
+    background-color: #0E4D92 !important;
+}
+.doctor-in-pakistan {
+    border-radius: 21px;
+}
+
+.circle_anchor {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.bread-crumb-listing li {
+    text-transform: capitalize;
+}
+.red_circle {
+    background: #EA4335;
+}
+.green_circle {
+    background: #34A853;
+}
+.blue_circle {
+    background: #4285F4;
+}
+.doctor-name-specialties{
+    min-height: 130px;
+    max-height: 130px;
+}
+
+#simple_search .banner_input {
+    padding: .62rem 6rem .77rem .75rem!important;
+}
+.top-city-and-trending-doctor-in-pakistan{
+    background: #F6F5F5;
+}
+.search_main input {
+    border-radius: 10px !important;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.34) !important;
+}
+.video-call-box, .hospital-main-slider{
+    border: 1.5px solid #0E4D92 !important;
+}
+.doctor-video-icon{
+    right: 4px;
+    top: 5px;
+}
+.video-call-box .video-icon {
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    background: #0E4D92;
+    text-align: center;
+    border-radius: 50%;
+    padding-top: 6px;
+    padding-left: 3px;
+}
+.eclipse {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.hospital-main {
+    margin: 5px auto 10px;
+}
+.video-call-box img {
+    margin: -2px auto;
+}
+.mobile_search_btn {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+}
+.city-border a {
+    border: 1px solid #e5e5e5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.all-procedure a:hover {
+    background-color: #EA4335;
+    color: #fff !important;
+    border: 1px solid #EA4335;
+}
+.dropdown-divider {
+    margin: 0px;
+}
+.faq_accordian a {
+    padding-left: 0px !important;
+}
+.faq_accordian .collapsed:after {
+    content: "\f067" !important;
+    font-size: 14px;
+    float: right;
+}
+[data-toggle="collapse"].collapsed:after {
+    transform: rotate(
+0deg
+);
+}
+
+.icon_color .collapsed:after {
+    color: #08CD8F;
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    transition: all linear 0.25s;
+    top: 3px;
+    position: relative;
+}
+.doctor-in-pakistan:hover{
+    transform: scale(1.1);
+}
+.more-reviews{
+   padding:6px 45px;
+}
+/*.faq_accordian [data-toggle="collapse"]:after {
+    content: "\f068" !important;
+    font-size: 14px;
+    position: absolute;
+    right: 2px;
+    top: 12px;
+    color: #FF3C3C;
+}*/
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f068";
+    transform: rotate(
+180deg
+);
+    transition: all linear 0.25s;
+    position: relative;
+    font-size: 16px;
+    margin-left: 5px;
+    top: 2px;
+    float: right;
+}

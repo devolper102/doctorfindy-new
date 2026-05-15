@@ -1,0 +1,2248 @@
+
+.abc {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+}
+@font-face {
+    font-family: 'robotoblack';
+    src: url('../fonts/roboto-black-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'robotoblack_italic';
+    src: url('../fonts/roboto-blackitalic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-blackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('../fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotobold_italic';
+    src: url('../fonts/roboto-bolditalic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotoitalic';
+    src: url('../fonts/roboto-italic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotolight_italic';
+    src: url('../fonts/roboto-lightitalic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotomedium';
+    src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotomedium_italic';
+    src: url('../fonts/roboto-mediumitalic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-mediumitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotothin';
+    src: url('../fonts/roboto-thin-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotothin_italic';
+    src: url('../fonts/roboto-thinitalic-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-thinitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+*{
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+}
+p{
+    margin:0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: #ff465c !important;
+}
+body{
+    font-family: 'robotoregular';
+    color: #000;
+    font-size: 0.875rem !important;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+:focus{outline: none !important;}
+
+.input-group>.custom-file .custom-file-input:focus~.custom-file-label, .input-group>.custom-select:focus, .input-group>.form-control:focus{
+    z-index: inherit !important;
+}
+
+/*Utilities*/
+
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  background-color: #fff;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#52BCB9, #473B7B); 
+  border-radius: 10px;
+}
+
+.knockdoc_btn_bg{
+    background-color: #FF465C;
+}
+.knockdoc_head_btn {
+    background-color: rgba(255,255,255,0.4);
+}
+.knockdoc_head_btn:hover {
+    background-color: rgba(255,255,255,0.3);
+    color: rgb(255 255 255) !important;
+}
+#header .navbar-light .navbar-nav .nav-link:hover{
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+.header_cstm_border:after {
+    content: '';
+    height: 20px;
+    display: block;
+    width: 2px;
+    background: #ffffff;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.knockdoc_btn_bg:hover{
+    background-color: #1D2250;
+    box-shadow: 0px 4px 4px  rgba(29, 34, 80, 0.5);
+    color: #fff !important;
+}
+.knockdoc_sign_up_bg{
+    background-color: #06D6A0;
+}
+.knockdoc_disable_btn{
+    background-color: #C4C4C4;
+    color: #707070 !important;
+}
+.fa-phone{
+    transform: rotate(100deg);
+}
+.w-10{
+    width: 10%;
+}
+.w-11{
+    width: 11%;
+}
+.w-20{
+    width: 20%;
+}
+.w-21{
+    width: 21%;
+}
+.w-22{
+    width: 22%;
+}
+.w-25{
+    width: 25%;
+}
+.w-15{
+    width: 15%;
+}
+.w-16{
+    width: 17%;
+}
+.w-18px{
+    width:18px;
+}
+.w-30{
+    width: 30%;
+}
+.w-33{
+    width: 33%;
+}
+.w-31{
+    width: 31%;
+}
+.w-35{
+    width: 35% !important;
+}
+.w-37{
+    width: 37%;
+}
+.w-35px{
+    width: 35px;
+}
+.w-40{
+    width: 40% !important;
+}
+.w-45{
+    width: 45%;
+}
+.w-45px{
+    width: 45px;
+}
+.w-43{
+    width: 43%;
+}
+.w-42{
+    width: 42%;
+}
+.w-47{
+    width: 47%;
+}
+.w-48{
+    width: 48%;
+}
+.w-47px{
+    width:47px;
+}
+.w-55{
+    width: 55% !important;
+}
+.w-51{
+    width: 51%;
+}
+.w-60{
+    width: 60%;
+}
+.w-65{
+    width: 65% !important;
+}
+.w-63{
+    width: 63% !important;
+}
+.w-67{
+    width: 67%;
+}
+.w-70{
+    width: 70% !important;
+}
+.w-72{
+    width: 72% !important;
+}
+.w-78{
+    width: 78% !important;
+}
+.w-80{
+    width: 80% !important;
+}
+.w-85{
+    width: 85% !important;
+}
+.w-90{
+    width: 90%;
+}
+.w-93{
+    width: 93%;
+}
+.w-97{
+    width: 97%;
+}
+.form-control:focus {
+    color: #BBBBBB;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+.knockdoc_text_color{
+    color: #073B4C;
+}
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+h2{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.btn_padding{
+   padding: 10px 15px !important;
+}
+
+.specialities-background{
+    background-color: #e5e5e5;
+}
+
+
+.join-doctor-btn button{
+    background-color:#ff465c;
+}
+
+.doctor-hospital-city .nav-item .nav-link{
+    color: #505050;
+}
+.text_11{
+    font-size: 11px;
+}
+.text_18{
+    font-size: 18px;
+}
+.text_20{
+    font-size: 20px;
+}
+.text_22{
+    font-size: 22px;
+}
+.text_25{
+    font-size: 25px;
+}
+.text_30{
+    font-size: 30px;
+}
+.text_10{
+    font-size: 10px;
+}
+.text_12{
+    font-size: 12px;
+}
+.text_13{
+    font-size: 13px;
+}
+.text_14{
+    font-size: 14px;
+}
+.text_25{
+    font-size: 25px;
+}
+.text_20{
+    font-size: 20px;
+}
+.border-1 {
+    border-width:1px !important;
+}
+.border-2 {
+    border-width:2px !important;
+}
+.border-3 {
+    border-width:3px !important;
+}
+.h_130{
+    height: 130px;
+}
+.h_120{
+    height: 120px;
+}
+.h_110{
+    height: 110px !important;
+}
+.h_50{
+    height: 50px;
+}
+.h_42px{
+    height:42px;
+}
+.h_80{
+    height: 80px;
+}
+.h_40{
+    height: 40px !important;
+}
+.h_30{
+    height: 30px !important;
+}
+.h_20{
+    height: 20px !important;
+}
+.h_100{
+    height: 100px;
+}
+.h_47{
+    height:47px;
+}
+.h_37{
+    height:37px;
+}
+.h_35{
+    height:35px;
+}
+.h_45{
+    height:45px;
+}
+.w_110px{
+    width: 110px;
+}
+.w_130px{
+    width: 130px;
+}
+.width-110px{
+    min-width: 110px;
+}
+.w_90px{
+    width: 90px;
+}
+.w_80px{
+    width: 80px;
+}
+.w_60px{
+    width: 60px;
+}
+.w_70px{
+    width: 70px;
+}
+.w_50px{
+    width: 50px;
+}
+.w-30px{
+    width: 30px;
+}
+.w_40px{
+    width: 40px;
+}
+.w_30px{
+    width: 30px;
+}
+.w_20px{
+    width: 20px;
+}
+.w_33px{
+    width: 33px;
+}
+.w_120px{
+    width: 120px;
+}
+
+.h_90{
+    height: 90px !important;
+}
+.h_70{
+    height: 70px !important;
+}
+.radius_50{
+    border-radius: 50px;
+}
+.knockdoc_btn{
+    background-color: #FF465C;
+    padding: 12px 30px;
+    display: inline-block;
+    line-height: normal;
+}
+.theme-color-text{
+    color: #ff465c;
+}
+.text_black{
+    color: #000000;
+}
+.banner_heading_color{
+    color: #373737;
+}
+.theme-green-text{
+    color: #06D6A0;
+}
+.custom_top_rounded{
+    border-radius: 10px 10px 0 0;
+}
+.custom_bottom_rounded{
+    border-radius: 0 0 10px 10px;
+}
+.other-city-border{
+    border-bottom:1px solid #000;
+}
+.box_radius{
+    border-radius: 10px;
+}
+.box_bottom_lr_radius{
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.skin_box_radius{
+    border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+}
+.slot_radius{
+    border-radius: 5px;
+    border: 1px solid #808080;
+    color: #232323;
+}
+.slot_radius:hover{
+    background-color: #515151;
+    color: #ffffff !important;
+}
+.morning li{
+    margin-right: 10px;
+}
+.breadcrumb-item+.breadcrumb-item::before{
+    font-family: FontAwesome;
+    content: '\f054';
+    font-size: 10px;
+    color: #101010;
+}
+.btn.focus, .btn:focus{
+    box-shadow: none;
+}
+.bg-doctor-section{
+    padding: 5px 14px;
+    color:#838383;
+    background-color: #e5e5e5;
+}
+.menu-border{
+    border-bottom: 1px solid #8b8b8b;
+}
+.bg_black{
+    background-color: #000 !important;
+}
+.close{
+    text-shadow: none;
+}
+.dropdown-item.active, .dropdown-item:active{
+    background-color: transparent;
+}
+.fee_structure {counter-reset: section;  list-style-type:none;padding-left:0}
+.fee_structure li:before {counter-increment: section;font-weight: 700;content: counters(section, ".") ". "}
+/*raza*/
+.h_60{
+    height: 60px;
+}
+.h_87{
+    height: 87px;
+}
+.theme-color-border{
+    border:1px solid #ff465c;
+}
+.theme-bottom-border{
+    border-bottom:1px solid #ff465c;
+}
+.text_black{
+    color: #000000;
+}
+
+.text_15{
+    font-size: 15px;
+}
+.text_16{
+    font-size: 16px;
+}
+.circle-color-text{
+        color: #06D6A0;
+}
+.work-color-text{
+    color: #959595;
+}
+.date-color-text{
+    color:#0090BA;
+}
+
+.knockdoc_border{
+    border-top: 1px solid #4E4E4E;
+}
+.theme-green-border{
+    border:1px solid #06D6A0;
+}
+.fb-bg{
+    background-color: #455A9A;
+}
+.google-bg{
+    background-color:#C24B3C;
+}
+/*raza*/
+/*End Utilities*/
+
+/*Header Css*/
+
+#header {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+.header_bg{
+    background: linear-gradient(94deg, rgba(71,61,124,1) 0%, rgba(63,96,145,1) 24%, rgba(49,202,188,1) 100%);
+}
+#header .navbar{
+    padding: 15px 0;
+}
+
+#header .navbar-brand{
+    padding: 0px;
+    margin-right: 3rem;
+}
+#header .navbar-light .navbar-nav .nav-link{
+    color: #ffffff;
+    font-family: 'robotoregular';
+    font-size: 13px;
+    padding: 10px 15px;
+}
+.doctor_list, .hospital_list, .services_list{
+    margin: 0px 55px 0px 15px !important;
+}
+#appointment_btn .knockdoc_btn_bg, #sign_up .knockdoc_sign_up_bg, #call_now .knockdoc_btn_bg{
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+/*#center_menu {
+    width: auto;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+#center_menu li {
+    float: left;
+}*/
+#call_now{
+    margin-right: 2rem;
+}
+/*.arrow-up {
+    width: 0px;
+    height: 0px;
+    border-top: 0.6em solid transparent;
+    border-right: 0.6em solid transparent;
+    border-bottom: 0.6em solid;
+    border-left: 0.6em solid transparent;
+    margin: 0 0 15px 0;
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    
+}*/
+/*#center_menu .dropdown-toggle::after{
+    display: none;
+}
+#center_menu .dropdown:hover .dropdown-menu{
+    display: block;
+}*/
+#sign_up{
+    margin-left: 16px;
+}
+.dropdown-menu p{
+    font-size: 16px;
+}
+/*.doctor_list:hover .dropdown-menu{
+    display: block;
+}*/
+.doctor_list .dropdown-menu{
+    left: 51%;
+    transform: translate(-35%,-7%);
+    width: 860px;
+    padding: 15px;
+    font-size: 14px;
+}
+.hospital_list .dropdown-menu{
+    left: 50%;
+    transform: translate(-50%,-7%);
+    width: 860px;
+    padding: 15px;
+    font-size: 14px;
+}
+.services_list .dropdown-menu{
+    left: 5%;
+    transform: translate(-62%,-7%);
+    width: 900px;
+    padding: 15px;
+    font-size: 14px;
+}
+.doctor_list:after,.hospital_list:after, .services_list:after{
+    border: none !important;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(0deg);
+    transition: all linear 0.25s;
+    color: #fff;
+    position: absolute;
+    top: 14px;
+    right: 0px;
+}
+.doctor_list:hover:after,.hospital_list:hover:after,.services_list:hover:after{
+    transform: rotate(180deg);
+}
+.doctor_list:hover:after .mega-menu{
+    transform: rotate(180deg);
+}
+.navigation_menu li a:after{
+    display: none;
+}
+/*.doctor_list [aria-expanded="false"]:after{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(0deg);
+    transition: all linear 0.25s;
+}
+.doctor_list [aria-expanded="true"]:after{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg);
+    transition: all linear 0.25s;
+}*/
+.dropdown-menu a:hover{
+    color: #000000;
+}
+.user_dropdown_main .dropdown-menu:after, .doctor_list .dropdown-menu:after,.hospital_list .dropdown-menu:after,.services_list .dropdown-menu:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 16px 16px;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    margin-left: -16px;
+    top: -6px;
+    left: 35%;
+}
+.user_dropdown_main .dropdown-menu:after{
+    left: 62%;
+}
+.hospital_list .dropdown-menu:after{
+    left: 50%;
+}
+.services_list .dropdown-menu:after{
+    left: 66%;
+}
+.dropdown-menu a{
+    color: #7D7D7D;
+    min-width: 21%;
+}
+.allergy_services:hover .disease_img_main{
+    background-color: #FF465C;
+}
+.family_services:hover .disease_img_main{
+    background-color: #0090BA;
+}
+.internal_services:hover .disease_img_main{
+    background-color: #00CC8C;
+}
+/*.disease_img_main{
+    background-color: #7D7D7D;
+}*/
+.disease_name{
+    width: 67%;
+}
+.user_dropdown_list .dropdown-item:focus,.user_dropdown_list .dropdown-item:hover{
+    background-color: transparent;
+    border-left: 2px solid #ff465c;
+}
+/*End Header Css*/
+
+/*Banner Css*/
+#banner{
+    background: linear-gradient(94deg, rgba(71,61,124,1) 0%, rgba(63,96,145,1) 24%, rgba(49,202,188,1) 100%);
+}
+.wave_img { 
+    position: absolute; 
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    transform: rotate(180deg);
+    height: 100%;
+}
+.wave_img svg { 
+    display: inline-block; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: -1; 
+}
+
+.inner-banner:before{
+    background: url(../images/banner-3.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30%;
+    background-size: contain;
+    background-position: right;
+    right: 140px;
+    top: -30px;
+    height: 100%;
+    z-index: 1;
+}
+.banner_left_section{
+    padding: 130px 50px;
+}
+.banner_heading{
+    font-family: 'robotoregular';
+    color: #fff;
+    margin-bottom: 30px;
+}
+.banner_heading h1{
+    font-size: 30px;
+    margin: 20px 10px 0 0;
+}
+.banner_heading h2 {
+    font-size: 55px;
+    font-weight: bold;
+}
+.banner_heading span{
+    font-size: 45px;
+    font-weight: bold;
+}
+.location_input span{
+    position: absolute;
+    margin-left: 5px;
+    height: 25px;
+    display: flex;
+    color: #073B4C;
+    align-items: center;
+    right: 25px;
+    top: 10px;
+}
+.location_input .dropdown-menu{
+    max-height: 230px;
+    overflow-y: scroll;
+    font-size: 14px;
+}
+.dropdown-divider{
+    margin: 0px;
+}
+.banner_main_search{
+    width:100%;
+    max-height: 230px;
+    overflow-y: scroll;
+    font-size: 14px;
+    padding: 0px;
+}
+.banner_main_search p{
+    background-color: #EDEDF6;
+}
+.nav-item .dropdown-menu{
+    display: block; 
+    opacity:0;
+    -webkit-transition: all 800ms ease-in;
+    -moz-transition: all 800ms ease-in;
+    -ms-transition: all 800ms ease-in;
+    -o-transition: all 800ms ease-in;
+    transition: all 800ms ease-in;
+    pointer-events: none;
+    top: 50px;
+ }
+ .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+ }
+.location_input input{
+    padding: 1.375rem 0.75rem;
+}
+.banner_input{
+    border-top-left-radius:50px;
+    border-bottom-left-radius:50px;
+    padding: 1.375rem 0.75rem !important;
+}
+.other_search .banner_input{
+    border-top-left-radius:50px;
+    border-bottom-left-radius:50px;
+    padding: 1.46rem 0.75rem !important;
+}
+.banner_btn{
+    border-top-right-radius:50px;
+    border-bottom-right-radius:50px;
+    padding: 0.71rem 0.75rem;
+}
+.banner_left_section .w-40{
+    width: 40%;
+}
+.banner_left_section input {
+    color: #BBBBBB;
+}
+.trending_topic{
+    width: auto;
+    margin-top: 40px;
+}
+.trending_topic li{
+    margin-right: 1rem;
+}
+.trending_topic li a:hover{
+    color: #fff !important;
+    opacity: 0.8;
+}
+.other_dropdown{
+    width: 550px;
+    left: -200px !important;
+}
+.other_dropdown .dropdown-item:hover{
+    color: #ff465c !important;
+}
+.trending_topic .dropdown-toggle::after{
+    border-top: 0px;
+}
+.banner_services .w-60{
+    width: 59%;
+}
+.services_main{
+    position: relative;
+    z-index: 2;
+}
+.services_main li a{
+    padding: 8px 16.8px;
+    transition: all linear 0.25s;
+}
+.services_main li a i{
+    font-size: 24px;
+    margin-right: 10px;
+}
+/*.services_main li a span{
+    vertical-align: super;
+}*/
+.services_main li a:hover{
+    background: #FF465C;
+    color: #fff !important;
+    transform:scale(1.02);
+}
+/* End Banner Css*/
+
+/* Specialities Css*/
+.doctor-bg-image{
+    background-image: url(../images/doctor-bg-image.png);
+    width: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.doctor-bg-image:before{
+    background: url(../images/doctor-image.png) no-repeat center right;
+    content: "";
+    height: 400px;
+    display: block;
+    background-size: contain;
+    margin-top: 50px;
+    width: 50%;
+    float: right;
+}
+.doctor-text{
+    margin-top: 8rem !important;
+}
+.specalities-image,.doctor-in-pakistan {
+    transition: all linear 0.25s;
+}
+.specalities-image:hover,.doctor-in-pakistan:hover{
+    transform: scale(1.1);
+}
+.specalities-image p{
+  font-size: 12px;
+   font-family: 'robotobold';
+}
+.specalities-image .red_circle{
+    background: #ff465c;
+}
+.specalities-image .green_circle{
+    background: #00cc8c;
+}
+.specalities-image .blue_circle{
+    background: #0090ba;
+}
+
+/* End Specialities Css*/
+
+/*Are You Doctor Css*/
+
+.border_yellow:before {
+    height: 10px;
+    display: block;
+    width: 55px;
+    background:#ffd166;
+    border-left: 1px white;
+    content: '';
+    position: absolute;
+    right: 15px;
+    bottom: -5px;
+}
+.doctor-text .w-40{
+    width: 45%;
+}
+.join-doctor-btn a{
+    box-shadow: 0px 4px 4px rgba(255, 70, 92, 0.5);
+}
+
+/*End Are You Doctor Css*/
+
+/* Start Doctor and Hospital in Pakistan Css*/
+
+.doctor-hospital-bg-image{
+    
+    background-image: url(../images/doctor-hospital-bg-image.png);
+    background-repeat: no-repeat;    
+    background-position: right;
+    display: block;
+    background-size: contain;
+    margin-top: 50px;
+    width: 100%;
+    float: right;
+
+}
+.heading-doctor-in-pakistan h4{
+    font-family: 'robotobold';
+}
+
+.doctor-in-pakistan{
+    border-radius: 21px;
+    height: 100%;
+}
+
+.doctor-in-pakistan a span{
+   font-size: 13px;
+}
+.red_circle,.green_circle,.blue_circle{
+    background: #ff465c;
+    height: 90px;
+}
+.green_circle{
+    background: #00cc8c;
+}
+.blue_circle{
+    background: #0090ba;
+}
+
+.circle_anchor{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+.border-vertical{
+   width: 1px;
+    background-color: #555;
+    height: 127px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top:32%;
+}
+/* End Doctor and Hospital in Pakistan Css*/
+
+/* Start Surgeries Section Css*/
+
+.surgerie-bg-image{
+    background-image: url(../images/surgerie-bg-image.png);
+    width: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.surgerie-bg-image:before{
+    background: url(../images/surgerie-bg-right-image.png) no-repeat right;
+    content: "";
+    height: 500px;
+    background-size: contain;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.surgerie_categories li a:hover{
+    color: #000000;
+}
+
+
+.surgerie_categories .kidney-dialysis{
+    border-left: 3px solid #0090BA;
+}
+
+.surgerie_categories .coronary-categories{
+    border-left: 3px solid #00CC8C;
+}
+
+.surgerie_categories .normal-delivery-categories{
+    border-left: 3px solid #FF465C;
+}
+.surgerie_categories li a{
+    transition: all ease .5s;
+}
+.surgerie_categories li a:hover{
+    color: #ffffff !important;
+}
+.surgerie_categories .kidney-dialysis,.surgerie_categories .normal-delivery-categories, .surgerie_categories .coronary-categories{
+    background: linear-gradient( to left, #fff 50%, #0090BA 50% );
+    background-size: 200% 100% !important;
+    background-position: right bottom !important;
+    transition: all ease .5s;
+}
+.normal-delivery-categories{
+    background: linear-gradient( to left, #fff 50%, #FF465C 50% ) !important;
+}
+.coronary-categories{
+    background: linear-gradient( to left, #fff 50%, #00CC8C 50% ) !important;
+}
+.surgerie_categories .kidney-dialysis:hover, .surgerie_categories .normal-delivery-categories:hover, .surgerie_categories .coronary-categories:hover{
+    color: #fff;
+    background-position: left bottom !important;
+}
+
+/* End Surgeries Section Css*/
+
+/* Start  Care ON The Go Section*/
+.mobile_section{
+    background: url('../images/mobilesection.png') no-repeat left;
+    width: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 70px;
+}
+.mobile_notes{
+    line-height: 40px;
+}
+.mobile_notes li:last-child{
+    /*margin-left: 40px;*/
+    font-size: 20px;
+}
+.mobile_notes i{
+    color: #06D6A0;
+}
+.phone_number p{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+}
+.phone_number .input-group-btn{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.phone_number input,.phone_number input:focus{
+    border-color: #ced4da;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 70% !important;
+}
+.phone_number span{
+    top: 0px;
+    right: 49px;
+}
+/*End Care ON The Go Section*/
+
+/* Start Blogs Section Css*/
+
+.blogs_section{
+    background: url(../images/blog_bg1.png) no-repeat center right;
+    content: "";
+    position: relative;
+    display: block;
+    background-position: left;
+    background-size: 25%;
+    margin-top: 50px;
+    min-height: 650px;
+}
+.blogs_section:before{
+    /*background: url(../images/blog_bg2.png) no-repeat center right;*/
+    content: "";
+    height: 200px;
+    display: block;
+    background-position: 20% 100%;
+    background-size: 10%;
+    width: 210px;
+    background: #f09ba5;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+}
+.bg-img{
+    position: absolute;
+    top: 80px;
+    right: 0;
+}
+.blog_heading p{
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0 10px;
+}
+
+.blog_sm_img {
+    bottom: 15px;
+    right: -105px;
+    transition: all 300ms ease-in-out;
+}
+.blog_sm_img img {
+    height: 25px;
+}
+.blog_main:hover .blog_sm_img{
+    right: 5px;
+}
+.blog_services li a, .posted_user_name span, .shares_icon a{
+    font-size: 13px;
+}
+.custom_divider{
+    border-top: 1px solid #8B8B8B !important;
+}
+.shares_icon a{
+    color: #000000;
+}
+.shares_icon a:hover{
+    color: #ff465c;
+}
+.bg-shadow{
+    border-radius: 20px;
+    box-shadow: 0px 9px 21px rgba(0, 0, 0, 0.34);
+}
+
+/* End Blogs Section Css*/
+
+/* Start Feedback Section Css*/
+.feedback_bg_img{
+    background: linear-gradient(94deg, rgba(81,193,254,1) 31%, rgba(76,226,250,1) 69%, rgba(139,243,230,1) 100%);
+    min-height: 400px;
+}
+.feedback_heading h2{
+    font-size: 25px !important;
+}
+.user_identity{
+    font-family: 'robotolight';
+    font-size: 20px;
+}
+.carousel-control-prev-icon{
+    background-image:  url(../images/Chevron_Left.png);
+}
+.carousel-control-next-icon{
+    background-image:  url(../images/Chevron_Right.png);
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    width: 25px;
+    height: 55px;
+}
+#feedback_slider .carousel-control-next, #feedback_slider .carousel-control-prev{
+    top: 25px;
+    bottom: inherit;
+    display: block;
+    opacity: 1;
+}
+/* End Feedback Section Css*/
+
+/* Start Doctors from different Cities*/
+
+.heading-doctor-city-pakistan a{
+     font-family: 'robotobold'; 
+}
+
+.doctor-hospital-city .nav-item .nav-link{
+    font-size: 14px;
+    /*color: #007bff;*/
+}
+.heading-doctor-in-pakistan h2{
+    font-weight: bold;
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg) ;
+    transition: all linear 0.25s;
+    float: right;
+    top: 5px;
+    position: relative;
+}   
+[data-toggle="collapse"].collapsed:after {
+    transform: rotate(0deg) ;
+}
+.card_main{
+    border-bottom: 1px solid #000000 !important
+}
+.doctor-hospital-city li {
+    line-height: 30px;
+}
+.card-body .border-test li {
+    border-bottom:1px solid #8b8b8b;
+}
+.given_hospital{
+    background-color: #dddddd;
+}
+
+
+/* End Doctors from different Cities*/
+
+/* Start Footer Css*/
+
+.bg-subscribe-enter-email{
+    background-color:#522D76;
+}
+
+.heading-subscribe-now h2{
+    font-family: 'robotobold';
+}
+.heading-subscribe-now p{
+    font-size: 13px;
+    font-family: 'robotoregular';
+}
+
+.enter-email .subscribe-input{
+    border: 1px solid #fff;
+}
+.subscribe-input{
+    padding: 0.5rem 0.75rem !important;
+}
+.subscribe-btn a{
+padding:9px 21px;
+}
+
+
+.bg-footer-logo{
+    background-color:#32174D;
+}
+
+
+.footer-logo p{
+    font-size: 13px;
+}
+
+.footer-content .nav-item a:hover{
+    color: #007bff;
+}
+.footer-content li:first-child{
+    border-bottom:1px solid #fff;
+}
+
+.subscribe-btn{
+    top: 0;
+    right: -8px;
+}
+.social-icon a{
+    color: #32174d;
+    width: 25px;
+    height: 25px;
+    padding-top: 3px;
+}
+
+/* End Footer Css*/
+
+/********************  Doctor listing page ***********************/
+
+.other_page_banner .w-30{
+    width: 30%;
+}
+
+.other_page_banner .w-70{
+    width: 70%;
+}
+.filter_btn_padding{
+    padding: 6px 48px !important;
+}
+#hospital_search .select2-container--default .select2-selection--single{
+    border-radius: 30px;
+    border: 1px solid #000;
+}
+.choose_hospitals .select2-container--default .select2-selection--single{
+    border-radius: 30px;
+    border: 1px solid #000;
+}
+#hospital_search .select2-container--default{
+    width: 150px !important;
+}
+.select_fee select{
+    padding: 5px 15px;
+    width: 175px;
+}
+.select_fee-2 select{
+    padding: 5px 15px;
+    width: 124px;
+}
+.box_shadow{
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.others_box_shadow {
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.34);
+}
+.faq_accordian [data-toggle="collapse"]:after{
+    content: "\f068" !important;
+    font-size: 14px;
+}
+.faq_accordian .collapsed:after{
+    content: "\f067" !important;
+    font-size: 14px;
+}
+
+
+.book-dr-image{
+   bottom: -20px;
+   left: 15px; 
+}
+#final_modal .modal-dialog, #mobile_number_detail .modal-dialog, #modal_patient_num .modal-dialog, #appointment_modal_detail .modal-dialog{
+    max-width: 800px;
+}
+.cstm_border_right{
+    border-right: 1px solid #000000;
+}
+#gmap_canvas{
+    height: 100vh;
+    margin-left: 20px;
+}
+.google_map{
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_btn {
+    width: auto;
+    right: 0;
+    top: 100px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_btn a{
+    background-color:#00CC8C;
+    margin: 2px;
+}
+.toggle_map{
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_toggle i{
+    transition: transform 0.5s ease-in-out;
+}
+.hide_map_btn{
+    transform: translateX(63%);
+    transition: transform 0.5s ease-in-out;
+}
+.hide_map_btn a i{
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.heading-doctor-city-pakistan [data-toggle="collapse"]:after{
+    top:2px;
+}
+
+
+/********************  Doctor Profile page ***********************/
+
+.doctor_profile{
+    background-color: #F9F9F9!important;
+}
+.prfile_detail h1{
+    font-size: 25px
+}
+.prfile_detail h2{
+    font-size: 18px;
+}
+.doctor_image span:last-child{
+    top: 0;
+    left: 0;
+}
+.waitng_time a i{
+    font-size: 20px;
+    color: #BCBCBC;
+}
+/*.Satisfy_percentage p{
+    font-size: 20px;
+}*/
+.days li{
+    font-size: 11px;
+    margin-right: 1px;
+}
+.clinic_detail{
+    font-family: 'robotomedium';
+    line-height: 40px;
+}
+.availability_shedule{
+    font-family: 'robotomedium';
+}
+.list_btns a{
+    line-height: 16px;
+}
+.knockdoc_doctor_profile_btn{
+    color: #FF465C;
+    background-color: #ffffff;
+    border: 1px solid #FF465C;
+    padding: 3px 30px;
+}
+.knockdoc_doctor_profile_btn:hover{
+    background-color: #FF465C;
+    color: #fff !important;
+}
+.shedule_head span{
+    font-family: 'robotobold';
+}
+.shedule_head p{
+    font-family: 'robotoregular';
+    font-size: 12px;
+}
+.video_consultation_header a{
+    font-size: 14px;
+    text-decoration: underline;
+}
+.calendar .slick-active .calendar_day:hover,.calendar .slick-current .calendar_day{
+    background-color: #000000;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.slider_header{
+    background-color: #EAEAEA !important;
+}
+.change-date-time a{
+    padding: 12px 11px;
+}
+
+.authentication-input .form-control:focus{
+    background-color:#fff !important;
+    box-shadow:none;
+    border: 1px solid #e5e5e5 !important;
+    color: #000000 !important;
+}
+
+/* Raza Code */
+
+.total-reviews strong{
+
+    bottom: -10px;
+    font-size: 45px;
+    right: 25px;
+
+}
+
+.total-reviews .reviews-number{
+    margin-left: 5rem;
+}
+
+.Specialties-list li:before {
+    content: "";
+    display:inline-block;
+    width:10px;
+    background-color: #06D6A0;;
+    height:10px;
+    border-radius: 50%;
+}
+.feedback-btn a{
+    padding: 12px 30px;
+    line-height: normal;
+}
+
+.feedback-btn .more-reviews{
+    padding: 11px 16px;
+}
+
+.collapse-body{
+    background:none;
+    border:none;
+}
+
+.heading-box-under-collapse a:hover, .doctor-education a:hover, .Specialties-list li a:hover, 
+.heading-box a:hover
+{
+    color:#000000;
+}
+.icon_color [data-toggle="collapse"]:after{
+    color: #FF3C3C;
+}
+.icon_color .collapsed:after{
+    color: #08CD8F;
+}
+.Specialties-list li .date-year:hover{
+    color: #0090ba;
+}
+.feedback-btn .see-more-doctor{
+    padding: 10px 40px;
+}
+
+
+.view-profile-btn a{
+    padding: 10px 100px;
+}
+.dr-sourab-choudhary-image span:last-child {
+    top: 0;
+    left: -11px;
+}
+.view-profile-btn a {
+    padding: 10px 30px;
+}
+/* Raza Code */
+
+/******************** End  Doctor Profile page ***********************/
+
+
+
+
+.total-reviews strong{
+
+    bottom: -10px;
+    font-size: 45px;
+    right: 25px;
+
+}
+
+
+
+.Specialties-list li:before {
+    content: "";
+    display:inline-block;
+    width:10px;
+    background-color: #06D6A0;;
+    height:10px;
+    border-radius: 50%;
+}
+.feedback-btn a{
+    padding: 8px 30px;
+    line-height: normal;
+}
+
+.feedback-btn .more-reviews{
+    padding: 7px 16px;
+}
+
+.collapse-body{
+    background:none;
+    border:none;
+}
+.icon_color [data-toggle="collapse"]:after{
+    color: #FF3C3C;
+}
+.icon_color .collapsed:after{
+    color: #08CD8F;
+}
+.Specialties-list li .date-year:hover{
+    color: #0090ba;
+}
+.feedback-btn .see-more-doctor{
+    padding: 10px 40px;
+}
+
+
+.view-profile-btn a{
+    padding: 10px 30px;
+}
+
+/* Raza Code */
+.bg-book-appointment{
+    background-color:#06D6A0;
+}
+
+.change-date-time a{
+    padding: 8px 11px;
+}
+.hospital_details a{
+    border-bottom: 1px solid #ff465c;
+}
+
+.authentication-input .form-control:focus{
+    background-color:#fff !important;
+    box-shadow:none;
+    border: 1px solid #e5e5e5 !important;
+    color: #000000 !important;
+}
+.continue-resend-btn a{
+    padding:13px 85px;
+}
+
+.bg-video-consultation{
+    background: linear-gradient(94deg, rgba(71,61,124,1) 0%, rgba(63,96,145,1) 24%, rgba(49,202,188,1) 100%);
+}
+
+.search-consultant-image span{
+    margin:6px;
+}
+.search-consultant-text p{
+    line-height:normal;
+}
+
+.care-section-circle{
+        background-image: linear-gradient(#25B2CE, #06D6A0);
+        height: 360px;
+}
+
+.care-section-circle-image{
+    top: -22px;
+    left: 13%;
+}
+
+.mobile_notes p{
+    line-height:normal;
+    margin-left:34px;
+}
+
+.bg-online-chat-experience{
+    background-color:#D1FFF3;
+}
+.clinic_detail li{
+    line-height:33px;
+}
+.doctor-specialiety-btn a:hover{
+    background-color:#06D6A0;
+    color:#fff;
+
+}
+.input-doctor-onboard .form-control:focus{
+    box-shadow:none;  
+}
+.dr-sourab-choudhary-image span:last-child {
+    top: 0;
+    left: -11px;
+}
+/* Start Doctor Practice Profile*/
+
+.bg-doctor-practice{
+   background-color: #53438e;
+   min-height: 335px;
+}
+.benifites_bg{
+    background-color: #F6F6F6;
+}
+.signup-box{
+    background-color:#00AAE2;
+}
+.signup-box .last-name input{
+    margin-left: 11px;
+}
+.lorem-ipsum-text span{
+    letter-spacing:1px;
+}
+
+.signup-button button{
+    padding:8px 15px;
+}
+
+.bg-care-on-the-go{
+    background-image: linear-gradient(#99E8FA, #FFFFFF);
+      
+}
+
+/* End Doctor Practice Profile*/
+
+.bg-knockdock-profile {
+    background: linear-gradient(90deg, rgba(70,35,98,0.7) 0%, rgba(70,0,124,0.7) 10%, rgba(151,102,190,8) 40%, rgba(196,196,196,0) 80%);
+}
+
+.bg-image-knockdock-profile:before{
+    background: url(../images/bg-image-knockdock-profile.png) no-repeat center right;
+    content: "";
+    height: 400px;
+    display: block;
+    background-size: contain;
+    margin-top:47px;
+    width: 40%;
+    float: right;
+}
+
+.bg-image-data-protection:before{
+    content: "";
+    background: url(../images/bg-image-data-protection.png) no-repeat left;
+    background-size: contain;
+    height: 460px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.heading-data-protection h2{
+    margin-top: 70px;
+}
+
+.bg-doctor-demo{
+background-color:#06D6A0;
+}
+
+.input-doctor-onboard .dropdown-menu{
+    top:2px !important;
+    left: 20px !important;
+}
+
+.bg-image-discover-doctor-consultation{
+    background: url(../images/discover-doctor-consultation.png) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;;
+}
+.login_img{
+    min-height: 555px !important;
+}
+
+.Terms-and-condition{
+    left: 200px;
+    bottom: 20px;
+}
+
+.custom-checkbox a:hover, .Terms-and-condition a:hover{
+    text-decoration: underline;
+}
+.radio-button-group .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #6D6D6D;
+    background-color: #fff;
+}
+.radio-button-group .custom-radio .custom-control-input:checked~.custom-control-label::after{
+    background: #06D6A0 !important;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+.form-group .form-control:focus{
+    box-shadow: none;
+    border:1px solid #e5e5e5 !important;
+}
+
+.bg-list-doctor-in-pakistan{
+    background: url(../images/bg-list-doctor-in-pakistan.png) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:209px;
+}
+
+
+
+/* Start video_consultation Css*/
+.bg-search-consultant {
+    background-color: #007acf;
+}
+
+/*End video_consultation Css*/
+
+/* Start For Doctor Page */
+.section-doctoe-practice:before{
+    background: url(../images/doctor-practice-image.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-size: contain;
+    right: 120px;
+    top: 20px;
+    min-height:315px;
+}
+
+/* End For Doctor Page */
+
+/*start css frame1*/
+
+.bg-title-doctor-in-pakistan h2{
+    margin-top: 5rem;
+    font-size:35px;
+}
+.input-doctor-other-city a{
+    top: 6px;
+    right: 18px;
+}
+
+
+/*end css frame1*/
+
+
+/*start css frame3*/
+.bg-procedure-network{
+    background: url(../images/bg-procedure-network-image.png) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:211px;
+}
+.city-border a{
+    border: 1px solid #373737;
+}
+.city-border:hover a{
+    background-color:#FF7C7C;
+    border:1px solid #FF7C7C;
+}
+.all-procedure a:hover, .other-city-in-doctor a:hover{
+    color:#fff !important;
+}
+
+/*City Wise Doctor List*/
+
+
+/*start css frame4*/
+
+.trend-doctor-hospital-icon{
+    border-bottom: 1px solid #8B8B8B !important;
+}
+.border_hover:after{
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    content: '';
+    border-bottom:3px solid #ff465c;
+    color:#ff465c;
+    transition: all 200ms ease-in;
+    opacity: 0
+}
+.border_hover:hover:after{
+    opacity: 1;
+}
+.bypass-grafting-estimate{
+    border:0.5px solid #000000;
+}
+.procedure-duration li:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    background-color: #06D6A0;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+/*end css frame4*/
+
+
+/*Start feedback Modal css*/
+
+.patient-feedback-image{
+    bottom:-30px;
+    left:25px;
+}
+.patient-cost li a span i:hover{
+    color:#06D6A0;
+}
+.patient-reviews-feedback textarea{
+    background-color:#f0f0f0;
+    resize:none;
+}
+/* End feedback Modal css*/
+
+
+/*Start bypass grafting  modal css*/
+#bypass-grafting-modal .modal-dialog{
+    max-width:600px;
+}
+.heading-bypass-grafting p{
+    margin:28px 0 28px 0;
+}
+
+.select-hospital:before{
+    display: block;
+    width: 1px;
+    background: #000;
+    border-right: 1px white;
+    content: '';
+    position: absolute;
+    top: 6px;
+    right:36px;
+    height: 70%;
+}
+
+/*End bypass grafting  modal css*/
+
+.doctor-report-btn a{
+    background-color:#b2b2b2;
+}
+.doctor-report-category select {
+    -webkit-appearance: none;
+}
+
+.doctor-report-category a{
+top: 7px;
+    right:20px;
+}
+
+
+/*start blog list css*/
+
+.bg-skin-care{
+    background-color:#FF465C;
+}
+.arrow-right a{
+    background-color: #ff8c8c;
+        padding: 6px 14px;
+
+}
+.treatment-information{
+    overflow-y: scroll;
+    height: 100vh;
+}
+.aside_bar{
+    position: fixed;
+    right: 0;
+    top: 70px;
+    z-index: 5;
+    width: 30%;
+}
+
+.fixed_sideBar{
+    top: 0 !important;
+}
+/*End blog list css*/
+
+
+/*Start blog list-2 css*/
+ 
+ .blog_detail{
+    position: fixed;
+    left: 0;
+    top: 70px;
+    z-index: 5;
+    width: 30%;
+    height: 100vh
+}
+
+
+.skin-care-image p{
+    top:38%;
+    font-size: 15px;
+    left: 7px;
+}
+
+
+/*End blog list-2 css*/
+
+
+/*Start blog list-3 css*/
+
+.bg-image-skin-care{
+    background: url(../images/bg-image-skin-care.png) no-repeat center right;
+    content: "";
+    min-height: 279px;
+    display: block;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.heading-skin-care h4{
+color:#484848;
+}
+.doctor-skin-care-detail{
+    position: relative;
+    top: -93px;
+    left: 40px;
+}
+.fitness-categories li:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    background-color:#FF465C;
+    height: 10px;
+    border-radius: 50%;
+}
+
+
+/*End blog list-3 css*/
+
+   
+/*Start blog list-4 css*/
+
+.read-more-btn a{
+    border-radius: 20px;
+    border: 2px solid #ff465c;
+    padding: 6px 15px;
+} 
+
+
+/*End blog list-4 css*/
+
+
+/*Start blog list-5 css*/
+/*.subscribe-newsletter-box{
+    padding:27px 110px;
+}*/
+.subscribe-newsletter p{
+    font-size:35px;
+}
+.subscrib-btn a{
+    padding: 8px 66px;
+}
+
+/*End blog list-5 css*/
+
+/*<!-- End patient comment css-->*/
+
+.patient-image img{
+    width: 75px;
+    height: 75px !important;
+    border-radius:50%;
+}
+.color-date {
+    color: #BCBCBC;
+}
+.patient-doctor-box{
+    border:1px solid #373737;
+}
+.patient-date, .doctor-profile-image-and-detail, .shares-icon-2{
+    border-bottom:1px solid #9c9c9c;
+}
+.bg-doctor-consultent{
+    background-color: #f5f5f5;
+}
+.shares-icon li a span{
+    color:#00AAE2;
+}
+.disease-allergy-immunology a {
+    background-color: #dddddd;
+}
+.disease-allergy-immunology a:hover {
+    background-color: #FF465C;
+    color: #fff !important;
+}
+/*<!-- End patient comment css -->*/
+
+/* start health community css*/
+
+.banner-health-community:before {
+    background: url(../images/bg-health-community.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 51%;
+    background-size: contain;
+    background-position: right;
+    right: 0;
+    bottom: 0px;
+    height: 48%;
+}
+.community_banner_heading h1{
+    font-size:45px;
+}
+
+.active-user span{
+    color: #00CC8C;
+}
+.procedure-trending a:hover{
+    background-color:#FF7C7C !important;
+    color:#fff !important;
+}
+.icon-weight-problem .tags-icon i{
+    transform: rotate(92deg);
+}
+.doctor_profile .angle-icon{
+    top:-20px;
+    left:50%;
+    color:#e5e5e5;
+    font-size:20px;
+}
+.community-helper-box{
+    border:2px solid #e5e5e5;
+}
+
+.active-user-2 span {
+    color: #00CC8C;
+}
+
+/* End health community css*/
+
+
+/*Start doctor following detail css*/
+
+.popular-question-btn a{
+    padding: 12px 46px;
+    border: 0.5px solid #666666;
+}
+.popular-question-btn a:hover{
+    background-color: #1D2250;
+    box-shadow: 0px 4px 4px rgba(29, 34, 80, 0.5);
+    color: #fff !important;
+}
+ 
+.input-ask-question a{
+    top: 10px;
+    right: 20px;
+}
+
+.shares-icon li a{
+    border-radius:5px;
+}
+.patient-image{
+    border: 0;
+}
+.active-user, .heading-top-contributors{
+    border:0.5px solid #666;
+}
+.icon-weight-problem .tags-icon i {
+    transform: rotate(92deg);
+}
+.cancle-btn a {
+    border: 1px solid#06D6A0;
+    color: #06D6A0 !important;
+}
+
+/*End doctor following detail css*/
+
+

@@ -1,0 +1,141 @@
+.body{
+    font-family: 'robotoregular' !important;
+}
+
+        .bg-image-discover-doctor-consultation{
+            /*background: url(../../images/discover-doctor-consultation.png) no-repeat left;*/
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 100%;
+            display: inline-block;
+            position: relative;
+            height: 100vh;
+            background-size: cover;
+        }
+        .text_25 {
+            font-size: 25px;
+        }
+        .theme-color-text{
+            color: #ea4335;
+        }
+        .Terms-and-condition{
+            left: 35%;
+            bottom: 20px;
+        }
+        .d-inline-block {
+            display: inline-block;
+        }
+        .service-text{
+    color:#243562;
+} 
+.text_13{
+    font-size: 13px;
+}
+.awesome-icon .google-image{
+height: 25px;
+}
+.awesome-icon a{
+    border: 1px solid #D2D2D2;
+}
+.google-icon{
+padding: 5px 14px;
+}
+.logo img{
+    height: 80px;
+}
+.facebook-icon{
+    padding: 5px 8px;
+}
+.bg-blue{
+    background-color:#0E4D92;
+}
+.book-rounded{
+    border-radius:6px;
+}
+        .login-text{
+    color: #4D5959;
+}
+        .text_black {
+            color: #000000;
+        }
+        .theme-bottom-border {
+            border-bottom: 2px solid #ff465c;
+        }
+        .custom-checkbox a:hover{
+            text-decoration:none;
+        }
+        .Terms-and-condition a:hover{
+            text-decoration: underline;
+        }
+        .specialities-background {
+            background-color: #e5e5e5;
+        }
+        .knockdoc_btn_bg {
+            background-color: #ea4335;
+        }
+        .text_30{
+            font-size: 30px;
+        }
+        .w-60{
+            width: 60%;
+        }
+        .w-90 {
+            width: 90%;
+        }
+        .text_13 {
+            font-size: 13px;
+        }
+        .signup-button button {
+            padding: 8px 15px;
+        }
+        .fb-bg{
+            background-color: #455A9A;
+        }
+        .google-bg{
+            background-color:#C24B3C;
+        }
+        .h_47 {
+            height: 47px;
+        }
+        .w-47px {
+            width: 47px;
+        }
+        a:hover{
+/*            color: #ea4335 ;*/
+            text-decoration: none;
+        }
+        .signup-button{
+            margin: 20px auto;
+        }
+        .theme-color-text:hover{
+            color: #ea4335;;
+            border-bottom: 2px solid #ea4335;
+        }
+        .discover_best_consultation{
+            top: 0px !important;
+            margin-left: 30px;
+        }
+        .doctor_consultation_text{
+            margin-left: 30px;
+        }
+        .login_banner_image{
+            height: 100% !important;
+        }
+        .fa-eye-slash:before{
+           top: 41px;
+           right: 8px;
+           position: absolute;
+            
+        }
+        .fa-eye:before{ 
+           top: 41px;
+           right: 8px;
+           position: absolute;
+            
+        }
+.signup-button button:focus{
+            outline: 0;
+        }
+        .form-control:focus{
+            box-shadow: none;
+        }

@@ -1,0 +1,23 @@
+.user_imgSec {
+    flex: 0 1 120px;
+}
+.doctor_name h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+.theme-color-text {
+    color: rgb(234, 67, 53);
+}
+.text_black {
+    color: rgb(35, 36, 38);
+}
+.prfile_detail a {
+    font-size: 18px;
+    font-weight: bold;
+}
+.circle_anchor {
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}

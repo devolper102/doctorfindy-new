@@ -1,0 +1,128 @@
+/*Start Doctor Dashboard Css*/
+
+.banner_heading h2 {
+    font-size: 26px;
+    margin: 20px 10px 0 0;
+}
+.banner_heading span {
+    font-size: 38px;
+    font-weight: bold;
+}
+.admin_doctor{
+    background-image: url(../../images/backend_images/admin_Dr_img.png);
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: left 100%;
+}
+.user_name_img{
+    position: relative;
+    z-index: 1;
+}
+.admin_doctor:after{
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(94deg, rgba(35,44,164,0.9) 40%, rgba(99,110,255,0.79) 60%, rgba(36,182,229,1) 90%);
+    content: '';
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.date_time{
+    margin: 20px 0px 0 0;
+}
+.date_time p:nth-of-type(1){
+    font-size: 24px;
+}
+.date_time p:nth-of-type(2){
+    font-size: 30px;
+}
+.bg_position{
+    background-repeat: no-repeat;
+    background-position: 10%; 
+}
+.appointment_box{
+    background-image: url(../../images/backend_images/color_calander.png);
+    
+}
+.urgent_appointment{
+    background-image: url(../../images/backend_images/urgent_appointment.png);
+}
+.urgent_appointment:hover{
+    background-image: url(../../images/backend_images/urgent_white.svg);
+}
+.income{
+    background-image: url(../../images/backend_images/rs_blue.svg);
+}
+.income:hover{
+    background-image: url(../../images/backend_images/income.png);
+}
+.appointment_box:hover{
+    background-image: url(../../images/backend_images/calander_white.svg);
+}
+.pay{
+    background-image: url(../../images/backend_images/money.png);
+}
+.pay:hover{
+    background-image: url(../../images/backend_images/income_white.svg);
+}
+.blue_bg:hover{
+    background-color: #545ED2;
+    color: #fff;
+    transform: scale(1.1);
+}
+.blue_bg:hover .theme-green-text{
+    color: #fff;
+}
+.today_appointment .badge_color{
+    color: #373737;
+}
+.green_text{
+    color: #06AA77;
+}
+.red_text{
+    color: #FA1F1F;
+}
+.light_green_bg{
+    background-color: #B9FFE9;
+}
+.light_red_bg{
+    background-color: #FFB0BA;
+}
+.blue_btn_bg{
+    background-color: #407BFF;
+}
+.green_btn_bg{
+    background-color: #06D6A0;
+}
+.today_appointment .table td, .today_appointment .table th{
+    padding: 0.3rem;
+}
+.invoices .table td, .invoices .table th{
+    padding: .45rem;
+}
+.dob_info{
+    margin-left: 42px;
+}
+.disease_tags{
+    margin-left: 60px;
+}
+/*End Doctor Dashboard Css*/
+/* Start Patient appointments List Css*/
+
+.tab_btn{
+    width: 50%;
+    text-align: center;
+    border: 1px solid #444983;
+    color: #000000;
+}
+.appointment_nav .active{
+    border: 1px solid #444983;
+    background-color: #444983;
+    color: #fff;
+    box-shadow: 0px 4px 15px rgba(29, 34, 80, 0.5);
+}
+
+/* End Patient appointments List Css*/

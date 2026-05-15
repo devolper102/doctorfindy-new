@@ -1,0 +1,48 @@
+
+.feedback textarea{
+    resize:none;
+}
+.send-message-btn a{
+    padding: 8px 20px;
+}
+.address-box{
+    background-color:#395AFF;
+}
+.social-icon-color{
+   background-color:#395AFF; 
+}
+.social-media-icon{
+    margin: 88px 0 70px 0;
+}
+.social-media-icon .facebook-icon{
+    border-radius: 50%;
+    padding: 5px 0px;
+    text-align: center;
+}
+.social-media-icon .instagram-icon{
+    padding: 0px 8px;
+    border-radius: 10px;
+}
+.social-media-icon .youtube-icon{
+    padding: 0px 5px;
+    border-radius: 8px;
+}
+.social-media-icon a{
+width: 40px;
+    height: 40px;
+    display: inline-block;
+    font-size: 28px;
+}
+.social-media-icon .linkedin-icon{
+    padding: 0px 8px;
+    border-radius: 5px;
+}
+.contact-box{
+    top:0;
+    left: 0;
+}
+.fa.fa-facebook:before{
+    position: relative !important;
+    /* right: 4px !important; */
+    bottom: 3px !important;
+}

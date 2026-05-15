@@ -1,0 +1,956 @@
+.wave_img,
+.wave_img svg {
+    top: 0;
+    left: 0;
+    position: absolute
+}
+
+.heading-doctor-in-pakistan h4,
+.specalities-image p {
+    font-family: robotobold
+}
+
+.active {
+    background-color: #088f8f !important;
+    border: 1px solid #088f8f !important;
+    color: #fff !important
+}
+
+@font-face {
+    font-family: jameel_noori_nastaleeqregular;
+    src: url('jameel_noori_nastaleeq_regular-webfont.woff2') format('woff2'), url('jameel_noori_nastaleeq_regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal
+}
+
+.discount-font-family {
+    font-family: jameel_noori_nastaleeqregular
+}
+
+.wave_img {
+    width: 100%;
+    transform: rotate(180deg);
+    height: 100%
+}
+
+.modal-open .modal {
+    overflow-x: hidden !important;
+    overflow-y: auto !important
+}
+
+#home_search input,
+#main_sticky_header input,
+#sticky_location input,
+.location_input:active {
+    color: #000 !important
+}
+
+.locationListMain span:last-child {
+    padding-top: 0 !important
+}
+
+.locationListMain span b {
+    font-weight: 400 !important
+}
+
+.wave_img svg {
+    display: inline-block;
+    z-index: -1
+}
+
+.specalities-image img {
+    margin-top: 12px
+}
+
+.book-discount a {
+    padding: 5px 15px;
+    border: 1px solid #243565
+}
+
+.feedback-client-slider .vue-star-rating-rating-text {
+    display: none
+}
+
+.sticky {
+    position: fixed;
+    top: 20%;
+    z-index: 999;
+    right: 0;
+    width: 8% !important
+}
+
+.Blink {
+    animation: .5s cubic-bezier(.5, 0, 1, 1) infinite alternate blinker
+}
+
+@keyframes blinker {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+#home_location input,
+#home_search input {
+    border-radius: 10px !important
+}
+
+.inner-banner {
+    background-repeat: no-repeat !important;
+    background-size: cover !important
+}
+
+.banner_left_section {
+    padding: 100px 0 35px 5px
+}
+
+.banner_heading {
+    font-family: robotoregular;
+    color: #fff;
+    margin-bottom: 30px
+}
+
+.banner_heading h1,
+.feedback_heading h4 {
+    font-size: 40px
+}
+
+.banner_heading h2 {
+    font-size: 30px;
+    font-weight: 700
+}
+
+.banner_heading span {
+    font-size: 50px;
+    font-weight: 700
+}
+
+.location_input .banner_locationIcon {
+    position: absolute;
+    margin-left: 5px;
+    height: 25px;
+    display: flex;
+    color: #073b4c;
+    align-items: center;
+    right: 15px;
+    top: 10px
+}
+
+.dropdown-divider {
+    margin: 0
+}
+
+.banner-custom-margin {
+    margin-right: 30px
+}
+
+.banner_main_search {
+    width: 100%;
+    max-height: 253px;
+    overflow-y: scroll;
+    font-size: 14px;
+    padding: 0
+}
+
+.banner_main_search p {
+    background-color: #ededf6
+}
+
+.location_input input {
+    padding: 1.375rem .75rem
+}
+
+.other_search .banner_input {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    padding: 1.46rem .75rem !important
+}
+
+.banner_left_section .w-40 {
+    width: 40%
+}
+
+.banner_left_section input {
+    color: #666;
+    border: none
+}
+
+.search-btn-position {
+    top: 13px !important;
+    right: 15px !important
+}
+
+.trending_topic {
+    width: auto;
+    margin-top: 10px
+}
+
+.trending_topic li {
+    margin-right: 1rem
+}
+
+#BannerAppointmentModal h5 button {
+    padding: 0;
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #fff;
+    margin-top: 3px;
+    margin-right: 0
+}
+
+.city-image a {
+    width: 33px;
+    height: 33px
+}
+
+.appointment-tabs .nav-tabs {
+    border-bottom: 0 !important
+}
+
+.appointment-tabs .nav-tabs .nav-link {
+    width: 15%;
+    padding: 0;
+    margin-right: 16px;
+    border: 1px solid #cbcbcb;
+    height: 40px;
+    border-radius: 6px;
+    padding-left: 8px !important;
+    background-color: #fff
+}
+
+.current-location-input span {
+    left: 7px;
+    top: 10px;
+    color: #838383
+}
+
+.current-location-input a {
+    top: 5px;
+    right: 8px;
+    padding: 6px 7px
+}
+
+.current-location-input .search-btn {
+    padding: 6px 18px
+}
+
+.current-location-input input,
+.speciality-bg,
+.under-city-name a {
+    border: 1px solid #cbcbcb
+}
+
+.speciality-main .speciality-image a {
+    background: #fbfbfb !important;
+    border: 1px solid #cbcbcb;
+    width: 33px;
+    height: 33px
+}
+
+.speciality-image a img {
+    margin-left: 2px;
+    margin-top: 7px
+}
+
+.current-location-input::placeholder {
+    color: #838383;
+    font-size: 13px;
+    padding-left: 25px
+}
+
+.appointment-tabs-margin:last-child,
+.surgerie_categories li:nth-of-type(8) {
+    margin-right: 0 !important
+}
+
+.appointment-tabs-margin {
+    margin-right: 10px
+}
+
+.bg-tab {
+    background-color: #e5e5e5
+}
+
+.under-city-name a:hover {
+    background-color: #0e4d92;
+    border: 1px solid #0e4d92;
+    color: #fff
+}
+
+.city-image a img {
+    height: 22px;
+    margin-top: 4px
+}
+
+.city-image a .islamabad-image {
+    height: 23px;
+    margin-left: 5px;
+    margin-top: 4px
+}
+
+#BannerAppointmentModal h5 button span {
+    margin-top: -4px;
+    margin-left: 3px;
+    font-weight: 100
+}
+
+.trending_topic li>a:hover {
+    color: #fff !important;
+    opacity: .8
+}
+
+.other_dropdown {
+    width: 740px;
+    right: 125px !important;
+    left: inherit !important
+}
+
+.other_dropdown a:hover {
+    color: #ea4335 !important
+}
+
+.trending_topic .dropdown-toggle::after {
+    border-top: 0
+}
+
+.banner_services .w-60 {
+    width: 59%
+}
+
+.services_main {
+    position: relative
+}
+
+.services_main_banner li {
+    height: 125px;
+    margin-right: 13px;
+    width: 24%
+}
+
+.services_main_banner li:nth-of-type(2) .doctor-appointment-image img {
+    height: 167px !important;
+    right: 0 !important
+}
+
+.services_main_banner li:nth-of-type(3) .doctor-appointment-image img {
+    height: 183px !important;
+    right: 0 !important
+}
+
+.services_main_banner li:nth-of-type(4) .doctor-appointment-image img {
+    height: 163px !important;
+    top: -62px !important
+}
+
+.services_main_banner li:first-of-type,
+.services_main_banner li:nth-of-type(3) {
+    background-color: #ffcfc5
+}
+
+.services_main_banner li:nth-of-type(2) {
+    background-color: #afffd4
+}
+
+.doctor-appointment-image:nth-of-type(2) img {
+    top: -65px !important;
+    right: 4px !important
+}
+
+.services_main_banner li:nth-of-type(2) .book-btn,
+.services_main_banner li:nth-of-type(4) .book-btn {
+    background-color: #243562
+}
+
+.services_main_banner li:first-of-type .book-btn,
+.services_main_banner li:nth-of-type(3) .book-btn {
+    background-color: #ff5b36
+}
+
+.doctor-appointment-image img {
+    top: -66px;
+    right: 10px;
+    height: 175px;
+    width: 100%
+}
+
+.slick-dots li.slick-active button:before {
+    color: #4bb1cc !important
+}
+
+.slick-dots {
+    position: revert !important
+}
+
+.slick-dots li button:before {
+    color: #4bb1cc !important;
+    font-size: 12px !important
+}
+
+.services_main_banner li:nth-of-type(4) {
+    background-color: #afffd4;
+    margin-right: 0 !important
+}
+
+span.banner_mobileimg img {
+    min-height: 80px;
+    max-height: 85px;
+    margin-top: 10px
+}
+
+.services_main li a i {
+    font-size: 24px;
+    margin-right: 10px;
+    vertical-align: middle
+}
+
+.others_box_shadow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .34);
+    margin-bottom: 10px
+}
+
+.other_disese {
+    width: 30%
+}
+
+.doctor-in-pakistan,
+.specalities-image,
+.surgerie-box {
+    transition: .25s linear
+}
+
+.doctor-in-pakistan:hover,
+.specalities-image:hover,
+.surgerie-box:hover {
+    transform: scale(1.1)
+}
+
+.specalities-image p {
+    font-size: 12px
+}
+
+.speacialities-heading h2 {
+    font-size: 30px
+}
+
+.banner_location ul {
+    margin: 0 !important
+}
+
+.doctor-text .w-40 {
+    width: 45%
+}
+
+.bg-blog-content {
+    background: linear-gradient(180deg, #0e4d92 0, #279d9d 100%)
+}
+
+.doctor-text {
+    margin-left: 2rem
+}
+
+.doctor-group-image img {
+    top: -301px;
+    left: 30%;
+    position: absolute
+}
+
+.join-doctor-btn a {
+    box-shadow: 0 4px 4px rgba(255, 70, 92, .5)
+}
+
+.mobile_section_heading p {
+    font-size: 50px
+}
+
+.doctor-text h3,
+.mobile_section_heading h3 {
+    font-size: 28px
+}
+
+.join-doctor-btn {
+    margin-top: 2rem
+}
+
+.doctor-hospital-city li,
+.doctor_instruction p {
+    line-height: 30px
+}
+
+.doctor_instruction i {
+    float: left;
+    width: 4%;
+    font-size: 16px;
+    color: #243562
+}
+
+.doctor_instruction span {
+    width: 92%;
+    float: left;
+    padding-left: 10px
+}
+
+.doctor-in-pakistan {
+    border-radius: 21px
+}
+
+.blog_services li a,
+.doctor-in-pakistan a span,
+.posted_user_name span,
+.shares_icon a {
+    font-size: 13px
+}
+
+.banner_right_img {
+    padding: 20px 0
+}
+
+.border-vertical {
+    width: 1px;
+    background-color: #555;
+    height: 127px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 32%
+}
+
+.surgerie-bg-image {
+    width: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 20%
+}
+
+.surgerie_categories li {
+    height: 130px;
+    margin-right: 18px
+}
+
+.surgerie_categories li a:hover {
+    color: #000
+}
+
+.BypassGrafting_circle {
+    background: linear-gradient(180deg, #b3ffe3 0, rgba(219, 230, 224, .46) 100%)
+}
+
+.KidneyDialysis_circle {
+    background: linear-gradient(180deg, #ffb3dc 0, rgba(219, 230, 224, .46) 100%)
+}
+
+.Cholecystectomy_circle {
+    background: linear-gradient(180deg, #cbffb3 0, rgba(170, 255, 204, .46) 100%)
+}
+
+.NormalDelivery_circle {
+    background: linear-gradient(180deg, #c6b3ff 0, rgba(219, 230, 224, .46) 100%)
+}
+
+.mobile_section {
+    width: 100%;
+    display: inline-block;
+    background-size: 40% !important;
+    background-position: 0 100% !important;
+    background-repeat: no-repeat
+}
+
+.contst_text,
+.feedback_heading h2 {
+    font-size: 30px !important
+}
+
+.mobile_notes {
+    line-height: 35px
+}
+
+.blog_main_heading {
+    max-height: 42px;
+    min-height: 42px;
+    overflow: hidden
+}
+
+.mobile_notes i {
+    color: #06d6a0
+}
+
+.mobile_notes p {
+    margin-left: 33px
+}
+
+.phone_number p {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    height: 40px;
+    padding: 9px !important
+}
+
+.phone_number .input-group-btn {
+    box-shadow: 0 4px 4px rgb(0 0 0 / 0%)
+}
+
+.phone_number input,
+.phone_number input:focus {
+    border-color: #ced4da;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
+    width: 86% !important;
+    font-size: 13px;
+    height: 40px !important
+}
+
+.phone_number span {
+    top: 3px;
+    right: 9px
+}
+
+.phone_number span button {
+    padding: 4px 15px
+}
+
+.careOnGoSectionList {
+    margin-top: 3rem
+}
+
+.bg-img {
+    position: absolute;
+    top: 80px;
+    right: 0
+}
+
+.blog_heading p {
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0 10px
+}
+
+.blog_sm_img {
+    bottom: 40px;
+    right: -95px;
+    transition: .3s ease-in-out
+}
+
+.blog_sm_img img {
+    height: 25px
+}
+
+.blog_main:hover .blog_sm_img {
+    right: 5px
+}
+
+.blog_services {
+    min-height: 90px
+}
+
+.custom_divider {
+    border-top: 1px solid #8b8b8b !important;
+    margin: 10px 0
+}
+
+.shares_icon a {
+    color: #000;
+    cursor: pointer
+}
+
+.shares_icon a:hover {
+    color: #ea4335
+}
+
+.bg-shadow {
+    box-shadow: 0 9px 21px rgba(0, 0, 0, .34)
+}
+
+.posted_user_name {
+    height: 55px;
+    overflow: hidden
+}
+
+.blog_img_border {
+    border-radius: 10px
+}
+
+.blog_main {
+    min-height: 352px
+}
+
+.blog_img>img {
+    max-height: 200px;
+    min-height: 200px
+}
+
+.b-top {
+    border-top: 1px solid #979797
+}
+
+.feedback-client-slider {
+    border: 1px solid #e7eaec;
+    height: 210px;
+    width: 95% !important
+}
+
+.feedback-client-slider .feedback-text {
+    overflow: hidden;
+    height: 65px
+}
+
+.symptoms-images-box {
+    background: #fbfbfb !important;
+    border: 1px solid #cbcbcb
+}
+
+.get-code-box {
+    background: #fbfbfb !important;
+    border: 2px solid #cbcbcb;
+    border-radius: 5px
+}
+
+.symptoms-images-box img {
+    margin-top: 12px;
+    margin-left: 15px
+}
+
+.discount-box-slider .slick-prev,
+.symptoms-slider .slick-prev {
+    left: -34px;
+    background-color: inherit !important;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 1;
+    font-weight: 400;
+    border: 2px solid #a8a8a8;
+    top: 36%
+}
+
+.discount-box-slider .slick-prev:before,
+.symptoms-slider .slick-prev:before {
+    font-family: FontAwesome;
+    content: "\f104 " !important;
+    font-size: 18px;
+    left: 12px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828
+}
+
+.discount-box-slider .slick-next,
+.symptoms-slider .slick-next {
+    right: -34px;
+    background-color: inherit !important;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: 400;
+    border: 2px solid #a8a8a8;
+    top: 36%
+}
+
+.discount-box-slider .slick-next:before,
+.symptoms-slider .slick-next:before {
+    font-family: FontAwesome;
+    content: "\f105 " !important;
+    font-size: 18px;
+    right: 12px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828
+}
+
+.discount-box-slider .slick-next,
+.discount-box-slider .slick-prev {
+    top: 47% !important
+}
+
+#feedbackSlider .slick-track {
+    left: 10px !important
+}
+
+.android_img,
+.ios_img {
+    width: 20%;
+    margin-right: 5px
+}
+
+.tab-content {
+    overflow-y: auto;
+    height: 350px;
+    overflow-x: hidden
+}
+
+.user_identity {
+    font-family: robotolight;
+    font-size: 20px
+}
+
+.feedback-slide-icon .carousel-control-prev {
+    width: 37%;
+    display: inline-block;
+    border: 1.5px solid #a4a4a4;
+    padding: 5px;
+    border-radius: 5px;
+    left: 45px
+}
+
+.feedback-slide-icon .previous-text {
+    margin-right: 8px;
+    color: #a4a4a4
+}
+
+.feedback-slide-icon .carousel-control-next {
+    width: 30%;
+    display: inline-block;
+    border: 1.5px solid #133240;
+    padding: 5px;
+    border-radius: 5px
+}
+
+#feedback_slider .carousel-control-next {
+    right: 40px
+}
+
+.carousel-control-prev-icon {
+    background-image: url(../../images/Chevron_Left.png)
+}
+
+.carousel-control-next-icon {
+    background-image: url(../../images/Chevron_Right.png)
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    width: 8px;
+    height: 13px;
+    cursor: pointer;
+    margin-top: 4px
+}
+
+#feedback_slider .carousel-control-prev-icon {
+    margin-left: 13px
+}
+
+#feedback_slider .carousel-control-next-icon {
+    margin-right: 15px
+}
+
+#feedback_slider .carousel-control-next,
+#feedback_slider .carousel-control-prev {
+    top: 25px;
+    bottom: inherit;
+    display: block;
+    opacity: 1
+}
+
+.carousel-control-next {
+    right: 15px
+}
+
+.carousel-control-prev {
+    left: 15px
+}
+
+.doctor-hospital-city .nav-item .nav-link {
+    font-size: 14px;
+    color: #505050
+}
+
+[data-toggle=collapse]:after {
+    display: inline-block;
+    font: 20px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg);
+    transition: .25s linear;
+    float: right
+}
+
+[data-toggle=collapse].collapsed:after {
+    transform: rotate(0)
+}
+
+.card_main {
+    border-bottom: 1px solid #232426 !important;
+    border-radius: 0
+}
+
+.box_shadow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .34)
+}
+
+@media (max-width:6000px) {
+    .doctor-bg-image {
+        height: 1750px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 935px
+    }
+}
+
+@media (max-width:4000px) {
+    .doctor-bg-image {
+        height: 1300px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 924px
+    }
+}
+
+@media (max-width:3000px) {
+    .doctor-bg-image {
+        height: 870px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 912px
+    }
+}
+
+@media (max-width:2000px) {
+    .doctor-bg-image {
+        height: 660px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 908px
+    }
+}
+
+@media (max-width:1800px) {
+    .doctor-bg-image {
+        height: 590px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 904px
+    }
+}
+
+@media (max-width:1600px) {
+    .doctor-bg-image {
+        height: 550px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 903px
+    }
+}
+
+@media (max-width:1500px) {
+    .doctor-bg-image {
+        height: 490px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 906px
+    }
+}
+
+@media (max-width:1300px) {
+    .doctor-bg-image {
+        height: 448px
+    }
+    #BannerAppointmentModal .modal-dialog {
+        max-width: 902px
+    }
+    
+}
+
+

@@ -1,0 +1,98 @@
+/*Start Appointment Setting Css*/
+
+.appointment_days span{
+    margin-right: 10px;
+}
+.admin_btn a{
+    width: 80%;
+    text-align: center;
+    padding: 3px 0;
+}
+.days_accordians{
+    background-color: #F0F0F0;
+}
+.custom_divider {
+    border-top: 1px solid #8B8B8B !important;
+}
+
+.card{
+    background-color: #F0F0F0;
+    border: none; 
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f044";
+    transform: rotate(180deg);
+    transition: all linear 0.25s;
+    float: right;
+    top: 2px;
+    position: relative;
+}
+.btn_group a{
+    padding: 5px 10px;
+}
+.btn_group a:nth-of-type(2){
+    background-color: #FF465C;
+}
+.appointment_slots ul li {
+    margin-right: 5px;
+}
+.slot_radius {
+    border-radius: 5px;
+    color: #232323;
+    background-color: #ffffff
+}
+.slots_accordians .collapse{
+    border-bottom: 4px solid #ffffff;
+    margin-bottom: 20px;
+}
+.slots_accordians .collapse:last-child{
+    margin-bottom: 0px;
+}
+.days_detials{
+    display: none;
+}
+.radio-button-group .custom-radio .custom-control-input:checked~.custom-control-label::after {
+    background: #06D6A0 !important;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    margin-top: 4px;
+}
+.radio-button-group .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #6D6D6D;
+    background-color: #fff;
+}
+.add_slot{
+    display: none;
+}
+.slots_accordians a:hover{
+    color: #ff465c;
+}
+
+.Anesthesiology-dropdown button p span{
+    color:#747474;
+}
+.Anesthesiology-dropdown button p{
+    font-size:14px;
+}
+.Anesthesiology-dropdown a{
+right: 10px;
+    top:30px;
+}
+
+.form-control:focus {
+     background-color: #fff; 
+    box-shadow:none;
+    border: 1px solid #ced4da !important;
+}
+.input-amount input, .input-amount select,.input-amount textarea{
+    background-color:#F5F5F5;
+}
+.appointment_days .form-check{
+    padding-left: 0.5rem;
+}
+/*End Appointment Setting Css*/

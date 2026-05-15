@@ -1,0 +1,69 @@
+.bg-doctor-practice {
+    background-color: #4074f4;
+    min-height: 335px;
+}
+.heading-doctor-practice h2, .heading-benifites-knockdock h2, .heading-signup h2, .heading-knockdock-profile h2, .heading-data-protection h2, 
+.heading-doctor-video-calling h2, .heading-doctor-demo h2{
+    font-size: 30px;
+}
+.section-doctoe-practice:before {
+    background: url(/images/doctor-practice-image.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-size: contain;
+    right: 120px;
+    top: 20px;
+    min-height: 315px;
+}
+.signup-box {
+    background-color: #f6f6f6;
+}
+.custom_height[data-v-62a8a58c] {
+    min-height: 87px;
+}
+.signup-button button {
+    padding: 8px 15px;
+    border-radius: 25px;
+}
+.bg-knockdock-profile {
+    background: #f3f3f3;
+}
+.heading-data-protection h2 {
+    margin-top: 70px;
+}
+.view-profile-btn a {
+    padding: 6px 12px;
+}
+.mobile_section_heading p {
+    font-size: 50px;
+}
+.mobile_section_heading h3 {
+    font-size: 30px;
+}
+.mobile_notes li {
+    line-height: 40px;
+}
+.mobile_notes i {
+    color: #06D6A0;
+}
+.phone_number p {
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    font-weight: bold;
+}
+.phone_number input, .phone_number input:focus {
+    border-color: #ced4da;
+    box-shadow: 0px 4px 6px rgb(0 0 0 / 18%);
+    width: 86% !important;
+}
+.doctor_app {
+    top: 0px;
+    right: 1%;
+}
+.ios_img, .android_img {
+    margin-right: 6px;
+}
+.bg-doctor-demo {
+    background-color: #F5F5F5;
+}

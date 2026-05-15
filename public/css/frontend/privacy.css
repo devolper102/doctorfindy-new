@@ -1,0 +1,197 @@
+.heading-privacy-policy h1{
+letter-spacing:2px;
+}
+.heading-privacy-policy h1:after{
+height: 2px;
+display: block;
+width: 66%;
+border-bottom: 1px #232426;
+content: '';
+position: absolute;
+top: 39px;
+left: 17%;
+background-color: #232426;
+
+}
+.breadcrumb li a{
+color:#666;
+}
+/*.introduction-heading h6{
+text-decoration: underline;
+}*/
+.introduction-heading p{
+font-size:16px;
+}
+.introduction-heading a{
+color: #FF465C;
+}
+.personal-information label{
+width: 5px;
+height: 5px;
+display: inline-block;
+background-color: #000;
+float: left;
+border-radius: 50%;
+margin-top: 7px;
+}
+/*new css in privacy policy page */
+.privacy-policy{
+    /*position: absolute;*/
+    /*width: 1920px !important;*/
+/*        height: 310px;*/
+    left: 0px !important; 
+    top: 136px !important;
+    background: #088F8F;
+}
+.privacy-policy-tab{
+/*    margin-top: -45px;*/
+}
+.privacy-nav-tab-link{
+    padding-bottom: 1rem;
+    border: none !important;
+    color: #FFFFFF !important;
+}
+.privacy-heading{
+    /*font-family: 'Roboto';*/
+    font-style: normal;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 64px;
+    color: #FFFFFF !important;
+}
+
+.privacy-nav-tab{
+    border-bottom: 0px;
+/* background: #FFFFFF; */
+color: #FFFFFF;
+/* text-decoration: underline; */
+/*font-family: 'Roboto';*/
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 27px;
+text-align: center;
+text-decoration-line: underline;
+}
+.nav-tabs .nav-link.active {
+color: #0E4D92 !important;
+background-color: #fff;
+border-color: #dee2e6 #dee2e6 #fff;
+}
+/*new css in privacy policy page */
+.privacy-policy{
+    left: 0px !important; 
+    top: 136px !important;
+    background: url(../images/privacy-ploicy-img.png);
+    /*background: #088F8F;*/
+}
+.privacy-banner{
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+.privacy-tab-setting{
+    padding-right: 40px;
+    padding-left: 45px;
+}
+.privacy-tab-layout{
+margin-left: 0px;
+}
+.privacy-policy-tab{
+/*    margin-top: -25px;*/
+        /*margin-left: -75px;
+margin-right: -75px;
+*/    }
+.privacy-nav-tab-link{
+    padding-bottom: 1rem;
+    border: none !important;
+    color: #FFFFFF !important;
+}
+.privacy-heading{
+    /*font-family: 'Roboto';*/
+    font-style: normal;
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 64px;
+    color: #FFFFFF !important;
+}
+
+.privacy-nav-tab{
+    border-bottom: 0px;
+/* background: #FFFFFF; */
+color: #FFFFFF;
+/* text-decoration: underline; */
+/*font-family: 'Roboto';*/
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 27px;
+text-align: center;
+text-decoration-line: underline;
+}
+.nav-tabs .nav-link.active {
+color: #0E4D92 !important;
+background-color: #fff;
+border-color: #dee2e6 #dee2e6 #fff;
+}
+.faq_accordian [data-toggle="collapse"].collapsed:after {
+content: "\f067" !important;
+font-size: 14px;
+position: absolute;
+/*right: 2px;*/
+margin-left: -13px;
+top: 12px;
+transform: rotate(0deg);
+color: #373737;
+}
+.faq_accordian [data-toggle="collapse"]:after {
+content: "\f068" !important;
+font-size: 14px;
+position: absolute;
+/*right: 2px;*/
+margin-left: -13px;
+top: 12px;
+color: #373737;
+}
+.faqs-heading{
+/* padding-bottom: 0px; */
+margin-bottom: 28px;
+color: #243562;
+
+}
+[data-toggle="collapse"].collapsed:after {
+transform: rotate(0deg);
+}
+[data-toggle="collapse"]:after {
+display: inline-block;
+font: normal normal normal 20px/1 FontAwesome;
+content: "\f107";
+transform: rotate(180deg);
+transition: all linear 0.25s;
+position: relative;
+font-size: 16px;
+margin-left: 5px;
+top: 2px;
+float: right;
+}
+.faqs-box{
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+margin-bottom: 9px;
+border-radius: 4px;
+}
+.faqs-details{
+    background: #DBE5FF !important;
+}
+.faqs-headings{
+    font-size: 13px;
+    font-weight: bold;
+    color: #243562;
+}
+.introduction-heading a {
+    color: #0E4D92 !important;
+}
+.privacy-nav-tab-link:hover {
+  color:  #FFFFFF !important;
+/*  background-repeat: no-repeat;*/
+/*  font-weight: bolder;*/
+/*  font-size: 17px;*/
+}

@@ -1,0 +1,29 @@
+User-agent: *
+
+Disallow: /admin/
+Disallow: /appointment-booking-system/
+Disallow: /product/catalogue/
+Disallow: /product/categories/
+Disallow: /product/tag/
+Disallow: /product/brand/
+Disallow: /product/attributes/
+Disallow: /product/reviews/
+Disallow: /product/page/setting/
+Disallow: /product/order/
+Disallow: /product/transcations/
+Disallow: /users/laboratory/
+Disallow: /import-export-view/
+Disallow: /users/patient/
+Disallow: /create-article/
+Disallow: /uploads/users/
+Disallow: /sitemap/specialities-cities.xml
+Disallow: /sitemap/surgeries-cities.xml
+Disallow: /sitemap/hospitals-cities.xml
+
+Sitemap: https://doctorfindy.com/sitemap/specialities.xml
+Sitemap: https://doctorfindy.com/sitemap/doctors.xml
+Sitemap: https://doctorfindy.com/sitemap/hospitals.xml
+Sitemap: https://doctorfindy.com/sitemap/labortories.xml
+Sitemap: https://doctorfindy.com/sitemap/diseases.xml
+Sitemap: https://doctorfindy.com/sitemap/treatments.xml
+Sitemap: https://doctorfindy.com/sitemap/tests.xml

@@ -1,0 +1,796 @@
+/********************  Doctor listing page ***********************/
+
+.other_page_banner .w-30{
+    width: 30%;
+}
+
+.other_page_banner .w-70{
+    width: 70%;
+}
+.filter_btn_padding{
+    padding: 6px 25px !important;
+}
+#hospital_search .select2-container--default .select2-selection--single{
+    border-radius: 30px;
+    border: 1px solid #000;
+}
+.bread-crumb-listing li {
+    text-transform: capitalize;
+}
+.locationListMain span:last-child{
+    padding-top:0 !important;
+}
+.video_icon i{
+    font-size:12px !important;
+}
+.location_input input, .other_search input{
+    border-radius:10px !important;
+}
+.box-right {
+    right: -65px !important;
+    top: -135px !important;
+    width: 10%;
+}
+.speciality-bread::before {
+    font-family: FontAwesome;
+    content: '\f054';
+    font-size: 10px;
+    color: #fff;
+    margin-top: 0px;
+    padding: 0 8px 0 12px;
+}
+.slick-slide{
+    height:inherit !important;
+}
+.cross-circle{
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1.4px solid #0E4D92;
+    font-size: 13px;
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    cursor: pointer;
+}
+.tick{
+   position: absolute;
+    top: 5px;
+    right: 5px; 
+    height:13px;
+}
+.cross-circle .cross{
+margin-top: -5px;
+display: inline-block;
+margin-left: 1px;
+}
+.discount-box{
+    top: 0px;
+    right: 15px;
+    padding:1px;
+}
+.video-call-box .video-icon{
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    background: #0E4D92;
+    text-align: center;
+    border-radius: 50%;
+    padding-top: 6px;
+    padding-left: 3px;
+}
+/*.listing-filter {
+    background-color: #dfefeb;
+    border-right: 0.0063rem solid #89c3b0;
+    border-top: 0.0063rem solid #89c3b0;
+    border-bottom: 0.0063rem solid #89c3b0;
+    cursor: pointer;
+}*/
+.horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    height:55px;
+}
+.horizontal-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+.hospital-main-slider{
+/*    background-color:#0E4D92;*/
+    border:1.5px solid #0E4D92 !important;
+}
+.video-call-box{
+    border: 1.5px solid #0E4D92;
+    
+}
+.hospital-main-slider .theme-slide-text{
+color:#fff !important;
+}
+.hospital-main{
+    margin:5px auto 10px;
+}
+#FaqS .collapse{
+    background-color: #DBE5FF;
+}
+.card-header{
+padding:12px 20px !important;
+}
+.doctor-name-specialties a{
+white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 185px;
+}
+/*.doctor-recommended-list{
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.doctor-recommended-list::-webkit-scrollbar {
+    width: 7px;
+    height: 10px;
+}*/
+.view-profile-btn a {
+    padding: 6px 30px;
+}
+.read-more-btn a{
+    padding: 6px 18px;
+}
+.doctor-description ul{
+ padding-left: 45px;
+    padding-top: 10px;
+    margin-bottom:10px;
+    width: 100%;
+    display: inline-block;
+}
+.doctor-description h3{
+    font-weight: bold;
+    color: #243562;
+}
+.doctor-description h2{
+  font-size: 18px;
+  margin-bottom:15px;
+  width: 100%;
+    display: inline-block;
+    font-weight: bold;
+    color: #243562;
+}
+.doctor-description ul li{
+list-style: disc;
+    padding-bottom: 10px;
+    float: left;
+    margin-right: 30px;
+    color: #243562;
+}
+.doctor-description ul li::marker{
+    color:#088F8F;
+    font-weight: 700;
+}
+.doctor-description p{
+  padding-bottom:10px;
+}
+.doctor-description p a{
+  color: #0E4D92;
+  font-weight: bold;
+}
+
+.choose_hospitals .select2-container--default .select2-selection--single{
+    border-radius: 30px;
+    border: 1px solid #000;
+}
+.search-bg .breadcrumb-item.active {
+    color: #fff !important;
+}
+.video-consultation a, .most-experienced a, .emergency a, 
+.male-doctor a, .available-today a, .highest-rated a{
+    padding: 7px 22px;
+}
+.activebtn{
+    border: 2px solid #0E4D92;
+    border-radius:6px;
+}
+.speciality-text{
+    display: none;
+}
+.show-less-text a{
+    display: none;
+}
+.show-more-text a, .show-less-text a{
+font-weight: bold;
+color:#ea4335 !important;
+font-size:14px;
+}
+.search-bg .breadcrumb-item a {
+    color: #fff !important;
+}
+.breadcrumb-item+.breadcrumb-item::before{
+color: #fff !important;
+}
+.search-bg{
+background: url(../images/search-bg-image.png) no-repeat left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#hospital_search .select2-container--default{
+    width: 170px !important;
+}
+
+.disease-allergy-immunology li {
+    white-space: nowrap;
+}
+.disease-allergy-immunology a:hover {
+    background-color: #243562 !important;
+    color: #fff !important;
+}
+.disease-allergy-immunology li {
+/*    background-color: #dddddd;*/
+    width: 18%;
+}
+.disease-allergy-immunology li a{
+    background-color: #dddddd;
+}
+.select_fee select{
+    padding: 3px 15px;
+    width: 146px;
+}
+.box_shadow{
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.others_box_shadow {
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.34);
+}
+.hospitalFor_doctors .slick-prev{
+    left: -5px !important;
+    top: 48% !important;
+    z-index: 1;
+}
+.hospitalFor_doctors .slick-next{
+   right: -5px !important;
+   top: 48% !important;
+    z-index: 1;
+}
+.faq_accordian [data-toggle="collapse"].collapsed:after{
+    content: "\f067" !important;
+    font-size: 14px;
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    transform: rotate(0deg);
+    color: #243562;
+}
+.faq_accordian [data-toggle="collapse"]:after{
+    content: "\f068" !important;
+    font-size: 14px;
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    color: #373737;
+}
+.google_map{
+    display: flex !important;
+    width: 520px !important;
+    height: 100% !important;
+}
+.book-dr-image{
+    bottom: -20px;
+    left: 15px;
+    z-index: 1;
+}
+.list_btns .discount-icon{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    top: -5px;
+    right: -6px;
+}
+.list_btns .discount-icon span{
+    margin-top: 3px;
+}
+.list_btns .discount-icon span img{
+    height: 15px;
+}
+#final_modal .modal-dialog,#mobile_number_verification .modal-dialog, #book_now_final .modal-dialog, #mobile_number_detail .modal-dialog, #modal_patient_num .modal-dialog, #appointment_modal_detail .modal-dialog{
+    max-width: 800px;
+}
+/*.cstm_border_right:after {
+    border-right: 1px solid #000000 !important;
+    height: 100%;
+    display: block;
+    width: 1px;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 32%;
+}*/
+.patient-box{
+    background-color: #E7E7E7;
+    border-radius: 25px;
+}
+
+.circle-box span{
+    width: 15px;
+    height: 15px;
+}
+.finger-icon{
+    top: -9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    right: -10px;
+    border: 1px solid #fff;
+}
+.finger-icon img{
+position: absolute;
+    top: 3px;
+    right: 4px;
+}
+.heart-icon{
+    right: -6px
+}
+.bg-filter{
+    background-color: #DBE5FF;
+}
+.all-btn a{
+    padding: 7px 48px;
+}
+.listing-filter::before {
+   display: block;
+    content: '';
+    height: 48px;
+    position: relative;
+    top: -12px;
+    left: 119px;
+    border-right: 1px solid #949494;
+    float: left;
+}
+.emergency-icon{
+    margin-top: 3px;
+    height: 12px;
+}
+.fee-range-btn a{
+    padding: 7px 30px;
+}
+.fee-range-btn span img{
+    height: 13px;
+    top: 5px;
+    right: 8px;
+}
+
+.fee-range-btn{
+/*    width:11%;*/
+margin-left:15px;
+}
+.time-slot{
+/*    width:11%;*/
+margin-left:16px;
+}
+.most-experienced{
+/*    width:13%;*/
+margin-left: 15px;
+}
+.female-doctor{
+/*    width:15%;*/
+margin-left: 15px !important;
+}
+.male-doctor{
+/*    width:10%;*/
+margin-left: 15px;
+}
+.most-experienced::before{
+    left:151px !important;
+}
+.video-consultation{
+    margin-left: 14px;
+}
+.fee-range-btn::before{
+    left:129px !important;
+}
+.female-doctor::before{
+    left:150px !important;
+}
+.male-doctor::before{
+    left:120px !important;
+}
+
+.highest-rated{
+margin-left:17px
+}
+.available-today{
+/*    width:12%;*/
+margin-left: 16px;
+}
+.highest-rated::before{
+    left:132px !important;
+}
+.available-today::before{
+    left:139px !important;
+}
+.time-slot::before{
+    left:124px !important;
+}
+.clear-button{
+    padding: 7px 10px !important;
+}
+.circle-cross{
+    width: 17px;
+    height: 17px;
+}
+.filter-main{
+    overflow-y: hidden;
+    overflow-x: auto;
+    display: -webkit-inline-box;
+}
+.filter-main::-webkit-scrollbar {
+    height: 4px;
+}
+.all-btn::after {
+    display: block;
+    content: '';
+    height: 48px;
+    position: relative;
+    top: -44px;
+    left:-5px;
+    border-left: 1px solid #949494;
+    float: left;
+}
+.clear-btn span i{
+    font-size:10px !important;
+}
+.clear-btn{
+    margin-left: 18px;
+}
+.clear-btn a span{
+    width: 14px;
+    height: 14px;
+}
+.clear-btn::before{
+    left:inherit !important;
+    border-right: 0 !important;
+}
+.clear-btn a {
+    padding: 7px 7px;
+}
+.all-btn{
+/*    width:10%;*/
+}
+.emergency{
+/*    width:12%;*/
+margin-left: 16px;
+}
+.emergency::before{
+    left:135px !important;
+}
+.video-consultation::before{
+    left:157px !important;
+}
+.heart-icon i:hover{
+    color:#fff !important;
+}
+.time-slot-picker input, .time-slot-picker .time-picker{
+    width:100% !important;
+    background: #d9d9d9 !important;
+}
+.video-cam-icon img{
+    height: 11px !important;
+}
+.video-cam-icon{
+    padding-left: 2px;
+}
+.video-cam-icon i{
+    position: absolute;
+    right: 1px;
+    top: 3px;
+}
+.experience-image, .rs-image, .wait-icon, .finger-icon img{
+height:12px;
+}
+
+#gmap_canvas{
+    height: 100vh;
+    margin-left: 20px;
+}
+.google_map{
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_btn {
+    width: auto;
+    right:0;
+    top: 100px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_btn a{
+    background-color:#00CC8C;
+    margin: 2px;
+}
+.toggle_map{
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+.map_toggle i{
+    transition: transform 0.5s ease-in-out;
+}
+.hide_map_btn{
+    transform: translateX(63%);
+    transition: transform 0.5s ease-in-out;
+}
+.hide_map_btn a i{
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+.doctor_profile{
+    background-color: #F6F5F5;
+    overflow: hidden;
+}
+.hospitals_box{
+    max-height: 85px;
+}
+.card-body .border-test li{
+    border-bottom: 1px solid #8b8b8b;
+}
+.doctor_profile:focus{
+/*    background-color: #088F8F !important;*/
+/*    color: #fff !important;*/
+}
+.Satisfy_percentage a:hover{
+    color:#fff !important;
+}
+[data-toggle="collapse"].collapsed:after {
+    transform: rotate(0deg);
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg);
+    transition: all linear 0.25s;
+    position: relative;
+    font-size: 16px;
+    margin-left: 5px;
+    top: 2px;
+    float: right;
+}
+
+.card_main {
+    border-bottom: 1px solid #000000 !important;
+}
+.speacialities-heading h2, .doctor-text p, .doctor-text span, .heading-doctor-in-pakistan h4, .doctor-in-pakistan a span, .heading-doctor-city-pakistan a {
+    color: #073b4c;
+}
+.main-faq{
+    /*min-height: 58px;*/
+    max-height: 58px;
+    overflow: hidden;
+}
+.knockdoc_doctor_profile_btn {
+    background-color: #EA4335;
+    color: #fff !important;
+    border: 1px solid #EA4335;
+    padding: 6px 30px;
+}
+.faq_details{
+    color: #2B2929;
+    font-size:14px;
+}
+
+#fee-range-modal .modal-header button, 
+#time-slot-modal .modal-header button{
+opacity: 1;
+    border: 2px solid #000;
+    width: 20px;
+    height: 20px;
+    line-height: 1px;
+}
+#fee-range-modal .modal-header, 
+#time-slot-modal .modal-header{
+    border-radius: 10px 10px 0px 0px;
+}
+#fee-range-modal .modal-content, 
+#time-slot-modal .modal-content{
+    border-radius: 12px;
+}
+.fee-range-form input{
+    width:15px;
+    height:15px;
+}
+.help-btn a{
+    padding: 12px 70px;
+}
+.waitng_time > a i:hover{
+    color: #0E4D92 !important;
+}
+.accordion .card{
+    background-color:inherit !important;
+}
+.knockdoc_doctor_profile_btn:hover {
+    color: #EA4335;
+    background-color: #ffffff;
+    border: 1px solid #EA4335;
+}
+.list_btns {
+    line-height: 40px;
+}
+.list_btns a {
+    line-height: 18px;
+}
+.sticky {
+  position: fixed;
+  top: 22%;
+  z-index: 999;
+  right: 0;
+  width:8% !important;
+}
+#FaqS a{
+    font-size:15px;
+    font-weight: bold;
+}
+.location_input input{
+    width: 100% !important;
+    padding: 1.375rem 0.75rem;
+}
+.location_input input, .other_search input, #sticky_location input, 
+#main_sticky_header input{
+    color:#000 !important;
+}
+/*.banner_btn {
+    padding: 0.71rem 0.75rem !important;
+}*/
+.search_btn {
+    top: 1px;
+    right: -1px;
+}
+.banner_heading span {
+    font-size: 55px;
+    font-weight: bold;
+}
+.banner_heading h1 {
+    font-size: 40px;
+    /*margin: 20px 10px 0 0;*/
+}
+#hospital_search input, #fee_main input, .relevance  input{
+    width: 150px !important;
+    position: relative !important;
+    padding: 5px 10px !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(0,0,0,0.5) !important;
+    cursor: pointer;
+}
+.relevance input {
+    width: 100% !important;
+}
+.multiselect{
+    position: relative !important;
+}
+.relevance .multiselect__content-wrapper{
+    width: 90%;
+    right: 15px !important;
+    top: 35px;
+    overflow: hidden !important;
+    z-index: 5;
+}
+/*.multiselect__content-wrapper {
+    width: 165px;
+    position: absolute;
+    background-color: #fff;
+    overflow: scroll;
+    overflow-x: hidden;
+    z-index: 2;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.multiselect__content {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}*/
+/*.autosuggest__results-container{
+    left: 20px;
+    width: 86% !important;
+}*/
+/*.multiselect__placeholder,.multiselect__single{
+    display: none;
+}
+.multiselect__content .multiselect__element{
+    padding: 5px;
+    font-size: 12px;
+}
+.multiselect__content .multiselect__element:hover{
+    background-color: #EA4335;
+    color: #fff;
+}*/
+.option_field i{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    font-size: 18px;
+}
+.location_input > span {
+    position: absolute;
+    margin-left: 5px;
+    height: 25px;
+    display: flex;
+    color: #073B4C;
+    align-items: center;
+    right: 25px;
+    top: 10px;
+}
+/*.accordion>.card{
+    overflow:visible !important;
+}*/
+.doctor_degree {
+    line-height: 22px;
+}
+.calendar .slick-active .calendar_day:hover,.calendar .slick-current .calendar_day{
+    background-color: #0E4D92;
+    color: #fff;
+}
+.calendar .calendar_day{
+    border: 1px solid #0E4D92;
+    color: #000;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/*.resend_btn{
+    background-color: #fff;
+}*/
+.theme-green-border {
+    border: 1px solid #06D6A0 !important;
+}
+.light_btn_bg[disabled="disabled"] {
+    border: 1px solid #b5b5b5 !important;
+    background-color: #e5e5e5 !important;
+}
+.booking_btn{
+    background-color: #06D6A0;
+    color: #fff;
+}
+/*#appointment-selected[disabled="disabled"]{
+    background-color: #C4C4C4 !important;
+    color: #707070 !important;
+}*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000000;
+}
+.prfile_detail span img {
+    height: 13px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #000000;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #000000;
+}
+.doctor_name h2, .doctor_name h2 a{
+    font-size: 15px;
+    font-weight: bold;
+    color: #0E4D92;
+}
+.doctor_name h2 .doctor-name{
+    border-bottom: 1.5px solid #0E4D92;
+}
+.image-sheild, .tick-image{
+    height: 18px;
+}
+.red_circle{
+    background: #EA4335;
+}
+.wait_icon i{
+    color: #F76D6D;
+}
+.video_icon{
+    bottom: 7px;
+    right:25px;
+}
+.doctor_fee_details li:nth-of-type(1),.doctor_fee_details li:nth-of-type(2){
+    border-right: 1px solid #cccccc;
+}
+/*.card-body .doctor-hospital-city li {
+    border-bottom: 1px solid #8b8b8b;
+}*/
+/********************  End Doctor listing page ***********************/

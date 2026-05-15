@@ -1,0 +1,484 @@
+/*start blog list css*/
+
+.arrow-right a{
+    background-color: #d5d5d5;
+    padding: 6px 14px;
+
+}
+.blog-main-slider{
+    height:410px;
+}
+.blog-main-slider .slick-prev{
+left: 35px;
+z-index: 1;
+top:40%;
+}
+.blog-main-slider .slick-prev:before{
+    font-family: FontAwesome;
+    content: "\f104 "!important;
+    font-size: 35px;
+    left: 12px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828;
+}
+.categories-blog-slider .slick-track{
+left: 2px;
+}
+.blog-main-slider .slick-next{
+right: 35px;
+z-index: 1;
+top:40%;
+}
+.blog-main-slider .slick-next:before{
+font-family: FontAwesome;
+    content: "\f105 "!important;
+    font-size: 35px;
+    right: 12px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828;
+}
+.skin-care-text ul{
+ padding-left: 45px;
+    padding-top: 10px;
+    margin-bottom:10px;
+    width: 100%;
+    display: inline-block;
+    padding-right: 0 !important;
+}
+.skin-content{
+    bottom: -280px;
+    right: 0;
+    border-bottom: 50px solid #0E4D92;
+    border-left: 35px solid transparent;
+}
+.skin-content .skin-text{
+bottom: -35px;
+left: 15px;
+}
+
+.blogs-date .date:before {
+    content: "";
+    display: block;
+    height: 24px;
+    border-right: 1px solid #000;
+    right: -12px;
+    position: absolute;
+    top: -4px;
+}
+
+.ride-box{
+    background: rgba(0,0,0,.6);
+    bottom: -410px;
+    left: 5%;
+}
+
+.categories-slider-image span{
+    top:36%;
+}
+.categories-blog-slider .slick-prev{
+    left: -34px;
+    background-color:#D9D9D9;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 1;
+    font-weight: normal;
+    top: 27%;
+} 
+.categories-blog-slider .slick-prev:before{
+font-family: FontAwesome;
+    content: "\f061 "!important;
+    font-size: 18px;
+    left: 10px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828;
+}
+.categories-blog-slider .slick-next{
+    right: -40px;
+    background-color:#D9D9D9;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    border-radius: 50%;
+/*    z-index: 1;*/
+    font-weight: normal;
+    top: 27%;
+}
+ 
+.categories-blog-slider .slick-next:before{
+font-family: FontAwesome;
+    content: "\f060 "!important;
+    font-size: 18px;
+    right: 10px;
+    position: absolute;
+    top: 9px;
+    opacity: 1;
+    color: #282828;
+}
+.skin-care-text h3{
+  font-size: 22px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'robotoregular', Helvetica, Arial, Sans-Serif !important;
+}
+.skin-care-text h3 span{
+    font-family: 'robotoregular', Helvetica, Arial, Sans-Serif !important;
+}
+.skin-care-text h2, .skin-care-text h2 span{
+  font-size: 25px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'robotoregular', Helvetica, Arial, Sans-Serif !important;
+}
+.skin-care-text h2 span{
+    margin-bottom:0 !important;
+}
+.skin-care-text ul li{
+list-style: disc;
+    padding-bottom: 10px;
+/*    float: left;*/
+    margin-right: 30px;
+}
+.skin-care-text ul li::marker{
+    color: #06D6A0;
+    font-weight: 700;
+}
+.skin-care-text ul li span{
+    font-size:17px;
+}
+.skin-care-text ol{
+    padding-left: 0;
+}
+.skin-care-text p{
+  padding-bottom:15px;
+  font-size: 15px;
+}
+.skin-care-text p span{
+  font-size: 17px !important;
+  font-family: 'robotoregular', Helvetica, Arial, Sans-Serif !important;
+}
+.skin-care-text p a{
+  font-weight: bold;
+}
+.share-icon a{
+    padding: 7px 40px;
+}
+.share-icon .gmail-icon{
+    background-color: #FF0000;
+    padding: 6px 40px !important;
+}
+.share-icon .linkdIn-icon{
+background: #007BB6;
+}
+.share-icon .facebook-icon{
+background-color: #3B5B9C;
+}
+.share-icon .whatsapp-icon{
+background-color: #60D669;
+}
+.comment-btn a{
+    background-color: #343A40;
+    padding: 7px 25px;
+}
+.treatment-information{
+   overflow-y: auto;
+    overflow-x: hidden;
+}
+.treatment-information::-webkit-scrollbar {
+  display: none;
+}
+.blog-pagination .page-link:focus{
+box-shadow: none !important;
+}
+.blog-pagination .page-item .page-link{
+    margin-right:10px;
+    border:1.5px solid #BEBEBE;
+    border-radius:5px;
+}
+.blog-border-right:after {
+    height: 100%;
+    display: block;
+    width: 1px;
+    background: #e5e5e5;
+    border-right: 1px #e5e5e5;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 35px;
+}
+.blog-pagination .page-item.active .page-link {
+    z-index: 3;
+    color: #0E4D92 !important;
+    background-color: #E9E1FF !important;
+    border:1.5px solid #0E4D92 !important;
+    border-radius:5px;
+}
+.treatment-information {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.doctor-in-pakistan{
+    min-height: 160px;
+    transition: all linear 0.25s;
+}
+.fitness-bg{
+    min-height: 75px;
+}
+.doctor-in-pakistan:hover{
+   transform: scale(1.1);
+}
+.custom_border{
+    border-bottom: 1px solid #B7B7B7;
+    margin: 5px 0;
+}
+.heading-doctor-city-pakistan [data-toggle="collapse"]:after {
+    top: 2px;
+}
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    font: normal normal normal 20px/1 FontAwesome;
+    content: "\f107";
+    transform: rotate(180deg);
+    transition: all linear 0.25s;
+    float: right;
+    top: 5px;
+    position: relative;
+}
+[data-toggle="collapse"].collapsed:after {
+    transform: rotate(0deg);
+}
+/*.card_main {
+    border-bottom: 1px solid #000000 !important;
+}*/
+.btn {
+  border: none;
+  outline: none;
+  padding: 5px 16px !important;
+    border-radius: 25px;
+
+}
+.doctor-hospital-city li .newbtn0{
+     background-color: #EA4335;
+  color:#fff !important;
+  }
+.breadcrumb-item.active {
+    color: #6c757d !important;
+    background: inherit;
+}
+.active:hover{
+    color:#fff !important;
+}
+/* Style the active class, and buttons on mouse-over */
+/*.active {
+  background-color: #EA4335;
+  color:#fff !important;
+}*/
+.card-header{
+    border-bottom: none;
+}
+.view-profile-btn a {
+    padding: 10px 30px;
+}
+.heading-sidebar h1{
+    font-size: 40px;
+}
+.main-treatment{
+    height: 127px;
+    overflow: hidden;
+}
+/*.aside_bar{
+    position: fixed;
+    right: 0;
+    top: 70px;
+    z-index: 5;
+    width: 30%;
+}*/
+
+.fixed_sideBar{
+    top: 0 !important;
+}
+/*End blog list css*/
+
+
+/*Start blog list-2 css*/
+ 
+/* .blog_detail{
+    position: fixed;
+    left: 0;
+    top: 70px;
+    z-index: 5;
+    width: 30%;
+    height: 100vh
+}*/
+
+
+.skin-care-image p{
+    top:38%;
+    font-size: 15px;
+    left: 7px;
+}
+
+
+/*End blog list-2 css*/
+
+
+/*Start blog list-3 css*/
+
+.bg-image-skin-care{
+    background:  no-repeat center right;
+    content: "";
+    min-height: 301px;
+    display: block;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.heading-skin-care h4{
+color:#484848;
+}
+.doctor-skin-care-detail{
+    margin:0 auto 10px !important;
+}
+.article_based{
+    min-height: 80px;
+}
+.eyes-image > img {
+    min-height: 185px;
+    max-height: 185px;
+}
+.fitness_articleLinks{
+    width: 25%;
+}
+.article_based span i{
+    color: #FF465C;
+    font-size: 8px;
+}
+/*.fitness-categories li:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    background-color:#FF465C;
+    height: 10px;
+    border-radius: 50%;
+}*/
+.box_shadow {
+    box-shadow: rgba(0, 0, 0, 0.34) 0px 5px 10px;
+}
+
+/*End blog list-3 css*/
+
+   
+/*Start blog list-4 css*/
+
+.read-more-btn a{
+    border-radius: 20px;
+    border: 2px solid #ea4335;
+    padding: 6px 15px;
+    font-size: 13px;
+} 
+.read-more-btn a:hover{
+    background-color: #ea4335;
+    color: #fff !important;
+}
+
+
+/*End blog list-4 css*/
+
+
+/*Start blog list-5 css*/
+/*.subscribe-newsletter-box{
+    padding:27px 110px;
+}*/
+.subscribe-newsletter p{
+    font-size:35px;
+}
+.subscrib-btn a{
+    padding: 8px 66px;
+}
+.location_input .fa-map-marker {
+    /*position: absolute;
+    margin-left: 5px;
+    height: 25px;
+    display: flex;
+    color: #073B4C;
+    align-items: center;
+    right: 25px;
+    top: 10px;
+    */
+}
+.autosuggest__results {
+    width: 100%;
+    max-height: 253px;
+    overflow-y: scroll;
+    font-size: 14px;
+    padding: 0px;
+}
+.autosuggest__results-container {
+    background: #fff;
+    font-size: 16px;
+    position: absolute;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    float: left;
+    min-width: 10rem;
+    z-index: 1000;
+    width: 79%;
+    left: 8px;
+    top: 50px;
+}
+.dropdown-divider {
+    margin: 0px;
+}
+.autosuggest__results ul li:first-child {
+    padding: 10px;
+    background: #EDEDF6;
+}
+.autosuggest__results-item a:hover {
+    background: #ff465c;
+    color: #fff !important;
+}
+.autosuggest__results ul{
+    margin:0px;
+}
+.articleSearchIcon{
+    top: 13px;
+    right: 13px;
+    color: #555555;
+    font-size: 13px;
+}
+.blog-skin-box{
+    top: 75%;
+    left: 10%;
+    background: rgba(0,0,0,.6);
+}
+.blog-input .form-control:focus{
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.34) !important;
+}
+.auther-skin-box{
+    top: 70%;
+}
+.border-bottom-radius{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+/*.aricles_card{
+
+    height: 120px !important;
+}*/
+
+/*End blog list-5 css*/

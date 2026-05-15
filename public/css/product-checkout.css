@@ -1,0 +1,77 @@
+.product-checkout-accordian .collapsed:after{
+    font-family: FontAwesome !important;
+    content: "\f107 " !important;
+    right: 10px;
+    top: 7px;
+    position: absolute;
+    font-size: 27px;
+    color: #282828;
+}
+.product-checkout-accordian .not-collapsed:before{
+    font-family: FontAwesome !important;
+    content: "\f106 " !important;
+    right: 10px;
+    top: 7px;
+    position: absolute;
+    font-size: 27px;
+    color: #EA4335 !important;
+
+}
+.shoping-empty-cart-image img {
+    height: 250px;
+}
+.checkout-heading a:hover, .login-heading span a:hover{
+    color:#b59e5c !important;
+}
+#checkout-confirm .modal-body{
+    padding: 0;
+}
+#checkout-confirm .modal-dialog{
+    max-width: 900px;
+}
+#checkout-confirm .modal-content{
+    border: 0;
+}
+.discount-input{
+    width:70%;
+}
+.product-checkout-form .form-control:focus, 
+.product-checkout-address .form-control:focus{
+    border:1px solid #e5e5e5;
+}
+.product-checkout-accordian a span{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.product-checkout-address textarea{
+    resize: none;
+    font-size:14px;
+}
+.product-checkout-form input::placeholder{
+    font-size:14px;
+}
+.next-btn a{
+    padding:7px 50px;
+}
+.product-verification-accordian .verification-item{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.product-verification-accordian a:hover{
+    color:#777;
+}
+.product-checkout-accordian .card-body{
+    padding:0;
+}
+.product-categorie-select .multiselect__tags {
+    border: 1px solid #b59e5c;
+}
+.product-categorie-select .multiselect__select {
+    top: 31px !important;
+}
+.confirm-order-btn a:hover{
+    background-color: #ea4335;
+    color:#fff !important;
+}

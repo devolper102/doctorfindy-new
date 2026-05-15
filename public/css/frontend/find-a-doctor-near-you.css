@@ -1,0 +1,49 @@
+.specialties-input input {
+    border-radius:10px !important;
+    border: 1px solid #666 !important;
+}
+.specialties-input .input-group-btn {
+    position: absolute;
+    top: -2px;
+    left: 0%;
+}
+.specialties-input input::placeholder{
+    color:#666666;
+}
+.city-border a {
+    border: 1px solid #e5e5e5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bread-crumb-listing li {
+    text-transform: capitalize;
+}
+.view-profile-btn a {
+    padding: 6px 30px;
+}
+.all-procedure a:hover {
+    background-color: #EA4335;
+    color: #fff !important;
+    border: 1px solid #EA4335;
+}
+.speciality-bg-image{
+    background: url(../images/banner-image.svg) no-repeat left;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.specalities-image{
+    transition: all linear 0.25s;
+}
+.specalities-image:hover{
+    transform: scale(1.1);
+}
+.specalities-image img {
+    margin-top: 12px;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,186 @@
+*{
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+}
+p{
+    margin:0;
+    padding: 0;
+}
+a{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none;
+    color: #EA4335 !important;
+}
+body{
+    font-family: 'robotoregular', Helvetica, Arial, Sans-Serif;
+    color: #232426;
+    font-size: 0.875rem !important;
+    margin:0;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+:focus{outline: none !important;}
+.w-10{
+    width: 10%;
+}
+
+.w-20{
+    width: 20%;
+}
+
+.w-25{
+    width: 25%;
+}
+.w-15{
+    width: 15%;
+}
+
+.w-30{
+    width: 30% !important;
+}
+
+.w-40{
+    width: 40% !important;
+}
+.w-45{
+    width: 45%;
+}
+.w-48{
+    width: 48%;
+}
+
+.w-55{
+    width: 55% !important;
+}
+.w-60{
+    width: 60% !important;
+}
+.w-65{
+    width: 65% !important;
+}
+.w-70{
+    width: 70% !important;
+}
+
+.w-80{
+    width: 80% !important;
+}
+.w-85{
+    width: 85%;
+}
+.w-90{
+    width: 90% !important;
+}
+
+.text_11{
+    font-size: 11px;
+}
+.text_18{
+    font-size: 18px;
+}
+.text_17{
+    font-size: 17px;
+}
+.text_16{
+    font-size: 16px;
+}
+.text_15{
+    font-size: 15px;
+}
+.text_20{
+    font-size: 20px;
+}
+.text_22{
+    font-size: 22px;
+}
+.text_25{
+    font-size: 25px;
+}
+.text_30{
+    font-size: 30px;
+}
+.text_35{
+    font-size: 35px;
+}
+.text_10{
+    font-size: 10px;
+}
+.text_12{
+    font-size: 12px;
+}
+.text_13{
+    font-size: 13px;
+}
+.text_14{
+    font-size: 14px;
+}
+.text_16{
+    font-size: 16px !important;
+}
+.text_20{
+    font-size: 20px;
+}
+
+.h_45{
+    height:45px !important;
+}
+.h_37{
+    height:37px !important;
+}
+.color-date {
+    color: #777;
+}
+.service-bg {
+    background-color: #e5e5e594 !important;
+}
+
+.signup-button button {
+    padding: 8px 15px;
+}
+.theme-color-text{
+    color: #EA4335;
+}
+.text_black{
+    color: #232426;
+}
+.box_radius{
+    border-radius: 10px;
+}
+.box_shadow{
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.btn.focus, .btn:focus{
+    box-shadow: none;
+}
+.knockdoc_btn_bg:hover {
+    background-color: #BF2215 !important;
+    box-shadow: 0px 4px 4px rgb(29 34 80 / 50%);
+    color: #fff !important;
+}
+.knockdoc_btn_bg {
+    background-color: #ea4335 !important;
+}
+.bg_black{
+    background-color: #000 !important;
+}
+.theme-color-border{
+    border:1px solid #EA4335 !important;
+}
+
+.form-control:focus{
+    box-shadow: none !important;
+}
+
+
+
+
+
+

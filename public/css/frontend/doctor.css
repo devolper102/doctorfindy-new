@@ -1,0 +1,207 @@
+
+/* Start Doctor Practice Profile*/
+.section-doctoe-practice:before{
+    background: url(/images/doctor-practice-image.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-size: contain;
+    right: 120px;
+    top: 20px;
+    min-height:315px;
+}
+.heading-doctor-practice h2, .heading-benifites-knockdock h2, .heading-signup h2, .heading-knockdock-profile h2, .heading-data-protection h2, .heading-doctor-video-calling h2, .heading-doctor-demo h2{
+    font-size: 40px;
+}
+/* Start For Lab Page Css*/
+.labBanner:before{
+    background: url(/images/forLabBanner.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-size: contain;
+    right: 120px;
+    top: 20px;
+    min-height:315px;
+}
+.knockdoc_doctor_profile_btn {
+    background-color: #EA4335;
+    color: #fff !important;
+    border: 1px solid #EA4335;
+    padding: 3px 30px;
+}
+.knockdoc_doctor_profile_btn:hover{
+    background-color: #ffffff;
+    border: 1px solid #EA4335;
+}
+.knockdock-profile h2{
+    font-size:55px;
+    margin-top: 8rem;
+}
+.Lab-benifites li:first-child{
+    font-size: 45px;
+}
+.Lab-benifites li p{
+    font-size: 30px;
+}
+.lab-heading h2,.top_hospitals_month h2, .benifits_heading h2, .mobile_section_heading h2{
+    font-size: 45px;
+}
+.mobile_section_heading h3{
+    font-size: 30px;
+}
+.doctor_name h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #232426;
+}
+/* End For Lab Page Css*/
+
+/* Start For Hospital Page Css*/
+.hospitalBanner{
+    background-color: #F5F5F5;
+}
+.hospitalBanner:before{
+    background: url(/images/forHospitalBanner.png) no-repeat center right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 41%;
+    background-size: contain;
+    right: 0px;
+    top: 15px;
+    min-height:100%;
+}
+.knockdock-profile-tool h2{
+    font-size: 55px;
+    margin-top: 5rem;
+}
+.software_management_text h2{
+    font-size: 30px;
+    margin-top: 5rem;
+}
+.knockdock-profile h2{
+    font-size: 55px;
+    margin-top: 10rem;
+}
+/* End For Hospital Page Css*/
+/*.location_input .fa-map-marker {
+    position: absolute;
+    margin-left: 5px;
+    height: 25px;
+    display: flex;
+    color: #073B4C;
+    align-items: center;
+    right: 25px;
+    top: 10px;
+}*/
+.bg-doctor-practice{
+    background-color: #4074f4;
+    min-height: 335px;
+}
+.benifites_bg{
+    background-color: #F6F6F6;
+}
+.signup-box{
+    background-color:#f6f6f6;
+}
+.signup-box .last-name input{
+    margin-left: 11px;
+}
+.lorem-ipsum-text span{
+    letter-spacing:1px;
+}
+
+.signup-button button{
+    padding:8px 15px;
+}
+
+.bg-care-on-the-go{
+    background-image: linear-gradient(#99E8FA, #FFFFFF);
+
+}
+.box_shadow {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.34);
+}
+.box_radius {
+    border-radius: 10px;
+}
+.bg-knockdock-profile {
+    /*background: linear-gradient(90deg, rgba(70,35,98,0.7) 0%, rgba(70,0,124,0.7) 10%, rgba(151,102,190,8) 40%, rgba(196,196,196,0) 80%);*/
+    background: #f3f3f3;
+}
+.bg-image-knockdock-pro{
+    background-size: contain;
+    margin-top: 3rem;
+    float: right;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.bg-image-data-protection{
+    min-height: 460px;
+    background-size: contain !important;
+}
+.heading-data-protection h2 {
+    margin-top: 70px;
+}
+/*.doctor-name-specialties{
+    min-height: 170px;
+}*/
+.view-profile-btn a {
+    padding: 6px 12px;
+}
+.circle_anchor{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.mobile_notes i {
+    color: #06D6A0;
+}
+.mobile_notes li {
+    line-height: 40px;
+}
+.doctor_app{
+    top: 0px;
+    right: 11%;
+}
+.doctor_app button{
+    line-height:25px;
+}
+.phone_number p {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+}
+.bg-doctor-demo {
+    background-color: #F5F5F5;
+}
+.phone_number input, .phone_number input:focus {
+    border-color: #ced4da;
+    box-shadow: 0px 4px 6px rgb(0 0 0 / 18%);
+}
+.ios_img, .android_img {
+    width: 20%;
+    margin-right:6px;
+}
+.knockdoc_btn_bg:focus {
+    background-color: #EA4335 !important;
+}
+
+.cstm_border_right:after {
+    /* border-right: 1px solid #000000; */
+    height: 165px;
+    display: block;
+    width: 1px;
+    background: #808080;
+    border-right: 1px white;
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+
+/* End Doctor Practice Profile*/

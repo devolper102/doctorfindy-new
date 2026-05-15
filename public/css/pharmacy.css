@@ -1,0 +1,1338 @@
+/* start Pharmacy home css*/
+
+
+.shop-brand-slider .angle-left-right-icon{
+  top: -6px;
+}
+.shop-brand-slider .nav-btn {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.shop-brand-slider .nav-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.shop-brand-slider .slider-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.shop-brand-slider .slider-wrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.shop-brand-slider .slider-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s ease-in-out;
+}
+
+.shop-brand-slider .brand-card {
+  min-width: 220px;
+  height: 120px;
+}
+
+
+.pharmacy-banner-bg-image, .top-selling-bg-image{
+  background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.shop-book-now a{
+  padding: 5px 15px;
+  border: 1px solid #243565;
+}
+.search-col {
+    flex: 1;
+}
+.all-category-search .search-input-group{
+  border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 1px solid #d1d1d1;
+}
+.search-for-input .search-input-group{
+  border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.search-col.right {
+    max-width: 300px;
+}
+
+.search-input-group {
+    padding: 10px 12px;
+    box-shadow: 0 6px 18px rgba(44, 44, 44, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+}
+
+.search-input {
+    flex: 1;
+    padding: 6px 4px;
+}
+.flex{
+  display: flex;
+}
+.categories-box {
+    position: absolute;
+    top: 75px;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 14px 40px rgba(9, 19, 45, 0.08);
+    z-index: 1200;
+}
+
+.category-item {
+    padding: 8px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: background 150ms;
+}
+
+.category-item:hover,
+.category-item.active {
+    background: rgba(185, 141, 58, 0.06) !important;
+    color: #BA8C3A !important;
+    border: 0 !important;
+}
+
+.category-item:hover .cat-left img {
+    filter: brightness(0) saturate(100%) invert(63%) sepia(37%) saturate(548%) hue-rotate(8deg) brightness(93%) contrast(91%);
+}
+
+.cat-left {
+    gap: 10px;
+}
+
+.cat-left img {
+    filter: brightness(0) saturate(100%);
+}
+
+.cat-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+.subcategories-panel {
+    position: absolute;
+    width: 320px;
+    background: #fff;
+    color: #000;
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(9, 19, 45, 0.12);
+    z-index: 1300;
+}
+
+.sub-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+}
+
+.sub-item:hover {
+    background: rgba(185, 141, 58, 0.04) !important;
+    color: #BA8C3A !important;
+}
+
+.cities-box {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 14px 40px rgba(9, 19, 45, 0.08);
+    z-index: 1200;
+}
+
+.city-item {
+    padding: 8px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+}
+
+.city-item:hover {
+    background: rgba(185, 141, 58, 0.04);
+}
+
+.city-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.city-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.pharmacy-banner-main{
+ margin: 0 auto 82px;
+}
+.pharmacy-banner-main .search-wrap{
+ border: 1px solid #a4a4a4;
+    border-radius: 5px;
+}
+
+
+.order-medicine-image .order-medicine-box{
+  top: 20px;
+    left: 30px;
+}
+
+.category-medicine-box{
+  top: 40px;
+    left: 30px;
+}
+
+.trending-product-section .filters button{
+  border: 0;
+  background: 0;
+  border-radius: 5px;
+}
+.trending-product-section .grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 20px;
+}
+
+
+.trending-product-section .card {
+box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+flex-direction: column;
+border-radius: 10px !important;
+}
+.trending-product-section .out-stock-btn{
+  top: 25px;
+    right: -15px;
+    transform: rotate(47deg);
+}
+.bg-trending-product{
+  background-color: #F5FCFF;
+}
+.trending-product-section .badge {
+top: 12px;
+left: 0;
+background: #4CB1CD;
+padding: 4px 8px;
+cursor: pointer;
+}
+
+
+.trending-product-section .card img {
+width: 100%;
+height: 160px;
+object-fit: contain;
+}
+
+.trending-product-section .category {
+color: #6b7280;
+}
+
+.trending-product-section .rating {
+color: #f59e0b;
+}
+
+.trending-product-section .rating span {
+color: #6b7280;
+}
+
+.trending-product-section .price {
+gap: 8px;
+}
+
+.trending-product-section .price del {
+color: #9ca3af;
+}
+
+.trending-product-section .cart-btn {
+cursor: pointer;
+}
+.trending-product-section .cart-btn img{
+  width: auto;
+  height: auto;
+}
+.trending-product-section .cart-btn:hover {
+  background: #4CB1CD;
+}
+.bg-medicine-order-section{
+ background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.bg-medicine-order-section .circle-number{
+ width: 20px;
+    height: 20px;
+    border: 1px solid #243562;
+    margin-top: 2px;
+}
+.bg-medicine-order-section .note{
+  color: #4CB1CD;
+}
+.bg-shop-brand{
+  background-color: #F6F7F7;
+}
+
+.easy-return-box{
+    width: 40px;
+    height: 40px;
+    background-color: #FEF0DD;
+}
+.friendly-services-box{
+    background-color: #D0FFE6;
+}
+.safe-payment-box{
+     background-color: #D2EFFF;
+}
+.day-support-box{
+    background-color: #E2DDFE;
+}
+.free-delivery-box{
+    background-color: #FEDDDD;
+}
+.free-delivery-box img, .day-support-box img {
+    margin-top: 11px;
+}
+.safe-payment-box img{
+    margin-top: 13px;
+}
+.friendly-services-box img{
+    margin-top: 10px;
+}
+.subscribe-form input {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+.subscribe-form button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.subscribe-form button:hover {
+  background: #087c7a;
+}
+.feedbackSlider .slick-dots{
+    margin-top: 10px;
+}
+.feedback-slide-icon .carousel-control-prev, 
+.feedback-slide-icon .carousel-control-next{
+    opacity: 0.9 !important;
+    height: 35px;
+}
+.feedback-slide-icon .carousel-control-next{
+    width: 35%;
+    top: 10px;
+    right: 40px;
+}
+.feedback-slide-icon .carousel-control-prev{
+    width: 37%;
+    top: 10px;
+    left: 20px;
+}
+
+.mega-wrapper .mega-left {
+  border-right: 1px solid #eee;
+}
+.time-text{
+  color:#4CB1CD
+}
+.price-text{
+  color: #9ca3af;
+}
+.mega-wrapper .mega-left li {
+  list-style: none;
+  padding: 11px 18px;
+  cursor: pointer;
+  display: flex;
+  gap:10px;
+  align-items: center;
+  font-weight: bold;
+  color: #243562;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.mega-wrapper .mega-left li.active,
+.mega-wrapper .mega-left li:hover {
+  background: #4CB1CD !important;
+  color: #fff !important;
+}
+.mega-wrapper .mega-left li img{
+   filter: brightness(0) saturate(100%)
+          invert(51%) sepia(0%)
+          saturate(0%) brightness(48%);
+}
+.mega-wrapper .mega-left li:hover img,
+.mega-wrapper .mega-left li.active img {
+  filter: brightness(0) invert(1);
+}
+.mega-wrapper .mega-left li:hover .arrow,
+.mega-wrapper .mega-left li.active .arrow {
+  color: #fff !important;
+}
+.mega-wrapper .mega-left li .arrow{
+  color: #088F8F;
+  right: 15px;
+}
+
+/* ===== OVERLAY (KEY FIX HERE) ===== */
+/*.mega-wrapper .mega-overlay {
+  top: 0;
+  left: 270px;
+  width: 900px;
+  min-height: 100%;
+  box-shadow: 0 15px 40px rgba(0,0,0,.15);
+  z-index: 999;
+  pointer-events: auto;
+}*/
+.mega-wrapper .mega-overlay {
+  position: absolute;
+  top: 0;
+  left: 270px;
+  width: 900px;
+  min-height: 100%;
+  box-shadow: 0 15px 40px rgba(0,0,0,.15);
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(60px);
+  transition: opacity 3s linear, transform 3s linear;
+  pointer-events: none;
+}
+
+.mega-wrapper:hover .mega-overlay,
+.mega-wrapper.active .mega-overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 3s linear, transform 3s linear;
+  pointer-events: auto;
+}
+/* INNER LAYOUT */
+.mega-wrapper .overlay-inner {
+  padding: 24px;
+  height: 100%;
+}
+
+/* TEXT COLUMNS */
+.mega-wrapper .overlay-cols {
+  gap: 50px;
+}
+.blood-pressure-image{
+  height: 300px;
+}
+.cart-btn:hover {
+    background: #4CB1CD;
+}
+.badge-btn{
+    top: 5px;
+    right: 0;
+    background: #4CB1CD;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.selling-icon-product-image{
+  height: 68px;
+}
+.mega-wrapper .overlay-col ul li {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* BRAND BOX */
+.mega-wrapper .brand-box {
+  margin-left: auto;
+  background: #4bb4cf;
+  color: #fff;
+  padding: 20px;
+  width: 240px;
+  border-radius: 10px;
+}
+.selling-product-section .card{
+  border-radius: 10px !important;
+}
+.selling-product-section .grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+@media (max-width: 1200px) {
+  .selling-product-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .selling-product-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+/* end Pharmacy home css*/
+
+
+/* start Pharmacy listing css*/
+
+.category-collapse-box .collapse-box {
+  overflow: hidden;
+  border: 1.5px solid #e5e5e5;
+}
+
+.category-collapse-box .category {
+  border-bottom: 1px solid #eef0f6;
+}
+
+.category-collapse-box .category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1e2f5c;
+}
+
+.category-collapse-box .category-header.active {
+  background: #1e2f5c !important;
+  color: #fff;
+}
+.category-collapse-box .category-icon{
+  filter: brightness(0) saturate(100%) invert(51%) sepia(0%) saturate(0%) brightness(48%);
+}
+.category-collapse-box .category-header.active .category-icon {
+  filter: brightness(0) invert(1);
+}
+.category-collapse-box .category-header .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-collapse-box .toggle-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid #d6dbeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-collapse-box .category-header.active .toggle-icon {
+  background: #fff;
+  color: #1e2f5c;
+}
+
+.category-collapse-box .category-body {
+  padding: 6px 0;
+  background-color: #F0F0F0;
+}
+
+.category-collapse-box .sub-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1e2f5c;
+}
+
+.category-collapse-box .sub-item:hover {
+  background: #f4f6fb;
+}
+
+.category-collapse-box .check-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 2px solid #d3d7e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+}
+
+.category-collapse-box .check-box.checked {
+  background: #1e2f5c;
+  border-color: #1e2f5c;
+}
+
+.filter-card-section .filter-card {
+  overflow: hidden;
+  border: 1.5px solid #e5e5e5;
+}
+
+.filter-card-section .filter-header {
+  background: #4c8faa;
+  color: #fff;
+  padding: 14px 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.filter-card-section .icon {
+  transition: .3s;
+}
+.filter-card-section .icon.rotate {
+  transform: rotate(180deg);
+}
+
+
+.filter-card-section .checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.filter-card-section .checkbox input {
+  display: none;
+}
+
+.filter-card-section .checkbox span {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4c8faa;
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.filter-card-section .checkbox input:checked + span {
+  background: #243b6b;
+  border-color: #243b6b;
+}
+
+.filter-card-section .checkbox input:checked + span::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-card-section .checkbox.disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+
+.filter-card-section .price-label b {
+  color: #2a8bc4;
+}
+
+.filter-card-section .filter-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4c8faa;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.filter-card-section .filter-btn:hover {
+  background: #3c7c95;
+}
+
+.filter-card-section .filter-slide-enter-active,
+.filter-card-section .filter-slide-leave-active {
+  transition: all .35s ease;
+}
+.filter-card-section .filter-slide-enter-from,
+.filter-card-section .filter-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.filter-card-section .range-wrap {
+  height: 30px;
+}
+
+/* CUSTOM TRACK */
+.filter-card-section .range-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  transform: translateY(-50%);
+}
+
+/* ACTIVE RANGE (optional but correct) */
+.filter-card-section .range-fill {
+  position: absolute;
+  top: 50%;
+  height: 6px;
+  background: #243562;
+  border-radius: 10px;
+  transform: translateY(-50%);
+  left: 20%;
+  right: 20%;
+}
+
+/* RANGE INPUTS = ONLY THUMB */
+.filter-card-section .range-wrap input[type="range"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+/* REMOVE DEFAULT TRACK */
+.filter-card-section .range-wrap input[type="range"]::-webkit-slider-runnable-track {
+  background: transparent;
+}
+
+/* THUMB — ALWAYS CENTERED */
+.filter-card-section .range-wrap input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.medical-card {
+  height: 520px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #6db2dd 0%, #cdefff 100%);
+  overflow: hidden;
+}
+
+.medical-card .pill-bg {
+  inset: 0;
+}
+
+.medical-card .pill-image {
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+}
+
+.medical-card .bottle-image {
+  right: -20px;
+  top: 120px;
+  width: 170px;
+  transform: rotate(-15deg);
+}
+
+.medical-card .card-content {
+  bottom: 40px;
+  padding: 0 20px;
+}
+
+.medical-card .card-content h2 {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.medical-card .card-content p {
+  opacity: 0.9;
+}
+
+.medical-card .btn {
+  padding: 12px 36px;
+  background: #ffb2bb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.medical-card .btn:hover {
+  background: #ff9aa7;
+  transform: translateY(-2px);
+}
+
+
+/* end Pharmacy listing css*/
+
+
+/* start Pharmacy Detail css*/
+
+
+/*.zoom {
+  background-size: 200%;
+  background-repeat: no-repeat;
+  cursor: zoom-in;
+}
+
+.zoom img {
+  opacity: 0;
+}*/
+.pharmacy-detail-slider{
+  border: 18px solid #e5e5e5;
+}
+.pharmacy-detail-slider .slick-prev{
+  left: -18px;
+}
+.pharmacy-detail-slider .slick-prev:before{
+  color: #088F8F;
+}
+.pharmacy-detail-slider .slick-next{
+  right: -18px;
+}
+.pharmacy-detail-slider .slick-next:before{
+  color: #088F8F;
+}
+
+.increment-btn-section .pack-btns{
+  gap:12px;
+}
+
+.increment-btn-section .pack-btn{
+  padding:5px 20px;
+  background:#e0e0e0;
+  cursor:pointer;
+}
+
+.increment-btn-section .pack-btn.active{
+  background:#4fb3cf;
+  color:#fff;
+}
+
+.increment-btn-section .mg-options{
+  gap:10px;
+}
+
+.increment-btn-section .mg-box{
+  width:55px;
+  height:30px;
+  background:#e6e6e6;
+  cursor:pointer;
+}
+
+.increment-btn-section .mg-box.active{
+  background:#4fb3cf;
+  color:#fff;
+}
+
+/* ---------- CART AREA ---------- */
+.increment-btn-section .cart-area{
+  background:#f9fafb;
+  padding:15px;
+}
+
+.increment-btn-section .qty-cart{
+  gap:15px;
+}
+
+/* ---------- QTY ---------- */
+.increment-btn-section .qty-box{
+  border:2px solid #000;
+  overflow:hidden;
+  height:40px;
+}
+
+.increment-btn-section .qty-box button{
+  width:40px;
+  height:40px;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
+
+.increment-btn-section .qty-box span{
+  width:40px;
+}
+
+/* ---------- BUTTONS ---------- */
+.increment-btn-section .add-cart{
+  flex:1;
+  height:40px;
+  cursor:pointer;
+  background: #4fb3cf;
+}
+
+.increment-btn-section .buy-now{
+  width:100%;
+  height:40px;
+  cursor:pointer;
+}
+.increment-btn-section .discount{
+  gap:10px;
+  color:#4fb3cf;
+  background: #f9fafb;
+  padding: 15px;
+}
+
+
+
+
+
+
+.product-detail-slider-image {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+
+/* 🔥 KEY PART */
+.product-detail-slider-image:hover .zoom-img {
+  opacity: 0;
+}
+
+.pharmacy-reviews-tabs .tabs-header {
+  gap: 10px;
+}
+
+.pharmacy-reviews-tabs .tab-btn {
+  background: #f1f1f1;
+  color: #333;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #f1f1f1 !important;
+}
+
+.pharmacy-reviews-tabs .tab-btn:hover {
+  background: #e5f3ff;
+}
+
+.pharmacy-reviews-tabs .tab-btn.active {
+  background: #d9f0fb !important;
+  color: #1aa3d9 !important;
+  border: 1px solid #d9f0fb !important;
+}
+
+.pharmacy-reviews-tabs .tab-panel {
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reviews-detail-wrapper .rating-summary {
+  gap: 40px;
+  background-color: #f1f1f1;
+}
+
+.reviews-detail-wrapper .rating-left h1 {
+  font-size: 40px;
+}
+
+.reviews-detail-wrapper .rating-right {
+  flex: 1;
+}
+
+.reviews-detail-wrapper .rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.reviews-detail-wrapper .bar {
+  flex: 1;
+  height: 8px;
+  background: #e5e5e5;
+  border-radius: 5px;
+}
+
+.reviews-detail-wrapper .fill {
+  height: 100%;
+  background: #0d4b7d;
+  border-radius: 5px;
+}
+
+/* Reviews */
+.reviews-detail-wrapper .review-item {
+  gap: 15px;
+}
+.reviews-detail-wrapper .customer-review-image{
+  width: 6%;
+}
+.reviews-detail-wrapper .customer-review-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.reviews-detail-wrapper .date {
+  color: #888;
+}
+
+.reviews-detail-wrapper .rating-text {
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+/* Add Review */
+.reviews-detail-wrapper .add-review {
+  background: #f9f9f9;
+}
+
+.reviews-detail-wrapper .add-review h3 {
+  font-family: 'Luckiest Guy', cursive !important;
+}
+
+.reviews-detail-wrapper .note {
+  color: #777;
+}
+.reviews-detail-wrapper textarea {
+  border: 1px solid #ddd;
+  resize: none;
+}
+
+.reviews-detail-wrapper button {
+  cursor: pointer;
+}
+.badge {
+    top: 12px;
+    left: 0;
+    background: #4CB1CD;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+
+.deal-list-slider .time-text {
+  color: #2aa8e0;
+  letter-spacing: 0.5px;
+}
+
+/* DOTS */
+.deal-list-slider .dots {
+  gap: 8px;
+}
+
+.deal-list-slider .dots span {
+  width: 7px;
+  height: 7px;
+  background: #d6d6d6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deal-list-slider .dots span.active {
+  background: #2aa8e0;
+  transform: scale(1.3);
+}
+
+.vitamin-bottle-box .vitamin-card {
+  padding: 22px 18px;
+  overflow: hidden;
+}
+.vitamin-card-orange, .vitamin-card-green{
+  background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.vitamin-bottle-box .card-image img {
+  max-width: 120px;
+}
+.vitamin-bottle-box .subtitle {
+  color: #3b3b3b;
+}
+
+.vitamin-bottle-box .card-content h2 {
+  color: #0b3c5d;
+  line-height: 1.25;
+}
+
+.vitamin-bottle-box .btn {
+  padding: 9px 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+
+.vitamin-bottle-box .green-btn {
+  background: #2ecc71;
+}
+
+.vitamin-bottle-box .green-btn:hover {
+  background: #27ae60;
+}
+
+.vitamin-bottle-box .orange-btn {
+  background: #f39c12;
+}
+
+.vitamin-bottle-box .orange-btn:hover {
+  background: #e67e22;
+}
+.vitamin-bottle-box{
+  flex-direction: column;
+}
+
+
+
+/* end Pharmacy Detail css*/
+
+
+/* start Pharmacy checkout css*/
+
+.pharmacy-checkout-section .wrapper{
+  gap:20px;
+}
+
+.pharmacy-checkout-section .cart-left{
+  flex: 3;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+}
+
+.pharmacy-checkout-section table{
+  border-collapse:collapse;
+}
+.pharmacy-checkout-section thead{
+  background:#f3f3f3;
+}
+.pharmacy-checkout-section thead th{
+  padding:12px;
+  border-bottom:1px solid #e6e6e6;
+}
+.pharmacy-checkout-section tbody td{
+  padding:16px 12px;
+  border-bottom:1px solid #eeeeee;
+  vertical-align:middle;
+}
+
+.pharmacy-checkout-section .product{
+  gap:12px;
+}
+.pharmacy-checkout-section .product img{
+  width:48px;
+  height: 48px;
+}
+
+.pharmacy-checkout-section .price{
+  color:#0E4D92;
+}
+
+.pharmacy-checkout-section .qty-wrap{
+  gap:8px;
+}
+
+.pharmacy-checkout-section .qty-box{
+  border:1px solid #000;
+  width:110px;
+  padding:4px 10px;
+}
+.pharmacy-checkout-section .qty-box button{
+  background:none;
+  cursor:pointer;
+}
+.pharmacy-checkout-section .delete img{
+  height: 15px;
+}
+.pharmacy-checkout-section .item-total{
+  color:#4CB1CD;
+}
+
+.pharmacy-checkout-section .cart-right{
+  flex:1.2;
+  background:#fafafa;
+  border:1px solid #e6e6e6;
+}
+
+.pharmacy-checkout-section .line.total{
+  color:#2fa4e7;
+}
+
+/* BUTTONS */
+.pharmacy-checkout-section .btn{
+  padding:10px;
+  border-radius:25px;
+  cursor:pointer;
+}
+.pharmacy-checkout-section .checkout{
+  background:#2f3e63;
+}
+.pharmacy-checkout-section .continue{
+  color:#2fa4e7;
+  border:1px solid #2fa4e7;
+}
+
+.pharmacy-checkout-section .coupon input{
+  padding:11px;
+  border-radius:25px;
+  border:1px solid #ddd;
+}
+.pharmacy-checkout-section .apply{
+  background:#2f3e63;
+  padding: 6px;
+}
+
+
+
+/* end Pharmacy checkout css*/
+
+
+/* start Pharmacy upload information css*/
+
+.pharmacy-upload-information .process-wrapper {
+  background: #f6f7f9;
+}
+
+
+/* STEPS */
+.pharmacy-upload-information .steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.pharmacy-upload-information .step {
+  text-align: center;
+  color: #b5b5b5;
+}
+.pharmacy-upload-information .step.active{
+  color: #b5b5b5 !important;
+    background-color: inherit !important;
+    border: 0 !important;
+}
+.pharmacy-upload-information .step span {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #b5b5b5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.pharmacy-upload-information .step.active span {
+  border-color: #4CB1CD;
+  color: #fff;
+  background-color: #4CB1CD;
+}
+
+/* COMPLETED STEP (TICK) */
+.pharmacy-upload-information .step.done span {
+  background: #0ea5a4;
+  border-color: #0ea5a4;
+  color: #fff; /* ✔ WHITE TICK */
+  font-size: 16px;
+}
+
+.pharmacy-upload-information .line {
+  flex: 1;
+  height: 2px;
+  background: #4CB1CD;
+  margin: 0 10px;
+}
+
+.pharmacy-upload-information .line.active {
+  background: #0ea5a4;
+}
+
+/* CONTENT */
+.pharmacy-upload-information .content {
+  text-align: left;
+}
+
+.pharmacy-upload-information .content.center {
+  text-align: center;
+}
+
+
+.pharmacy-upload-information .upload-box {
+  border: 2px dashed #0ea5a4;
+  padding: 40px;
+  cursor: pointer;
+}
+
+/* INPUTS */
+.pharmacy-upload-information input, 
+.pharmacy-upload-information textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.pharmacy-upload-information textarea {
+  resize: none;
+}
+.pharmacy-upload-information .verification-code-btn{
+  top: 8px;
+    right: 13px;
+    padding: 5px 10px;
+}
+
+.service-border{
+    border: 1.5px solid #243562;
+}
+
+.verification-code-modal .otp-text {
+  color: #555;
+}
+
+.verification-code-modal .otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.verification-code-modal .otp-inputs input {
+  width: 60px;
+  height: 65px;
+  border-radius: 8px;
+  border: 1.5px solid #ddd;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  outline: none;
+  transition: all .2s ease;
+}
+
+.verification-code-modal .otp-inputs input:focus {
+  border-color: #00a5a5;
+  box-shadow:none;
+}
+
+.verification-code-modal .resend-text {
+  color: #666;
+}
+
+
+.verification-code-modal .resend-text a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+/* end Pharmacy upload information css*/

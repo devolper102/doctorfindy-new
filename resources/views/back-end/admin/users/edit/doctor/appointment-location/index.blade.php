@@ -1,0 +1,242 @@
+<div class="dc-haslayout">
+    <div class="dc-dashboardbox">
+        <div class="dc-dashboardboxtitle">
+            <h2>{{ trans('lang.appointment_locations') }}</h2>
+        </div>
+        <div class="dc-dashboardboxcontent dc-clinicloc-holder">
+            <div class="dc-tabscontenttitle">
+                <h3>{{ trans('lang.avaiable_locations') }}</h3>
+            </div>
+            <div class="dc-content-holder">
+                @if (!empty($doctor_info) && $doctor_info->count() > 0)
+                    @foreach ($doctor_info as $key => $info)
+                        @php
+                            $team = \App\Team::findOrFail($info->id);
+                            if($info->user_id != 'online'){
+                                $hospital_obj = App\User::findOrFail($team->hospital->id);
+                            }
+
+
+                            $slots = json_decode($team->slots, true);
+                            $appointment_days = !empty($slots['days']) ? $slots['days'] : array();
+                        @endphp
+                        <div class="dc-clinics">
+                            @if($team->hospital->id !== null)
+                            <div>
+                                <figure class="dc-clinicsimg">
+                                    <img src="{{ asset('uploads/users/'.$team->hospital->id.'/'.$team->hospital->profile->avatar) }}" alt="{{ trans('lang.img_desc') }}"style="height: 88px; width: 92px;">
+                                </figure>
+                            </div>
+                            @else
+                            <div>
+                                <figure class="dc-clinicsimg">
+                                    <img src="{{ asset('uploads/users/default/online.jpg') }}" alt="{{ trans('lang.img_desc') }}" style="width: 100px;height: 100px;">
+                                </figure>
+                            </div>
+                             @endif
+                            
+                            <div class="dc-clinics-content">
+                                <div class="dc-clinics-title">
+                                <a class="delete-icon text-center d-inline-block text-white float-right" 
+                                href="/admin/dr-appoint-location/delete/{{ $team->id }}">
+                                <i class="lnr lnr-trash">
+                                </i>
+                                </a>
+                                    <a href="javascript:void(0);">{{ $team->status }}</a>
+                                    <h4>{{ Helper::getUserName($team->hospital->id) }} {{ Helper::verifyUser(intVal(clean($team->hospital->id))) }}</h4>
+                                    @if($info->user_id == 'online')
+                                        <h4> Online Booking Consultation <i data-tipso="<em>Verified User</em>" class="far fa-check-circle dc-tipso"></i></h4>
+                                    @endif
+                                        <span>
+                                        @if (!empty($appointment_days))
+                                            <span>
+                                                @foreach ($appointment_days as $key => $day)
+                                                       <em class="dc-available">{{ ucfirst($day) }},</em>
+
+                                                @endforeach
+                                            </span>
+                                        @endif
+                                    </span>
+                                </div>
+                                <div class="dc-btnarea">
+                                    <a href="{{ route('editLocation', ['id' => intVal(clean($team->id))]) }}" class="dc-btn dc-btn-sm">
+                                        {{ trans('lang.view_details') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    @if ( method_exists($doctor_info,'links') )
+                        <div class="dc-categoriescontentholder">
+                            {{ $doctor_info->links('pagination.custom') }}
+                        </div>
+                    @endif
+                @else
+                    @include('errors.no-record')
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dc-haslayout mt-4">
+    <div class="dc-dashboardbox">
+        <div class="dc-dashboardboxtitle">
+            <h2>{{ trans('lang.appointment_setting') }}</h2>
+        </div>
+        <div class="dc-dashboardboxcontent dc-doc-appointment la-doc-appointment appointment_setting_section">
+            <div class="dc-tabscontenttitle">
+                <h3>{{ trans('lang.add_new_location') }}</h3>
+            </div>
+            {!! Form::open(['url' => '', 'class' =>'dc-formtheme dc-userform dc-form-appointment', 'id'=>'admin-appointment-location-form', 
+                '@submit.prevent'=>'submitAdminAppointmentLocation'])!!}
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <input type="hidden" name="role" value="<?php echo $user_role; ?>">
+            <fieldset>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group dc-inputwithicon form-group-half">
+                        <input id="dc-hospital" type="checkbox" name="hospital" value="online" v-on:change="onlineConsulCheck">
+                        <label for="dc-spaces">Online Consultation</label>
+                    </div>
+                </div>
+            </div>    
+                <div class="form-group dc-inputwithicon form-group-half d-block">
+                    <search-hospital
+                        :placeholder="'{{ trans('lang.ph.search_hospital') }}'"
+                        :no_record_message="'no record found'">
+                    </search-hospital>
+                </div>
+                @php
+                    $online_slots = $doctor_info->where('user_id','online');
+                @endphp
+                <!-- @if(count($online_slots) < 1)
+                <div class="form-group dc-inputwithicon form-group-half">
+                    <input id="dc-hospital" type="checkbox" name="hospital" value="online" v-on:change="onlineConsulCheck">
+                    <label for="dc-spaces">Online Consultation</label>
+                </div>
+                @endif -->
+                <div class="form-group dc-datepicker form-group-half">
+                    <a-time-picker use12Hours @change="onChangeStartTime" format="h:mm a" />
+                </div>
+                <input type="hidden" id="location_start_time" name="slots[start_time]" value="">
+                <input type="hidden" id="start_time_obj" value="">
+                <div class="form-group form-group-half">
+                    <span class="dc-select">
+                        <select name="slots[duration]" v-model="duration" @change="onChangeDuration">
+                            <option value="Select Duration" disabled hidden>{{ trans('lang.select_duration') }}</option>
+                            @foreach ($durations as $key => $value)
+                                <option value="{{{$key}}}">{{{$value}}}</option>
+                            @endforeach
+                        </select>
+                    </span>
+                </div>
+                <div class="form-group form-group-half">
+                    <span class="dc-select">
+                        <select id="number_of_slots" name="slots[number_of_slots]" class="form-control" v-model="no_of_slot"
+                            @change="onChangeDuration">
+                            @for ($i = 1; $i <= 30; $i++) 
+                                <option value="{{ $i }}">{{ $i }} {{$i > 1 ? 'slots' : 'slot'}}</option>
+                            @endfor
+                        </select>
+                    </span>
+                </div>
+                <div class="form-group form-group-half">
+                    <span class="dc-select">
+                        <select name="slots[intervals]" v-model="intervals" @change="onChangeDuration">
+                            <option value="Select Interval">{{ trans('lang.select_interval') }}</option>
+                            @foreach ($intervals as $key => $value)
+                                <option value="{{{$key}}}">{{{$value}}}</option>
+                            @endforeach
+                        </select>
+                    </span>
+                </div>
+                <div class="form-group dc-datepicker form-group-half">
+                    <input type="text" :value="end_time" name="slots[end_time]" readonly
+                        placeholder="{{ trans('lang.end_time') }}">
+                </div>
+            </fieldset>
+            @if (!empty($doctor_specialities))
+                <fieldset>
+                    <div id="dc-accordion" class="dc-accordion dc-accordion dc-moreservice" role="tablist" aria-multiselectable="true">
+                        @foreach ($doctor_specialities as $key => $doctor_speciality)
+                            @php $speciality = Helper::getSpecialityByID($doctor_speciality['speciality_id']); @endphp
+                            @if (!empty($speciality))
+                                <div class="dc-panel">
+                                    <input type="hidden" name="services[{{$key}}][speciality_id]" value="{{{$speciality->id}}}">
+                                    <div class="dc-paneltitle">
+                                        <figure class="dc-titleicon">
+                                            <img src="{{{asset(Helper::getImage('uploads/specialities', $speciality->image, '', 'default-speciality.png'))}}}"
+                                                alt="img description">
+                                        </figure>
+                                        <span>{{{ html_entity_decode(clean($speciality->title)) }}}<em>{{ $speciality->services()->count() }} {{ trans('lang.services') }}</em></span>
+                                    </div>
+                                    <div class="dc-panelcontent dc-moreservice-content">
+                                        <div class="dc-subtitle">
+                                            <h4>{{ trans('lang.services') }}:</h4>
+                                        </div>
+                                        @if (!empty($doctor_speciality['services']))
+                                            <div class="dc-checkbox-holder">
+                                                @foreach ($doctor_speciality['services'] as $service_key => $services)
+                                                    @php $service = Helper::getServiceByID($services['service']); @endphp
+                                                    @if (!empty($service))
+                                                        <span class="dc-checkbox">
+                                                            <input id="dc-mo-{{{ intVal(clean($service->id)) }}}" type="checkbox" name='services[{{$key}}][service][{{$service_key}}][service]' value="{{{ intVal(clean($service->id)) }}}">
+                                                            <label for="dc-mo-{{{ intVal(clean($service->id)) }}}">{{{ html_entity_decode(clean($service->title)) }}}</label>
+                                                        </span>
+                                                    @endif
+                                                    <input type="hidden" name="services[{{$key}}][service][{{$service_key}}][price]" value="{{{$services['price']}}}">
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </fieldset>
+            @endif
+            <fieldset class="dc-spacesholder">
+                <legend>{{ trans('lang.assign_apointment_spaces') }}</legend>
+                <div class="form-group form-group-half dc-radio-holder">
+                    @foreach ($spaces as $key => $value)
+                        <span class="dc-radio">
+                            <input id="dc-spaces{{$key}}" type="radio" name="slots[appointment_spaces]"
+                                value="{{{$value['value']}}}" checked="" v-model="appointment_space"
+                                v-on:change="selectedSpace(appointment_space)">
+                            <label for="dc-spaces{{$key}}">{{{$value['value']}}}</label>
+                        </span>
+                    @endforeach
+                    <span class="dc-radio">
+                        <input id="dc-spaces" type="radio" value="other" checked="" v-model="appointment_space"
+                            v-on:change="selectedSpace(appointment_space)">
+                        <label for="dc-spaces">{{ trans('lang.other') }}</label>
+                    </span>
+                </div>
+                <div class="form-group form-group-half" v-if="is_show">
+                    <input type="text" id="custom_appt_spaces" name="slots[appointment_spaces]" class="form-control"
+                        placeholder="{{ trans('lang.ph.appointment_spaces') }}">
+                </div>
+            </fieldset>
+            <fieldset class="dc-offer-holder">
+                <legend>{{ trans('lang.days_offer_services') }}</legend>
+                <div class="form-group dc-checkbox-holder">
+                    @foreach ($days as $day_key => $day)
+                        <span class="dc-checkbox">
+                            <input id="day-mo-{{$day_key}}" type="checkbox" name="slots[appointment_days][]"
+                                v-model="appointment_days" value="{{$day_key}}">
+                            <label for="day-mo-{{$day_key}}">{{$day['title']}}</label>
+                        </span>
+                    @endforeach
+                </div>
+                <div class="form-group">
+                    {!! Form::number('slots[consultation_fee]', null, ['min' => 0, 'class' => 'form-control', 'id' => 'consultation_fee','placeholder'=>trans('lang.consultancy_fee')]) !!}
+                </div>
+                <div class="form-group dc-btnarea">
+                    {!! Form::submit(trans('lang.btn_save'), ['class' => 'dc-btn']) !!}
+                </div>
+            </fieldset>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>

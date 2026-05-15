@@ -1,0 +1,118 @@
+.banner_main {
+    background: linear-gradient(94deg, rgb(71, 61, 124) 0%, rgb(63, 96, 145) 24%, rgb(49, 202, 188) 100%);
+}
+.banner-health-community::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 51%;
+    right: 0px;
+    bottom: 0px;
+    height: 50%;
+    background: url(../../images/bg-health-community.png) right center / contain no-repeat;
+    background-position: right center;
+}
+.banner_left_section{
+    padding: 130px 50px;
+}
+#sticky_location input, #main_sticky_header input{
+    color:#000 !important;
+}
+#autosuggest_main input {
+    border-radius: 50px;
+    padding: .75rem 6rem .75rem .75rem!important;
+}
+.result_section span {
+    color: rgb(0, 204, 140);
+}
+.doctor_profile {
+    background-color: rgb(241, 241, 243) !important;
+}
+.city-border a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-image: initial;
+}
+.procedure-trending a:hover {
+    background-color:#243562 !important;
+    color: rgb(255, 255, 255) !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color:#243562;
+    border-image: initial;
+}
+img[lazy=error] {
+    background-image: url(/images/loader/healthcare-image.png);
+}
+.online-user-images-text {
+    height: 150px !important;
+    overflow: hidden;
+}
+#question_slider .slick-next {
+    right: -60px;
+}
+
+#question_slider .slick-prev {
+    left: -60px;
+}
+#question_slider .slick-prev {
+    opacity: 0.5;
+    background: url(../../images/Chevron_Left.png) center center no-repeat !important;
+}
+#question_slider .slick-next {
+    opacity: 0.5;
+    background: url(../../images/Chevron_Right.png) center center no-repeat !important;
+}
+#question_slider .slick-next, .slick-prev {
+    width: 90px !important;
+    height: 90px !important;
+}
+#question_slider .slick-next, .slick-prev {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+}
+
+
+#health-slider .slick-next {
+    opacity: 0.5;
+    background: url(../../images/Chevron_Right.png) center center no-repeat !important;
+}
+
+#health-slider .slick-prev {
+    opacity: 0.5;
+    background: url(../../images/Chevron_Left.png) center center no-repeat !important;
+}
+#health-slider .slick-next, .slick-prev {
+    width: 90px !important;
+    height: 90px !important;
+}
+
+#health-slider .slick-prev {
+    left: -25px;
+}
+
+#health-slider .slick-next {
+    right: -25px;
+}
+#health-slider .slick-next, .slick-prev {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+}
