@@ -11,10 +11,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-composer.json
-composer.lock
-/package-lock.json
-/composer.lock
 /public/media/
 /public/compiled/
 /public/js/
