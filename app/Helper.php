@@ -5544,6 +5544,7 @@ echo $localBusiness->toScript();
             $type = 'doctor';
             break;
           case "diseasesDetails":
+          case "diseasesDetailsPakistan":
             $page_title = 'Best Doctors For '. ucwords(str_replace('-', ' ', request()->route()->parameters['slug'])) . ' Treatment In Pakistan - DoctorFindy';
             $meta_title = 'Best Doctors For '. ucwords(str_replace('-', ' ', request()->route()->parameters['slug'])) . ' Treatment In Pakistan - DoctorFindy';
             $meta_description = 'Appointment Or Consult Online with Best Doctors For '. ucwords(str_replace('-', ' ', request()->route()->parameters['slug'])) .' Treatment In Pakistan. View Complete Details Doctor Timings, Address, Fees and reviews.';

@@ -846,7 +846,7 @@ Route::get('/find-a-lab-near-you', 'PublicController@allLabListingData')->name('
 //diseases
 Route::get('diseases/{slug}', 'PublicController@diseaseDetailData')->name('diseasesDetails');
 Route::get('/related-diseases-to-the-selected-disease/{slug}','PublicController@diseaseRelatedDiseaseData');
-Route::get('diseases/{slug}/pakistan', 'PublicController@diseaseData')->name('diseasesDetails');
+Route::get('diseases/{slug}/pakistan', 'PublicController@diseaseData')->name('diseasesDetailsPakistan');
 Route::get('diseases/{slug}/{location}', 'PublicController@diseaseDataLocation')->name('diseasesDetailsLocation');
 Route::get('diseases/{slug}/{location}/{area}', 'PublicController@diseaseDataLocationArea')->name('diseasesDetailsLocationArea');
 Route::get('/diseases/{slug}/{location?}/{area?}/filters/{video?}/{today?}/{experienced?}/{fee?}/{male?}/{female?}/{highest_rated?}/{time_slot?}/{filter_from?}/{filter_to?}', 'PublicController@diseaseDataLocationAreaFilters')->name('diseasesDetailsLocationAreaFilters');
