@@ -192,7 +192,6 @@ return [
         Diglactic\Breadcrumbs\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         // Silber\PageCache\LaravelServiceProvider::class,
     ],
 
@@ -253,7 +252,6 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'timezone' => env("APP_TIMEZONE"),
          'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
 
