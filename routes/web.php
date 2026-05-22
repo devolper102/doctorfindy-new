@@ -1235,7 +1235,7 @@ Route::get('/dermatologist-Pakistan', function () {
     return view('front-end.pages.dermatologist');
 });
 Route::get('getMoreDoctors/{id}/{count}','PublicController@getMoreDoctors')->name('getMoreDoctors');
-Route::get('getMoreOtherHospital/{id}/{top?}','PublicController@getMoreOtherHospital')->name('getMoreDoctors');
+Route::get('getMoreOtherHospital/{id}/{top?}','PublicController@getMoreOtherHospital')->name('getMoreOtherHospital');
 Route::get('/bahria-town/dermatologiest', function () {
     return view('front-end.pages.bahria_town_dermatologist');
 });
