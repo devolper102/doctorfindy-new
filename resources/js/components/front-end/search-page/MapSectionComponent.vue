@@ -15,7 +15,7 @@
           :position="{lat: parseFloat(m.location.latitude), lng: parseFloat(m.location.longitude)}"
           :clickable="true"
           :draggable="true"
-          :icon="{url: require('../../../../../public/uploads/markers/doctor.png')}"
+          :icon="{url: require('../../../../images/markers/doctor.png')}"
       />
       <GmapMarker
           :position="{lat:this.$parent.lati.coords.latitude, lng:this.$parent.lati.coords.longitude}"
@@ -48,7 +48,7 @@
                                         :draggable="true"
                                         :position="{lat:Number(doc.profile.latitude), lng:Number(doc.profile.longitude)}"
                                         @click="openInfoWindowTemplate(doc)"
-                                        :icon="{url: require('../../../../../public/uploads/markers/hospital.png')}"
+                                        :icon="{url: require('../../../../images/markers/hospital.png')}"
                             />
                             <GmapMarker v-for="(doc, index) in this.markers"
                                         v-if="doc.roles[0].name === 'doctor'"
@@ -62,7 +62,7 @@
                                         :draggable="true"
                                         :position="{lat:Number(doc.profile.latitude), lng:Number(doc.profile.longitude)}"
                                         @click="openInfoWindowTemplate(doc)"
-                                        :icon="{url: require('../../../../../public/uploads/markers/doctor.png')}"                            />
+                                        :icon="{url: require('../../../../images/markers/doctor.png')}"                            />
     </google-map>
   </div>
 </template>
