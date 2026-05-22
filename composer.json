@@ -35,7 +35,7 @@
         "laravel/ui": "^4.6",
         "laravelcollective/html": "@dev",
         "league/flysystem-aws-s3-v3": "^3.0",
-        "maatwebsite/excel": "^3.1.69",
+        "maatwebsite/excel": "4.x-dev as 4.0.0",
         "mews/purifier": "^3.4",
         "renatomarinho/laravel-page-speed": "^3.0",
         "silber/page-cache": "^1.1",
