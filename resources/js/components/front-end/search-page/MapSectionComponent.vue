@@ -15,7 +15,7 @@
           :position="{lat: parseFloat(m.location.latitude), lng: parseFloat(m.location.longitude)}"
           :clickable="true"
           :draggable="true"
-          :icon="{url: require('../../../../images/markers/doctor.png')}"
+          :icon="markerIcon('doctor')"
       />
       <GmapMarker
           :position="{lat:this.$parent.lati.coords.latitude, lng:this.$parent.lati.coords.longitude}"
@@ -48,7 +48,7 @@
                                         :draggable="true"
                                         :position="{lat:Number(doc.profile.latitude), lng:Number(doc.profile.longitude)}"
                                         @click="openInfoWindowTemplate(doc)"
-                                        :icon="{url: require('../../../../images/markers/hospital.png')}"
+                                        :icon="markerIcon('hospital')"
                             />
                             <GmapMarker v-for="(doc, index) in this.markers"
                                         v-if="doc.roles[0].name === 'doctor'"
@@ -62,7 +62,7 @@
                                         :draggable="true"
                                         :position="{lat:Number(doc.profile.latitude), lng:Number(doc.profile.longitude)}"
                                         @click="openInfoWindowTemplate(doc)"
-                                        :icon="{url: require('../../../../images/markers/doctor.png')}"                            />
+                                        :icon="markerIcon('doctor')"                            />
     </google-map>
   </div>
 </template>
@@ -99,13 +99,34 @@ export default {
                 open: false,
                 template: ''
               },
+      markerIcons: {
+        doctor: null,
+        hospital: null,
+      },
     }
   },
   created () {
     this.markers = this.$parent.userData
   },
-  mounted () {},
+  mounted () {
+    this.loadMarkerIcon('doctor')
+    this.loadMarkerIcon('hospital')
+  },
    methods: {
+          loadMarkerIcon (type) {
+          const url = `/uploads/markers/${type}.png`
+          const image = new Image()
+          image.onload = () => {
+            this.$set(this.markerIcons, type, {url})
+          }
+          image.onerror = () => {
+            this.$set(this.markerIcons, type, null)
+          }
+          image.src = url
+        },
+          markerIcon (type) {
+          return this.markerIcons[type] || null
+        },
           openInfoWindowTemplate (item) {
           this.setInfoWindowTemplate(item)
           this.infoWindow.position = {lat:Number(item.profile.latitude), lng:Number(item.profile.longitude)};
