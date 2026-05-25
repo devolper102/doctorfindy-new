@@ -72,6 +72,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script> --> 
 
 <link rel="canonical" href="{{ url()->current() }}" /> 
+<style>
+    #loader-main {
+        display: none !important;
+        pointer-events: none !important;
+    }
+</style>
 
 </head>
 <body>
