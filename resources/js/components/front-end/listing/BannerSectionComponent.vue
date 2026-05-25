@@ -67,7 +67,7 @@ name: "BannerSectionComponent",
     mounted(){
       if (this.fileSystemDriver === 'production') {
         // Use DigitalOcean Spaces URL for production
-        this.basePath = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com';
+        this.basePath = '';
       } else {
         // Use local path for development
         this.basePath = '';

@@ -1009,7 +1009,7 @@ export default {
     mounted(){
            if (this.fileSystemDriver === 'production') {
         // Use DigitalOcean Spaces URL for production
-        this.basePath = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com';
+        this.basePath = '';
       } else {
         // Use local path for development
         this.basePath = '';
@@ -1069,7 +1069,7 @@ export default {
       console.log('laravelEnv',this.fileSystemDriver)
       if (this.fileSystemDriver === 'production') {
         // Use DigitalOcean Spaces URL for production
-        return `https://doctorfindy.sgp1.cdn.digitaloceanspaces.com/${path}`;
+        return `/${path}`;
       } else {
         // Use local path for development
         return `/${path}`;

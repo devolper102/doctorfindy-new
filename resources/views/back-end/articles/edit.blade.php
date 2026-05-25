@@ -58,17 +58,10 @@
                                 </div>
                                 <div class="dc-formtheme dc-formprojectinfo dc-formcategory">
                                     <div class="dc-settingscontent">
-                                        @if(env('FILESYSTEM_DRIVER') == 'production')
-    @php
-        $imageUrl = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com/uploads/users/' . Auth::user()->id . '/articles/' . $article->image;
-        $backgroundImageUrl = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com/uploads/users/' . Auth::user()->id . '/articles/' . $article->background_img;
-    @endphp
-@else
-    @php
-        $imageUrl = url('uploads/users/'.Auth::user()->id.'/articles/'.$article->image);
-        $backgroundImageUrl = url('uploads/users/'.Auth::user()->id.'/articles/'.$article->background_img);
-    @endphp
-@endif
+                                        @php
+                                            $imageUrl = url('uploads/users/'.Auth::user()->id.'/articles/'.$article->image);
+                                            $backgroundImageUrl = url('uploads/users/'.Auth::user()->id.'/articles/'.$article->background_img);
+                                        @endphp
                                         @if (!empty($article->image))
                                             <upload-media-blog
                                             :img="'{{ $article->image }}'"

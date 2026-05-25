@@ -64,7 +64,7 @@ export default {
   },
   created() {
       if (this.fileSystemDriver === 'production') {
-        this.basePath = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com';
+        this.basePath = '';
       } else {
         this.basePath = '';
       }
