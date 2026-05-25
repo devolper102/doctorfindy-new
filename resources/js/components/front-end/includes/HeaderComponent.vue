@@ -5867,31 +5867,54 @@ export default {
         window.removeEventListener('resize', this.updateScreenSize);
       },
   created() {
-    
     window.addEventListener("scroll", this.handleScroll);
-    this.header_service = this.managements.find(pf =>pf.meta_key ==='header_service')
-     this.topservices = JSON.parse(this.header_service.meta_value);
-    this.show_headertabs = this.managements.find(pf =>pf.meta_key ==='show_headertabs')
-    this.hide_show = this.show_headertabs.meta_value;
-    this.topbar_settings = this.managements.find(pf =>pf.meta_key ==='topbar_settings')
-    this.title = JSON.parse(this.topbar_settings.meta_value).title;
-    this.number = JSON.parse(this.topbar_settings.meta_value).number;
-    this.btn = JSON.parse(this.topbar_settings.meta_value).btn;
-    this.url = JSON.parse(this.topbar_settings.meta_value).url;
-    this.url = JSON.parse(this.topbar_settings.meta_value).url;
-    this.site_logo = this.managements.find(pf =>pf.meta_key ==='general_settings')
-    this.main_logo = JSON.parse(this.site_logo.meta_value).site_logo;
-      this.download = this.managements.find(pf =>pf.meta_key ==='download_app_sec')
-      this.android_img = JSON.parse(this.download.meta_value).android_img;
-      this.android_url = JSON.parse(this.download.meta_value).android_url;
-      this.ios_img = JSON.parse(this.download.meta_value).ios_img;
-      this.ios_url = JSON.parse(this.download.meta_value).ios_url;
-    let i = this;
-    this.cities.forEach(function(e){
-      if(e.top === '1'){
-        i.areas.push(e);
+
+    const managements = Array.isArray(this.managements) ? this.managements : [];
+    const parseMeta = (item, fallback = {}) => {
+      if (!item || !item.meta_value) {
+        return fallback;
+      }
+      try {
+        return JSON.parse(item.meta_value);
+      } catch (error) {
+        return fallback;
+      }
+    };
+
+    this.header_service = managements.find(pf => pf.meta_key === 'header_service');
+    this.topservices = parseMeta(this.header_service, []);
+
+    this.show_headertabs = managements.find(pf => pf.meta_key === 'show_headertabs');
+    this.hide_show = this.show_headertabs ? this.show_headertabs.meta_value : '';
+
+    const topbarSettings = parseMeta(
+      managements.find(pf => pf.meta_key === 'topbar_settings'),
+      {}
+    );
+    this.topbar_settings = managements.find(pf => pf.meta_key === 'topbar_settings');
+    this.title = topbarSettings.title || '';
+    this.number = topbarSettings.number || '';
+    this.btn = topbarSettings.btn || '';
+    this.url = topbarSettings.url || '';
+
+    this.site_logo = managements.find(pf => pf.meta_key === 'general_settings');
+    const generalSettings = parseMeta(this.site_logo, {});
+    this.main_logo = generalSettings.site_logo || '';
+
+    this.download = managements.find(pf => pf.meta_key === 'download_app_sec');
+    const downloadSettings = parseMeta(this.download, {});
+    this.android_img = downloadSettings.android_img || '';
+    this.android_url = downloadSettings.android_url || '';
+    this.ios_img = downloadSettings.ios_img || '';
+    this.ios_url = downloadSettings.ios_url || '';
+
+    const cities = Array.isArray(this.cities) ? this.cities : [];
+    cities.forEach((city) => {
+      if (city.top === '1' || city.top === 1) {
+        this.areas.push(city);
       }
     });
+
     if(window.location.href.includes('brands-and-offers') || window.location.href.includes('product')){
         this.showCart = true;
       }

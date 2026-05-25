@@ -30,7 +30,7 @@
     <meta name="google-site-verification" content="ivRgAetCZHPXs0MRVun0R-CzmEbU4_wanDW_7ZtEay8" />
     <link rel="icon" href="{{ asset(Helper::getGeneralSettings('site_favicon')) }}" type="image/x-icon">
     <link rel="stylesheet" rel=" preload" type="text/css" href="{{ asset('css/font-family.css') }}" >
-    <script  type="text/javascript" defer src="{{asset('js/frontend/kitfontawesome.js')}}" ></script>
+    <script defer src="https://kit.fontawesome.com/0904c46e05.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       const APP_URL = {!! json_encode(url('/')) !!};
     </script>
