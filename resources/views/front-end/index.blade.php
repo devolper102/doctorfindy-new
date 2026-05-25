@@ -8,7 +8,7 @@
  </head>
         @php
             $organizationStructure_script_data = Helper::organizationStructure();
-            $filesystemDriver = env('FILESYSTEM_DRIVER');
+            $filesystemDriver = config('filesystems.default');
         @endphp
 <div id="home">
      <div v-if="loading" id="loader-main">
@@ -54,7 +54,7 @@
     {{--End join Doctor Section--}}
     {{--Top Doctor Hospitals Section Start--}}
     {{--<top-doctor-hospital-section
-            :file-system-driver="{{ json_encode(env('FILESYSTEM_DRIVER')) }}"
+            :file-system-driver='@json($filesystemDriver)'
             :locations = "{{json_encode($cities, true)}}"
     ></top-doctor-hospital-section>--}}
     {{--Top Doctor Hospitals Section End--}}
