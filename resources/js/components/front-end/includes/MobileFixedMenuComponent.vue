@@ -64,15 +64,22 @@ export default {
   },
   created() {
       if (this.fileSystemDriver === 'production') {
-        // Use DigitalOcean Spaces URL for production
         this.basePath = 'https://doctorfindy.sgp1.cdn.digitaloceanspaces.com';
       } else {
-        // Use local path for development
         this.basePath = '';
       }
-      
-      this.home_slider = this.managements.find(pf =>pf.meta_key ==='home_slider')
-      this.slides = JSON.parse(this.home_slider.meta_value);
+
+      const managements = Array.isArray(this.managements) ? this.managements : [];
+      this.home_slider = managements.find((pf) => pf.meta_key === 'home_slider');
+      if (this.home_slider && this.home_slider.meta_value) {
+        try {
+          this.slides = JSON.parse(this.home_slider.meta_value);
+        } catch (error) {
+          this.slides = [];
+        }
+      } else {
+        this.slides = [];
+      }
   },
   methods: {
 

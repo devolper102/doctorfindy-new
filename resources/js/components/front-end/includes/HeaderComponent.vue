@@ -21,11 +21,11 @@
                 <div class="dropdown-menu text_12 box_shadow more_submenu">
                   <a class="float-left w-48 mr-2" :href="ios_url">
                     <p class="mb-1">For IOS</p>
-                    <v-lazy-image :src="'/uploads/settings/home/'+ ios_img"alt="IOS image" name="IOS image"class="img-fluid"  />
+                    <v-lazy-image :src="'/uploads/settings/home/'+ ios_img" alt="IOS image" name="IOS image" class="img-fluid" />
                   </a>
                     <a class="float-left w-48" :href="android_url">
                       <p class="mb-1">For Android</p>
-                      <v-lazy-image :src="'/uploads/settings/home/'+ android_img"alt="Google Play image" name="Google Play image"/>
+                      <v-lazy-image :src="'/uploads/settings/home/'+ android_img" alt="Google Play image" name="Google Play image"/>
                     </a>
                 </div>
               </div>
@@ -68,7 +68,7 @@
              <a v-else class="navbar-brand w-sm-30 w-15 d-flex logo-responsive" href="/">
                <img v-lazy="basePath+'/uploads/settings/general/white-header-logo.svg'" alt="Site Logo" name="Site Logo" />
             </a>
-            <!-- <div class="float-left d-block d-lg-none d-xl-none mr-2 product-login" v-if="logged_user.length !== undefined">
+            <!-- <div class="float-left d-block d-lg-none d-xl-none mr-2 product-login" v-if="!isLoggedIn">
               <a href="/login" class="float-left text-white applink pr-3">
                 <i class="fa fa-user-circle text_md_20" aria-hidden="true"></i>
                   Login
@@ -123,7 +123,7 @@
             <a class="nav-link rounded-pill mobile_knockdoc_head_btn text-white d-none d-lg-none" :href="'tel:'+number">{{title}}
               <i class="fas fa-phone fa-sm" aria-hidden="true"></i>
             </a>
-            <div v-if="logged_user.length === undefined" class=" dropdown d-block d-lg-none header_margin position-relative">
+            <div v-if="isLoggedIn" class=" dropdown d-block d-lg-none header_margin position-relative">
               <div class="d-inline-block user_dropdown_main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a class="nav-link float-left pl-0 pr-1 text-white d-none" href="javascript:void(0)">User Name</a>
                 <a class="float-left mr-md-3" href="javascript:void(0)">
@@ -131,7 +131,7 @@
                   <v-lazy-image v-else-if="logged_user.roles[0].name === 'doctor'" :src="basePath+'/uploads/users/default/doctor.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w-40px border-1 border border-white rounded-circle d-flex"/>
                   <v-lazy-image v-else-if="logged_user.roles[0].name === 'hospital'" :src="basePath+'/uploads/users/default/hospital.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
                   <v-lazy-image v-else-if="logged_user.roles[0].name === 'patient'" :src="basePath+'/uploads/users/default/patient.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
-                  <v-lazy-image v-else="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
+                  <v-lazy-image v-else-if="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
                 </a>
                 <div class="dropdown-menu user_dropdown_list w-100 box_shadow box_radius text_12" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" :href="'/'+logged_user.roles[0].name+'/dashboard'">Dashboard</a>
@@ -2270,7 +2270,7 @@
                     </a> -->
                     <div class="arrow-up"></div>
                     <div class="row">
-                      <div v-for="(hospital,index) in hospitals_cities" class="col-3">
+                      <div v-for="(hospital,index) in filteredHospitalsCities" class="col-3">
                         <div class="w-100 d-inline-block">
                           <span class="text_14 text-blue 
                           font-weight-bold">Hospitals in {{hospital[0].location.title}}
@@ -2335,7 +2335,7 @@
                 </a>
                   <div class="w-100 d-inline-block hospital-speciality-list-menu">
                     <div class="row">
-                      <div v-for="(hospital,index) in hospitals_cities" class="col-3 
+                      <div v-for="(hospital,index) in filteredHospitalsCities" class="col-3 
                       col-12">
                         <div class="w-100 d-inline-block">
                           <span class="text_15 text-white 
@@ -2585,7 +2585,7 @@
                     <div class="arrow-up"></div>
                     <a  v-bind:href="service.subtitle" v-for="(service,index) in topservices" class="allergy_services d-table float-left mb-2 mb-xs-5 mr-1 mr-xs-1 mr-sm-2 mr-md-2 text-center disease_img_main">
                       <span :class="colors[index]" class="h_25 w_25px rounded-circle text-center pt-1 d-inline-block dropdownInner_img speciality-box mr-2 float-left">
-                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img":alt="service.title" :name="service.title" />
+                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img" :alt="service.title" :name="service.title" />
                       </span>
                       <span class="disease_name float-left mt-xs-2 mt-sm-2 mt-md-2 text-left text_13 mt-xl-1 w-75">{{service.title}} </span>
                     </a>
@@ -2602,13 +2602,13 @@
                   <div class="w-100 d-inline-block services-list-menu">
                     <a v-bind:href="service.subtitle" v-for="(service,index) in topservices" class="allergy_services d-table float-left mb-2 mb-xs-5 mr-1 mr-xs-1 mr-sm-2 mr-md-2 text-center disease_img_main services-images">
                       <span :class="colors[index]" class="h_25 w_25px rounded-circle text-center pt-1 d-inline-block dropdownInner_img speciality-box mr-2 float-left">
-                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img":alt="service.title" :name="service.title" />
+                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img" :alt="service.title" :name="service.title" />
                       </span>
                       <span class="disease_name float-left mt-xs-2 mt-sm-2 mt-md-2 text-left text_13 mt-xl-1 w-75 text-white">{{service.title}} </span>
                     </a>
                   </div>
                 </li>
-                <ul v-if="logged_user.length !== undefined" class="d-none d-lg-inline-block pt-1 pl-4">
+                <ul v-if="!isLoggedIn" class="d-none d-lg-inline-block pt-1 pl-4">
                   <li class="nav-item header_margin position-relative header_cstm_border mr-0 float-left">
                     <a class="nav-link applink pl-0 service-text" 
                     href="/login">Login </a>
@@ -2651,7 +2651,7 @@
                     </a>
                   </li>
                 </ul>
-                <li v-if="logged_user.length === undefined" class="d-none d-lg-block position-relative w-20 mr-0 usersInfo">
+                <li v-if="isLoggedIn" class="d-none d-lg-block position-relative w-20 mr-0 usersInfo">
                   <div class="dropdown header_margin">
                     <div class="d-inline-block user_dropdown_main float-right">
                       <a class="nav-link float-left pl-0 user_name service-text" href="javascript:void(0)">{{logged_user.first_name}}</a>
@@ -2660,7 +2660,7 @@
                         <v-lazy-image v-else-if="logged_user.roles[0].name === 'doctor'" class="h_40 w_40px border-1 border border-white rounded-circle d-flex" :src="basePath+'/uploads/users/default/doctor.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name"/>
                         <v-lazy-image v-else-if="logged_user.roles[0].name === 'hospital'" :src="basePath+'/uploads/users/default/hospital.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
                         <v-lazy-image v-else-if="logged_user.roles[0].name === 'patient'" :src="basePath+'/uploads/users/default/patient.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
-                        <v-lazy-image v-else="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
+                        <v-lazy-image v-else-if="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
                       </a>
                       <div class="dropdown-menu user_dropdown_list w-20 box_shadow box_radius text_12" aria-labelledby="dropdownMenuButton">
                         <a class="position-absolute triangle-image" 
@@ -2926,7 +2926,7 @@
       <div class="modal-body pt-0">
         <div class="w-100 d-inline-block navbar-collapse">
           <div class="w-100 d-inline-block bg-white book-rounded">
-            <div class="float-left d-inline-block w-100 product-login" v-if="logged_user.length !== undefined">
+            <div class="float-left d-inline-block w-100 product-login" v-if="!isLoggedIn">
               <a href="/login" class="text-blue applink font-weight-bold w-100 d-inline-block" style="padding: 10px 20px 10px 15px;">
                 <span>Login</span>
                 <span class="float-right">
@@ -5174,7 +5174,7 @@
                     </a> -->
                     <div class="arrow-up"></div>
                     <div class="row">
-                      <div v-for="(hospital,index) in hospitals_cities" class="col-3">
+                      <div v-for="(hospital,index) in filteredHospitalsCities" class="col-3">
                         <div class="w-100 d-inline-block">
                           <span class="text_14 text-blue 
                           font-weight-bold">Hospitals in {{hospital[0].location.title}}
@@ -5241,7 +5241,7 @@
                 <div id="collapseHospitalMain" class="w-100 collapse position-relative">
                   <div class="w-100 d-inline-block hospital-speciality-list-menu">
                     <div class="row">
-                      <div v-for="(hospital,index) in hospitals_cities" class="col-3 
+                      <div v-for="(hospital,index) in filteredHospitalsCities" class="col-3 
                       col-12">
                         <div class="w-100 d-inline-block pl-2 mt-1">
                           <span class="text_15 text-white 
@@ -5501,7 +5501,7 @@
                     <div class="arrow-up"></div>
                     <a  v-bind:href="service.subtitle" v-for="(service,index) in topservices" class="allergy_services d-table float-left mb-2 mb-xs-5 mr-1 mr-xs-1 mr-sm-2 mr-md-2 text-center disease_img_main">
                       <span :class="colors[index]" class="h_25 w_25px rounded-circle text-center pt-1 d-inline-block dropdownInner_img speciality-box mr-2 float-left">
-                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img":alt="service.title" :name="service.title" />
+                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img" :alt="service.title" :name="service.title" />
                       </span>
                       <span class="disease_name float-left mt-xs-2 mt-sm-2 mt-md-2 text-left text_13 mt-xl-1 w-75">{{service.title}} </span>
                     </a>
@@ -5523,14 +5523,14 @@
                   <div class="w-100 d-inline-block services-list-menu mt-3 pl-3">
                     <a v-bind:href="service.subtitle" v-for="(service,index) in topservices" class="allergy_services d-table float-left mb-2 mb-xs-5 mr-1 mr-xs-1 mr-sm-2 mr-md-2 text-center disease_img_main services-images">
                       <span :class="colors[index]" class="h_25 w_25px rounded-circle text-center pt-1 d-inline-block dropdownInner_img speciality-box mr-2 float-left">
-                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img":alt="service.title" :name="service.title" />
+                         <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img" :alt="service.title" :name="service.title" />
                       </span>
                       <span class="disease_name float-left mt-xs-2 mt-sm-2 mt-md-2 text-left text_13 mt-xl-1 w-75 text-white">{{service.title}} </span>
                     </a>
                   </div>
                 </div>
                 </li>
-                <ul v-if="logged_user.length !== undefined" class="d-none d-lg-inline-block pt-1 pl-5">
+                <ul v-if="!isLoggedIn" class="d-none d-lg-inline-block pt-1 pl-5">
                   <li class="nav-item header_margin position-relative header_cstm_border mr-0 float-left">
                     <a class="nav-link applink pl-0 service-text" 
                     href="/login">Login </a>
@@ -5556,7 +5556,7 @@
                     </a>
                   </li>
                 </ul>
-                <li v-if="logged_user.length === undefined" class="d-none d-lg-block position-relative w-20 mr-0 usersInfo">
+                <li v-if="isLoggedIn" class="d-none d-lg-block position-relative w-20 mr-0 usersInfo">
                   <div class="dropdown header_margin">
                     <div class="d-inline-block user_dropdown_main float-right">
                       <a class="nav-link float-left pl-0 user_name service-text" href="javascript:void(0)">{{logged_user.first_name}}</a>
@@ -5569,7 +5569,7 @@
 
                         <v-lazy-image v-else-if="logged_user.roles[0].name === 'patient'" :src="basePath+'/uploads/users/default/patient.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
 
-                        <v-lazy-image v-else="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
+                        <v-lazy-image v-else-if="logged_user.roles[0].name === 'laboratory'" :src="basePath+'/uploads/users/default/lab.svg'" :alt="logged_user.first_name+' '+logged_user.last_name" :name="logged_user.first_name+' '+logged_user.last_name" class="h_40 w_40px border-1 border border-white rounded-circle d-flex"/>
                       </a>
                       <div class="dropdown-menu user_dropdown_list w-20 box_shadow box_radius text_12" aria-labelledby="dropdownMenuButton">
                         <a class="position-absolute triangle-image" 
@@ -5777,7 +5777,7 @@
             <div class="arrow-up"></div>
             <a  v-bind:href="service.subtitle" v-for="(service,index) in topservices" class="allergy_services font-weight-bold d-table float-left mb-3 mb-xs-5 mr-1 mr-xs-1 mr-sm-2 mr-md-2 text-center disease_img_main">
               <span :class="colors[index]" class=" h_60 w_60px rounded-circle text-center p-2 d-inline-block float-none float-lg-right mr-2 mr-xs-0 green_circle overflow-hidden">
-                 <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img":alt="service.title" :name="service.title" />
+                 <v-lazy-image :src="basePath+'/uploads/settings/home/'+ service.tab_img" :alt="service.title" :name="service.title" />
               </span>
               <span class="disease_name d-table-cell align-middle mt-3" style="color: #7D7D7D;">{{service.title}} </span>
             </a>
@@ -5822,7 +5822,7 @@ export default {
       showCart:false,
       value:0,
       hide_show: '',
-      topservices: '',
+      topservices: [],
       title: '',
       number: '',
       btn: '',
@@ -5863,11 +5863,24 @@ export default {
     this.updateScreenSize();
         window.addEventListener('resize', this.updateScreenSize);
   },
-  beforeUnmount() {
-        window.removeEventListener('resize', this.updateScreenSize);
-      },
+  computed: {
+    isLoggedIn() {
+      return this.logged_user
+        && !Array.isArray(this.logged_user)
+        && this.logged_user.id;
+    },
+    filteredHospitalsCities() {
+      return (this.hospitals_cities || []).filter(
+        (group) => Array.isArray(group) && group.length > 0
+      );
+    },
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenSize);
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
 
     const managements = Array.isArray(this.managements) ? this.managements : [];
     const parseMeta = (item, fallback = {}) => {
@@ -5938,15 +5951,19 @@ export default {
             this.screenSize = 'Desktop';
           }
         },
-    getHeaderData()
-    {
-        axios.get('/get-header-default-data')
-        .then(response=>{
-          this.hospitals_cities=response.data[0];
-          // this.surgeries=response.data[1];
-          this.hospitalss=response.data[1];
-          // this.diseasess=response.data[3];
-      }); 
+    getHeaderData() {
+      axios.get('/get-header-default-data')
+        .then((response) => {
+          if (!Array.isArray(response.data) || response.data.length < 2) {
+            return;
+          }
+          this.hospitals_cities = Array.isArray(response.data[0]) ? response.data[0] : [];
+          this.hospitalss = Array.isArray(response.data[1]) ? response.data[1] : [];
+        })
+        .catch(() => {
+          this.hospitals_cities = [];
+          this.hospitalss = [];
+        });
     },
     removeCartItem(index) {
         this.cartItem.splice(index, 1);

@@ -1152,9 +1152,14 @@ export default {
             this.screenSize = 'Desktop';
           }
         },
-    loadDummyImage(event)
-    {
-       event.target.src='/images/healthcare-image.png';
+    loadDummyImage(event) {
+      const img = event.target;
+      if (!img || img.dataset.fallbackApplied === '1') {
+        return;
+      }
+      img.dataset.fallbackApplied = '1';
+      img.onerror = null;
+      img.src = this.basePath + '/uploads/users/default/lab.svg';
     },
     labDiscountData()
     {
