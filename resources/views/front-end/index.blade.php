@@ -11,9 +11,6 @@
             $filesystemDriver = env('FILESYSTEM_DRIVER');
         @endphp
 <div id="home">
-     <div v-if="loading" id="loader-main">
-        <div v-if="loading" id="loader"></div>
-    </div> 
     {{--Banner Section--}}
     <inner-banner-section
             :file-system-driver='@json($filesystemDriver)'
