@@ -10,7 +10,7 @@
     <meta name="description" content="Book Appointment From Home Or Get Online Audio / Video Consultation With Pakistan">
      <link rel="icon" href="{{ asset(Helper::getGeneralSettings('site_favicon')) }}" type="image/x-icon">
      <link rel="stylesheet" rel="preload" type="text/css" href="{{ asset('compiled/login.min.css') }}" >
-            <script type="text/javascript" defer src="{{asset('js/frontend/kitfontawesome.js')}}" crossorigin="anonymous"></script>
+            <script defer src="https://kit.fontawesome.com/0904c46e05.js" crossorigin="anonymous"></script>
     <script>
       var APP_URL = <?php echo json_encode(url('/')); ?>
     </script>

@@ -48,13 +48,13 @@
                     <label for="email" class="login-text text_13 font-weight-bold">Email address / Phone number
                     </label>
                     <input type="text" name="email" v-model="email" class="form-control specialities-background" placeholder="user@gmail.com / 03xxxxxxxxx" id="email">
-                    <label class="error d-none login-text text_13 font-weight-bold" v-model="email_name_error" id="email_name_error">Email address / Phone number
+                    <label class="error d-none login-text text_13 font-weight-bold" id="email_name_error">Email address / Phone number
                     </label>
                   </div>
                   <div class="form-group w-90 w-md-100 d-inline-block position-relative mb-0">
                     <label for="password" class="login-text text_13 font-weight-bold">Password</label>
                     <input type="password" name="password" v-model="password" class="form-control specialities-background" placeholder="Enter password" id="password">
-                    <label class="error d-none" v-model="password_name_error" id="password_name_error">Enter Password</label>
+                    <label class="error d-none" id="password_name_error">Enter Password</label>
                      <label @click="showPasswordlogin()" id="changeTextPass"><i class="fa fa-eye-slash" aria-hidden="true"></i></label>
 
                   </div>
@@ -130,11 +130,25 @@ export default {
     }
   },
   created () {
-    this.sign_title = JSON.parse(this.sign_up_section.meta_value).title;
-    this.sign_description =  JSON.parse(this.sign_up_section.meta_value).description;
-    this.sign_img = JSON.parse(this.sign_up_section.meta_value).hidden_sign_up_img;
-    this.sign_show_hide = JSON.parse(this.sign_up_section.meta_value).show_signup_sec;
-    this.main_logo = JSON.parse(this.site_logo.meta_value).site_logo;
+    const parseMeta = (item, fallback = {}) => {
+      if (!item || !item.meta_value) {
+        return fallback;
+      }
+      try {
+        return JSON.parse(item.meta_value);
+      } catch (error) {
+        return fallback;
+      }
+    };
+
+    const signUpSettings = parseMeta(this.sign_up_section);
+    const generalSettings = parseMeta(this.site_logo);
+
+    this.sign_title = signUpSettings.title || '';
+    this.sign_description = signUpSettings.description || '';
+    this.sign_img = signUpSettings.hidden_sign_up_img || '';
+    this.sign_show_hide = signUpSettings.show_signup_sec || '';
+    this.main_logo = generalSettings.site_logo || '';
   },
   methods:{
      showPasswordlogin() {

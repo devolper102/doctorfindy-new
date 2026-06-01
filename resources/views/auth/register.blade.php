@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset(Helper::getGeneralSettings('site_favicon')) }}" type="image/x-icon">
     <link rel="stylesheet" rel="preload" type="text/css" href="{{ asset('compiled/register.min.css') }}" >
-        <script type="text/javascript" defer src="{{asset('js/frontend/kitfontawesome.js')}}" crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/0904c46e05.js" crossorigin="anonymous"></script>
     <script>
       var APP_URL = <?php echo json_encode(url('/')); ?>
     </script>
