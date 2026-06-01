@@ -24,5 +24,4 @@ bootstrap/cache
 storage
 /public/page-cache
 
-/public/images/
 /public/mix-manifest.json
