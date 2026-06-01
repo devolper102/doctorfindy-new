@@ -1,0 +1,41 @@
+
+Inventory page -------------------
+
+create a new table in the database named 'inventory' with columns for 'shopify variant ID', 'product name' and 'quantity'.
+
+Create new page named inventory. refer to attached image inventory-page-jpg. There will be 2 text boxes for 'shopify variant id' and 'product name' for adding a record to the database. If I click 'add' button, it will first check to see if there is already a record for that 'shopify varient ID' in the database. If there already is a record for that 'shopify variant id', then just add a 1 to the 'quantity'. If there is not yet a record for that 'shopify variant id' then create the record with the 'product name' and 1 for the 'quantity'.
+
+All the records that I have already added to the database should be listed on this page with a text box for the 'quatity' and 'update' and 'delete' buttons. If I change the number in the 'quatity' text box and click 'update', it should update the 'quantity' for that 'shopify variant id' in the database. If I click 'delete', it should delete the record for that 'shopify varaint id' in the database.
+
+There should be a text box where I can search for a specific 'shopify variant id' in the database.
+
+
+
+Transactions page -----------------------------------
+
+Refer to transactions-page-new.jpg 
+
+When loading the page, make an additional Etsy API call using method 'findAllShopReceiptsByStatus' for the 'receipt' node to retrieve all receipts with status 'processing'. This will be used for the task below.
+
+When I click the 'send to shopify' button for an order, it will first check the 'inventory' table in the database to see if there is a record for any of the 'shopify variant ids' in that receipt/order. If there is a record, then give an alert saying 'item is in inventory', and then stop the process there, do not send to shopify. If there is no record in the database, then check to see if the receipt number is in the results from the API call above that you used to retreive all receipts with status 'processing'. If the receipt id is in the results, then give an alert saying 'payment still processing', and then stop the process there, do not send to shopify. 
+
+For each receipt/order listing, also dispaly the shipping address next to the 'send to shopify' button. If the address 1 or address 2 fields have the text 'PO Box', 'P.O. Box', 'PO. Box', or 'P.O Box', then display the text with a yellow background.
+
+From the receipt's data from the API call, check the 'total_shipping_cost' value and if it is > $0. Then display a 'express' icon above the 'send to shopify' button.
+
+tracking page --------------------------------
+
+Refer to image tracking-page-new.jpg
+
+For each receipt/order listing, also dispaly the shipping address next to the 'update tracking' button. 
+
+From the receipt's data from the API call, check the 'total_shipping_cost' value and if it is more than > $0. Then display an 'express' icon above the 'update tracking' button.
+
+After clicking 'update tracking' button, instead of turning into 'updated' button, display the tracking number instead.
+
+
+
+
+
+
+
