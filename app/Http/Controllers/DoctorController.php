@@ -929,7 +929,11 @@ class DoctorController extends Controller
                                 ->where('appointment_date', $a_date)
                                 ->count();
 
-                            $slotDateTime = $requested_date->copy()->setTimeFromTimeString(date('H:i:s', $startTimestamp));
+                            $slotDateTime = $requested_date->copy()->setTime(
+                                (int) date('G', $startTimestamp),
+                                (int) date('i', $startTimestamp),
+                                (int) date('s', $startTimestamp)
+                            );
 
                             if ($slotDateTime->lessThan($today)) {
                                 $list[$counter]['space'] = 0;
