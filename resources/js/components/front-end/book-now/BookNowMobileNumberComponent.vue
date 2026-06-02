@@ -177,7 +177,13 @@ export default {
           } else {
             Vue.toasted.error(response.data.message , { duration: 3000 })
           }
-      }).catch(function (error) {});
+      }).catch(function (error) {
+        const message = error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : 'Unable to send verification code. Please try again.';
+        Vue.toasted.error(message , { duration: 3000 })
+        self.loading = false
+      });
     },
     backToAppointmentSlots () {
              document.querySelector('#mobile_number_detail').classList.remove('show')

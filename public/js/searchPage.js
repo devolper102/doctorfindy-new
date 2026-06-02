@@ -3179,7 +3179,13 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a);
             duration: 3000
           });
         }
-      })["catch"](function (error) {});
+      })["catch"](function (error) {
+        var message = error.response && error.response.data && error.response.data.message ? error.response.data.message : 'Unable to send verification code. Please try again.';
+        Vue.toasted.error(message, {
+          duration: 3000
+        });
+        self.loading = false;
+      });
     },
     backToAppointmentSlots: function backToAppointmentSlots() {
       document.querySelector('#mobile_number_detail').classList.remove('show');

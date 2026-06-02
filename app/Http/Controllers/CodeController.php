@@ -83,69 +83,81 @@ class CodeController extends Controller
         return true;
     }
 
-    public function sendVerificationCode (Request $request) {
-        $json = Array();
+    public function sendVerificationCode(Request $request)
+    {
+        try {
+            $number = $request->input('phone_number');
+            $firstName = trim($request->input('first_name', 'Patient'));
+            $firstName = $firstName !== '' ? $firstName : 'Patient';
+            $otc = '123456';
 
-        $number = $request['phone_number'];
-        $otc = Str::random(4);
-        $otc = '123456';
-
-        $text = 'Your verification code is ' . $otc;
-        if($text != "" && $number != ""){
-            $random_string = Str::random(32);
-            // $result = Http::get('http://api.itelservices.com/send.php', [
-            //     'transaction_id' => $random_string,
-            //     'user' => env('DAY_WISE_SMS_USER'),
-            //     'pass' => env('DAY_WISE_SMS_PASS'),
-            //     'number' => $number,
-            //     'text' => $text,
-            //     'from' => env('DAY_WISE_SMS_SENDER_ID'),
-            //     'type' => 'sms'
-            // ]);
-
-            $user = User::where('phone_number', $request['phone_number'])->get();
-
-            if (count($user)) {
-                User::where('phone_number', $request['phone_number'])->update(['verification_code' => $random_string]);
-                $user = $user->first();
+            if (empty($number)) {
+                return response()->json([
+                    'type' => 'error',
+                    'message' => 'Phone number is required.',
+                ], 422);
             }
-            else {
-                $request['last_name'] = '';
-                
+
+            $user = User::where('phone_number', $number)->first();
+
+            if ($user) {
+                $user->verification_code = $otc;
+                $user->save();
+            } else {
                 $user = User::create([
-                    'first_name' => $request['first_name'],
-                    'last_name' => $request['last_name'],
+                    'first_name' => $firstName,
+                    'last_name' => '',
                     'verification_code' => $otc,
-                    'slug' => filter_var($request['first_name'], FILTER_SANITIZE_STRING) . '-' . filter_var($request['last_name'], FILTER_SANITIZE_STRING),
+                    'slug' => $this->makeUniquePatientSlug($firstName, $number),
                     'password' => password_hash('doctorfindy.com', PASSWORD_DEFAULT),
-                    'phone_number' => $request['phone_number'],
+                    'phone_number' => $number,
                 ]);
 
-                $user_profile = UserMeta::create([
-                    'user_id' => $user->id
+                UserMeta::firstOrCreate([
+                    'user_id' => $user->id,
                 ]);
-                if (!empty($user_profile->id)) {
-                    $user_meta = UserMeta::find($user_profile->id);
-                } else {
-                    $user_meta =
-                    $user_meta = $user_profile;
-                }
-//            dd($user_profile);
-                $user_meta->user()->associate($user);
             }
+
             auth()->login($user);
+
             $role = DB::table('roles')->select('name')->where('role_type', 'patient')->first();
-            $user->assignRole($role->name);
+            if ($role && ! $user->hasRole($role->name)) {
+                $user->assignRole($role->name);
+            }
 
+            return response()->json([
+                'type' => 'success',
+                'user' => $user->load('roles', 'profile'),
+                'message' => 'Appointment Booked successfully',
+                'code' => $otc,
+            ]);
+        } catch (\Throwable $e) {
+            report($e);
 
-            $json['type'] = 'success';
-            $json['user'] = $user;
-            $json['message'] = 'Appointment Booked successfully';
-            $json['code'] = $otc;
-            return $json;
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Unable to send verification code. Please try again.',
+            ], 500);
+        }
+    }
+
+    protected function makeUniquePatientSlug($firstName, $number)
+    {
+        $baseSlug = Str::slug($firstName);
+        if ($baseSlug === '') {
+            $baseSlug = 'patient';
         }
 
-        return 'failed';
+        $baseSlug .= '-' . substr(preg_replace('/\D+/', '', $number), -4);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        while (User::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 
     public function codeVerification(Request $request) {
