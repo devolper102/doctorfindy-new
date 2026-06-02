@@ -816,89 +816,179 @@ class DoctorController extends Controller
      */
     public function getAppointmentSlots(Request $request)
     {
-        header('Content-type: application/json; charset=utf-8');
-        date_default_timezone_set("Asia/Karachi");
-        $a_days = array_map('strtolower', $request['days']);
-                // return json_encode($a_days);
-        $a_dates = $request['dates'];
-        $json = array();
-        $list = array();
-        $lists = array();
-        $fullDayName=[];
-        $halfDayName=[];
-        foreach ($a_dates as $index => $date) {
-            $day = Carbon::parse($date)->format('l');
-          $day = strtolower($day);
-          array_push($fullDayName, $day);
-          }
-          foreach ($a_dates as $index => $date) {
-            $day = Carbon::parse($date)->format('D');
-          $day = strtolower($day);
-          array_push($halfDayName, $day);
-          }
-        foreach ($a_dates as $index => $a_date) {
-            $list = array();
-            if($request['hospital'] !== null){
-                if($request['hospital'] == 'online' || $request['hospital'] == []){
-                     $hospital_id = 'online';
-                }
-                else{
+        try {
+            header('Content-type: application/json; charset=utf-8');
+            date_default_timezone_set('Asia/Karachi');
 
-            $hospital_id = $request['hospital']['id'];
-                }
+            $doctorId = $request->input('doctor_id');
+            if (empty($doctorId)) {
+                return response()->json([
+                    'type' => 'error',
+                    'message' => trans('lang.doctor_id_req'),
+                ], 422);
             }
-            else{
-                $hospital_id = $request['hospital_id'];
-            }
-            if($hospital_id == 'online'){
-             $hospital = OnlineConsultation::select('slots')->where('doctor_id', $request['doctor_id'])->first() ? OnlineConsultation::select('slots')->where('doctor_id', $request['doctor_id'])->first() :  $hospital = Team::select('slots')->where('doctor_id', $request['doctor_id'])->where('user_id','online')->first();
-             // dd($hospital);
-        // return $a_dates;
-                // return $hospital;
-            }else{
-            $hospital = Team::select('slots')->where('doctor_id', $request['doctor_id'])->where('user_id', $hospital_id)->first();
-            }
-            // dd(5);
-            if (!empty($hospital)) {
-                $requested_date = Carbon::create($a_date);
 
-                $date = new Carbon();
-                $today = $date->now();
-                $slots = json_decode($hospital->slots, true);
-                if(isset($slots['days'])){
-                    $requested_day_slots = !empty($slots[$halfDayName[$index]]) ? $slots[$halfDayName[$index]]['slots'] : array();
+            $a_dates = $request->input('dates', []);
+            $a_days = $request->input('days', []);
+
+            if (! is_array($a_dates)) {
+                $a_dates = $a_dates ? [$a_dates] : [];
+            }
+            if (! is_array($a_days)) {
+                $a_days = $a_days ? [$a_days] : [];
+            }
+
+            if ($request->filled('date')) {
+                $a_dates[] = $request->input('date');
+            }
+            if ($request->filled('day')) {
+                $a_days[] = $request->input('day');
+            }
+
+            if (empty($a_dates)) {
+                for ($i = 0; $i < 14; $i++) {
+                    $d = Carbon::now('Asia/Karachi')->addDays($i);
+                    $a_dates[] = $d->format('Y-m-d');
+                    $a_days[] = strtolower($d->format('D'));
                 }
-                else
-                {
-                    // dd($slots[$fullDayName[$index]]);
-                    $requested_day_slots = !empty($slots[$fullDayName[$index]]) ? $slots[$fullDayName[$index]]['slots'] : array();
-                }
-                
-                if (!empty($requested_day_slots)) {
-                    $counter = 0;
-                    foreach ($requested_day_slots as $key => $slot) {
-                        $time = explode('-', $key);
-                        $list[$counter]['start_time'] = $time[0];
-                        $bocked_appointments = DB::table('appointments')->where('appointment_time', $time[0])->where('appointment_date', $a_date)->count();
-                        $requested_date->hour   = date("H:i", strtotime($time[0]));
-                        if ($requested_date->lessThan($today)) {
-                            $list[$counter]['space'] = 0;
-                        } else if ($bocked_appointments > 0) {
-                            $list[$counter]['space'] = $slot['space'] - $bocked_appointments;
-                        } else {
-                            $list[$counter]['space'] = (int)($slot['space']);
+            }
+
+            $a_days = array_map('strtolower', $a_days);
+
+            $hospitalId = $this->resolveAppointmentHospitalId($request);
+            if (empty($hospitalId)) {
+                return response()->json([
+                    'type' => 'error',
+                    'message' => trans('lang.hospital_req'),
+                ], 422);
+            }
+
+            $lists = [];
+            $fullDayName = [];
+            $halfDayName = [];
+
+            foreach ($a_dates as $date) {
+                $parsed = Carbon::parse($date);
+                $fullDayName[] = strtolower($parsed->format('l'));
+                $halfDayName[] = strtolower($parsed->format('D'));
+            }
+
+            $today = Carbon::now('Asia/Karachi');
+
+            foreach ($a_dates as $index => $a_date) {
+                $list = [];
+                $hospital = $this->resolveAppointmentSlotSource($doctorId, $hospitalId);
+
+                if (! empty($hospital) && ! empty($hospital->slots)) {
+                    $requested_date = Carbon::parse($a_date, 'Asia/Karachi');
+                    $slots = json_decode($hospital->slots, true);
+                    if (! is_array($slots)) {
+                        $slots = Helper::getUnserializeData($hospital->slots);
+                    }
+                    if (! is_array($slots)) {
+                        $slots = [];
+                    }
+
+                    $dayKey = isset($slots['days'])
+                        ? ($halfDayName[$index] ?? ($a_days[$index] ?? ''))
+                        : ($fullDayName[$index] ?? ($a_days[$index] ?? ''));
+
+                    $requested_day_slots = (! empty($dayKey) && ! empty($slots[$dayKey]['slots']))
+                        ? $slots[$dayKey]['slots']
+                        : [];
+
+                    if (! empty($requested_day_slots)) {
+                        $counter = 0;
+                        foreach ($requested_day_slots as $key => $slot) {
+                            $time = explode('-', $key);
+                            $startTime = $time[0] ?? $key;
+                            $list[$counter]['start_time'] = $startTime;
+                            $bocked_appointments = DB::table('appointments')
+                                ->where('appointment_time', $startTime)
+                                ->where('appointment_date', $a_date)
+                                ->count();
+
+                            $slotDateTime = $requested_date->copy()->setTimeFromTimeString(date('H:i:s', strtotime($startTime)));
+
+                            if ($slotDateTime->lessThan($today)) {
+                                $list[$counter]['space'] = 0;
+                            } elseif ($bocked_appointments > 0) {
+                                $list[$counter]['space'] = max(0, (int) ($slot['space'] ?? 0) - $bocked_appointments);
+                            } else {
+                                $list[$counter]['space'] = (int) ($slot['space'] ?? 0);
+                            }
+                            $counter++;
                         }
-                        $counter++;
                     }
                 }
+
                 $lists[$a_date] = $list;
             }
+
+            return response()->json([
+                'type' => 'success',
+                'slots' => $lists,
+            ]);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'type' => 'error',
+                'message' => trans('lang.something'),
+            ], 500);
+        }
+    }
+
+    /**
+     * Resolve hospital id from mixed frontend payloads.
+     */
+    protected function resolveAppointmentHospitalId(Request $request)
+    {
+        $hospital = $request->input('hospital');
+
+        if ($hospital === 'online' || $hospital === [] || $hospital === '[]') {
+            return 'online';
         }
 
-        $json['type'] = 'success';
-        $json['slots'] = $lists;
-        return json_encode($json);
+        if (is_array($hospital) && isset($hospital['id'])) {
+            return $hospital['id'];
+        }
 
+        if (is_object($hospital) && isset($hospital->id)) {
+            return $hospital->id;
+        }
+
+        if (! empty($request->input('hospital_id'))) {
+            return $request->input('hospital_id');
+        }
+
+        return null;
+    }
+
+    /**
+     * Load slot configuration for in-person or online consultation.
+     */
+    protected function resolveAppointmentSlotSource($doctorId, $hospitalId)
+    {
+        if ($hospitalId === 'online') {
+            $online = OnlineConsultation::select('slots')
+                ->where('doctor_id', $doctorId)
+                ->first();
+
+            if ($online) {
+                return $online;
+            }
+
+            return Team::select('slots')
+                ->where('doctor_id', $doctorId)
+                ->where('user_id', 'online')
+                ->first();
+        }
+
+        return Team::select('slots')
+            ->where('doctor_id', $doctorId)
+            ->where('user_id', $hospitalId)
+            ->first();
     }
 
     /**

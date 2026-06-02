@@ -283,20 +283,27 @@ class PublicController extends Controller
             // })->first();
             $user = User::role('doctor')
             ->where('slug', $slug)
-            ->select('id', 'first_name', 'last_name', 'slug', 'email', 'location_id')
             ->with([
-                'specialities' => function ($q) {
+                'diseases',
+                'specialities',
+                'procedures',
+                'location',
+                'area',
+                'services',
+                'profile',
+                'feedbacks' => function ($q) {
                     $q->take(5);
                 },
-                'location',
-                 'profile' => function ($q) {
-                 $q->select('user_id', 'avatar', 'banner', 'address', 'longitude', 'latitude', 'votes', 'available_days', 'working_time', 'created_at', 'updated_at', 'total_experience', 'description', 'experiences', 'memberships', 'educations', 'awards', 'gender', 'sub_heading', 'wait_time', 'short_desc', 'meta_title', 'meta_description');
-        },
-        'feedbacks' => function ($q) {
-            $q->take(5);
-        }
-    ])
-    ->first();
+                'appointments',
+                'roles',
+                'onlines',
+                'doc_teams',
+                'doc_teams.hospital',
+                'doc_teams.hospital.profile',
+                'doc_teams.hospital.location',
+                'total_appointment',
+            ])
+            ->first();
             
             // Fetch profile directly to bypass cache and get fresh meta_title/meta_description
             if ($user) {
@@ -360,21 +367,37 @@ class PublicController extends Controller
             $user_faqs_script_data = !empty($faqs) ? Helper::userfaqsStructure($faqs,$user) : null;
                 $script_data_doctor = Helper::doctorProfileStructure($user);
             
-                $user_hospitals_data=$user->doc_teams;
-                $user_hospitals=array();
-                foreach($user_hospitals_data as $hosp)
-                {
-                    $user_hospitals[]=$hosp->hospital;
+                $user_hospitals = [];
+                if ($user->doc_teams) {
+                    foreach ($user->doc_teams as $hosp) {
+                        if (! empty($hosp->hospital)) {
+                            $user_hospitals[] = $hosp->hospital;
+                        }
+                    }
                 }
 
-                $speciality=request()->route()->parameters['speciality'] ?? $user->specialities[0]->slug;
-                $similar_speciality=Speciality::where('slug',$speciality)->first();
-                // dd($slug);
-                $doctors=[];
-                
+                $specialitySlug = request()->route()->parameters['speciality']
+                    ?? optional($user->specialities->first())->slug;
+                $similar_speciality = $specialitySlug
+                    ? Speciality::where('slug', $specialitySlug)->first()
+                    : null;
+                $doctors = collect();
+                if ($similar_speciality) {
+                    $doctors = User::role('doctor')
+                        ->where('location_id', $user->location_id)
+                        ->where('id', '!=', $user->id)
+                        ->whereHas('specialities', function ($q) use ($similar_speciality) {
+                            $q->where('specialities.id', $similar_speciality->id);
+                        })
+                        ->with('location', 'specialities')
+                        ->limit(15)
+                        ->get();
+                }
 
-                $similar_hospitals =null;
-                $city_top_specialities=null;
+                $similar_hospitals = null;
+                $city_top_specialities = $user->location_id
+                    ? Location::with('specialities')->where('id', $user->location_id)->get()
+                    : collect();
                 return View(
                     'front-end.doctors.show',
                     compact(
@@ -1720,7 +1743,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($speciality) {
@@ -1827,7 +1850,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($speciality) {
@@ -1947,7 +1970,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($speciality) {
@@ -5773,7 +5796,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             /*if ($speciality) {
@@ -5984,7 +6007,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             /*if ($speciality) {
@@ -6191,6 +6214,9 @@ class PublicController extends Controller
             $disease=!empty($disease) ? Disease::where('slug',$disease)->with('faqsAssign')->with('users')->with('speciality',function ($q){
                 return $q->select('id','title','slug','description');
             })->first() : '';
+            if (!$disease) {
+                abort(404);
+            }
             // dd($disease);
             if($disease->meta_title && $disease->meta_title != null)
             {
@@ -6261,7 +6287,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($disease) {
@@ -6407,7 +6433,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($disease) {
@@ -6478,6 +6504,9 @@ class PublicController extends Controller
                 })->first() : '';
 
               $location_data=Location::where('slug',$location)->select('id','title','slug')->first();
+              if (!$disease || !$location_data) {
+                  abort(404);
+              }
               $page_title = 'Find and book Best Doctors for '.$disease->title.' in '.$location_data->title.' | Book Appointment Online - DoctorFindy';
               $meta_title = 'Find and book Best Doctors for '.$disease->title.' in '.$location_data->title.' | Book Appointment Online - DoctorFindy';
               $meta_description = 'Looking for best doctor for '.$disease->title.' in '.$location_data->title.'? Doctorfindy will help you find and book any doctor appointment online without any hidden charges.';
@@ -6533,7 +6562,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($disease) {
@@ -6603,6 +6632,9 @@ class PublicController extends Controller
 
               $location_data=Location::where('slug',$location)->select('id','title','slug')->first(); 
               $area_title=Area::where('slug',$area)->select('id','slug','title')->first();
+              if (!$disease || !$location_data || !$area_title) {
+                  abort(404);
+              }
               $page_title = 'Find and book Best Doctors for '.$disease->title.' in '.$area_title->title.','.$location_data->title.' | Book Appointment Online - DoctorFindy';
               $meta_title = 'Find and book Best Doctors for '.$disease->title.' in '.$area_title->title.','.$location_data->title.' | Book Appointment Online - DoctorFindy';
               $meta_description = 'Looking for best doctor for '.$disease->title.' in '.$area_title->title.','.$location_data->title.'? Doctorfindy will help you find and book any doctor appointment online without any hidden charges.';  
@@ -6659,7 +6691,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($disease) {
@@ -10509,7 +10541,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             
@@ -10635,7 +10667,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan=[];
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             
@@ -10760,7 +10792,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             
@@ -17184,7 +17216,7 @@ class PublicController extends Controller
     //         $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(6)->get();
     //         $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
     //         $segments = \Request::segments();
-    //         $type = $metadata->type ?? $meta_type;
+    //         $type = $meta_type;
     //         $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
     //         $logged_user = $user ? $user : [];
     //         // if ($disease) {
@@ -17299,7 +17331,7 @@ class PublicController extends Controller
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
 
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             
@@ -17463,7 +17495,7 @@ class PublicController extends Controller
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
 
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             // if ($disease) {
@@ -17568,7 +17600,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             /*if ($speciality) {
@@ -17669,7 +17701,7 @@ class PublicController extends Controller
         $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
         $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
         $segments = \Request::segments();
-        $type = $metadata->type ?? $meta_type;
+        $type = $meta_type;
         $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
         $logged_user = $user ? $user : [];
          
@@ -17803,7 +17835,7 @@ class PublicController extends Controller
             $cities = Location::where('top', '1')->orderBy("created_at","asc")->limit(8)->get();
             $cities_pakistan = Location::inRandomOrder()->limit(8)->get();
             $segments = \Request::segments();
-            $type = $metadata->type ?? $meta_type;
+            $type = $meta_type;
             $user = User::where('id', Auth::id() ? Auth::id() : '')->with('profile')->with('roles')->first();
             $logged_user = $user ? $user : [];
             /*if ($speciality) {

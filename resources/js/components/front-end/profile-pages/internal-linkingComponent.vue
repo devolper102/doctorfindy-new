@@ -26,7 +26,7 @@
         </div>
         <!-- End -->
                  <!--Searched Lab In Pakistan -->
-        <div v-if="this.user && this.similar_doctors===null && this.similar_speciality===null && this.cities_specialitiess!==null" class="w-100 d-inline-block mb-3">
+        <div v-if="user && similar_doctors===null && similar_speciality===null && hasCitySpecialities" class="w-100 d-inline-block mb-3">
             <div class="row">
               <div class="col-12">
                 <div class="heading-allergy-immunology mt-xl-0 
@@ -47,11 +47,11 @@
         </div>
         <!-- End -->
                  <!--Similar Doctors -->
-        <div v-if="this.similar_doctors!==null" class="w-100 d-inline-block mt-3">
+        <div v-if="hasSimilarDoctors" class="w-100 d-inline-block mt-3">
             <div class="row">
               <div class="col-12">
                 <div class="heading-allergy-immunology">
-                  <h2 class="text-blue font-weight-bold text_20 text-xs-15">Best {{user.speciality[0].title}} Surgeon in {{user.location.title}}</h2>
+                  <h2 class="text-blue font-weight-bold text_20 text-xs-15">Best {{ primarySpecialityTitle }} Surgeon in {{ user.location ? user.location.title : '' }}</h2>
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@
               <div class="col-12">
                 <ul class="disease-allergy-immunology w-100 d-inline-block patient-date mb-0">
                   <li v-for="doctor in similar_doctors" class=" mr-lg-3 mb-3 w-md-48 text-center float-left">
-                    <a class="pt-1 pb-1 pl-2 pr-2 text_black d-inline-block" :href="'/doctors/'+doctor.location.slug+'/'+user.speciality[0].slug+'/'+doctor.slug">{{doctor.first_name+' '+doctor.last_name}}</a>
+                    <a class="pt-1 pb-1 pl-2 pr-2 text_black d-inline-block" :href="doctorProfileUrl(doctor)">{{doctor.first_name+' '+doctor.last_name}}</a>
                   </li>
                 </ul>
               </div>
@@ -199,13 +199,43 @@
 <script>
 export default {
   name: "internal-linkingComponent",
-  props: ['user','labs','cities','specialities','top_hospitals','similar_doctors','similar_speciality','cities_pakistan','cities_specialities'],
+  props: {
+    user: { default: null },
+    labs: { default: () => [] },
+    cities: { default: () => [] },
+    specialities: { default: () => [] },
+    top_hospitals: { default: null },
+    similar_doctors: { default: null },
+    similar_speciality: { default: null },
+    cities_pakistan: { default: () => [] },
+    cities_specialities: { default: null },
+  },
   data(){
      return{
       speciality:'',
       top_hospitalss:'',
-      cities_specialitiess:null,
+      cities_specialitiess: [],
      }
+  },
+  computed: {
+    hasSimilarDoctors () {
+      return Array.isArray(this.similar_doctors) && this.similar_doctors.length > 0
+    },
+    hasCitySpecialities () {
+      return Array.isArray(this.cities_specialitiess)
+        && this.cities_specialitiess.length > 0
+        && this.cities_specialitiess[0]
+        && Array.isArray(this.cities_specialitiess[0].specialities)
+    },
+    primarySpecialityTitle () {
+      if (this.user && Array.isArray(this.user.specialities) && this.user.specialities[0]) {
+        return this.user.specialities[0].title
+      }
+      if (this.user && Array.isArray(this.user.speciality) && this.user.speciality[0]) {
+        return this.user.speciality[0].title
+      }
+      return 'Doctor'
+    },
   },
   mounted(){
     if(this.cities_specialities!=null)
@@ -220,11 +250,20 @@ export default {
   methods:
   {
     getOtherHospitals(){
+      if (!this.user || !this.user.location || !this.user.location.id) {
+        return
+      }
       var location_id=this.user.location.id;
       axios.get('/hospital-profile/get-top-city-specialities/'+location_id).then(response=>{
-            this.cities_specialitiess=response.data;
-            // console.log('sooodewjfehfe',this.cities_specialitiess);
+            this.cities_specialitiess = Array.isArray(response.data) ? response.data : [];
       })
+    },
+    doctorProfileUrl (doctor) {
+      const citySlug = doctor.location && doctor.location.slug ? doctor.location.slug : 'pakistan'
+      const specialitySlug = (doctor.specialities && doctor.specialities[0] && doctor.specialities[0].slug)
+        || (this.user && this.user.specialities && this.user.specialities[0] && this.user.specialities[0].slug)
+        || 'doctor'
+      return '/doctors/' + citySlug + '/' + specialitySlug + '/' + doctor.slug
     },
   }
 }

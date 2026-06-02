@@ -2211,11 +2211,24 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     };
   },
   created: function created() {
-    this.sign_title = JSON.parse(this.sign_up_section.meta_value).title;
-    this.sign_description = JSON.parse(this.sign_up_section.meta_value).description;
-    this.sign_img = JSON.parse(this.sign_up_section.meta_value).hidden_sign_up_img;
-    this.sign_show_hide = JSON.parse(this.sign_up_section.meta_value).show_signup_sec;
-    this.main_logo = JSON.parse(this.site_logo.meta_value).site_logo;
+    var parseMeta = function parseMeta(item) {
+      var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      if (!item || !item.meta_value) {
+        return fallback;
+      }
+      try {
+        return JSON.parse(item.meta_value);
+      } catch (error) {
+        return fallback;
+      }
+    };
+    var signUpSettings = parseMeta(this.sign_up_section);
+    var generalSettings = parseMeta(this.site_logo);
+    this.sign_title = signUpSettings.title || '';
+    this.sign_description = signUpSettings.description || '';
+    this.sign_img = signUpSettings.hidden_sign_up_img || '';
+    this.sign_show_hide = signUpSettings.show_signup_sec || '';
+    this.main_logo = generalSettings.site_logo || '';
   },
   methods: {
     showPasswordlogin: function showPasswordlogin() {
@@ -2391,13 +2404,6 @@ var render = function render() {
     staticClass: "error d-none login-text text_13 font-weight-bold",
     attrs: {
       id: "email_name_error"
-    },
-    model: {
-      value: _vm.email_name_error,
-      callback: function callback($$v) {
-        _vm.email_name_error = $$v;
-      },
-      expression: "email_name_error"
     }
   }, [_vm._v("Email address / Phone number\r\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "form-group w-90 w-md-100 d-inline-block position-relative mb-0"
@@ -2433,13 +2439,6 @@ var render = function render() {
     staticClass: "error d-none",
     attrs: {
       id: "password_name_error"
-    },
-    model: {
-      value: _vm.password_name_error,
-      callback: function callback($$v) {
-        _vm.password_name_error = $$v;
-      },
-      expression: "password_name_error"
     }
   }, [_vm._v("Enter Password")]), _vm._v(" "), _c("label", {
     attrs: {

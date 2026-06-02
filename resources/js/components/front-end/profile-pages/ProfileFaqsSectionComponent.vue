@@ -5,7 +5,7 @@
             <h2 class="font-weight-bold text-blue text_18 text-xs-16 d-inline-block">
                Frequently Asked Questions
             </h2>
-            <div v-if="user.roles[0].role_type === 'doctor'">
+            <div v-if="user && user.roles && user.roles[0] && user.roles[0].role_type === 'doctor'">
                <div class="question_main border-bottom bg-white box-shadow mt-2">
                   <a data-toggle="collapse" class="collapsed faq_inner" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
                   <span class="service-text font-weight-bold text_15">
@@ -64,7 +64,7 @@
                   </div>
                </div>
                
-               <div v-if="hospitals != '' && hospitals.length > 0 " class="question_main border-bottom bg-white box-shadow mt-2">
+               <div v-if="Array.isArray(hospitals) && hospitals.length > 0 " class="question_main border-bottom bg-white box-shadow mt-2">
                   <a data-toggle="collapse" class="collapsed faq_inner" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
                   <span class="service-text font-weight-bold text_15">Practice timings of {{user.first_name}}
                   {{user.last_name}}:</span>
@@ -79,7 +79,7 @@
                   </div>
                </div>
             </div>
-         <div  v-if="user.roles[0].role_type === 'hospital'">   
+         <div  v-if="user && user.roles && user.roles[0] && user.roles[0].role_type === 'hospital'">   
          <div class="question_main border-bottom bg-white box-shadow mt-2">
             <a data-toggle="collapse" class="collapsed faq_inner" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <span class="service-text font-weight-bold text_15">How can I book an appointment with a doctor in {{user.first_name}} {{user.last_name}}?</span>
@@ -151,7 +151,7 @@
             </div>
          </div>
        </div>
-       <div v-if="user.roles[0].role_type === 'laboratory'">
+       <div v-if="user && user.roles && user.roles[0] && user.roles[0].role_type === 'laboratory'">
                <div class="question_main border-bottom bg-white box-shadow mt-2">
                   <a data-toggle="collapse" class="collapsed faq_inner" data-target="#lab-faq" aria-expanded="false" aria-controls="lab-faq">
                   <span class="service-text font-weight-bold text_15">How to book a Test at {{user.first_name}} {{user.last_name}}?</span>
@@ -241,38 +241,55 @@
 <script>
    export default {
      name: "ProfileFaqsSectionComponent",
-     props: ['user','fee','hospitals','services','hospitalDoctors'],
+     props: {
+       user: { default: null },
+       fee: { default: 0 },
+       hospitals: { default: () => [] },
+       services: { default: () => [] },
+       hospitalDoctors: { default: () => [] },
+     },
      data() {
        return {
          faqs: [],
          education:[],
          specialisties:[],
          userServices:[],
-         checkhospitalDoctors:this.hospitalDoctors,
+         checkhospitalDoctors: [],
        }
      },
      created() {
        let self = this
-      if(self.user.roles[0].name == 'doctor')
-      { let specialisties = self.user.specialities
-       self.education = JSON.parse(self.user.profile.educations)
-             if(specialisties.length != 0
-              ){
-              specialisties.forEach(function (item) {
-                self.specialisties.push(item.title)
-              })
-             }
-             if(self.services.length != 0){
-                self.services.forEach(function(item){
-                  self.userServices.push(item.title)
-                })
-             }}
+       self.checkhospitalDoctors = Array.isArray(self.hospitalDoctors) ? self.hospitalDoctors : []
+       const roleName = self.user && self.user.roles && self.user.roles[0] ? self.user.roles[0].name : ''
+      if (roleName === 'doctor')
+      {
+        let specialisties = Array.isArray(self.user.specialities) ? self.user.specialities : []
+        if (self.user.profile && self.user.profile.educations) {
+          try {
+            self.education = JSON.parse(self.user.profile.educations) || []
+          } catch (e) {
+            self.education = []
+          }
+        }
+        if (specialisties.length !== 0) {
+          specialisties.forEach(function (item) {
+            self.specialisties.push(item.title)
+          })
+        }
+        if (Array.isArray(self.services) && self.services.length !== 0) {
+          self.services.forEach(function(item){
+            self.userServices.push(item.title)
+          })
+        }
+      }
      },
      mounted()
      {
-       if(this.checkhospitalDoctors.length < 4 && this.doctors != undefined || this.doctors != 'undefined')
-       {
-         this.getDoctorNamesFaq(this.user.id);
+       if (this.user && this.user.roles && this.user.roles[0] && this.user.roles[0].role_type === 'hospital') {
+         const doctors = Array.isArray(this.checkhospitalDoctors) ? this.checkhospitalDoctors : []
+         if (doctors.length < 4) {
+           this.getDoctorNamesFaq(this.user.id);
+         }
        }
      },
    methods: {
@@ -291,11 +308,17 @@
          var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
          var d = new Date();
          var dayName = days[d.getDay()].toLowerCase();
-         if(this.user.doc_teams[0].slots != null && this.user.doc_teams[0].slots != ""){
-              if((JSON.parse(this.user.doc_teams[0].slots)[dayName]) != undefined && (JSON.parse(this.user.doc_teams[0].slots)[dayName]) != null){
+         if (this.user && Array.isArray(this.user.doc_teams) && this.user.doc_teams[0] && this.user.doc_teams[0].slots) {
+              let slotsData = {}
+              try {
+                slotsData = JSON.parse(this.user.doc_teams[0].slots) || {}
+              } catch (e) {
+                return 'Not Available'
+              }
+              if (slotsData[dayName] != undefined && slotsData[dayName] != null) {
 
-                let start_end_time = ((JSON.parse(this.user.doc_teams[0].slots)[dayName]['start_end_time']));
-                let start_end_time1 = ((JSON.parse(this.user.doc_teams[0].slots)[dayName]['start_end_time1']));
+                let start_end_time = slotsData[dayName]['start_end_time']
+                let start_end_time1 = slotsData[dayName]['start_end_time1']
                   if(start_end_time1 != '')
                     return start_end_time+"\n"+start_end_time1;
                   else

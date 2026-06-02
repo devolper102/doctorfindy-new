@@ -182,7 +182,11 @@ export default {
  async created () {
     // const hos = await axios.get('/get-all-hospital')
     // this.hospitals = Object.freeze(hos.data) 
-    this.checkId = this.user.total_appointment.find(pf =>pf.patient_id === this.patient.id)
+    const appointments = Array.isArray(this.user.total_appointment) ? this.user.total_appointment : []
+    const patientId = this.patient && this.patient.id ? this.patient.id : null
+    this.checkId = patientId
+      ? appointments.find(pf => pf.patient_id === patientId)
+      : undefined
     this.getDatesDay()
     // Count online consultations with slots
     const onlineCount = this.onlinesWithSlots.length;

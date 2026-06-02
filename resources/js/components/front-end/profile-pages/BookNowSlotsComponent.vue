@@ -22,16 +22,16 @@
       <div v-for="(num, index) in 13">
         <div class="slots_shedule">
           <div>
-            <div class="row" v-if="morningCheckM(index, appointment_dates[index], slots[appointment_dates[index]])">
+            <div class="row" v-if="hasPeriodSlots(slots[appointment_dates[index]], 'morning')">
               <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3"
-              v-if="morningCheck">
+              >
                 <span class="text_14 text_md_12 mt-3 d-inline-block">
                   <img :src="basePath+'/images/morning.png'" alt="Morning Image" class="img-fluid float-left mr-2 mt-1"> Morning 
                 </span>
               </div>
-              <div class="col-12 col-sm-9 col-md-10 col-lg-9 col-xl-9" v-if="morningCheck">
+              <div class="col-12 col-sm-9 col-md-10 col-lg-9 col-xl-9">
                 <ul class="morning text_black d-inline-block text_14 m-0 float-left booking_timmings">
-                  <li :id="'slot-m-' + index + '-' + i" v-if="morningSlotCheckM(slot)" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
+                  <li :id="'slot-m-' + index + '-' + i" v-if="isSlotInPeriod(slot, 'morning')" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
                     <span @click="!slot.space < 1 && selectedSlot( slot.start_time, appointment_dates[index], appointment_days[index], 'slot-n-' + index + '-' + i, hospital)">
                       {{ slot.start_time }}
                     </span>
@@ -39,17 +39,17 @@
                 </ul>
               </div>
             </div>
-            <div class="row" v-if="afterNoonCheckM(index, appointment_dates[index], slots[appointment_dates[index]])">
+            <div class="row" v-if="hasPeriodSlots(slots[appointment_dates[index]], 'afternoon')">
               <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3"
-              v-if="afternoonCheck">
+              >
                 <span class="text_14 text_md_12 mt-3 d-inline-block">
                   <img :src="basePath+'/images/afternoon.png'" alt="Afternoon Image" class="img-fluid float-left mr-2 mt-1"> Afternoon
                 </span>
               </div>
               <div class="col-12 col-sm-9 col-md-10 col-lg-9 
-              col-xl-9" v-if="afternoonCheck">
+              col-xl-9">
                 <ul class="morning text_black d-inline-block text_14 m-0 float-left booking_timmings">
-                  <li :id="'slot-a-' + index + '-' + i" v-if="afterNoonSlotCheckM(slot)" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
+                  <li :id="'slot-a-' + index + '-' + i" v-if="isSlotInPeriod(slot, 'afternoon')" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
                     <span @click="!slot.space < 1 && selectedSlot( slot.start_time, appointment_dates[index], appointment_days[index], 'slot-n-' + index + '-' + i, hospital)">
                       {{ slot.start_time }}
                     </span>
@@ -57,16 +57,16 @@
                 </ul>
               </div>
             </div>
-            <div class="row" v-if="eveningCheckM(index, appointment_dates[index], slots[appointment_dates[index]])">
-              <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3" v-if="eveningCheck">
+            <div class="row" v-if="hasPeriodSlots(slots[appointment_dates[index]], 'evening')">
+              <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3">
                 <span class="text_14 text_md_12 mt-3 d-inline-block">
                   <img :src="basePath+'/images/evening.png'" alt="Evening Image" class="img-fluid float-left mr-2 mt-1"> Evening
                 </span>
               </div>
               <div class="col-12 col-sm-9 col-md-10 col-lg-9 
-              col-xl-9" v-if="eveningCheck">
+              col-xl-9">
                 <ul class="morning text_black d-inline-block text_14 m-0 float-left booking_timmings">
-                  <li :id="'slot-e-' + index + '-' + i" v-if="eveningSlotCheckM(slot)" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
+                  <li :id="'slot-e-' + index + '-' + i" v-if="isSlotInPeriod(slot, 'evening')" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
                     <span @click="!slot.space < 1 && selectedSlot( slot.start_time, appointment_dates[index], appointment_days[index], 'slot-n-' + index + '-' + i, hospital)">
                       {{ slot.start_time }}
                     </span>
@@ -74,14 +74,14 @@
                 </ul>
               </div>
             </div>
-            <div class="row" v-if="nightCheckM(index, appointment_dates[index], slots[appointment_dates[index]])">
-              <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3" v-if="nightCheck">
+            <div class="row" v-if="hasPeriodSlots(slots[appointment_dates[index]], 'night')">
+              <div class="col-12 col-sm-3 col-md-2 col-lg-3 col-xl-3">
                 <span class="text_14 text_md_12 mt-3 d-inline-block"><img :src="basePath+'/images/night.png'" alt="Night Image" class="img-fluid float-left mr-2 mt-1"> Night</span>
               </div>
               <div class="col-12 col-sm-9 col-md-10 col-lg-9 
-              col-xl-9" v-if="nightCheck">
+              col-xl-9">
                 <ul class="morning text_black d-inline-block text_14 m-0 float-left booking_timmings">
-                  <li :id="'slot-n-' + index + '-' + i" v-if="nightSlotCheckM(slot)" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
+                  <li :id="'slot-n-' + index + '-' + i" v-if="isSlotInPeriod(slot, 'night')" v-for="(slot, i) in slots[appointment_dates[index]]" v-bind:style= "[slot.space < 1 ? {'background-color': '#dadada', 'color':'#afafaf','border':'1px solid #dadada'} : choosedSlot ?  {'background-color': '#515151', 'color':'#ffffff'} : '']" class="float-left pl-2 pr-2 ml-2 mt-xl-3 mt-2 slot_radius text_md_12">
                     <span @click="!slot.space < 1 && selectedSlot( slot.start_time, appointment_dates[index], appointment_days[index], 'slot-n-' + index + '-' + i, hospital)">
                       {{ slot.start_time }}
                     </span>
@@ -89,7 +89,7 @@
                 </ul>
               </div>
             </div>
-            <div v-if="!morningCheck && !afternoonCheck && !eveningCheck && !nightCheck">
+            <div v-if="!hasAnyPeriodSlots(slots[appointment_dates[index]])">
               <span>
                 <img :src="basePath+'/images/empty-images/no-record.png'">
               </span>
@@ -286,57 +286,37 @@ export default {
     onBeforeChangeC2(currentPosition, nextPosition) {
       this.$refs.c2.goTo(nextPosition)
     },
-    morningCheckM(index, date, slots) {
-      let self = this
-      self.morningCheck = false
-      slots.forEach(function (slot) {
-        if ((Date.parse('19 Aug 2000 ' +  self.morning_start) <= Date.parse('20 Aug 2000 ' +  slot['start_time']))
-            &&
-            (Date.parse('20 Aug 2000 ' +  self.morning_end) >= Date.parse('20 Aug 2000 ' +  slot['start_time'])))
-        {
-          return self.morningCheck = true
-        }
-      })
-      return self.morningCheck
+    hasPeriodSlots(slots, period) {
+      return Array.isArray(slots) && slots.some(slot => this.isSlotInPeriod(slot, period))
     },
-    afterNoonCheckM(index, date, slots) {
-      let self = this
-      self.afternoonCheck = false
-      slots.forEach(function (slot) {
-        if ((Date.parse('19 Aug 2000 ' +  self.afternoon_start) <= Date.parse('20 Aug 2000 ' +  slot['start_time']))
-            &&
-            (Date.parse('20 Aug 2000 ' +  self.afternoon_end) >= Date.parse('20 Aug 2000 ' +  slot['start_time'])))
-        {
-          return self.afternoonCheck = true
-        }
-      })
-      return self.afternoonCheck
+    hasAnyPeriodSlots(slots) {
+      return ['morning', 'afternoon', 'evening', 'night'].some(period => this.hasPeriodSlots(slots, period))
     },
-    eveningCheckM(index, date, slots) {
-      let self = this
-      self.eveningCheck = false
-      slots.forEach(function (slot) {
-        if ((Date.parse('19 Aug 2000 ' +  self.evening_start) <= Date.parse('20 Aug 2000 ' +  slot['start_time']))
-            &&
-            (Date.parse('20 Aug 2000 ' +  self.evening_end) >= Date.parse('20 Aug 2000 ' +  slot['start_time'])))
-        {
-          self.eveningCheck = true
-        }
-      })
-      return self.eveningCheck
+    getPeriodRange(period) {
+      const ranges = {
+        morning: [this.morning_start, this.morning_end],
+        afternoon: [this.afternoon_start, this.afternoon_end],
+        evening: [this.evening_start, this.evening_end],
+        night: [this.night_start, this.night_end]
+      }
+
+      return ranges[period] || []
     },
-    nightCheckM(index, date, slots) {
-      let self = this
-      self.nightCheck = false
-      slots.forEach(function (slot) {
-        if ((Date.parse('20 Aug 2000 ' +  self.night_start) <= Date.parse('20 Aug 2000 ' +  slot['start_time']))
-            &&
-            (Date.parse('20 Aug 2000 ' +  self.night_end) >= Date.parse('20 Aug 2000 ' +  slot['start_time'])))
-        {
-          self.nightCheck = true
-        }
-      })
-      return self.nightCheck
+    isSlotInPeriod(slot, period) {
+      const range = this.getPeriodRange(period)
+      if (!slot || !slot.start_time || range.length !== 2) {
+        return false
+      }
+
+      const slotTime = Date.parse('20 Aug 2000 ' + slot.start_time)
+      let startTime = Date.parse('20 Aug 2000 ' + range[0])
+      let endTime = Date.parse('20 Aug 2000 ' + range[1])
+
+      if (period === 'morning') {
+        startTime = Date.parse('19 Aug 2000 ' + range[0])
+      }
+
+      return startTime <= slotTime && endTime >= slotTime
     },
 
     morningSlotCheckM(slot) {
