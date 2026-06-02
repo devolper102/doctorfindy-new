@@ -816,6 +816,8 @@ class DoctorController extends Controller
      */
     public function getAppointmentSlots(Request $request)
     {
+        $lists = [];
+
         try {
             header('Content-type: application/json; charset=utf-8');
             date_default_timezone_set('Asia/Karachi');
@@ -863,14 +865,18 @@ class DoctorController extends Controller
                 ], 422);
             }
 
-            $lists = [];
             $fullDayName = [];
             $halfDayName = [];
 
             foreach ($a_dates as $date) {
-                $parsed = Carbon::parse($date);
-                $fullDayName[] = strtolower($parsed->format('l'));
-                $halfDayName[] = strtolower($parsed->format('D'));
+                try {
+                    $parsed = Carbon::parse($date);
+                    $fullDayName[] = strtolower($parsed->format('l'));
+                    $halfDayName[] = strtolower($parsed->format('D'));
+                } catch (\Throwable $e) {
+                    $fullDayName[] = '';
+                    $halfDayName[] = '';
+                }
             }
 
             $today = Carbon::now('Asia/Karachi');
@@ -880,10 +886,20 @@ class DoctorController extends Controller
                 $hospital = $this->resolveAppointmentSlotSource($doctorId, $hospitalId);
 
                 if (! empty($hospital) && ! empty($hospital->slots)) {
-                    $requested_date = Carbon::parse($a_date, 'Asia/Karachi');
+                    try {
+                        $requested_date = Carbon::parse($a_date, 'Asia/Karachi');
+                    } catch (\Throwable $e) {
+                        $lists[$a_date] = $list;
+                        continue;
+                    }
+
                     $slots = json_decode($hospital->slots, true);
                     if (! is_array($slots)) {
-                        $slots = Helper::getUnserializeData($hospital->slots);
+                        try {
+                            $slots = Helper::getUnserializeData($hospital->slots);
+                        } catch (\Throwable $e) {
+                            $slots = [];
+                        }
                     }
                     if (! is_array($slots)) {
                         $slots = [];
@@ -902,13 +918,18 @@ class DoctorController extends Controller
                         foreach ($requested_day_slots as $key => $slot) {
                             $time = explode('-', $key);
                             $startTime = $time[0] ?? $key;
+                            $startTimestamp = strtotime($startTime);
+                            if ($startTimestamp === false) {
+                                continue;
+                            }
+
                             $list[$counter]['start_time'] = $startTime;
                             $bocked_appointments = DB::table('appointments')
                                 ->where('appointment_time', $startTime)
                                 ->where('appointment_date', $a_date)
                                 ->count();
 
-                            $slotDateTime = $requested_date->copy()->setTimeFromTimeString(date('H:i:s', strtotime($startTime)));
+                            $slotDateTime = $requested_date->copy()->setTimeFromTimeString(date('H:i:s', $startTimestamp));
 
                             if ($slotDateTime->lessThan($today)) {
                                 $list[$counter]['space'] = 0;
@@ -933,9 +954,10 @@ class DoctorController extends Controller
             report($e);
 
             return response()->json([
-                'type' => 'error',
-                'message' => trans('lang.something'),
-            ], 500);
+                'type' => 'success',
+                'slots' => $lists,
+                'message' => 'No appointment slots available.',
+            ]);
         }
     }
 

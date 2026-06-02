@@ -87533,6 +87533,76 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _vm._m(0);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "w-100 d-inline-block bg-green mt-4"
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row pt-3 pb-3"
+  }, [_c("div", {
+    staticClass: "col-12 col-lg-6 mt-lg-0 mt-4"
+  }, [_c("div", {
+    staticClass: "w-100 d-inline-block"
+  }, [_c("p", {
+    staticClass: "text-white font-weight-bold text_20 mb-1"
+  }, [_vm._v("Still Have Questions?")]), _vm._v(" "), _c("p", {
+    staticClass: "text_12 text-white"
+  }, [_vm._v("\r\n              Call Our Healthcare Agent")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-6 mt-lg-2 mt-4"
+  }, [_c("div", {
+    staticClass: "help-btn w-100 text-center d-inline-block"
+  }, [_c("a", {
+    staticClass: "text-blue book-rounded bg-white text_14 d-inline-block font-weight-bold",
+    attrs: {
+      href: "javascript:void(0)"
+    }
+  }, [_vm._v("\r\n                  Call Helpline\r\n                ")])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row mt-4 mb-4"
+  }, [_c("div", {
+    staticClass: "col-12 col-lg-8 mt-lg-0 mt-4"
+  }, [_c("div", {
+    staticClass: "w-100 d-inline-block"
+  }, [_c("h2", {
+    staticClass: "text-blue font-weight-bold text_30 mb-2"
+  }, [_vm._v("\r\n                Video Consultation, Anywhere!\r\n              ")]), _vm._v(" "), _c("p", {
+    staticClass: "text-black text_14 w-70 w-xs-100 w-sm-100 w-md-100"
+  }, [_vm._v("\r\n                A gynecologist is a surgeon that specializes in the female reproductive system. The female reproductive system includes the uterus, vagina, ovaries, fallopian tubes, cervix, and vulva. We need expert opinions of gynecologists when it comes to major aspects of women’s health. They are experts in the anatomy and physiology of female reproductive organs. That’s why the term gynecology means the science of women. Gynecologists aim to improve the well-being of women. Gynecologists are involved in providing preventive care, detection of STDs, and family planning. They are also involved in endocrinology, infertility, and pelvic surgery.\r\n              ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-4 mt-lg-2 mt-4"
+  }, [_c("div", {
+    staticClass: "w-100 d-inline-block"
+  }, [_c("img", {
+    attrs: {
+      src: "/images/doctor-video-image.png",
+      alt: "pictire"
+    }
+  })])])])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-runtime/core-js/array/from.js":
 /*!**********************************************************!*\
   !*** ./node_modules/babel-runtime/core-js/array/from.js ***!
@@ -246012,19 +246082,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HelplineConsultationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
+/* harmony import */ var _HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HelplineConsultationComponent.vue?vue&type=template&id=0a34f691& */ "./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691&");
+/* harmony import */ var _HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HelplineConsultationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -246050,6 +246121,24 @@ component.options.__file = "resources/js/components/front-end/search-page/Helpli
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./HelplineConsultationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelplineConsultationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691& ***!
+  \************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./HelplineConsultationComponent.vue?vue&type=template&id=0a34f691& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/front-end/search-page/HelplineConsultationComponent.vue?vue&type=template&id=0a34f691&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_HelplineConsultationComponent_vue_vue_type_template_id_0a34f691___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

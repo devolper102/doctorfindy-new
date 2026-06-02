@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
 	<div>
 		 <div class="w-100 d-inline-block bg-green mt-4">
         <div class="container">
@@ -44,7 +44,7 @@
         </div>
       </div>
 	</div>
-</template> -->
+</template>
 
 <script>
 
