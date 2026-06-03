@@ -110,7 +110,6 @@
       </div>
     </div>
     <lab-model
-      v-if="showBooking"
       ref="labBookingModal"
       :branches="users"
       :laboratories="laboratories"
@@ -304,7 +303,6 @@ export default {
       discountCodeGenerated: false,
       usersData: this.$parent.usersData,
       laboratories:[],
-      showBooking:false,
       allcities:[],
       tests:[],
       test_id : null,
@@ -365,20 +363,44 @@ export default {
         }
       });
     },
+    getBookingModalElement() {
+      const root = this.$refs.labBookingModal;
+      if (root && root.$el) {
+        return root.$el.querySelector('#testModal') || root.$el.querySelector('.modal');
+      }
+
+      return document.getElementById('testModal');
+    },
     openBookingModal() {
       this.$nextTick(() => {
-        const modal = window.jQuery ? window.jQuery('#testModal') : null;
-        if (modal && typeof modal.modal === 'function') {
-          modal.modal('show');
-          return;
-        }
+        this.$nextTick(() => {
+          const modalEl = this.getBookingModalElement();
+          if (!modalEl) {
+            return;
+          }
 
-        const modalEl = document.querySelector('#testModal');
-        if (modalEl) {
+          const labModal = this.$refs.labBookingModal;
+          if (labModal && typeof labModal.setLabData === 'function') {
+            labModal.setLabData();
+          }
+
+          if (window.jQuery && typeof window.jQuery(modalEl).modal === 'function') {
+            window.jQuery(modalEl).modal('show');
+            return;
+          }
+
           modalEl.classList.add('show');
           modalEl.style.display = 'block';
+          modalEl.setAttribute('aria-hidden', 'false');
           document.body.classList.add('modal-open');
-        }
+
+          let backdrop = document.querySelector('.modal-backdrop');
+          if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop fade show';
+            document.body.appendChild(backdrop);
+          }
+        });
       });
     },
      formatPhoneNumber() {
@@ -388,7 +410,7 @@ export default {
     },
     getAllTestsData(id) {
       this.tests = [];
-      this.showBooking = true;
+      this.openBookingModal();
 
       axios.get('/front-end-get-all-tests/' + id)
         .then((response) => {
@@ -400,10 +422,15 @@ export default {
             discounted_price: fields.discounted_price,
             labo_id: fields.lab_id,
           }));
-          this.openBookingModal();
+
+          if (!this.tests.length && this.$toasted) {
+            this.$toasted.show('No tests found for this lab yet.', {
+              type: 'info',
+              duration: 3000,
+            });
+          }
         })
         .catch(() => {
-          this.showBooking = false;
           if (this.$toasted) {
             this.$toasted.show('Unable to load lab tests. Please try again.', {
               type: 'error',

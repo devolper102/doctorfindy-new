@@ -4395,22 +4395,24 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       this.selectlab = null;
     },
     filterBranches: function filterBranches(lab_id, city_id) {
-      if (this.branches.length > 1) {
-        var labBranches = this.branches.filter(function (item) {
-          return item.id == lab_id;
-        });
+      if (!Array.isArray(this.branches) || !lab_id) {
         this.allBranches = [];
-        if (city_id != null) this.allBranches = labBranches[0].branches.filter(function (item) {
+        return;
+      }
+      var labBranches = this.branches.filter(function (item) {
+        return item.id == lab_id;
+      });
+      if (!labBranches.length || !Array.isArray(labBranches[0].branches)) {
+        this.allBranches = [];
+        return;
+      }
+      var branches = labBranches[0].branches;
+      if (city_id != null) {
+        this.allBranches = branches.filter(function (item) {
           return item.location_id == city_id;
-        });else this.allBranches = labBranches[0].branches.filter(function (item) {
-          return item;
         });
       } else {
-        if (city_id != null) this.allBranches = this.branches.branches.filter(function (item) {
-          return item.location_id == city_id;
-        });else this.allBranches = this.branches.branches.filter(function (item) {
-          return item;
-        });
+        this.allBranches = branches;
       }
     },
     isLetter: function isLetter(e) {

@@ -809,7 +809,9 @@ import moment from 'moment';
       } else {
         this.basePath = '';
       }
-      this.initSpecialityContentHeight();
+      this.$nextTick(() => {
+        this.initSpecialityContentHeight();
+      });
     },
     beforeCreate() {
     },

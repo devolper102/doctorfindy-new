@@ -82492,7 +82492,6 @@ Vue.filter('averageRating', function (value) {
       discountCodeGenerated: false,
       usersData: this.$parent.usersData,
       laboratories: [],
-      showBooking: false,
       allcities: [],
       tests: [],
       test_id: null,
@@ -82555,19 +82554,40 @@ Vue.filter('averageRating', function (value) {
         }
       });
     },
+    getBookingModalElement: function getBookingModalElement() {
+      var root = this.$refs.labBookingModal;
+      if (root && root.$el) {
+        return root.$el.querySelector('#testModal') || root.$el.querySelector('.modal');
+      }
+      return document.getElementById('testModal');
+    },
     openBookingModal: function openBookingModal() {
+      var _this3 = this;
       this.$nextTick(function () {
-        var modal = window.jQuery ? window.jQuery('#testModal') : null;
-        if (modal && typeof modal.modal === 'function') {
-          modal.modal('show');
-          return;
-        }
-        var modalEl = document.querySelector('#testModal');
-        if (modalEl) {
+        _this3.$nextTick(function () {
+          var modalEl = _this3.getBookingModalElement();
+          if (!modalEl) {
+            return;
+          }
+          var labModal = _this3.$refs.labBookingModal;
+          if (labModal && typeof labModal.setLabData === 'function') {
+            labModal.setLabData();
+          }
+          if (window.jQuery && typeof window.jQuery(modalEl).modal === 'function') {
+            window.jQuery(modalEl).modal('show');
+            return;
+          }
           modalEl.classList.add('show');
           modalEl.style.display = 'block';
+          modalEl.setAttribute('aria-hidden', 'false');
           document.body.classList.add('modal-open');
-        }
+          var backdrop = document.querySelector('.modal-backdrop');
+          if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop fade show';
+            document.body.appendChild(backdrop);
+          }
+        });
       });
     },
     formatPhoneNumber: function formatPhoneNumber() {
@@ -82576,12 +82596,12 @@ Vue.filter('averageRating', function (value) {
       }
     },
     getAllTestsData: function getAllTestsData(id) {
-      var _this3 = this;
+      var _this4 = this;
       this.tests = [];
-      this.showBooking = true;
+      this.openBookingModal();
       axios.get('/front-end-get-all-tests/' + id).then(function (response) {
         var data = Array.isArray(response.data) ? response.data : [];
-        _this3.tests = data.map(function (fields) {
+        _this4.tests = data.map(function (fields) {
           return {
             name: fields.title,
             id: fields.id,
@@ -82590,11 +82610,15 @@ Vue.filter('averageRating', function (value) {
             labo_id: fields.lab_id
           };
         });
-        _this3.openBookingModal();
+        if (!_this4.tests.length && _this4.$toasted) {
+          _this4.$toasted.show('No tests found for this lab yet.', {
+            type: 'info',
+            duration: 3000
+          });
+        }
       })["catch"](function () {
-        _this3.showBooking = false;
-        if (_this3.$toasted) {
-          _this3.$toasted.show('Unable to load lab tests. Please try again.', {
+        if (_this4.$toasted) {
+          _this4.$toasted.show('Unable to load lab tests. Please try again.', {
             type: 'error',
             duration: 3000
           });
@@ -82607,7 +82631,7 @@ Vue.filter('averageRating', function (value) {
       this.getAllTestsData(this.lab.id);
     },
     getDiscount: function getDiscount() {
-      var _this4 = this;
+      var _this5 = this;
       if (this.submitting) {
         return;
       }
@@ -82622,8 +82646,8 @@ Vue.filter('averageRating', function (value) {
       }).then(function (response) {
         // console.log("ress");
         if (response.data.success === 1) {
-          if (!_this4.discountCodeGenerated) {
-            _this4.discountCodeGenerated = true;
+          if (!_this5.discountCodeGenerated) {
+            _this5.discountCodeGenerated = true;
             // console.log("up");
             document.querySelector('#discount_modal').classList.remove('feedback_modle');
             document.querySelector('body').classList.remove('scroll');
@@ -82631,25 +82655,25 @@ Vue.filter('averageRating', function (value) {
             document.querySelector('#response_modal').classList.add('show');
             document.querySelector('#response_modal').style.display = "block";
             document.querySelector('#home-sampling-field').style.display = "none";
-            _this4.c_name = response.data.data.name;
-            _this4.c_phone_number = response.data.data.phone_number;
-            _this4.c_address = response.data.data.address;
-            _this4.c_code = response.data.data.code;
-            _this4.c_home_sampling = response.data.data.home_sampling;
-            _this4.c_age = response.data.data.age;
-            _this4.balance = response.data.balance;
-            _this4.phone_number = '';
-            _this4.name = '';
-            _this4.address = '';
-            _this4.age = '';
-            _this4.home_sampling = '';
-            _this4.$toasted.show("Your request submitted", {
+            _this5.c_name = response.data.data.name;
+            _this5.c_phone_number = response.data.data.phone_number;
+            _this5.c_address = response.data.data.address;
+            _this5.c_code = response.data.data.code;
+            _this5.c_home_sampling = response.data.data.home_sampling;
+            _this5.c_age = response.data.data.age;
+            _this5.balance = response.data.balance;
+            _this5.phone_number = '';
+            _this5.name = '';
+            _this5.address = '';
+            _this5.age = '';
+            _this5.home_sampling = '';
+            _this5.$toasted.show("Your request submitted", {
               type: 'success',
               duration: 2000
             });
           }
         } else {
-          _this4.$toasted.show(response.data.data, {
+          _this5.$toasted.show(response.data.data, {
             type: 'error',
             duration: 4000
           });
@@ -87160,7 +87184,7 @@ var render = function render() {
         src: _vm.basePath + "/images/discount-icon.svg"
       }
     })])])]) : _vm._e()])])])])])]);
-  }), _vm._v(" "), _vm.showBooking ? _c("lab-model", {
+  }), _vm._v(" "), _c("lab-model", {
     ref: "labBookingModal",
     attrs: {
       branches: _vm.users,
@@ -87171,7 +87195,7 @@ var render = function render() {
       test_id: _vm.test_id,
       "file-system-driver": _vm.fileSystemDriver
     }
-  }) : _vm._e(), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "modal",
     attrs: {
       id: "discount_modal",
