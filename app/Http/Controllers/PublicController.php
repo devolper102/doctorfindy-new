@@ -225,9 +225,16 @@ class PublicController extends Controller
     }
     public function getResultLocationArea($location)
     {
-        // dd($location);
-        $location_id=Location::where('slug','like','%'.$location.'%')->pluck('id');
-        $areas=Area::where('location_id',$location_id)->select('id','slug','title','location_id')->get();
+        $location_id = Location::where('slug', $location)->value('id');
+        if (! $location_id) {
+            $location_id = Location::where('slug', 'like', '%' . $location . '%')->value('id');
+        }
+
+        if (! $location_id) {
+            return response()->json([]);
+        }
+
+        $areas = Area::where('location_id', $location_id)->select('id', 'slug', 'title', 'location_id')->get();
         return response()->json($areas);
     }
     public function getMoreOtherHospital($id,$top=null)
