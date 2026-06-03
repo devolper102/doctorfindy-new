@@ -116,7 +116,7 @@
 });
 
 </script> --}}
-<script type="text/javascript" src="{{asset('js/searchPage.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/searchPage.min.js') }}?v={{ filemtime(public_path('js/searchPage.min.js')) }}"></script>
 <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
