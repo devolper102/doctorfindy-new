@@ -85,6 +85,8 @@ class CodeController extends Controller
 
     public function sendVerificationCode(Request $request)
     {
+        config(['laravel-model-caching.enabled' => false]);
+
         try {
             $number = $request->input('phone_number');
             $firstName = trim($request->input('first_name', 'Patient'));
@@ -126,8 +128,6 @@ class CodeController extends Controller
             }
 
             $userRow = DB::table('users')->where('id', $userId)->first();
-            $user = (new User())->newInstance((array) $userRow, true);
-            auth()->login($user);
 
             $role = DB::table('roles')->select('id', 'name')->where('role_type', 'patient')->first();
             if ($role) {
@@ -187,25 +187,46 @@ class CodeController extends Controller
         return $slug;
     }
 
-    public function codeVerification(Request $request) {
-        $json = Array();
-        $user = User::where('phone_number', $request['phone_number'])->with('roles')->first();
-        if ($user->verification_code == $request['verification_code']) {
-            $user->update([
-                'verification_code' => null
-            ]);
-            $json['type'] = 'success';
-            $json['user'] = $user;
-            $json['message'] = 'Your account verified successfully';
-             auth()->login($user);
-             $id = Auth::id();
-             $user = User::where('id',$id)->with('profile')->with('roles')->first();
-             return $user;
+    public function codeVerification(Request $request)
+    {
+        config(['laravel-model-caching.enabled' => false]);
+
+        $number = $request->input('phone_number');
+        $code = $request->input('verification_code');
+
+        if (empty($number) || empty($code)) {
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Phone number and verification code are required.',
+            ], 422);
         }
-        else {
-            $json['type'] = 'error';
-            $json['message'] = 'Verification Code not matched';
+
+        $userRow = DB::table('users')
+            ->where('phone_number', $number)
+            ->where('verification_code', $code)
+            ->first();
+
+        if (! $userRow) {
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Verification Code not matched',
+            ], 422);
         }
-        return $json;
+
+        DB::table('users')->where('id', $userRow->id)->update([
+            'verification_code' => null,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $user = (new User())->newInstance((array) $userRow, true);
+        $user->setRelation('roles', collect());
+        $user->setRelation('profile', null);
+        auth()->login($user);
+
+        return response()->json([
+            'type' => 'success',
+            'user' => $user,
+            'message' => 'Your account verified successfully',
+        ]);
     }
 }
