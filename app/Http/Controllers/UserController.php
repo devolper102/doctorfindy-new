@@ -1932,23 +1932,76 @@ public function getPayment()
      * 
      * @return \Illuminate\Http\Response
      */
-public function generatePDFRecept($time,$date)
+public function generateAppointmentPDFRecept($id)
     {
-        //dd($time,$date);
-         $get_data = Appointment::where('appointment_time',$time)->where('appointment_date',$date)->with('patient_profile')->with('doctor_profile')->with('hospital_profile')->first();
-         //return view('front-end.doctors.download-recept', compact('get_data'));
-         //dd($get_data);
-        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data'));
-         $headers = [
-              'Content-Type' => 'application/pdf',
-           ];
-        return $pdf->download('patient-appointment-receipt'.'.pdf', $headers);
-    }
-public function generateTestPDFRecept($date,$lastInsertId)
-    {
-        // dd($date,$id);
+        config(['laravel-model-caching.enabled' => false]);
 
-         $get_data = BookTest::where('date_preferred',$date)->where('id', $lastInsertId)->with('lab')->first();
+        $get_data = Appointment::where('id', $id)
+            ->with('patient_profile', 'doctor_profile', 'hospital_profile')
+            ->first();
+
+        if (! $get_data) {
+            abort(404, 'Appointment not found');
+        }
+
+        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data'));
+
+        return $pdf->download('patient-appointment-receipt.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+
+public function generatePDFRecept($time, $date)
+    {
+        config(['laravel-model-caching.enabled' => false]);
+
+        $time = urldecode($time);
+        $date = urldecode($date);
+
+        $get_data = Appointment::where('appointment_time', $time)
+            ->where('appointment_date', $date)
+            ->with('patient_profile', 'doctor_profile', 'hospital_profile')
+            ->first();
+
+        if (! $get_data) {
+            abort(404, 'Appointment not found');
+        }
+
+        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data'));
+
+        return $pdf->download('patient-appointment-receipt.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+
+public function generateTestPDFReceptById($lastInsertId)
+    {
+        config(['laravel-model-caching.enabled' => false]);
+
+        $get_data = BookTest::where('id', $lastInsertId)->with('lab')->first();
+
+        if (! $get_data) {
+            abort(404, 'Booking not found');
+        }
+
+        $pdf = PDF::loadView('front-end.for-laboratory.download-test-pdf-reciept', compact('get_data'));
+
+        return $pdf->download('test-booking-receipt.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+
+public function generateTestPDFRecept($date, $lastInsertId)
+    {
+        config(['laravel-model-caching.enabled' => false]);
+
+        $date = urldecode($date);
+
+         $get_data = BookTest::where('date_preferred', $date)->where('id', $lastInsertId)->with('lab')->first();
+
+        if (! $get_data) {
+            abort(404, 'Booking not found');
+        }
          // $testData = json_decode($get_data->test_id);
          // $labData = $get_data->lab->id;
             // dd($testData);

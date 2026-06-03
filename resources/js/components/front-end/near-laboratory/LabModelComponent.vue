@@ -100,7 +100,7 @@
                       </div>
                       <div class="modal-body">
                         <div class="verification-text-phone-number float-right" id="removed">
-                          <a class="text_14 float-left theme-color-text" :href="'/download/test/'+bookData.date_preferred+'/'+lastInsertId">Download <img :src="basePath+'/images/final-save.png'" class="img-fluid"></a>
+                          <a v-if="lastInsertId" class="text_14 float-left theme-color-text" :href="testDownloadUrl">Download <img :src="basePath+'/images/final-save.png'" class="img-fluid"></a>
                           <!-- <a class="text_14 float-left theme-color-text" href="" @click.prevent="printme" target="_blank">Print <img src="/images/final-print.png" class="img-fluid"></a> -->
                         </div>
                        <p class="float-left w-100">Thank you <span class="font-weight-bold text-capitalize">{{bookData.full_name}}</span> for Booking Test with <span class="theme-color-text text-capitalize">{{selectlab.first_name}} {{selectlab.last_name}}</span> Soon we will get back to you.</p>
@@ -197,6 +197,15 @@ export default {
       discountCode:1234,
       // date: this.date_preferred,
     }
+  },
+  computed: {
+    testDownloadUrl() {
+      if (!this.lastInsertId) {
+        return null;
+      }
+
+      return (typeof APP_URL !== 'undefined' ? APP_URL : '') + '/download/test/' + this.lastInsertId;
+    },
   },
   created() {
       if (this.fileSystemDriver === 'production') {

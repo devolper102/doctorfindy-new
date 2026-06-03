@@ -2140,22 +2140,38 @@ import moment from 'moment';
         this.loading = false
       },
       showFinalModal: function () {
-        this.submitAppointment(this.patientData.id)
-        this.bookNowMobile = false
-        this.bookNowFinal = true
-        document.querySelector('#mobile_number_detail').style.display = 'none'
-        document.querySelector('#mobile_number_detail').classList.remove('show')
+        let self = this;
+        this.bookNowMobile = false;
+        this.loading = true;
 
-        document.querySelector('#book_now_final').classList.add('show')
-        /*document.querySelector('#book_now_final').classList.add('abc')*/
-        document.querySelector('#book_now_final').style.display = "block"
-        this.loading = false
+        this.submitAppointment(this.patientData.id).then(function (response) {
+          if (response.data.type === 'success') {
+            self.bookNowFinal = true;
+            const mobileModal = document.querySelector('#mobile_number_detail');
+            if (mobileModal) {
+              mobileModal.style.display = 'none';
+              mobileModal.classList.remove('show');
+            }
+
+            const finalModal = document.querySelector('#book_now_final');
+            if (finalModal) {
+              finalModal.classList.add('show');
+              finalModal.style.display = 'block';
+            }
+          } else if (response.data.type === 'error') {
+            self.showError(response.data.message);
+          }
+          self.loading = false;
+        }).catch(function () {
+          self.loading = false;
+          Vue.toasted.error('Unable to book appointment. Please try again.', { duration: 3000 });
+        });
       },
       submitAppointment: function (id) {
         let self = this;
         self.loading = true;
         self.appointment.user_id = id;
-        axios.post(APP_URL + '/submit-appointment', {
+        return axios.post(APP_URL + '/submit-appointment', {
           date : self.selected_appointment_date,
           day : self.selected_appointment_day,
           hospital : self.selectedHospital.id,
@@ -2167,7 +2183,6 @@ import moment from 'moment';
           user_id : self.doctor_data.id,
         }).then(function (response) {
           if (response.data.type === 'success') {
-            self.appointment_last_id = ''
             self.appointment_last_id = response.data.appointment_id;
             if (self.bookNowType === 'online') {
 
@@ -2180,8 +2195,12 @@ import moment from 'moment';
             self.loading = false;
             self.showError(response.data.message);
           }
+          return response;
         })
-            .catch(error => {});
+            .catch(function (error) {
+              self.loading = false;
+              throw error;
+            });
       },
       selectedCity(result) {
       if (this.resultSpeciality  != '') {

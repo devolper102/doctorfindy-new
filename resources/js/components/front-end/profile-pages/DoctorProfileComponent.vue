@@ -339,12 +339,20 @@ export default {
       this.loading = false
     },
     showFinalModal: function () {
-      this.loading = true
-      this.submitAppointment(this.patientData.id)
-      this.hospitalFees = this.fee
-      this.bookNowVerification = false
-      this.bookNowFinal = true
-      this.loading = false
+      let self = this;
+      this.loading = true;
+      this.hospitalFees = this.fee;
+      this.bookNowVerification = false;
+
+      this.submitAppointment(this.patientData.id).then(function (response) {
+        if (response.data.type === 'success') {
+          self.bookNowFinal = true;
+        }
+        self.loading = false;
+      }).catch(function () {
+        self.loading = false;
+        Vue.toasted.error('Unable to book appointment. Please try again.', { duration: 3000 });
+      });
     },
     showReportModal: function () {
       this.loading = true
@@ -364,7 +372,7 @@ export default {
       this.loading = true
       let self = this;
       // self.appointment.user_id = id;
-      axios.post(APP_URL + '/submit-appointment', {
+      return axios.post(APP_URL + '/submit-appointment', {
         date : self.selected_date,
         day : self.selected_day,
         hospital : self.selectedHospital.id,
@@ -375,7 +383,6 @@ export default {
         user_id : self.doctor_data.id,
       }).then(function (response) {
         if (response.data.type === 'success') {
-          self.appointment_last_id = ''
           self.appointment_last_id = response.data.appointment_id;
           if (self.bookNowType === 'online') {
 
@@ -387,8 +394,12 @@ export default {
         } else if (response.data.type === 'error') {
           self.loading = false;
         }
+        return response;
       })
-          .catch(error => {});
+          .catch(function (error) {
+            self.loading = false;
+            throw error;
+          });
     },
     onClose: function() {
       let self = this

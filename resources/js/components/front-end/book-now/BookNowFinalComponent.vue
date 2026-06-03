@@ -52,8 +52,8 @@
           </div>
           <div class="modal-body pl-4 modal_bg pt-0">
             <div class="verification-text-phone-number float-right d-none d-xl-block" id="removed">
-              <a class="text_14 float-left mr-3 text-blue" 
-              :href="'/download/'+time+'/'+date">Download <img :src="basePath+'/images/final-save.png'" class="img-fluid"></a>
+              <a v-if="downloadUrl" class="text_14 float-left mr-3 text-blue" 
+              :href="downloadUrl">Download <img :src="basePath+'/images/final-save.png'" class="img-fluid"></a>
               <a class="text_14 float-left text-blue" href="" 
               @click.prevent="printme" target="_blank">Print <img :src="basePath+'/images/final-print.png'" class="img-fluid">
             </a>
@@ -129,7 +129,7 @@
             <div class="modal-footer knockdoc_border mt-2 d- d-inline-block d-xl-none w-100" id="paybotton">
               <div class="modal_footer_btn w-100 d-inline-block mt-2">
                 <a href="" @click.prevent="printme" target="_blank" data-dismiss="modal" class="light_btn_bg rounded-pill w-100 p-2 text-center d-inline-block">Print</a>
-                <a :href="'/download/'+time+'/'+date" class="knockdoc_btn_bg rounded-pill w-100 p-2 text-center mt-3 mb-3 text-white d-inline-block">Download</a>
+                <a v-if="downloadUrl" :href="downloadUrl" class="knockdoc_btn_bg rounded-pill w-100 p-2 text-center mt-3 mb-3 text-white d-inline-block">Download</a>
                 <!-- <a href="#" class="knockdoc_btn_bg rounded-pill w-100 p-2 text-center text-white d-inline-block">Take a Screenshot</a> -->
               </div>
             </div>
@@ -158,9 +158,17 @@ export default {
       hospitalData: this.$parent.selectedHospital,
       verified_message: 'Verified User',
       medical_message: 'Medical Registration Verified',
-      time: this.$parent.selected_time,
-      date: this.$parent.selected_appointment_date,
     }
+  },
+  computed: {
+    downloadUrl() {
+      const appointmentId = this.$parent.appointment_last_id;
+      if (!appointmentId) {
+        return null;
+      }
+
+      return (typeof APP_URL !== 'undefined' ? APP_URL : '') + '/download/appointment/' + appointmentId;
+    },
   },
   mounted(){
       if (this.fileSystemDriver === 'production') {

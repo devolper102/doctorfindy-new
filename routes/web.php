@@ -119,8 +119,10 @@ Route::get('patient/payout-setting', 'PatientController@payoutSetting');
 Route::get('/patient/payout-setting/{id}','PatientController@payoutAppointment');
 Route::post('patient-payment', 'UserController@storePatientPayment');
 Route::get('/show-invoice/{id}','PatientController@showInvoice');
- Route::get('/download/{time}/{date}', 'UserController@generatePDFRecept');
- Route::get('/download/test/{date}/{lastInsertId}', 'UserController@generateTestPDFRecept');
+ Route::get('/download/appointment/{id}', 'UserController@generateAppointmentPDFRecept')->where('id', '[0-9]+');
+ Route::get('/download/{time}/{date}', 'UserController@generatePDFRecept')->where('date', '[0-9]{4}-[0-9]{2}-[0-9]{2}');
+ Route::get('/download/test/{lastInsertId}', 'UserController@generateTestPDFReceptById')->where('lastInsertId', '[0-9]+');
+ Route::get('/download/test/{date}/{lastInsertId}', 'UserController@generateTestPDFRecept')->where('date', '[0-9]{4}-[0-9]{2}-[0-9]{2}');
 
 // Cache clear route
 Route::get(
