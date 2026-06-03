@@ -98,36 +98,63 @@ class CodeController extends Controller
                 ], 422);
             }
 
-            $user = User::where('phone_number', $number)->first();
+            $userRow = DB::table('users')->where('phone_number', $number)->first();
 
-            if ($user) {
-                $user->verification_code = $otc;
-                $user->save();
+            if ($userRow) {
+                DB::table('users')->where('id', $userRow->id)->update([
+                    'verification_code' => $otc,
+                    'updated_at' => Carbon::now(),
+                ]);
+                $userId = $userRow->id;
             } else {
-                $user = User::create([
+                $userId = DB::table('users')->insertGetId([
                     'first_name' => $firstName,
                     'last_name' => '',
                     'verification_code' => $otc,
                     'slug' => $this->makeUniquePatientSlug($firstName, $number),
                     'password' => password_hash('doctorfindy.com', PASSWORD_DEFAULT),
                     'phone_number' => $number,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]);
 
-                UserMeta::firstOrCreate([
-                    'user_id' => $user->id,
-                ]);
+                DB::table('user_metas')->updateOrInsert(
+                    ['user_id' => $userId],
+                    ['updated_at' => Carbon::now(), 'created_at' => Carbon::now()]
+                );
+
             }
 
+            $userRow = DB::table('users')->where('id', $userId)->first();
+            $user = (new User())->newInstance((array) $userRow, true);
             auth()->login($user);
 
-            $role = DB::table('roles')->select('name')->where('role_type', 'patient')->first();
-            if ($role && ! $user->hasRole($role->name)) {
-                $user->assignRole($role->name);
+            $role = DB::table('roles')->select('id', 'name')->where('role_type', 'patient')->first();
+            if ($role) {
+                $hasRole = DB::table('model_has_roles')
+                    ->where('role_id', $role->id)
+                    ->where('model_type', User::class)
+                    ->where('model_id', $userId)
+                    ->exists();
+
+                if (! $hasRole) {
+                    DB::table('model_has_roles')->insert([
+                        'role_id' => $role->id,
+                        'model_type' => User::class,
+                        'model_id' => $userId,
+                    ]);
+                }
             }
 
             return response()->json([
                 'type' => 'success',
-                'user' => $user->load('roles', 'profile'),
+                'user' => [
+                    'id' => $userRow->id,
+                    'first_name' => $userRow->first_name,
+                    'last_name' => $userRow->last_name,
+                    'slug' => $userRow->slug,
+                    'phone_number' => $userRow->phone_number,
+                ],
                 'message' => 'Appointment Booked successfully',
                 'code' => $otc,
             ]);
@@ -152,7 +179,7 @@ class CodeController extends Controller
         $slug = $baseSlug;
         $counter = 1;
 
-        while (User::where('slug', $slug)->exists()) {
+        while (DB::table('users')->where('slug', $slug)->exists()) {
             $slug = $baseSlug . '-' . $counter;
             $counter++;
         }
