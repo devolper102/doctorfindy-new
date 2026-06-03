@@ -805,20 +805,11 @@ import moment from 'moment';
       
     mounted() {
       if (this.fileSystemDriver === 'production') {
-        // Use DigitalOcean Spaces URL for production
         this.basePath = '';
       } else {
-        // Use local path for development
         this.basePath = '';
       }
-      var all_data = document.getElementById('all-speciality-content');
-      localStorage.setItem('height', all_data.offsetHeight);
-      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          all_data.style.height = '225px';
-        }else{
-          all_data.style.height = '235px';
-        }
-      all_data.style.overflow = 'hidden';
+      this.initSpecialityContentHeight();
     },
     beforeCreate() {
     },
@@ -997,18 +988,43 @@ import moment from 'moment';
 
           this.filterData();
       },
+      getSpecialityContentEl() {
+        return document.getElementById('all-speciality-content');
+      },
+      initSpecialityContentHeight() {
+        const all_data = this.getSpecialityContentEl();
+        if (!all_data) {
+          return;
+        }
+
+        localStorage.setItem('height', all_data.offsetHeight);
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          all_data.style.height = '225px';
+        } else {
+          all_data.style.height = '235px';
+        }
+        all_data.style.overflow = 'hidden';
+      },
       showMoreContent(){
-        var height = localStorage.getItem('height');
-        var all_data = document.getElementById('all-speciality-content');
-        all_data.style.height = height+'px';
+        const all_data = this.getSpecialityContentEl();
+        if (!all_data) {
+          return;
+        }
+
+        const height = localStorage.getItem('height');
+        all_data.style.height = height + 'px';
         this.showLess = true;
         this.showMore = false;
       },
       showLessContent(){
-        var all_data = document.getElementById('all-speciality-content');
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        const all_data = this.getSpecialityContentEl();
+        if (!all_data) {
+          return;
+        }
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
           all_data.style.height = '225px';
-        }else{
+        } else {
           all_data.style.height = '235px';
         }
         all_data.scrollIntoView({ behavior: 'smooth'});
