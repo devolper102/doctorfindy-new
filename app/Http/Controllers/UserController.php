@@ -4024,35 +4024,55 @@ return response()->json($tests);
     }
     public function storetest(Request $request)
     {
-        $json = Array();
-        $result = BookTest::create([
-            'lab_id' => $request['lab_id'],
-            'branch_id' => $request['branch_id'],
-            'test_id' => json_encode($request['selected_test']),
-            'full_name' => $request['full_name'],
-            'email' => $request['email'],
-            'city' => $request['city'],
-            'age' => $request['age'],
-            'phone_number' => $request['phone_number'],
-            'gender' => $request['gender'],
-            'date_preferred' => $request['date_preferred'],
-            'address' => $request['address'],
-        ]);
-        $lastInsertId = $result->id;
-        if($request['lab_id'] == 13052){
-        $discountCode = LabCode::where('Status',0)->first();
-        $discountCode->Status = 1;
-        $discountCode->save();
-        $json['discountCode'] = $discountCode->CouponNumber;
-    }
-    else{
-        $json['discountCode'] = 1234;
-    }
-        // dd('lastInsertId',$lastInsertId);
-        $json['lastInsertId'] = $lastInsertId;
-        $json['type'] = 'success';
-        $json['message'] = 'Test Booked Successfully';
-        return $json;
+        try {
+            $selectedTest = $request->input('selected_test', []);
+            if (! is_array($selectedTest)) {
+                $selectedTest = json_decode($selectedTest, true) ?? [];
+            }
+
+            $result = BookTest::create([
+                'lab_id' => $request->input('lab_id'),
+                'branch_id' => $request->input('branch_id') ?: null,
+                'test_id' => json_encode($selectedTest),
+                'full_name' => $request->input('full_name'),
+                'email' => $request->input('email'),
+                'city' => $request->input('city'),
+                'age' => $request->input('age'),
+                'phone_number' => $request->input('phone_number'),
+                'gender' => $request->input('gender'),
+                'date_preferred' => $request->input('date_preferred'),
+                'address' => $request->input('address'),
+            ]);
+
+            $json = [
+                'lastInsertId' => $result->id,
+                'type' => 'success',
+                'message' => 'Test Booked Successfully',
+                'discountCode' => 1234,
+            ];
+
+            if ((int) $request->input('lab_id') === 13052) {
+                $discountCode = LabCode::where(function ($query) {
+                    $query->where('Status', 0)
+                        ->orWhere('Status', '0');
+                })->first();
+
+                if ($discountCode) {
+                    $discountCode->Status = 1;
+                    $discountCode->save();
+                    $json['discountCode'] = $discountCode->CouponNumber;
+                }
+            }
+
+            return $json;
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Unable to book test. Please try again.',
+            ], 500);
+        }
     }
     public function storeUserMessage(Request $request)
     {
