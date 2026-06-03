@@ -4253,12 +4253,24 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     }
   },
   mounted: function mounted() {
-    // $(this.$el).on('shown.bs.modal', this.setLabData);
-    $(this.$el).on('shown.bs.modal', this.setTestData);
-    // $(this.$el).on('shown.bs.modal' , this.setCityData);
-    // $(this.$el).on('shown.bs.modal' , this.setTestName);
+    var modal = window.jQuery ? window.jQuery(this.$el).find('#testModal') : null;
+    if (modal && modal.length) {
+      modal.on('shown.bs.modal', this.onBookingModalShown);
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    var modal = window.jQuery ? window.jQuery(this.$el).find('#testModal') : null;
+    if (modal && modal.length) {
+      modal.off('shown.bs.modal', this.onBookingModalShown);
+    }
   },
   methods: {
+    onBookingModalShown: function onBookingModalShown() {
+      this.setLabData();
+      if (this.test_id) {
+        this.setTestData();
+      }
+    },
     customLabel: function customLabel(_ref) {
       var name = _ref.name,
         price = _ref.price,
@@ -4281,14 +4293,15 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     //   }
     // },
     setLabData: function setLabData() {
-      var self = this;
-      if (self.selectlab !== null) {
-        self.query = {
-          name: self.selectlab.first_name + " " + self.selectlab.last_name,
-          id: self.selectlab.id
-        };
-        this.filterBranches(this.selectlab.id, null);
+      if (!this.selectlab || !this.selectlab.id) {
+        return;
       }
+      var labName = this.selectlab.name || "".concat(this.selectlab.first_name || '', " ").concat(this.selectlab.last_name || '').trim();
+      this.query = {
+        name: labName,
+        id: this.selectlab.id
+      };
+      this.filterBranches(this.selectlab.id, null);
     },
     setTestName: function setTestName() {
       var _this = this;
@@ -4301,7 +4314,7 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     setTestData: function setTestData() {
       var self = this;
       var test_id = this.test_id;
-      if (self.test_id !== null) {
+      if (self.test_id !== null && self.test_id !== undefined) {
         self.findTests = [];
         self.tests.forEach(function (x) {
           if (x.id === test_id) {

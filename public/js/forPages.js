@@ -82515,19 +82515,12 @@ Vue.filter('averageRating', function (value) {
   mounted: function mounted() {
     var _this = this;
     if (this.fileSystemDriver === 'production') {
-      // Use DigitalOcean Spaces URL for production
       this.basePath = '';
     } else {
-      // Use local path for development
       this.basePath = '';
     }
-    this.allLaboratories.forEach(function (fields) {
-      var lab_name = fields.first_name + " " + fields.last_name;
-      _this.laboratories.push({
-        name: lab_name,
-        id: fields.id
-      });
-    });
+    this.buildLaboratoryOptions(this.allLaboratories);
+    this.buildLaboratoryOptions(this.users);
     this.allLocations.forEach(function (fields) {
       _this.allcities.push({
         name: fields.title,
@@ -82542,35 +82535,79 @@ Vue.filter('averageRating', function (value) {
     // console.log('mytest',this.tests)
   },
   methods: {
+    buildLaboratoryOptions: function buildLaboratoryOptions(labs) {
+      var _this2 = this;
+      if (!Array.isArray(labs)) {
+        return;
+      }
+      labs.forEach(function (fields) {
+        if (!fields || !fields.id) {
+          return;
+        }
+        var exists = _this2.laboratories.some(function (lab) {
+          return lab.id === fields.id;
+        });
+        if (!exists) {
+          _this2.laboratories.push({
+            name: "".concat(fields.first_name, " ").concat(fields.last_name).trim(),
+            id: fields.id
+          });
+        }
+      });
+    },
+    openBookingModal: function openBookingModal() {
+      this.$nextTick(function () {
+        var modal = window.jQuery ? window.jQuery('#testModal') : null;
+        if (modal && typeof modal.modal === 'function') {
+          modal.modal('show');
+          return;
+        }
+        var modalEl = document.querySelector('#testModal');
+        if (modalEl) {
+          modalEl.classList.add('show');
+          modalEl.style.display = 'block';
+          document.body.classList.add('modal-open');
+        }
+      });
+    },
     formatPhoneNumber: function formatPhoneNumber() {
       if (this.phone_number.startsWith('0')) {
         this.phone_number = '92' + this.phone_number.slice(1);
       }
     },
     getAllTestsData: function getAllTestsData(id) {
-      var _this2 = this;
+      var _this3 = this;
+      this.tests = [];
+      this.showBooking = true;
       axios.get('/front-end-get-all-tests/' + id).then(function (response) {
-        var data = response.data;
-        // console.log('seeeItok',response.data);
-        data.forEach(function (fields) {
-          _this2.tests.push({
+        var data = Array.isArray(response.data) ? response.data : [];
+        _this3.tests = data.map(function (fields) {
+          return {
             name: fields.title,
             id: fields.id,
             price: fields.price,
             discounted_price: fields.discounted_price,
             labo_id: fields.lab_id
-          });
+          };
         });
-        _this2.findsymptoms = _this2.tests;
+        _this3.openBookingModal();
+      })["catch"](function () {
+        _this3.showBooking = false;
+        if (_this3.$toasted) {
+          _this3.$toasted.show('Unable to load lab tests. Please try again.', {
+            type: 'error',
+            duration: 3000
+          });
+        }
       });
-      this.showBooking = true;
     },
     labData: function labData(data) {
       this.lab = data;
+      this.test_id = null;
       this.getAllTestsData(this.lab.id);
     },
     getDiscount: function getDiscount() {
-      var _this3 = this;
+      var _this4 = this;
       if (this.submitting) {
         return;
       }
@@ -82585,8 +82622,8 @@ Vue.filter('averageRating', function (value) {
       }).then(function (response) {
         // console.log("ress");
         if (response.data.success === 1) {
-          if (!_this3.discountCodeGenerated) {
-            _this3.discountCodeGenerated = true;
+          if (!_this4.discountCodeGenerated) {
+            _this4.discountCodeGenerated = true;
             // console.log("up");
             document.querySelector('#discount_modal').classList.remove('feedback_modle');
             document.querySelector('body').classList.remove('scroll');
@@ -82594,25 +82631,25 @@ Vue.filter('averageRating', function (value) {
             document.querySelector('#response_modal').classList.add('show');
             document.querySelector('#response_modal').style.display = "block";
             document.querySelector('#home-sampling-field').style.display = "none";
-            _this3.c_name = response.data.data.name;
-            _this3.c_phone_number = response.data.data.phone_number;
-            _this3.c_address = response.data.data.address;
-            _this3.c_code = response.data.data.code;
-            _this3.c_home_sampling = response.data.data.home_sampling;
-            _this3.c_age = response.data.data.age;
-            _this3.balance = response.data.balance;
-            _this3.phone_number = '';
-            _this3.name = '';
-            _this3.address = '';
-            _this3.age = '';
-            _this3.home_sampling = '';
-            _this3.$toasted.show("Your request submitted", {
+            _this4.c_name = response.data.data.name;
+            _this4.c_phone_number = response.data.data.phone_number;
+            _this4.c_address = response.data.data.address;
+            _this4.c_code = response.data.data.code;
+            _this4.c_home_sampling = response.data.data.home_sampling;
+            _this4.c_age = response.data.data.age;
+            _this4.balance = response.data.balance;
+            _this4.phone_number = '';
+            _this4.name = '';
+            _this4.address = '';
+            _this4.age = '';
+            _this4.home_sampling = '';
+            _this4.$toasted.show("Your request submitted", {
               type: 'success',
               duration: 2000
             });
           }
         } else {
-          _this3.$toasted.show(response.data.data, {
+          _this4.$toasted.show(response.data.data, {
             type: 'error',
             duration: 4000
           });
@@ -82676,7 +82713,20 @@ Vue.filter('averageRating', function (value) {
       console.log(this.checked);
     },
     checkAvailability: function checkAvailability(user) {
-      var availableDays = JSON.parse(user.profile.available_days.toLowerCase());
+      if (!user || !user.profile || user.profile.available_days == null || user.profile.available_days === '') {
+        return 'Not Available';
+      }
+      var availableDays = user.profile.available_days;
+      if (typeof availableDays === 'string') {
+        try {
+          availableDays = JSON.parse(availableDays.toLowerCase());
+        } catch (error) {
+          return 'Not Available';
+        }
+      }
+      if (!Array.isArray(availableDays) || availableDays.length === 0) {
+        return 'Not Available';
+      }
       if (availableDays !== '') {
         var availability = '';
         var day1 = moment().format('ddd').toLowerCase().trim();
@@ -87076,9 +87126,7 @@ var render = function render() {
     }, [_c("a", {
       staticClass: "d-block book-rounded text-center book-border book-padding mt-lg-2 mt-md-2 mb-lg-2 mt-0 mb-0 text_12 text_md_12 text_md_12 float-right float-md-none float-lg-none small_btn w-sm-45 text-blue font-weight-bold position-relative w-100",
       attrs: {
-        href: "javascript:void(0)",
-        "data-toggle": "modal",
-        "data-target": "#testModal position-relative"
+        href: "javascript:void(0)"
       },
       on: {
         click: function click($event) {
@@ -87111,17 +87159,19 @@ var render = function render() {
       attrs: {
         src: _vm.basePath + "/images/discount-icon.svg"
       }
-    })])])]) : _vm._e()])])])])]), _vm._v(" "), _vm.showBooking ? _c("lab-model", {
-      attrs: {
-        branches: _vm.users,
-        laboratories: _vm.laboratories,
-        cities: _vm.allcities,
-        tests: _vm.tests,
-        selectlab: _vm.lab,
-        test_id: _vm.test_id
-      }
-    }) : _vm._e()], 1);
-  }), _vm._v(" "), _c("div", {
+    })])])]) : _vm._e()])])])])])]);
+  }), _vm._v(" "), _vm.showBooking ? _c("lab-model", {
+    ref: "labBookingModal",
+    attrs: {
+      branches: _vm.users,
+      laboratories: _vm.laboratories,
+      cities: _vm.allcities,
+      tests: _vm.tests,
+      selectlab: _vm.lab,
+      test_id: _vm.test_id,
+      "file-system-driver": _vm.fileSystemDriver
+    }
+  }) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "modal",
     attrs: {
       id: "discount_modal",

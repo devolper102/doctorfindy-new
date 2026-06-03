@@ -208,12 +208,24 @@ export default {
       }
   },
   mounted(){
-    // $(this.$el).on('shown.bs.modal', this.setLabData);
-    $(this.$el).on('shown.bs.modal' , this.setTestData);
-    // $(this.$el).on('shown.bs.modal' , this.setCityData);
-    // $(this.$el).on('shown.bs.modal' , this.setTestName);
+    const modal = window.jQuery ? window.jQuery(this.$el).find('#testModal') : null;
+    if (modal && modal.length) {
+      modal.on('shown.bs.modal', this.onBookingModalShown);
+    }
+  },
+  beforeDestroy() {
+    const modal = window.jQuery ? window.jQuery(this.$el).find('#testModal') : null;
+    if (modal && modal.length) {
+      modal.off('shown.bs.modal', this.onBookingModalShown);
+    }
   },
   methods: {
+    onBookingModalShown() {
+      this.setLabData();
+      if (this.test_id) {
+        this.setTestData();
+      }
+    },
     customLabel ({ name, price ,discounted_price}) {
       if(price != ''){
       // return `${name}  - Rs ${price}`
@@ -234,13 +246,15 @@ export default {
       
     // },
       setLabData(){
-        let self = this;
-        if(self.selectlab !== null){
-          self.query = {name:self.selectlab.first_name+" "+self.selectlab.last_name, id:self.selectlab.id};
-         
-        this.filterBranches(this.selectlab.id,null)
-        
-      }
+        if (!this.selectlab || !this.selectlab.id) {
+          return;
+        }
+
+        const labName = this.selectlab.name
+          || `${this.selectlab.first_name || ''} ${this.selectlab.last_name || ''}`.trim();
+
+        this.query = { name: labName, id: this.selectlab.id };
+        this.filterBranches(this.selectlab.id, null);
     },
     setTestName()
     { 
@@ -252,7 +266,7 @@ export default {
     {   
         let self = this;
         var test_id = this.test_id;
-        if(self.test_id !== null){
+        if(self.test_id !== null && self.test_id !== undefined){
           self.findTests = [];
           self.tests.forEach(function (x) {
             if (x.id === test_id) {
@@ -331,31 +345,23 @@ export default {
         this.selectlab = null;
       },
       filterBranches(lab_id,city_id){
-        if(this.branches.length > 1){
-        let labBranches = this.branches.filter((item) => {
-          return (item.id == lab_id)
-        })
-        this.allBranches = []
-        if(city_id != null)
-        this.allBranches = labBranches[0].branches.filter((item) => {
-          return (item.location_id == city_id)
-        })  
-        else
-        this.allBranches = labBranches[0].branches.filter((item) => {
-          return item;
-        })
-    }
-    else
-    {
-       if(city_id != null)
-        this.allBranches = this.branches.branches.filter((item) => {
-          return (item.location_id == city_id)
-        })  
-        else
-        this.allBranches = this.branches.branches.filter((item) => {
-          return item;
-        })
-    }
+        if (!Array.isArray(this.branches) || !lab_id) {
+          this.allBranches = [];
+          return;
+        }
+
+        const labBranches = this.branches.filter((item) => item.id == lab_id);
+        if (!labBranches.length || !Array.isArray(labBranches[0].branches)) {
+          this.allBranches = [];
+          return;
+        }
+
+        const branches = labBranches[0].branches;
+        if (city_id != null) {
+          this.allBranches = branches.filter((item) => item.location_id == city_id);
+        } else {
+          this.allBranches = branches;
+        }
       },
       isLetter(e) {
       let char = String.fromCharCode(e.keyCode);

@@ -88,7 +88,7 @@
                 {{ user.location_id ? user.location.title : '' }}
               </p>
               <div class="list_btns w-100 d-inline-block pb-2 pl-lg-5 mt-lg-3 mt-md-0 mt-0 position-relative">
-                <a  href="javascript:void(0)" @click="labData(user)" class="d-block book-rounded text-center book-border book-padding mt-lg-2 mt-md-2 mb-lg-2 mt-0 mb-0 text_12 text_md_12 text_md_12 float-right float-md-none float-lg-none small_btn w-sm-45 text-blue font-weight-bold position-relative w-100"  data-toggle="modal" data-target="#testModal position-relative">Book A Test
+                <a  href="javascript:void(0)" @click="labData(user)" class="d-block book-rounded text-center book-border book-padding mt-lg-2 mt-md-2 mb-lg-2 mt-0 mb-0 text_12 text_md_12 text_md_12 float-right float-md-none float-lg-none small_btn w-sm-45 text-blue font-weight-bold position-relative w-100">Book A Test
                   <span class="finger-icon bg-blue d-inline-block position-absolute">
                     <img :src="basePath+'/images/finger-icon.png'" 
                     alt="pictire">
@@ -108,8 +108,18 @@
           </div>
         </div>
       </div>
-      <lab-model v-if="showBooking" :branches="users" :laboratories="laboratories" :cities="allcities" :tests="tests" :selectlab="lab" :test_id="test_id"></lab-model>
     </div>
+    <lab-model
+      v-if="showBooking"
+      ref="labBookingModal"
+      :branches="users"
+      :laboratories="laboratories"
+      :cities="allcities"
+      :tests="tests"
+      :selectlab="lab"
+      :test_id="test_id"
+      :file-system-driver="fileSystemDriver"
+    ></lab-model>
     <div class="modal" id="discount_modal" tabindex="-1" role="dialog" aria-labelledby="mobile_number_detail" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content box_radius  box_shadow">
@@ -318,18 +328,13 @@ export default {
   },
   mounted(){
     if (this.fileSystemDriver === 'production') {
-        // Use DigitalOcean Spaces URL for production
         this.basePath = '';
       } else {
-        // Use local path for development
         this.basePath = '';
       }
-      
-    this.allLaboratories.forEach(fields => {
-        var lab_name = fields.first_name +" "+fields.last_name;
 
-         this.laboratories.push({name:lab_name,id:fields.id})
-      });
+    this.buildLaboratoryOptions(this.allLaboratories);
+    this.buildLaboratoryOptions(this.users);
     this.allLocations.forEach(fields => {
          this.allcities.push({name:fields.title,id:fields.id})
       });
@@ -341,27 +346,75 @@ export default {
     // console.log('mytest',this.tests)
   },
   methods: {
+    buildLaboratoryOptions(labs) {
+      if (!Array.isArray(labs)) {
+        return;
+      }
+
+      labs.forEach((fields) => {
+        if (!fields || !fields.id) {
+          return;
+        }
+
+        const exists = this.laboratories.some((lab) => lab.id === fields.id);
+        if (!exists) {
+          this.laboratories.push({
+            name: `${fields.first_name} ${fields.last_name}`.trim(),
+            id: fields.id,
+          });
+        }
+      });
+    },
+    openBookingModal() {
+      this.$nextTick(() => {
+        const modal = window.jQuery ? window.jQuery('#testModal') : null;
+        if (modal && typeof modal.modal === 'function') {
+          modal.modal('show');
+          return;
+        }
+
+        const modalEl = document.querySelector('#testModal');
+        if (modalEl) {
+          modalEl.classList.add('show');
+          modalEl.style.display = 'block';
+          document.body.classList.add('modal-open');
+        }
+      });
+    },
      formatPhoneNumber() {
       if (this.phone_number.startsWith('0')) {
         this.phone_number = '92' + this.phone_number.slice(1);
       }
     },
-    getAllTestsData(id)
-     {
-        axios.get('/front-end-get-all-tests/'+id)
-        .then(response=>{
-             let data=response.data;
-             // console.log('seeeItok',response.data);
-             data.forEach(fields => {
-             this.tests.push({name:fields.title,id:fields.id,price:fields.price,discounted_price:fields.discounted_price,labo_id:fields.lab_id})
-              });
-              this.findsymptoms= this.tests;
-        });
-              this.showBooking=true;
+    getAllTestsData(id) {
+      this.tests = [];
+      this.showBooking = true;
 
-     },
-    labData(data){
+      axios.get('/front-end-get-all-tests/' + id)
+        .then((response) => {
+          const data = Array.isArray(response.data) ? response.data : [];
+          this.tests = data.map((fields) => ({
+            name: fields.title,
+            id: fields.id,
+            price: fields.price,
+            discounted_price: fields.discounted_price,
+            labo_id: fields.lab_id,
+          }));
+          this.openBookingModal();
+        })
+        .catch(() => {
+          this.showBooking = false;
+          if (this.$toasted) {
+            this.$toasted.show('Unable to load lab tests. Please try again.', {
+              type: 'error',
+              duration: 3000,
+            });
+          }
+        });
+    },
+    labData(data) {
       this.lab = data;
+      this.test_id = null;
       this.getAllTestsData(this.lab.id);
     },
     getDiscount()
@@ -474,7 +527,23 @@ export default {
       console.log(this.checked);
     },
     checkAvailability: function (user) {
-      let availableDays = JSON.parse(user.profile.available_days.toLowerCase())
+      if (!user || !user.profile || user.profile.available_days == null || user.profile.available_days === '') {
+        return 'Not Available';
+      }
+
+      let availableDays = user.profile.available_days;
+      if (typeof availableDays === 'string') {
+        try {
+          availableDays = JSON.parse(availableDays.toLowerCase());
+        } catch (error) {
+          return 'Not Available';
+        }
+      }
+
+      if (!Array.isArray(availableDays) || availableDays.length === 0) {
+        return 'Not Available';
+      }
+
       if (availableDays !== '') {
         let availability = '';
         let day1 = ((moment().format('ddd')).toLowerCase().trim());

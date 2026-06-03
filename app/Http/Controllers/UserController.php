@@ -3958,7 +3958,14 @@ return response()->json($tests);
     }
     public function getAllLabTests($id)
     {
-        $tests=Speciality_Test::where('lab_id',$id)->get();
+        config(['laravel-model-caching.enabled' => false]);
+
+        $tests = DB::table('lab_tests')
+            ->select('id', 'title', 'price', 'discounted_price', 'lab_id')
+            ->where('lab_id', $id)
+            ->orderBy('title')
+            ->get();
+
         return response()->json($tests);
     }
     public function labCityTest() {
