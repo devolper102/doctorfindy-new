@@ -36,7 +36,7 @@
 --}}
 <link href="{{ asset('css/bootstrap4.css') }}" rel="stylesheet">
 @php
-$role_type = Helper::getRoleTypeByUserID(Auth::user()->id);
+$role_type = Auth::check() ? Helper::getRoleTypeByUserID(Auth::id()) : '';
 @endphp
 @if($role_type !== 'admin')
 <link href="{{ asset('css/knockdoc_adminPannel.css') }}" rel="stylesheet">
@@ -50,7 +50,7 @@ $role_type = Helper::getRoleTypeByUserID(Auth::user()->id);
 </body>
 @yield('header')
 @php
-$role_type = Helper::getRoleTypeByUserID(Auth::user()->id);
+$role_type = Auth::check() ? Helper::getRoleTypeByUserID(Auth::id()) : '';
 $site_logo =  Helper::getGeneralSettings('site_logo');
 @endphp
 @yield('banner')

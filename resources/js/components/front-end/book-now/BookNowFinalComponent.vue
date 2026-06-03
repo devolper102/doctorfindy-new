@@ -148,7 +148,8 @@ export default {
    components: {VTooltip},
   name: "BookNowFinalComponent",
   props:[
-    'fileSystemDriver'
+    'fileSystemDriver',
+    'appointmentId',
   ],
   data() {
     return {
@@ -162,12 +163,13 @@ export default {
   },
   computed: {
     downloadUrl() {
-      const appointmentId = this.$parent.appointment_last_id;
+      const appointmentId = this.appointmentId || (this.$parent && this.$parent.appointment_last_id);
       if (!appointmentId) {
         return null;
       }
 
-      return (typeof APP_URL !== 'undefined' ? APP_URL : '') + '/download/appointment/' + appointmentId;
+      const baseUrl = typeof APP_URL !== 'undefined' ? APP_URL : '';
+      return baseUrl + '/download/appointment/' + appointmentId;
     },
   },
   mounted(){

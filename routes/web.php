@@ -234,7 +234,7 @@ Route::post('demo-request', 'UserController@storeDemoRequest');
 
 Route::delete('remove-saved-wishlist/{id}', 'UserController@removeSaved');
 Route::group(
-    ['middleware' => ['role:admin|doctor|hospital|patient']],
+    ['middleware' => ['auth', 'role:admin|doctor|hospital|patient']],
     function () {
  // Account Settings Routes
         Route::get('profile/settings/account-settings', 'UserController@accountSettings')->name('accountSettings');

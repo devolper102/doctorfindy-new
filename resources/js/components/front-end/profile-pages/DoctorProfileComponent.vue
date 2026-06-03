@@ -110,6 +110,7 @@
     ></book-now-verification>
     <book-now-final
           v-if="bookNowFinal"
+          :appointment-id="appointment_last_id"
           :fileSystemDriver="fileSystemDriver"
     ></book-now-final>
     <report
@@ -380,6 +381,8 @@ export default {
         total_charges : self.hospitalFees,
         type : self.bookNowType,
         code : self.verification_code,
+        patient_id : self.patientData ? self.patientData.id : null,
+        phone_number : self.patientData ? self.patientData.phone_number : null,
         user_id : self.doctor_data.id,
       }).then(function (response) {
         if (response.data.type === 'success') {

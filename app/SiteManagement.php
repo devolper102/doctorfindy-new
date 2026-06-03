@@ -41,14 +41,16 @@ class SiteManagement extends Model
     public static function getMetaValue($meta_key)
     {
         if (!empty($meta_key)) {
-            $data = SiteManagement::select('meta_value')->where('meta_key', $meta_key)->get()->first();
-            if (!empty($data)) {
+            $meta_value = DB::table('site_managements')
+                ->where('meta_key', $meta_key)
+                ->value('meta_value');
+            if (!empty($meta_value)) {
                 $fixed_data = preg_replace_callback(
                     '!s:(\d+):"(.*?)";!',
                     function ($match) {
                         return ($match[1] == strlen($match[2])) ? $match[0] : 's:' . strlen($match[2]) . ':"' . $match[2] . '";';
                     },
-                    $data->meta_value
+                    $meta_value
                 );
                 return json_decode($fixed_data);
             }

@@ -106,15 +106,17 @@ class UserController extends Controller
      */
     public function accountSettings()
     {
+        config(['laravel-model-caching.enabled' => false]);
+
         if (file_exists(resource_path('views/extend/back-end/account-settings/index.blade.php'))) {
 
             return view(
                 'extend.back-end.account-settings.index'
             );
         } else {
-            $user =Auth::user();
+            $user = Auth::user();
             return view(
-                'back-end.account-settings.index',compact('user')
+                'back-end.account-settings.index', compact('user')
             );
         }
     }

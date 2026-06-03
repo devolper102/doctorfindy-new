@@ -507,10 +507,14 @@ class Helper extends Model
      */
     public static function getRoleTypeByUserID($user_id)
     {
-        $role = DB::table('model_has_roles')->select('role_id')->where('model_id', $user_id)
+        $role = DB::table('model_has_roles')
+            ->select('role_id')
+            ->where('model_id', $user_id)
             ->first();
         if (!empty($role)) {
-            $role_type = Role::select('role_type')->where('id', $role->role_id)->pluck('role_type')->first();
+            $role_type = DB::table('roles')
+                ->where('id', $role->role_id)
+                ->value('role_type');
         }
         return !empty($role_type) ? $role_type : '';
     }
@@ -525,10 +529,14 @@ class Helper extends Model
     public static function getAuthRoleType()
     {
         if (Auth::user()) {
-            $role = DB::table('model_has_roles')->select('role_id')->where('model_id', Auth::user()->id)
+            $role = DB::table('model_has_roles')
+                ->select('role_id')
+                ->where('model_id', Auth::user()->id)
                 ->first();
             if (!empty($role)) {
-                $role_type = Role::select('role_type')->where('id', $role->role_id)->pluck('role_type')->first();
+                $role_type = DB::table('roles')
+                    ->where('id', $role->role_id)
+                    ->value('role_type');
             }
             return !empty($role_type) ? $role_type : '';
         }

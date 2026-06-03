@@ -1106,6 +1106,12 @@ class PublicController extends Controller
      */
     public function submitAppointment(Request $request)
     {
+        config(['laravel-model-caching.enabled' => false]);
+
+        if (! Auth::user()) {
+            $this->authenticateBookingPatient($request);
+        }
+
         $json = array();
         if (Auth::user()) {
             $appointment = new Appointment();
@@ -1166,8 +1172,49 @@ class PublicController extends Controller
             }
         } else {
             $json['type'] = 'error';
+            $json['message'] = 'Please verify your mobile number to complete booking.';
             return $json;
         }
+    }
+
+    /**
+     * Log in the patient for book-now flow using phone + verification code.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    protected function authenticateBookingPatient(Request $request)
+    {
+        $code = $request->input('code');
+        if (empty($code)) {
+            return;
+        }
+
+        $query = DB::table('users')->where('verification_code', $code);
+
+        if ($request->filled('patient_id')) {
+            $query->where('id', $request->input('patient_id'));
+        } elseif ($request->filled('phone_number')) {
+            $query->where('phone_number', $request->input('phone_number'));
+        } else {
+            return;
+        }
+
+        $userRow = $query->first();
+        if (! $userRow) {
+            return;
+        }
+
+        DB::table('users')->where('id', $userRow->id)->update([
+            'verification_code' => null,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $user = (new User())->newInstance((array) $userRow, true);
+        $user->setRelation('roles', collect());
+        $user->setRelation('profile', null);
+        auth()->login($user);
     }
 
     /**
