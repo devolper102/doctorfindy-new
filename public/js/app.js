@@ -79889,11 +79889,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     specialitySelected: function specialitySelected(value, id) {
-      this.selectedSpeciality = value.id;
+      this.selectedSpeciality = value;
       // console.log('spe', this.selectedSpeciality)
     },
     hospitalSelected: function hospitalSelected(value, id) {
-      this.selectHospital = value.id;
+      this.selectHospital = value;
       // console.log('hos', this.selectHospital)
     },
     customLabel: function customLabel(value) {

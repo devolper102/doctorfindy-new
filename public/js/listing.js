@@ -80021,7 +80021,7 @@ __webpack_require__.r(__webpack_exports__);
     VTooltip: v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   name: "BookNowFinalComponent",
-  props: ['fileSystemDriver'],
+  props: ['fileSystemDriver', 'appointmentId'],
   data: function data() {
     return {
       basePath: '',
@@ -80029,10 +80029,18 @@ __webpack_require__.r(__webpack_exports__);
       doctorData: this.$parent.doctor_data,
       hospitalData: this.$parent.selectedHospital,
       verified_message: 'Verified User',
-      medical_message: 'Medical Registration Verified',
-      time: this.$parent.selected_time,
-      date: this.$parent.selected_appointment_date
+      medical_message: 'Medical Registration Verified'
     };
+  },
+  computed: {
+    downloadUrl: function downloadUrl() {
+      var appointmentId = this.appointmentId || this.$parent && this.$parent.appointment_last_id;
+      if (!appointmentId) {
+        return null;
+      }
+      var baseUrl = typeof APP_URL !== 'undefined' ? APP_URL : '';
+      return baseUrl + '/download/appointment/' + appointmentId;
+    }
   },
   mounted: function mounted() {
     if (this.fileSystemDriver === 'production') {
@@ -83588,17 +83596,17 @@ var render = function render() {
     attrs: {
       id: "removed"
     }
-  }, [_c("a", {
+  }, [_vm.downloadUrl ? _c("a", {
     staticClass: "text_14 float-left mr-3 text-blue",
     attrs: {
-      href: "/download/" + _vm.time + "/" + _vm.date
+      href: _vm.downloadUrl
     }
   }, [_vm._v("Download "), _c("img", {
     staticClass: "img-fluid",
     attrs: {
       src: _vm.basePath + "/images/final-save.png"
     }
-  })]), _vm._v(" "), _c("a", {
+  })]) : _vm._e(), _vm._v(" "), _c("a", {
     staticClass: "text_14 float-left text-blue",
     attrs: {
       href: "",
@@ -83694,12 +83702,12 @@ var render = function render() {
         return _vm.printme.apply(null, arguments);
       }
     }
-  }, [_vm._v("Print")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Print")]), _vm._v(" "), _vm.downloadUrl ? _c("a", {
     staticClass: "knockdoc_btn_bg rounded-pill w-100 p-2 text-center mt-3 mb-3 text-white d-inline-block",
     attrs: {
-      href: "/download/" + _vm.time + "/" + _vm.date
+      href: _vm.downloadUrl
     }
-  }, [_vm._v("Download")])])])])])])])]);
+  }, [_vm._v("Download")]) : _vm._e()])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

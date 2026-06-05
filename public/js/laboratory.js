@@ -81787,6 +81787,14 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       // date: this.date_preferred,
     };
   },
+  computed: {
+    testDownloadUrl: function testDownloadUrl() {
+      if (!this.lastInsertId) {
+        return null;
+      }
+      return (typeof APP_URL !== 'undefined' ? APP_URL : '') + '/download/test/' + this.lastInsertId;
+    }
+  },
   created: function created() {
     if (this.fileSystemDriver === 'production') {
       // Use DigitalOcean Spaces URL for production
@@ -87014,17 +87022,17 @@ var render = function render() {
     attrs: {
       id: "removed"
     }
-  }, [_c("a", {
+  }, [_vm.lastInsertId ? _c("a", {
     staticClass: "text_14 float-left theme-color-text",
     attrs: {
-      href: "/download/test/" + _vm.bookData.date_preferred + "/" + _vm.lastInsertId
+      href: _vm.testDownloadUrl
     }
   }, [_vm._v("Download "), _c("img", {
     staticClass: "img-fluid",
     attrs: {
       src: _vm.basePath + "/images/final-save.png"
     }
-  })])]), _vm._v(" "), _c("p", {
+  })]) : _vm._e()]), _vm._v(" "), _c("p", {
     staticClass: "float-left w-100"
   }, [_vm._v("Thank you "), _c("span", {
     staticClass: "font-weight-bold text-capitalize"

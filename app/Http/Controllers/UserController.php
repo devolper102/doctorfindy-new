@@ -3720,49 +3720,87 @@ public function generateTestPDFRecept($date, $lastInsertId)
          return view('back-end.admin.payment.invoices',compact('allinvoice'));
     }
     public function searchDoctorsForAppointment(Request $request){
+        config(['laravel-model-caching.enabled' => false]);
+
         $speciality_id = $request->speciality_id ?? null;
-        // dd($speciality_id);
         $hospital_id = $request->hospital_id ?? null;
-      if($speciality_id == null && $hospital_id == null){
-        // dd('hehe');
-        $doctors = User::where('first_name', 'LIKE','%'.$request->keyword.'%')->orWhere('last_name', 'LIKE','%'.$request->keyword.'%')->role('doctor')->with('diseases')->with('specialities')->with('profile')->with('services')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->limit(5)->get();
+        $keyword = $request->keyword ?? '';
+
+        $doctors = User::query()
+            ->role('doctor')
+            ->where(function ($query) use ($keyword) {
+                $query->where('first_name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->when($speciality_id, function ($query) use ($speciality_id) {
+                $query->whereHas('specialities', function ($specialityQuery) use ($speciality_id) {
+                    $specialityQuery->where('speciality_id', $speciality_id);
+                });
+            })
+            ->when($hospital_id, function ($query) use ($hospital_id) {
+                $query->whereHas('doc_teams', function ($teamQuery) use ($hospital_id) {
+                    $teamQuery->where('user_id', $hospital_id);
+                });
+            })
+            ->with([
+                'specialities:id,title,slug',
+                'profile:user_id,avatar,available_days',
+                'doc_teams' => function ($teamQuery) {
+                    $teamQuery->select('id', 'doctor_id', 'user_id', 'slots', 'price');
+                },
+            ])
+            ->limit(5)
+            ->get();
+
+        $doctors->each(function ($doctor) {
+            $doctor->setRelation('feedbacks', collect());
+            $doctor->setRelation('appointments', collect());
+        });
+
         return response()->json($doctors);
-    }
-    if($speciality_id != null && $hospital_id == null){
-        // dd('haha');
-        $doctors = User::where('first_name', 'LIKE','%'.$request->keyword.'%')->orWhere('last_name', 'LIKE','%'.$request->keyword.'%')->role('doctor')->with('diseases')->with('specialities')->with('profile')->with('services')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->whereHas('specialities', function ($q) use ($speciality_id){
-    return $q->where('speciality_id', $speciality_id);
-})->limit(5)->get();
-        return response()->json($doctors);
-    }
-    if($speciality_id == null && $hospital_id != null){
-        // dd('haha');
-        $doctors = User::where('first_name', 'LIKE','%'.$request->keyword.'%')->orWhere('last_name', 'LIKE','%'.$request->keyword.'%')->role('doctor')->with('diseases')->with('specialities')->with('profile')->with('services')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->whereHas('doc_teams', function ($q) use ($hospital_id){
-    return $q->where('user_id', $hospital_id);
-})->whereHas('specialities', function ($qu) use ($speciality_id){
-    return $qu->where('speciality_id', $speciality_id);
-})->limit(5)->get();
-// dd($doctors);
-        return response()->json($doctors);
-    }
-    if($speciality_id != null && $hospital_id != null){
-        // dd('haha');
-        $doctors = User::where('first_name', 'LIKE','%'.$request->keyword.'%')->orWhere('last_name', 'LIKE','%'.$request->keyword.'%')->role('doctor')->with('diseases')->with('specialities')->with('profile')->with('services')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->whereHas('doc_teams', function ($q) use ($hospital_id){
-    return $q->where('user_id', $hospital_id);
-})->limit(5)->get();
-// dd($doctors);
-        return response()->json($doctors);
-    }
     }
     public function appointmentBookingSystem () {
-        // dd('haha');
-        $doctors = User::role('doctor')->with('diseases')->with('specialities')->with('profile')->with('services')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->limit(10)->get();
-        $hospitals = User::role('hospital')->latest()->with('diseases')->with('specialities')->with('location')->with('services')->with('profile')->with('area')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->get();
-        // dd($hospitals);
+        config(['laravel-model-caching.enabled' => false]);
 
-        $specialities = Speciality::whereHas('users')->get();
-        $diseases = Disease::all();
-        $locations = Location::all();
+        // Doctors are searched lazily through /search-for-doctors. Loading them
+        // with appointments/feedback/teams here makes this page too heavy.
+        $doctors = collect();
+
+        $hospitalRoleId = DB::table('roles')->where('role_type', 'hospital')->value('id');
+        $hospitals = collect();
+        if (!empty($hospitalRoleId)) {
+            $hospitals = DB::table('users')
+                ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+                ->leftJoin('user_metas', 'user_metas.user_id', '=', 'users.id')
+                ->where('model_has_roles.role_id', $hospitalRoleId)
+                ->select(
+                    'users.id',
+                    'users.first_name',
+                    'users.last_name',
+                    'users.slug',
+                    'users.location_id',
+                    'users.area_id',
+                    'user_metas.avatar'
+                )
+                ->orderBy('users.created_at', 'desc')
+                ->get()
+                ->map(function ($hospital) {
+                    $hospital->profile = (object) [
+                        'avatar' => $hospital->avatar,
+                    ];
+                    unset($hospital->avatar);
+                    return $hospital;
+                });
+        }
+
+        $specialities = DB::table('specialities')
+            ->join('user_speciality', 'user_speciality.speciality_id', '=', 'specialities.id')
+            ->select('specialities.id', 'specialities.title', 'specialities.slug')
+            ->distinct()
+            ->orderBy('specialities.title')
+            ->get();
+        $diseases = DB::table('diseases')->select('id', 'title', 'slug', 'speciality_id')->get();
+        $locations = DB::table('locations')->select('id', 'title', 'slug', 'parent')->get();
         return view('back-end.admin.appointment-booking-system.index', compact('doctors', 'hospitals', 'specialities', 'diseases', 'locations'));
     }
 

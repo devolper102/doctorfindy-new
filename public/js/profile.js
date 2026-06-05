@@ -2727,7 +2727,7 @@ __webpack_require__.r(__webpack_exports__);
     VTooltip: v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   name: "BookNowFinalComponent",
-  props: ['fileSystemDriver'],
+  props: ['fileSystemDriver', 'appointmentId'],
   data: function data() {
     return {
       basePath: '',
@@ -2735,10 +2735,18 @@ __webpack_require__.r(__webpack_exports__);
       doctorData: this.$parent.doctor_data,
       hospitalData: this.$parent.selectedHospital,
       verified_message: 'Verified User',
-      medical_message: 'Medical Registration Verified',
-      time: this.$parent.selected_time,
-      date: this.$parent.selected_appointment_date
+      medical_message: 'Medical Registration Verified'
     };
+  },
+  computed: {
+    downloadUrl: function downloadUrl() {
+      var appointmentId = this.appointmentId || this.$parent && this.$parent.appointment_last_id;
+      if (!appointmentId) {
+        return null;
+      }
+      var baseUrl = typeof APP_URL !== 'undefined' ? APP_URL : '';
+      return baseUrl + '/download/appointment/' + appointmentId;
+    }
   },
   mounted: function mounted() {
     if (this.fileSystemDriver === 'production') {
@@ -4242,6 +4250,14 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       discountCode: 1234
       // date: this.date_preferred,
     };
+  },
+  computed: {
+    testDownloadUrl: function testDownloadUrl() {
+      if (!this.lastInsertId) {
+        return null;
+      }
+      return (typeof APP_URL !== 'undefined' ? APP_URL : '') + '/download/test/' + this.lastInsertId;
+    }
   },
   created: function created() {
     if (this.fileSystemDriver === 'production') {
@@ -6210,12 +6226,21 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       this.loading = false;
     },
     showFinalModal: function showFinalModal() {
+      var self = this;
       this.loading = true;
-      this.submitAppointment(this.patientData.id);
       this.hospitalFees = this.fee;
       this.bookNowVerification = false;
-      this.bookNowFinal = true;
-      this.loading = false;
+      this.submitAppointment(this.patientData.id).then(function (response) {
+        if (response.data.type === 'success') {
+          self.bookNowFinal = true;
+        }
+        self.loading = false;
+      })["catch"](function () {
+        self.loading = false;
+        Vue.toasted.error('Unable to book appointment. Please try again.', {
+          duration: 3000
+        });
+      });
     },
     showReportModal: function showReportModal() {
       this.loading = true;
@@ -6236,7 +6261,7 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       this.loading = true;
       var self = this;
       // self.appointment.user_id = id;
-      axios.post(APP_URL + '/submit-appointment', {
+      return axios.post(APP_URL + '/submit-appointment', {
         date: self.selected_date,
         day: self.selected_day,
         hospital: self.selectedHospital.id,
@@ -6244,10 +6269,11 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
         total_charges: self.hospitalFees,
         type: self.bookNowType,
         code: self.verification_code,
+        patient_id: self.patientData ? self.patientData.id : null,
+        phone_number: self.patientData ? self.patientData.phone_number : null,
         user_id: self.doctor_data.id
       }).then(function (response) {
         if (response.data.type === 'success') {
-          self.appointment_last_id = '';
           self.appointment_last_id = response.data.appointment_id;
           if (self.bookNowType === 'online') {} else {
             self.loading = false;
@@ -6256,7 +6282,11 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
         } else if (response.data.type === 'error') {
           self.loading = false;
         }
-      })["catch"](function (error) {});
+        return response;
+      })["catch"](function (error) {
+        self.loading = false;
+        throw error;
+      });
     },
     onClose: function onClose() {
       var self = this;
@@ -9697,17 +9727,17 @@ var render = function render() {
     attrs: {
       id: "removed"
     }
-  }, [_c("a", {
+  }, [_vm.downloadUrl ? _c("a", {
     staticClass: "text_14 float-left mr-3 text-blue",
     attrs: {
-      href: "/download/" + _vm.time + "/" + _vm.date
+      href: _vm.downloadUrl
     }
   }, [_vm._v("Download "), _c("img", {
     staticClass: "img-fluid",
     attrs: {
       src: _vm.basePath + "/images/final-save.png"
     }
-  })]), _vm._v(" "), _c("a", {
+  })]) : _vm._e(), _vm._v(" "), _c("a", {
     staticClass: "text_14 float-left text-blue",
     attrs: {
       href: "",
@@ -9803,12 +9833,12 @@ var render = function render() {
         return _vm.printme.apply(null, arguments);
       }
     }
-  }, [_vm._v("Print")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Print")]), _vm._v(" "), _vm.downloadUrl ? _c("a", {
     staticClass: "knockdoc_btn_bg rounded-pill w-100 p-2 text-center mt-3 mb-3 text-white d-inline-block",
     attrs: {
-      href: "/download/" + _vm.time + "/" + _vm.date
+      href: _vm.downloadUrl
     }
-  }, [_vm._v("Download")])])])])])])])]);
+  }, [_vm._v("Download")]) : _vm._e()])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -11920,17 +11950,17 @@ var render = function render() {
     attrs: {
       id: "removed"
     }
-  }, [_c("a", {
+  }, [_vm.lastInsertId ? _c("a", {
     staticClass: "text_14 float-left theme-color-text",
     attrs: {
-      href: "/download/test/" + _vm.bookData.date_preferred + "/" + _vm.lastInsertId
+      href: _vm.testDownloadUrl
     }
   }, [_vm._v("Download "), _c("img", {
     staticClass: "img-fluid",
     attrs: {
       src: _vm.basePath + "/images/final-save.png"
     }
-  })])]), _vm._v(" "), _c("p", {
+  })]) : _vm._e()]), _vm._v(" "), _c("p", {
     staticClass: "float-left w-100"
   }, [_vm._v("Thank you "), _c("span", {
     staticClass: "font-weight-bold text-capitalize"
@@ -14946,6 +14976,7 @@ var render = function render() {
     }
   }) : _vm._e(), _vm._v(" "), _vm.bookNowFinal ? _c("book-now-final", {
     attrs: {
+      "appointment-id": _vm.appointment_last_id,
       fileSystemDriver: _vm.fileSystemDriver
     }
   }) : _vm._e(), _vm._v(" "), _c("report", {
