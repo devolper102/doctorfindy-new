@@ -3064,18 +3064,29 @@ public function generateTestPDFRecept($date, $lastInsertId)
      */
     public function editUser($id)
     {
+        config(['laravel-model-caching.enabled' => false]);
+
         if (!empty($id)) {
              if(Session::has('user_admin_id'))
                {
                   Session::forget('user_admin_id');
                }
             session()->push('user_admin_id', $id);            
-            $user = User::where('id', $id)->with('diseases')->with('specialities')->with('location')->with('services')->with('appointments')->with('roles')->first();
+            $user = User::where('id', $id)
+                ->with('diseases', 'specialities', 'location', 'services', 'roles', 'profile')
+                ->first();
+
+            if (! $user) {
+                abort(404, 'User not found');
+            }
+
             $user_role = Helper::getRoleTypeByUserID($id);
-            $roles = Role::all()->toArray();
+            $roles = DB::table('roles')->get()->map(function ($role) {
+                return (array) $role;
+            })->toArray();
             $user_meta = $user->profile;
 
-            $diseases = Disease::select('id', 'title', 'slug')->get();
+            $diseases = DB::table('diseases')->select('id', 'title', 'slug')->get();
             $diseases_tags = $user->diseases()->get();
 
             $gender_title = !empty($user_meta->gender_title) ? $user_meta->gender_title : '';
@@ -3102,11 +3113,11 @@ public function generateTestPDFRecept($date, $lastInsertId)
             $memberships = !empty($user_meta->memberships) ? json_decode($user_meta->memberships, true) : array();
             $faqs = !empty($user_meta->faqs) ? json_decode($user_meta->faqs, true) : array();
             $registration = !empty($user_meta->verify_medical) ? json_decode($user_meta->verify_medical, true) : array();
-            $registration_number = !empty($registration) ? $registration['registration_number'] : '';
-            $registration_document = !empty($registration) && $registration['registration_document'] ? $registration['registration_document'] : '';
+            $registration_number = !empty($registration['registration_number']) ? $registration['registration_number'] : '';
+            $registration_document = !empty($registration['registration_document']) ? $registration['registration_document'] : '';
             $downloads = !empty($user_meta->downloads) ? json_decode($user_meta->downloads, true) : '';
-            $locations = Location::pluck('title', 'id');
-            $allLocations = Location::all();
+            $locations = DB::table('locations')->pluck('title', 'id');
+            $allLocations = DB::table('locations')->get();
             $address = !empty($user_meta->address) ? $user_meta->address : '';
             $longitude = !empty($user_meta->longitude) ? $user_meta->longitude : '';
             $latitude = !empty($user_meta->latitude) ? $user_meta->latitude : '';
@@ -3145,12 +3156,12 @@ public function generateTestPDFRecept($date, $lastInsertId)
             $atm = !empty($hospital_services_data->atm) ? $hospital_services_data->atm : '';
             $car_parking = !empty($hospital_services_data->car_parking) ? $hospital_services_data->car_parking : '';
             $cafeteria = !empty($hospital_services_data->cafeteria) ? $hospital_services_data->cafeteria : '';
-            $doctor_specialities = !empty($user->profile->services) ? json_decode($user->profile->services, true) : array();
+            $doctor_specialities = !empty($user_meta->services) ? json_decode($user_meta->services, true) : array();
             $intervals = Helper::getAppointmentIntervals();
             $durations = Helper::getAppointmentDuration();
             $spaces = Helper::getAppointmentSpaces();
             $days = Helper::getAppointmentDays();
-            $areas = Area::all();
+            $areas = DB::table('areas')->get();
             $doctor_info = Team::where('doctor_id', $user->id)->with('hospital')->paginate(10);
             if (file_exists(resource_path('views/extend/back-end/admin/users/edit/index.blade.php'))) {
                 return View(

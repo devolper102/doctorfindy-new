@@ -85,7 +85,7 @@
                     
                     <div class="doctor_profile_setting">
                     <h2>{{Helper::getUserName($id)}} {{ trans('lang.profile_setting') }}</h2>
-                    @if ($user->roles[0]->name === 'doctor')
+                    @if (optional($user->roles->first())->name === 'doctor')
                                  @if($user->location !=''|| $user->location != null || $user->location =='null')
                     @if($user->specialities->count() > 0)
                     <h5><a class="float-left ml-2" href="{{ url('doctors/'.clean($user->location->slug).'/'.clean($user->specialities[0]->slug).'/'.clean($user->slug)) }}">View Profile</a>
@@ -93,7 +93,7 @@
                         @endif
                         @endif
                         @endif
-                        @if ($user->roles[0]->name === 'hospital')
+                        @if (optional($user->roles->first())->name === 'hospital')
                                  @if($user->location !=''|| $user->location != null || $user->location =='null')
                     <h5><a class="float-left ml-2" href="{{ url('hospitals/'.clean($user->location->slug).'/'.clean($user->slug)) }}">View Profile</a>
                     </h5>
