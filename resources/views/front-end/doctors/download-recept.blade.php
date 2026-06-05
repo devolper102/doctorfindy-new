@@ -111,7 +111,7 @@
                     height: 80px;border-radius:50%;"src="{{{asset(Helper::getImage('uploads/users/'.$get_data->user_id,  $get_data->doctor_profile->profile->avatar, 'medium-', 'user.jpg'))}}}" alt="User Image"> --}}
                {{-- <img src="images/Madilyn.jpg" alt="logo picture" style="width:80px;
                     height: 80px;border-radius:50%;"> --}}
-                    <img src="{{ asset('uploads/users/default/doctor.svg')}}" alt="Doctor image" name="Doctor image" style="width:80px;
+                    <img src="{{ Helper::uploadedAsset('uploads/users/default/doctor.svg') }}" alt="Doctor image" name="Doctor image" style="width:80px;
                     height: 80px;border-radius:50%;"/>
             </div>
             <div class="prfile-detail"

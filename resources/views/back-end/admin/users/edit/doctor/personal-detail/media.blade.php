@@ -10,7 +10,7 @@
     :img_hidden_id="'hidden_avatar_img'"
     :existed_img="'{{ $avatar }}'"
     :url="'{{ url("media/upload-temp-image/users/avatar_img/profile_img") }}'"
-    :existing_img_url="'{{ (env('FILESYSTEM_DRIVER') == 'production') ? Storage::disk('s3')->url('uploads/users/'.$id.'/'.$avatar) : asset('uploads/users/'.$id.'/'.$avatar) }}'"
+    :existing_img_url="'{{ (env('FILESYSTEM_DRIVER') == 'production') ? Helper::uploadedAsset('uploads/users/'.$id.'/'.$avatar) : asset('uploads/users/'.$id.'/'.$avatar) }}'"
     :size="'{{ Helper::getImageDetail($avatar, 'size', 'uploads/users/'.$id) }}'"
     :existing_img_name="'{{ Helper::getImageDetail($avatar, 'name', 'uploads/users/'.$id) }}'"
 >
@@ -43,7 +43,7 @@
         :img_hidden_id="'hidden_avatar_banner_img'"
         :existed_img="'{{$banner}}'"
         :url="'{{ url("media/upload-temp-image/users/avatar_banner_img/profile_banner") }}'"
-        :existing_img_url="'{{ (env('FILESYSTEM_DRIVER') == 'production') ? Storage::disk('s3')->url('uploads/users/'.$id.'/'.$banner.'') : asset('uploads/users/'.$id.'/'.$avatar) }}'"
+        :existing_img_url="'{{ (env('FILESYSTEM_DRIVER') == 'production') ? Helper::uploadedAsset('uploads/users/'.$id.'/'.$banner.'') : asset('uploads/users/'.$id.'/'.$avatar) }}'"
         :size = "'{{ Helper::getImageDetail( $banner, 'size', 'uploads/users/' .$id) }}'"
         :existing_img_name = "'{{ Helper::getImageDetail( $banner, 'name', 'uploads/users/' .$id) }}'"
         >

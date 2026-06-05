@@ -29,7 +29,7 @@
                                 <img src="{{ asset(Helper::getImage('uploads/users/'.$team->hospital->id, $team->hospital->profile->avatar, 'small-', 'user.jpg')) }}"
                                      alt="{{$team->hospital->profile->avatar}}" alt-text="{{$team->hospital->first_name}}.' '.{{$team->hospital->last_name}}">
                             @elseif ($team->user_id == 'online')
-                                <img src="{{ asset('uploads/users/13/small-1569830071-02.jpg') }}" alt="{{ trans('lang.img_desc') }}">
+                                <img src="{{ Helper::uploadedAsset('uploads/users/13/small-1569830071-02.jpg') }}" alt="{{ trans('lang.img_desc') }}">
                             @endif
                         </figure>
                         <div class="dc-title">

@@ -24,13 +24,13 @@
                             @if($team->hospital->id !== null)
                             <div>
                                 <figure class="dc-clinicsimg">
-                                    <img src="{{ asset('uploads/users/'.$team->hospital->id.'/'.$team->hospital->profile->avatar) }}" alt="{{ trans('lang.img_desc') }}"style="height: 88px; width: 92px;">
+                                    <img src="{{ Helper::uploadedAsset('uploads/users/'.$team->hospital->id.'/'.$team->hospital->profile->avatar) }}" alt="{{ trans('lang.img_desc') }}"style="height: 88px; width: 92px;">
                                 </figure>
                             </div>
                             @else
                             <div>
                                 <figure class="dc-clinicsimg">
-                                    <img src="{{ asset('uploads/users/default/online.jpg') }}" alt="{{ trans('lang.img_desc') }}" style="width: 100px;height: 100px;">
+                                    <img src="{{ Helper::uploadedAsset('uploads/users/default/online.jpg') }}" alt="{{ trans('lang.img_desc') }}" style="width: 100px;height: 100px;">
                                 </figure>
                             </div>
                              @endif

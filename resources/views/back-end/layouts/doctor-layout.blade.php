@@ -33,7 +33,7 @@
                 'authenticated' => auth()->check(),
                 'id' => auth()->check() ? auth()->user()->id : null,
                 'name' => auth()->check() ? auth()->user()->first_name : null,
-                'image' => !empty(auth()->user()->profile->avatar) ? asset('uploads/users/'.auth()->user()->id .'/'.auth()->user()->profile->avatar) : asset('images/user-login.png'),
+                'image' => !empty(auth()->user()->profile->avatar) ? Helper::uploadedAsset('uploads/users/'.auth()->user()->id .'/'.auth()->user()->profile->avatar) : asset('images/user-login.png'),
                 'image_name' => !empty(auth()->user()->profile->avatar) ? auth()->user()->profile->avatar : '',
                 ]
                 ])

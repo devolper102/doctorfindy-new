@@ -381,6 +381,16 @@ class Helper extends Model
      *
      * @return string
      */
+    public static function uploadsBaseUrl()
+    {
+        return rtrim(env('UPLOADS_BASE_URL', 'https://doctorfindy.com'), '/');
+    }
+
+    public static function uploadedAsset($path)
+    {
+        return self::uploadsBaseUrl() . '/' . ltrim($path, '/');
+    }
+
     public static function getImage($path, $image, $size = '', $default = '')
   
     {
@@ -388,33 +398,11 @@ class Helper extends Model
 
         $image_output = '';
         if(env('FILESYSTEM_DRIVER') === 'production'){
-            $disk = 's3';
-
-    if (!empty($path) && !empty($image)) {
-        $file = $path . '/' . $size . $image;
-        // dd($file);
-
-        // Check if the file exists on DO Spaces
-        if (Storage::disk($disk)->exists($file)) {
-            // Use Storage::url() for DO Spaces
-            $image_output = Storage::disk($disk)->url($file);
-        } else {
-            // Check if the original file exists on DO Spaces
-            $file = $path . '/' . $image;
-            if (Storage::disk($disk)->exists($file)) {
-                // Use Storage::url() for DO Spaces
-                $image_output = Storage::disk($disk)->url($file);
+            if (!empty($path) && !empty($image)) {
+                $image_output = self::uploadedAsset($path . '/' . $size . $image);
             } else {
-                // Use the default image if neither size-specific nor original image exists
-                $image_output = Storage::disk($disk)->url('images/' . $default);
+                $image_output = self::uploadedAsset('images/' . $default);
             }
-        }
-    } else {
-        // Use the default image if path or image is empty
-        // $image_output = asset('images/' . $default);
-            $image_output = Storage::disk($disk)->url('images/' . $default);
-        // dd($image_output);
-    }
         }
         else{
         if (!empty($path) && !empty($image)) {
@@ -4383,10 +4371,10 @@ public static function getPatientsFeedback()
                 );
                }
                if(!empty($user->profile->avatar) && $user->profile->avatar != null && $user->profile->avatar != ''){
-                $image_url = config('app.url')."/uploads/users/".$user->id."/".$user->profile->avatar;
+                $image_url = self::uploadedAsset("uploads/users/".$user->id."/".$user->profile->avatar);
                }
                else{
-                $image_url = $image_url = config('app.url')."/uploads/users/default/doctor.svg";
+                $image_url = self::uploadedAsset("uploads/users/default/doctor.svg");
                }   
                // dd($dr_address,$dr_description);
                $author = User::role('patient')->skip(rand(1,55))->first();
@@ -4418,7 +4406,7 @@ public static function getPatientsFeedback()
         $affliated_hospital_name = "";
         $affliated_hospital_phone = $user->phone_number ?? "Not provided";
         $affliated_hospital_address = $user->profile->address?? "Not provided";
-        $affliated_hospital_image = config('app.url')."/uploads/users/".$user->id."/".$avtar;
+        $affliated_hospital_image = self::uploadedAsset("uploads/users/".$user->id."/".$avtar);
         $days = [];
         $hospital_name = [];
         $hospital_phone = [];
@@ -4514,7 +4502,7 @@ public static function getPatientsFeedback()
                     "reviewCount" => rand(2,5),
                 ))->image(array( 
                "@type" => "ImageObject",
-               "url" => config('app.url')."/uploads/users/".$user->id."/".$avtar,
+               "url" => self::uploadedAsset("uploads/users/".$user->id."/".$avtar),
                 "height" => "170",
                 "width" => "170",
             ))->medicalSpecialty(array(
@@ -4557,7 +4545,7 @@ public static function getPatientsFeedback()
        
 $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user->last_name,)->description($user->profile->description)->url($url)->telephone('0345-0435621')->openingHours('24 Hours')->image(array(
                "@type" => "ImageObject",
-               "url" => config('app.url')."/uploads/users/".$user->id."/".$user->profile->avatar 
+               "url" => self::uploadedAsset("uploads/users/".$user->id."/".$user->profile->avatar)
             ))
 ->address(array(
                 "@type" => "PostalAddress",
@@ -4577,7 +4565,7 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
         $url = $app_url."lab/".$user->location->slug."/".$user->slug;
         $labProfileStructure = Schema::DiagnosticLab()->name($user->first_name." ".$user->last_name)->description($user->profile->description)->telephone('0345-0435621')->url($url)->image(array(
                "@type" => "ImageObject",
-               "url" => config('app.url')."/uploads/users/".$user->id."/".$user->profile->avatar 
+               "url" => self::uploadedAsset("uploads/users/".$user->id."/".$user->profile->avatar)
             ))->address(array(
                 "@type" => "PostalAddress",
                  "name" => $user->profile->address,
@@ -4605,7 +4593,7 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
             "url" => url()->current(),
             "description" => $article->description,
             "reading_time" => $article->reading_time. ' mins',
-            "image" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image,
+            "image" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image),
            "height" => "170",
             "width" => "170",
             "author" => array(
@@ -4622,7 +4610,7 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
         $articleURL =config('app.url')."/health-articles/".$article->slug;
         $articleStructure = Schema::Article()->headline($article->title)->url($articleURL)->image(array( 
                "@type" => "ImageObject",
-               "url" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image,
+               "url" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image),
                 "height" => "300",
                 "width" => "600",
             ))->datePublished($article->created_at)->dateModified($article->updated_at)->author(array(
@@ -4669,7 +4657,7 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
         // dd($article);
         $articlesURL = config('app.url')."/health-articles/categories";
         $logoURL = asset(Helper::getGeneralSettings('site_logo'));
-        $imageURL = config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image;
+        $imageURL = self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image);
         $graph = new Graph();
         $graph->MedicalOrganization()->identifier($articlesURL.'/#Organization')->name('DoctorFindy | Find and Book Best Doctors')->url($articlesURL)->logo(array( 
                "@type" => "ImageObject",
@@ -4718,8 +4706,8 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
                 "@type" => "Person",
                 "name" => $article->author->first_name .' '.  $article->author->last_name))->primaryImageOfPage(array( 
                "@type" => "ImageObject",
-               "@id" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image.'/#WebPage',
-               "url" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image,
+               "@id" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image).'/#WebPage',
+               "url" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image),
                 "height" => "300",
                 "width" => "600",
             ))->inLanguage('en-US');
@@ -4732,8 +4720,8 @@ $hospitalProfileStructure = Schema::Hospital()->name($user->first_name." ".$user
                 "sameAS" => config('app.url')."/health-articles",
             ))->image(array( 
                "@type" => "ImageObject",
-               "@id" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image.'/#WebPage',
-               "url" => config('app.url')."/uploads/users/".$article->author->id."/articles/".$article->image,
+               "@id" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image).'/#WebPage',
+               "url" => self::uploadedAsset("uploads/users/".$article->author->id."/articles/".$article->image),
                 "height" => "300",
                 "width" => "600",
             ))->inLanguage('en-US');

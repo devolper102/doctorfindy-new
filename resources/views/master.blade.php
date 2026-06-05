@@ -43,7 +43,122 @@
             @php echo \App\Typo::setSiteStyling(); @endphp
             <script type="text/javascript">
               var APP_URL = {!! json_encode(url('/')) !!}
+              var APP_ASSET_URL = {!! json_encode(Helper::uploadsBaseUrl()) !!}
               var Map_key = {!! json_encode(Helper::getGoogleMapApiKey()) !!}
+            </script>
+            <script type="text/javascript">
+              (function () {
+                var assetBaseUrl = (window.APP_ASSET_URL || '').replace(/\/$/, '');
+                if (!assetBaseUrl) {
+                  return;
+                }
+
+                function rewriteUploadUrl(value) {
+                  if (!value || typeof value !== 'string') {
+                    return value;
+                  }
+
+                  if (value.indexOf('/uploads/') === 0) {
+                    return assetBaseUrl + value;
+                  }
+
+                  if (typeof window.APP_URL === 'string') {
+                    var localUploadsPrefix = window.APP_URL.replace(/\/$/, '') + '/uploads/';
+                    if (value.indexOf(localUploadsPrefix) === 0) {
+                      return assetBaseUrl + value.substring(window.APP_URL.replace(/\/$/, '').length);
+                    }
+                  }
+
+                  return value;
+                }
+
+                function rewriteSrcset(value) {
+                  if (!value || typeof value !== 'string') {
+                    return value;
+                  }
+
+                  return value.split(',').map(function (part) {
+                    var pieces = part.trim().split(/\s+/);
+                    pieces[0] = rewriteUploadUrl(pieces[0]);
+                    return pieces.join(' ');
+                  }).join(', ');
+                }
+
+                function rewriteElement(element) {
+                  if (!element || element.nodeType !== 1) {
+                    return;
+                  }
+
+                  ['src', 'data-src', 'data-lazy', 'href'].forEach(function (attribute) {
+                    if (!element.hasAttribute(attribute)) {
+                      return;
+                    }
+
+                    var currentValue = element.getAttribute(attribute);
+                    var nextValue = rewriteUploadUrl(currentValue);
+                    if (nextValue !== currentValue) {
+                      element.setAttribute(attribute, nextValue);
+                    }
+                  });
+
+                  if (element.hasAttribute('srcset')) {
+                    var currentSrcset = element.getAttribute('srcset');
+                    var nextSrcset = rewriteSrcset(currentSrcset);
+                    if (nextSrcset !== currentSrcset) {
+                      element.setAttribute('srcset', nextSrcset);
+                    }
+                  }
+                }
+
+                function rewriteTree(root) {
+                  rewriteElement(root);
+                  if (root && root.querySelectorAll) {
+                    root.querySelectorAll('[src], [data-src], [data-lazy], [srcset], [href]').forEach(rewriteElement);
+                  }
+                }
+
+                document.addEventListener('error', function (event) {
+                  var element = event.target;
+                  if (!element || element.tagName !== 'IMG' || element.dataset.originalUploadRetried === 'true') {
+                    return;
+                  }
+
+                  var currentSrc = element.getAttribute('src') || '';
+                  var originalSrc = currentSrc.replace('/small-', '/').replace('/medium-', '/').replace('/large-', '/');
+                  if (originalSrc !== currentSrc) {
+                    element.dataset.originalUploadRetried = 'true';
+                    element.setAttribute('src', originalSrc);
+                  }
+                }, true);
+
+                document.addEventListener('DOMContentLoaded', function () {
+                  rewriteTree(document);
+
+                  if (!window.MutationObserver) {
+                    return;
+                  }
+
+                  var observer = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                      if (mutation.type === 'attributes') {
+                        rewriteElement(mutation.target);
+                        return;
+                      }
+
+                      mutation.addedNodes.forEach(function (node) {
+                        rewriteTree(node);
+                      });
+                    });
+                  });
+
+                  observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['src', 'data-src', 'data-lazy', 'srcset', 'href']
+                  });
+                });
+              })();
             </script>
             @if (Auth::user())
             <script type="text/javascript">
@@ -54,7 +169,7 @@
                     'authenticated' => auth()->check(),
                     'id' => auth()->check() ? auth()->user()->id : null,
                     'name' => auth()->check() ? auth()->user()->first_name : null,
-                    'image' => optional(auth()->user()->profile)->avatar ? asset('uploads/users/'.auth()->user()->id .'/'.auth()->user()->profile->avatar) : asset('images/user-login.png'),
+                    'image' => optional(auth()->user()->profile)->avatar ? Helper::uploadedAsset('uploads/users/'.auth()->user()->id .'/'.auth()->user()->profile->avatar) : asset('images/user-login.png'),
                     'image_name' => optional(auth()->user()->profile)->avatar ?? '',
                     ]
                     ])

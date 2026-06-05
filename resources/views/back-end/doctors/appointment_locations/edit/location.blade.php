@@ -34,7 +34,7 @@
                 <div class="dc-clinics">
                     <div>
                         <figure class="dc-clinicsimg">
-                            <img src="{{ asset('uploads/users/default/online.jpg') }}" alt="{{ trans('lang.img_desc') }}" style="width: 100px;height: 100px;">
+                            <img src="{{ Helper::uploadedAsset('uploads/users/default/online.jpg') }}" alt="{{ trans('lang.img_desc') }}" style="width: 100px;height: 100px;">
                         </figure>
                     </div>
                     <div class="dc-clinics-content">
