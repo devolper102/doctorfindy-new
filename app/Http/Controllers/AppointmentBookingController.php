@@ -160,19 +160,19 @@ class AppointmentBookingController extends Controller
         $hospitals = User::role('hospital')->with('diseases')->with('specialities')->with('location')->with('services')->with('profile')->with('location')->with('feedbacks')->with('doc_teams')->with('teams')->with('appointments')->with('roles')->get();
         $specialities = Speciality::where('top',1)->get();
         $diseases = Disease::all();
-        $locations = Location::all();
+        $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
         return view('back-end.csr.bookings.onlineBookingConsultation', compact('doctors', 'hospitals', 'specialities', 'diseases', 'locations'));
     }
     public function visit_appointment(Request $request){
         if($request->ajax())
         {
-           $appointments = Appointment::where('type','visit')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+           $appointments = Appointment::where('type','visit')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
            $count =$request->clickCount+1;
            return response()->json([$appointments,$count]);
         }
         else
         {
-           $appointments = Appointment::where('type','visit')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+           $appointments = Appointment::where('type','visit')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
         return view('back-end.admin.appointment-booking-system.visit_appointment',compact('appointments')); 
         }
         
@@ -183,14 +183,14 @@ class AppointmentBookingController extends Controller
         {
             $appointments_id=DB::table('appointment_notification')->where('admin_alert','=','unread')->orWhere('admin_alert','=','notification-send')->latest()->skip(20*$request->clickCount)->take(40)->pluck('appointment_id');
 
-           $appointments=Appointment::whereIn('id',$appointments_id)->where('type','visit')->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+           $appointments=Appointment::whereIn('id',$appointments_id)->where('type','visit')->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
 
             $count =$request->clickCount+1;
            return response()->json([$appointments,$count]);
         }
         $appointments_id=DB::table('appointment_notification')->where('admin_alert','=','unread')->orWhere('admin_alert','=','notification-send')->latest()->limit(40)->pluck('appointment_id');
 
-        $appointments=Appointment::whereIn('id',$appointments_id)->where('type','visit')->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+        $appointments=Appointment::whereIn('id',$appointments_id)->where('type','visit')->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
 
         return view('back-end.admin.appointment-booking-system.appointment-notifications',compact('appointments'));
 
@@ -209,7 +209,7 @@ class AppointmentBookingController extends Controller
         }
         $appointments_id=DB::table('appointment_notification')->where('admin_alert','=','unread')->orWhere('admin_alert','=','notification-send')->latest()->limit(40)->pluck('appointment_id');
         
-        $appointments=Appointment::whereIn('id',$appointments_id)->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+        $appointments=Appointment::whereIn('id',$appointments_id)->select('id','user_id','hospital_id','patient_id','appointment_date','appointment_time','charges','status','type','booked_by','created_at','updated_at')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
         return response()->json($appointments);
 
     }
@@ -325,23 +325,23 @@ class AppointmentBookingController extends Controller
         $appointment->update();
         if($request->type === 'visit-appointment')
         {
-           $appointments = Appointment::where('type','visit')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get(); 
+           $appointments = Appointment::where('type','visit')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get(); 
         }
         elseif($request->type === 'pending-appointment') {
-            $appointments = Appointment::where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+            $appointments = Appointment::where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
             
         }
         elseif($request->type === 'accepted-appointment') {
-            $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+            $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
             
         }
         elseif($request->type === 'cancel-appointment')
         {
-            $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+            $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
         }
         else
         {
-            $appointments = Appointment::with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+            $appointments = Appointment::withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
         }
 
         
@@ -356,13 +356,13 @@ class AppointmentBookingController extends Controller
             {
                 $users=User::role('hospital')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                $appointments=Appointment::where('type','visit')->with('doctor_profile','hospital_profile','patient_profile')->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
+                $appointments=Appointment::where('type','visit')->withAdminProfiles()->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
             }
             elseif($option === 'search-by-doctor')
             {
                $users=User::role('doctor')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                $appointments=Appointment::where('type','visit')->with('doctor_profile','hospital_profile','patient_profile')->whereIn('user_id',$users)->orderBy('appointment_date', 'desc')->get();
+                $appointments=Appointment::where('type','visit')->withAdminProfiles()->whereIn('user_id',$users)->orderBy('appointment_date', 'desc')->get();
             }
             else
             {
@@ -416,7 +416,7 @@ class AppointmentBookingController extends Controller
         {
             if($request->type==='all-appointment')
             {
-              $appointments = Appointment::with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+              $appointments = Appointment::withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
               $count =$request->clickCount+1;
               return response()->json([$appointments,$count]);
 
@@ -425,8 +425,8 @@ class AppointmentBookingController extends Controller
         }
         else
         {
-            $appointments = Appointment::with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
-        $locations = Location::get();
+            $appointments = Appointment::withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+        $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
         return view('back-end.admin.appointment-booking-system.all_appointment',compact('appointments','locations'));
 
         }
@@ -444,21 +444,21 @@ class AppointmentBookingController extends Controller
                 {
                     $users=User::role('hospital')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'pending')->whereIn('hospital_id',$users)->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'pending')->whereIn('hospital_id',$users)->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                     
                 }
                 elseif($option === 'search-by-doctor')
                 {
                     $users=User::role('doctor')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'pending')->whereIn('user_id',$users)->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'pending')->whereIn('user_id',$users)->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                    
                 }
                 else
                 {
                     $users=User::role('patient')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'pending')->whereIn('patient_id',$users)->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'pending')->whereIn('patient_id',$users)->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                 }
 
               
@@ -469,21 +469,21 @@ class AppointmentBookingController extends Controller
                 {
                     $users=User::role('hospital')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
                     
                 }
                 elseif($option === 'search-by-doctor')
                 {
                     $users=User::role('doctor')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                    
                 }
                 else
                 {
                     $users=User::role('patient')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                      $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                      $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                     
                 }
 
@@ -494,21 +494,21 @@ class AppointmentBookingController extends Controller
                 {
                     $users=User::role('hospital')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
                     
                 }
                 elseif($option === 'search-by-doctor')
                 {
                     $users=User::role('doctor')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                    
                 }
                 else
                 {
                     $users=User::role('patient')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                     
                 }
 
@@ -519,20 +519,20 @@ class AppointmentBookingController extends Controller
                 {
                     $users=User::role('hospital')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments=Appointment::with('doctor_profile','hospital_profile','patient_profile')->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
+                    $appointments=Appointment::withAdminProfiles()->whereIn('hospital_id',$users)->orderBy('appointment_date', 'desc')->get();
                 }
                 elseif($option === 'search-by-doctor')
                 {
                    $users=User::role('doctor')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->latest()->limit(40)->pluck('id');
 
-                    $appointments=Appointment::with('doctor_profile','hospital_profile','patient_profile')->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                    $appointments=Appointment::withAdminProfiles()->whereIn('user_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                 }
                 else
                 {
                     if($option==='search-by-patient')
                     {
                           $users=User::role('patient')->where('first_name','like','%'.$request->search.'%')->orWhere('last_name','like','%'.$request->search.'%')->orWhere('email','like','%'.$request->search.'%')->with('appointments_patient')->whereHas('appointments_patient')->latest()->limit(40)->pluck('id');
-                          $appointments=Appointment::with('doctor_profile','hospital_profile','patient_profile')->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+                          $appointments=Appointment::withAdminProfiles()->whereIn('patient_id',$users)->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
                        
                     }
                 }
@@ -551,7 +551,7 @@ class AppointmentBookingController extends Controller
         {
             if($request->type==='pending-appointment')
             {
-                 $appointments = Appointment::where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+                 $appointments = Appointment::where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
               $count =$request->clickCount+1;
               return response()->json([$appointments,$count]);
 
@@ -560,8 +560,8 @@ class AppointmentBookingController extends Controller
         }
         else
         {
-            $appointments = Appointment::where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
-            $locations = Location::get();
+            $appointments = Appointment::where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+            $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
             return view('back-end.admin.appointment-booking-system.all_appointment',compact('appointments','locations'));
 
         }
@@ -572,7 +572,7 @@ class AppointmentBookingController extends Controller
         {
             if($request->type==='accepted-appointment')
             {
-                 $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+                 $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
               $count =$request->clickCount+1;
               return response()->json([$appointments,$count]);
 
@@ -580,8 +580,8 @@ class AppointmentBookingController extends Controller
         }
         else
         {
-          $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
-            $locations = Location::get();
+          $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+            $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
             return view('back-end.admin.appointment-booking-system.all_appointment',compact('appointments','locations'));
         }
         
@@ -592,7 +592,7 @@ class AppointmentBookingController extends Controller
         {
            if($request->type==='cancel-appointment')
             {
-                 $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+                 $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
               $count =$request->clickCount+1;
               return response()->json([$appointments,$count]);
 
@@ -600,8 +600,8 @@ class AppointmentBookingController extends Controller
         }
         else
         {
-            $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
-            $locations = Location::get();
+            $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->take(40)->get();
+            $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
             return view('back-end.admin.appointment-booking-system.all_appointment',compact('appointments','locations')); 
         }
        
@@ -610,11 +610,11 @@ class AppointmentBookingController extends Controller
       public function online_appointment(Request $request){
         if($request->ajax())
         {
-            $appointments = Appointment::where('type','online')->with('doctor_profile', 'hospital_profile', 'patient_profile')->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
+            $appointments = Appointment::where('type','online')->withAdminProfiles()->orderBy('appointment_date', 'desc')->skip(20*$request->clickCount)->take(40)->get();
               $count =$request->clickCount+1;
               return response()->json([$appointments,$count]);
         }
-        $appointments = Appointment::where('type','online')->with('doctor_profile', 'hospital_profile', 'patient_profile')->orderBy('appointment_date', 'desc')->take(40)->get();
+        $appointments = Appointment::where('type','online')->withAdminProfiles()->orderBy('appointment_date', 'desc')->take(40)->get();
         return view('back-end.admin.appointment-booking-system.online_appointment',compact('appointments'));
     }
      public function delete_online(Request $request)
@@ -644,19 +644,19 @@ class AppointmentBookingController extends Controller
         // dd('d');
         $route=$request->type;
         if($route == 'all-appointment'){
-        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
     }
     if($route == 'pending-appointment'){
-        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
     }
     if($route == 'accepted-appointment'){
-        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
     }
     if($route == 'cancel-appointment'){
-        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
+        $appointments = Appointment::where('appointment_date','>=', $request->startDate)->where('appointment_date','<=', $request->endDate)->where('status', 'cancel')->withAdminProfiles()->where('hospital_id', '!=', 0)->orderBy('appointment_date', 'desc')->get();
     }
         // dd($appointments);
-        $locations = Location::get();
+        $locations = DB::table('locations')->select('id', 'title', 'parent')->orderBy('title')->get();
         return response()->json(
             [
                 'type' => 'success',
@@ -671,28 +671,28 @@ class AppointmentBookingController extends Controller
         $route=$request->type;
         $location_id = $request->id;
         if($route == 'all-appointment'){
-        $appointments = Appointment::with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
+        $appointments = Appointment::withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
     return $query->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
         // dd($appointments);
     }
     if($route == 'pending-appointment'){
-        $appointments = Appointment::where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
+        $appointments = Appointment::where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
     return $query->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
 
     }
     if($route == 'accepted-appointment'){
-        $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
+        $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
     return $query->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
     }
     if($route == 'cancel-appointment'){
-        $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
+        $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($location_id) {
     return $query->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
     }
-        $areas = Area::where('location_id', $location_id)->get();
+        $areas = DB::table('areas')->where('location_id', $location_id)->select('id', 'title', 'location_id')->get();
         // dd($areas);
 
         return response()->json(
@@ -708,26 +708,26 @@ class AppointmentBookingController extends Controller
         // dd($request->all());
         $route=$request->type;
         $area_id = $request->id;
-        $location_id = Area::where('id',$area_id)->pluck('location_id');
+        $location_id = DB::table('areas')->where('id', $area_id)->value('location_id');
         if($route == 'all-appointment'){
-        $appointments = Appointment::with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
+        $appointments = Appointment::withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
     return $query->where('area_id', $area_id)->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
         // dd($appointments);
     }
     if($route == 'pending-appointment'){
-        $appointments = Appointment::where('status', 'pending')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
+        $appointments = Appointment::where('status', 'pending')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
     return $query->where('area_id', $area_id)->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
 
     }
     if($route == 'accepted-appointment'){
-        $appointments = Appointment::where('status', 'accepted')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
+        $appointments = Appointment::where('status', 'accepted')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
     return $query->where('area_id', $area_id)->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
     }
     if($route == 'cancel-appointment'){
-        $appointments = Appointment::where('status', 'cancel')->with('doctor_profile', 'hospital_profile', 'patient_profile')->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
+        $appointments = Appointment::where('status', 'cancel')->withAdminProfiles()->where('hospital_id', '!=', 0)->whereHas('hospital_profile', function ($query)  use ($area_id, $location_id) {
     return $query->where('area_id', $area_id)->where('location_id', $location_id);
 })->orderBy('appointment_date', 'desc')->get();
     }

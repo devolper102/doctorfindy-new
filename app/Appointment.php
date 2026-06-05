@@ -72,6 +72,35 @@ class Appointment extends Model
     {
         return $this->hasOne('App\User', 'id','user_id')->with('profile')->with('specialities','doc_teams','onlines');
     }
+
+    /**
+     * Lightweight eager loads for admin appointment listing pages.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithAdminProfiles($query)
+    {
+        config(['laravel-model-caching.enabled' => false]);
+
+        return $query->with([
+            'doctor_profile' => function ($doctorQuery) {
+                $doctorQuery->select('id', 'first_name', 'last_name', 'slug', 'phone_number')
+                    ->with(['specialities' => function ($specialityQuery) {
+                        $specialityQuery->select('specialities.id', 'specialities.title');
+                    }]);
+            },
+            'hospital_profile' => function ($hospitalQuery) {
+                $hospitalQuery->select('id', 'first_name', 'last_name', 'slug', 'location_id', 'area_id')
+                    ->with(['location' => function ($locationQuery) {
+                        $locationQuery->select('id', 'title');
+                    }]);
+            },
+            'patient_profile' => function ($patientQuery) {
+                $patientQuery->select('id', 'first_name', 'last_name', 'slug', 'phone_number');
+            },
+        ]);
+    }
     
     /**
      * Store patient appointment data

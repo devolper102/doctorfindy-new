@@ -54,26 +54,22 @@
 
                                                 <tr>
                         @php
-                            $app_doctor = App\User::where('id',$appointment->user_id)->with('profile')->first();
-                            
+                            $app_doctor = $appointment->doctor_profile;
+                            $app_patient = $appointment->patient_profile;
+                            $specialityTitle = optional(optional($app_doctor)->specialities)->first()->title ?? '-';
                         @endphp
 
                                                     <td>
-                                                            <a href="/profile/{{clean($app_doctor->slug)}}">{{Helper::getUserData($app_doctor->id)}}</a>
+                                                        @if($app_doctor && $app_doctor->slug)
+                                                            <a href="/profile/{{ clean($app_doctor->slug) }}">{{ Helper::getUserData($appointment->user_id) }}</a>
+                                                        @else
+                                                            {{ Helper::getUserData($appointment->user_id) }}
+                                                        @endif
                                                     </td>
-                        @php
-                            $app_hospital = App\User::where('id',$appointment->hospital_id)->with('profile')->first();
-                            
-                        @endphp                         
-                        @php
-
-                            $app_patient = App\User::where('id',$appointment->patient_id)->with('profile')->first();
-
-                        @endphp                       
                                                     <td>
-                                                            <b>{{Helper::getUserData($app_patient->id)}}</b>
-                                                    </td>        
-                                                    <td>Anesthesiology</td>
+                                                            <b>{{ $app_patient ? trim($app_patient->first_name.' '.$app_patient->last_name) : Helper::getUserData($appointment->patient_id) }}</b>
+                                                    </td>
+                                                    <td>{{ $specialityTitle }}</td>
 
                                                     <td>{{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('M d, Y') }}}<span class="text-primary d-block">{{$appointment->appointment_time}}</span></td>
                                                        <td class="text-right">

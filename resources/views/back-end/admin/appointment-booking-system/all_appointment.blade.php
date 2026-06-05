@@ -133,34 +133,29 @@
                                                                                              @foreach($appointments as  $key => $appointment)
 
                                                 <tr>
-                                                  
                         @php
-                                               
-                            $hospital_name = $appointment->hospital_profile->first_name . ' ' . $appointment->hospital_profile->last_name;
-                            $patient_name = $appointment->patient_profile->first_name . ' ' . $appointment->patient_profile->last_name;
-                            $doctor_name = $appointment->doctor_profile->first_name . ' ' . $appointment->doctor_profile->last_name;
-                            $speciality = $appointment->doctor_profile->specialities[0]->title;
-                            $city_id = $appointment->hospital_profile->location_id;
-                            $city_name = App\Location::where('id', $city_id)->pluck('title')->first();
-                        @endphp                            
-                        @php
-                            $app_doctor = App\User::where('id',$appointment->user_id)->with('profile')->first();
-                            
+                            $app_doctor = $appointment->doctor_profile;
+                            $app_hospital = $appointment->hospital_profile;
+                            $app_patient = $appointment->patient_profile;
+                            $hospital_name = $app_hospital ? trim($app_hospital->first_name.' '.$app_hospital->last_name) : '-';
+                            $patient_name = $app_patient ? trim($app_patient->first_name.' '.$app_patient->last_name) : '-';
+                            $doctor_name = $app_doctor ? trim($app_doctor->first_name.' '.$app_doctor->last_name) : '-';
+                            $speciality = optional(optional($app_doctor)->specialities)->first()->title ?? '-';
+                            $city_name = optional(optional($app_hospital)->location)->title ?? '-';
                         @endphp
 
                                                     <td>
-                                                            <a href="/profile/{{clean($app_doctor->slug)}}">{{$doctor_name}}</a>
+                                                        @if($app_doctor && $app_doctor->slug)
+                                                            <a href="/profile/{{ clean($app_doctor->slug) }}">{{ $doctor_name }}</a>
+                                                        @else
+                                                            {{ $doctor_name }}
+                                                        @endif
                                                     </td>
-
-                        @php
-
-                            $app_patient = App\User::where('id',$appointment->patient_id)->with('profile')->first();
-                        @endphp                       
                                                     <td>
-                                                            <b>{{$patient_name}}</b>
-                                                    </td>  
+                                                            <b>{{ $patient_name }}</b>
+                                                    </td>
                                                     <td>
-                                                        {{Helper::getUserPhonumber($app_patient->id)}}
+                                                        {{ $app_patient && $app_patient->phone_number ? $app_patient->phone_number : Helper::getUserPhonumber($appointment->patient_id) }}
                                                     </td>
                                                     <td>{{$hospital_name}}</td>
                                                     <td>{{$speciality}}</td>
