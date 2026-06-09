@@ -2739,6 +2739,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    patientName: function patientName() {
+      var patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      if (!patient) {
+        return 'N/A';
+      }
+      var name = [patient.first_name, patient.last_name].filter(Boolean).join(' ').trim();
+      return name || 'N/A';
+    },
+    patientPhone: function patientPhone() {
+      var patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      return patient && patient.phone_number ? patient.phone_number : 'N/A';
+    },
     downloadUrl: function downloadUrl() {
       var appointmentId = this.appointmentId || this.$parent && this.$parent.appointment_last_id;
       if (!appointmentId) {
@@ -2767,18 +2779,22 @@ __webpack_require__.r(__webpack_exports__);
       this.$parent.onClose();
       this.$parent.bookNowMobile = false;
       var element = document.querySelector('.modal-backdrop');
-      element.remove(element.classList);
+      if (element) {
+        element.remove(element.classList);
+      }
     },
     printme: function printme() {
-      document.querySelector('#closed').classList.add('addRemove');
-      document.querySelector('#removed').classList.add('addRemove');
-      document.querySelector('#paybotton').classList.add('addRemove');
-      document.querySelector('#logoed').classList.remove('logo');
+      var toggleClass = function toggleClass(selector, className) {
+        var add = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+        document.querySelectorAll(selector).forEach(function (element) {
+          element.classList[add ? 'add' : 'remove'](className);
+        });
+      };
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', true);
+      toggleClass('#logoed', 'logo', false);
       window.print();
-      document.querySelector('#closed').classList.remove('addRemove');
-      document.querySelector('#removed').classList.remove('addRemove');
-      document.querySelector('#paybotton').classList.remove('addRemove');
-      document.querySelector('#logoed').classList.add('logo');
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', false);
+      toggleClass('#logoed', 'logo', true);
     }
   }
 });
@@ -2859,13 +2875,15 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a);
         phone_number: self.phone_number,
         first_name: self.first_name
       }).then(function (response) {
-        console.log('asasasas', response.data);
         if (response.data.type === 'success') {
           Vue.toasted.success(response.data.message, {
             duration: 3000
           });
           self.$parent.verification_code = response.data.code;
           self.$parent.patientData = response.data.user;
+          if (document.activeElement && document.activeElement.blur) {
+            document.activeElement.blur();
+          }
           self.$parent.bookNowMobile = false;
           self.$parent.showFinalModal();
         } else {
@@ -6186,12 +6204,11 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     },
     getHospitalName: function getHospitalName(hos_id) {
       if (hos_id !== 'online') {
-        this.hospital = '';
-        this.hospital = this.hospitals.find(function (x) {
-          return x.id === JSON.parse(hos_id);
+        var hospitalId = typeof hos_id === 'string' ? JSON.parse(hos_id) : hos_id;
+        var hospital = this.hospitals.find(function (x) {
+          return x.id === hospitalId;
         });
-        this.selectedHos = this.hospital;
-        return this.selectedHos.first_name + ' ' + this.selectedHos.last_name;
+        return hospital ? hospital.first_name + ' ' + hospital.last_name : '';
       } else {
         return 'Online Video Consultation Booking';
       }
@@ -6208,22 +6225,37 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
       });
     },
     showMobileModal: function showMobileModal() {
+      var _this4 = this;
       // this.loading = true
       this.bookNowMobile = true;
-      if (this.bookNowMobile) {
-        document.querySelector('#mobile_number_detail').style.display = 'block';
-        document.querySelector('#mobile_number_detail').classList.add('feedback_modle');
+      this.$nextTick(function () {
+        var mobileModal = document.querySelector('#mobile_number_detail');
+        if (!mobileModal) {
+          _this4.loading = false;
+          return;
+        }
+        mobileModal.style.display = 'block';
+        mobileModal.classList.add('feedback_modle');
         document.querySelector('body').classList.add('scroll');
-      }
-      this.loading = false;
+        _this4.loading = false;
+      });
     },
     showAuthentication: function showAuthentication() {
+      var _this5 = this;
       this.bookNowMobile = false;
       this.bookNowVerification = true;
-      document.querySelector('#mobile_number_detail').style.display = 'none';
-      document.querySelector('body').classList.remove('scroll');
-      document.querySelector('#mobile_number_verification').style.display = 'block';
-      this.loading = false;
+      this.$nextTick(function () {
+        var mobileModal = document.querySelector('#mobile_number_detail');
+        if (mobileModal) {
+          mobileModal.style.display = 'none';
+        }
+        document.querySelector('body').classList.remove('scroll');
+        var verificationModal = document.querySelector('#mobile_number_verification');
+        if (verificationModal) {
+          verificationModal.style.display = 'block';
+        }
+        _this5.loading = false;
+      });
     },
     showFinalModal: function showFinalModal() {
       var self = this;
@@ -6237,6 +6269,10 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
         self.loading = false;
       })["catch"](function () {
         self.loading = false;
+        if (self.appointment_last_id) {
+          self.bookNowFinal = true;
+          return;
+        }
         Vue.toasted.error('Unable to book appointment. Please try again.', {
           duration: 3000
         });
@@ -6270,6 +6306,7 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
         type: self.bookNowType,
         code: self.verification_code,
         patient_id: self.patientData ? self.patientData.id : null,
+        patient_name: self.patientData ? [self.patientData.first_name, self.patientData.last_name].filter(Boolean).join(' ').trim() : null,
         phone_number: self.patientData ? self.patientData.phone_number : null,
         user_id: self.doctor_data.id
       }).then(function (response) {
@@ -6448,42 +6485,21 @@ Vue.use(vue_social_sharing__WEBPACK_IMPORTED_MODULE_2___default.a);
   },
   methods: {
     scrolltodiv: function scrolltodiv() {
-      var element = document.getElementById('specialtie-section');
-      // element.scrollIntoView({ behavior: 'smooth' });
-
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('specialtie-section'));
     },
     scrolltodiv2: function scrolltodiv2() {
-      var element = document.getElementById('disease-section');
-      // element.scrollIntoView({ behavior: 'smooth' });
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('disease-section'));
     },
     scrolltodiv3: function scrolltodiv3() {
-      var element = document.getElementById('profileDetialFAQ');
-      // element.scrollIntoView({ behavior: 'smooth' });
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('profileDetialFAQ'));
     },
     scrolltodiv4: function scrolltodiv4() {
-      var element = document.getElementById('reviews_section');
-      // element.scrollIntoView({ behavior: 'smooth' });
+      this.scrollToElement(document.getElementById('reviews_section'));
+    },
+    scrollToElement: function scrollToElement(element) {
+      if (!element) {
+        return;
+      }
       var headerOffset = 77;
       var elementPosition = element.getBoundingClientRect().top;
       var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -6529,13 +6545,37 @@ Vue.use(vue_social_sharing__WEBPACK_IMPORTED_MODULE_2___default.a);
         return '0';
       }
     },
-    scrollToClass: function scrollToClass() {
+    scrollToBookingSection: function scrollToBookingSection() {
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'visit';
       var self = this;
+      var parent = this.$parent;
+      if (!parent || !parent.hasTimeSlots) {
+        Vue.toasted.error('Slot Not Available', {
+          duration: 3000
+        });
+        return;
+      }
       self.loading = true;
-      var el = document.querySelector('.shedule_calendar');
-      var rect = el.getBoundingClientRect();
-      window.scrollTo(rect.left, rect.top);
-      self.loading = false;
+      if (type === 'visit' && parent.hospitalsWithSlots && parent.hospitalsWithSlots.length > parent.showSlotsBox) {
+        parent.showSlotsBox = parent.hospitalsWithSlots.length;
+      }
+      this.$nextTick(function () {
+        var el = null;
+        if (type === 'online') {
+          el = document.querySelector('.shedule_calendar.bg-green');
+        } else {
+          el = document.querySelector('.shedule_calendar.slot_box-shadow') || document.querySelector('.shedule_calendar.bg-white') || document.querySelector('.shedule_calendar');
+        }
+        if (!el) {
+          self.loading = false;
+          Vue.toasted.error('Slot Not Available', {
+            duration: 3000
+          });
+          return;
+        }
+        self.scrollToElement(el);
+        self.loading = false;
+      });
     },
     wishlist: function wishlist(id, savedDoc, column) {
       var self = this;
@@ -9642,7 +9682,7 @@ var render = function render() {
       id: "book_now_final",
       tabindex: "-1",
       role: "dialog",
-      "aria-hidden": "true"
+      "aria-hidden": "false"
     }
   }, [_c("div", {
     staticClass: "modal-dialog",
@@ -9759,6 +9799,18 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "verification-text-phone-number w-65 w-md-100 m-auto pt-3 text_20 text_xs_13"
   }, [_c("div", {
+    staticClass: "patient_summary mb-2 w-100 d-inline-block"
+  }, [_c("span", {
+    staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                    Patient Name")]), _vm._v(" "), _c("span", {
+    staticClass: "w-60 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                  " + _vm._s(_vm.patientName))])]), _vm._v(" "), _c("div", {
+    staticClass: "patient_summary mb-2 w-100 d-inline-block"
+  }, [_c("span", {
+    staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                    Phone Number")]), _vm._v(" "), _c("span", {
+    staticClass: "w-60 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                  " + _vm._s(_vm.patientPhone))])]), _vm._v(" "), _c("div", {
     staticClass: "patient_summary mb-2 w-100 d-inline-block"
   }, [_c("span", {
     staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
@@ -9923,7 +9975,7 @@ var render = function render() {
       id: "mobile_number_detail",
       tabindex: "-1",
       role: "dialog",
-      "aria-hidden": "true"
+      "aria-hidden": "false"
     }
   }, [_c("div", {
     staticClass: "modal-dialog",
@@ -15172,7 +15224,9 @@ var render = function render() {
       href: "javascript:void(0)"
     },
     on: {
-      click: _vm.scrollToClass
+      click: function click($event) {
+        return _vm.scrollToBookingSection("visit");
+      }
     }
   }, [_vm._v("\r\n              Book Appointment\r\n              "), _c("span", {
     staticClass: "finger-icon bg-blue d-inline-block position-absolute"
@@ -15187,7 +15241,9 @@ var render = function render() {
       href: "javascript:void(0)"
     },
     on: {
-      click: _vm.scrollToClass
+      click: function click($event) {
+        return _vm.scrollToBookingSection("online");
+      }
     }
   }, [_vm._v("\r\n            Video Consultation\r\n              "), _c("span", {
     staticClass: "finger-icon video-cam-icon bg-blue d-inline-block position-absolute"
@@ -15504,7 +15560,9 @@ var render = function render() {
       href: "javascript:void(0)"
     },
     on: {
-      click: _vm.scrollToClass
+      click: function click($event) {
+        return _vm.scrollToBookingSection("visit");
+      }
     }
   }, [_vm._v("\r\n                        Book Appointment\r\n                        "), _c("span", {
     staticClass: "finger-icon bg-blue d-inline-block position-absolute"
@@ -15519,7 +15577,9 @@ var render = function render() {
       href: "javascript:void(0)"
     },
     on: {
-      click: _vm.scrollToClass
+      click: function click($event) {
+        return _vm.scrollToBookingSection("online");
+      }
     }
   }, [_vm._v("Video Consultation\r\n                          "), _vm._m(4)]), _vm._v(" "), _c("ShareNetwork", {
     staticClass: "d-block text-center mt-lg-3 mt-3 mb-lg-2 mb-xl-0 mt-md-2 mb-md-2 mt-0 mb-0 text_12 font-weight-bold text-white text_md_12 float-right float-md-none float-lg-none small_btn w-sm-48 bg-blue book-padding book-rounded position-relative w-xs-100 book-border text-10",

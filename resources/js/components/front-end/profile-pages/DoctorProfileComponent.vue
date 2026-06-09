@@ -302,10 +302,9 @@ export default {
     },
     getHospitalName(hos_id) {
       if (hos_id !== 'online') {
-        this.hospital = ''
-        this.hospital = this.hospitals.find(x => x.id === JSON.parse(hos_id))
-        this.selectedHos = this.hospital
-        return this.selectedHos.first_name + ' ' + this.selectedHos.last_name
+        const hospitalId = typeof hos_id === 'string' ? JSON.parse(hos_id) : hos_id
+        const hospital = this.hospitals.find(x => x.id === hospitalId)
+        return hospital ? hospital.first_name + ' ' + hospital.last_name : ''
       }
       else {
         return 'Online Video Consultation Booking'
@@ -323,21 +322,35 @@ export default {
     showMobileModal: function () {
       // this.loading = true
       this.bookNowMobile = true
-      if (this.bookNowMobile) {
-        document.querySelector('#mobile_number_detail').style.display = 'block'
-        document.querySelector('#mobile_number_detail').classList.add('feedback_modle')
+      this.$nextTick(() => {
+        const mobileModal = document.querySelector('#mobile_number_detail')
+        if (!mobileModal) {
+          this.loading = false
+          return
+        }
+
+        mobileModal.style.display = 'block'
+        mobileModal.classList.add('feedback_modle')
         document.querySelector('body').classList.add('scroll')
-      }
-      this.loading = false
+        this.loading = false
+      })
     },
     showAuthentication: function () {
       this.bookNowMobile = false
       this.bookNowVerification = true
-      document.querySelector('#mobile_number_detail').style.display = 'none'
-      document.querySelector('body').classList.remove('scroll')
+      this.$nextTick(() => {
+        const mobileModal = document.querySelector('#mobile_number_detail')
+        if (mobileModal) {
+          mobileModal.style.display = 'none'
+        }
+        document.querySelector('body').classList.remove('scroll')
 
-      document.querySelector('#mobile_number_verification').style.display = 'block'
-      this.loading = false
+        const verificationModal = document.querySelector('#mobile_number_verification')
+        if (verificationModal) {
+          verificationModal.style.display = 'block'
+        }
+        this.loading = false
+      })
     },
     showFinalModal: function () {
       let self = this;
@@ -352,6 +365,10 @@ export default {
         self.loading = false;
       }).catch(function () {
         self.loading = false;
+        if (self.appointment_last_id) {
+          self.bookNowFinal = true;
+          return;
+        }
         Vue.toasted.error('Unable to book appointment. Please try again.', { duration: 3000 });
       });
     },
@@ -382,6 +399,9 @@ export default {
         type : self.bookNowType,
         code : self.verification_code,
         patient_id : self.patientData ? self.patientData.id : null,
+        patient_name : self.patientData
+          ? [self.patientData.first_name, self.patientData.last_name].filter(Boolean).join(' ').trim()
+          : null,
         phone_number : self.patientData ? self.patientData.phone_number : null,
         user_id : self.doctor_data.id,
       }).then(function (response) {

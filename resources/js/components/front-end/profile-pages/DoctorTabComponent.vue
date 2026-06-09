@@ -74,7 +74,7 @@
         </div>
         <div class="col-4 d-lg-block d-none col-md-6 col-lg-4 d-md-block">
           <div class="w-100 d-inline-block sticky-section-btn">
-            <a href="javascript:void(0)" @click="scrollToClass" 
+            <a href="javascript:void(0)" @click="scrollToBookingSection('visit')"
             class="font-weight-bold text-center text-blue text_13 small_btn book-btn book-rounded book-border d-inline-block position-relative mr-2">
               Book Appointment
               <span class="finger-icon bg-blue d-inline-block position-absolute">
@@ -82,7 +82,7 @@
                 alt="pictire">
               </span>
             </a>
-            <a href="javascript:void(0)" @click="scrollToClass" 
+            <a href="javascript:void(0)" @click="scrollToBookingSection('online')"
             class="text-center text-white font-weight-bold text_13 small_btn book-video-btn bg-green book-rounded book-padding d-inline-block position-relative 
             border-green">
             Video Consultation
@@ -398,14 +398,14 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="list_btns btn_layout w-100 mt-lg-0 mt-md-4 ml-md-auto mr-md-auto mt-md-5 overflow-hidden">
-                        <a href="javascript:void(0)" @click="scrollToClass" class="d-md-block font-weight-bold text-center text-blue text_12 text_md_12 float-left float-md-none small_btn w-sm-48 w-100 book-btn book-rounded book-padding book-border position-relative mt-2 w-xs-48 text-10">
+                        <a href="javascript:void(0)" @click="scrollToBookingSection('visit')" class="d-md-block font-weight-bold text-center text-blue text_12 text_md_12 float-left float-md-none small_btn w-sm-48 w-100 book-btn book-rounded book-padding book-border position-relative mt-2 w-xs-48 text-10">
                         Book Appointment
                         <span class="finger-icon bg-blue d-inline-block position-absolute">
                           <img :src="basePath+'/images/finger-icon.png'" 
                           alt="pictire">
                         </span>
                       </a>
-                        <a href="javascript:void(0)" @click="scrollToClass" class="d-block text-center text-white font-weight-bold mt-lg-3 mb-lg-2 mt-2 border-green mb-0 text_12 text_md_12 float-right float-md-none float-lg-none small_btn w-sm-100 book-video-btn bg-green book-rounded book-padding position-relative w-xs-48 text-10">Video Consultation
+                        <a href="javascript:void(0)" @click="scrollToBookingSection('online')" class="d-block text-center text-white font-weight-bold mt-lg-3 mb-lg-2 mt-2 border-green mb-0 text_12 text_md_12 float-right float-md-none float-lg-none small_btn w-sm-100 book-video-btn bg-green book-rounded book-padding position-relative w-xs-48 text-10">Video Consultation
                           <span class="finger-icon video-cam-icon bg-blue d-inline-block position-absolute">
                             <!-- <img src="/images/video-cam-icon.svg"
                             alt="pictire"> -->
@@ -735,45 +735,22 @@ export default {
   },
   methods: {
     scrolltodiv(){
-      var element = document.getElementById('specialtie-section');
-      // element.scrollIntoView({ behavior: 'smooth' });
-
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    
-      window.scrollTo({
-           top: offsetPosition,
-           behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('specialtie-section'))
     },
     scrolltodiv2(){
-      var element = document.getElementById('disease-section');
-      // element.scrollIntoView({ behavior: 'smooth' });
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    
-      window.scrollTo({
-           top: offsetPosition,
-           behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('disease-section'))
     },
     scrolltodiv3(){
-      var element = document.getElementById('profileDetialFAQ');
-      // element.scrollIntoView({ behavior: 'smooth' });
-      var headerOffset = 77;
-      var elementPosition = element.getBoundingClientRect().top;
-      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    
-      window.scrollTo({
-           top: offsetPosition,
-           behavior: "smooth"
-      });
+      this.scrollToElement(document.getElementById('profileDetialFAQ'))
     },
     scrolltodiv4(){
-      var element = document.getElementById('reviews_section');
-      // element.scrollIntoView({ behavior: 'smooth' });
+      this.scrollToElement(document.getElementById('reviews_section'))
+    },
+    scrollToElement(element) {
+      if (!element) {
+        return
+      }
+
       var headerOffset = 77;
       var elementPosition = element.getBoundingClientRect().top;
       var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -821,13 +798,41 @@ export default {
       }
 
     },
-    scrollToClass() {
-      let self = this
+    scrollToBookingSection(type = 'visit') {
+      const self = this
+      const parent = this.$parent
+
+      if (!parent || !parent.hasTimeSlots) {
+        Vue.toasted.error('Slot Not Available', { duration: 3000 })
+        return
+      }
+
       self.loading = true
-      let el = document.querySelector('.shedule_calendar')
-      let rect = el.getBoundingClientRect()
-      window.scrollTo(rect.left, rect.top)
-      self.loading = false
+
+      if (type === 'visit' && parent.hospitalsWithSlots && parent.hospitalsWithSlots.length > parent.showSlotsBox) {
+        parent.showSlotsBox = parent.hospitalsWithSlots.length
+      }
+
+      this.$nextTick(() => {
+        let el = null
+
+        if (type === 'online') {
+          el = document.querySelector('.shedule_calendar.bg-green')
+        } else {
+          el = document.querySelector('.shedule_calendar.slot_box-shadow')
+            || document.querySelector('.shedule_calendar.bg-white')
+            || document.querySelector('.shedule_calendar')
+        }
+
+        if (!el) {
+          self.loading = false
+          Vue.toasted.error('Slot Not Available', { duration: 3000 })
+          return
+        }
+
+        self.scrollToElement(el)
+        self.loading = false
+      })
     },
     wishlist: function (id, savedDoc, column) {
       let self = this;

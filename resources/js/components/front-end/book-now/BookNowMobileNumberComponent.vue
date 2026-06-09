@@ -2,7 +2,7 @@
   <div>
     <div v-if="loading" id="loader"></div>
     <!-- Start Mobile Number Modal -->
-    <div :class="$parent.bookNowMobile === true ? 'feedback_modle':''" class="modal fade show" id="mobile_number_detail" tabindex="-1" role="dialog" aria-hidden="true" style="display: block">
+    <div :class="$parent.bookNowMobile === true ? 'feedback_modle':''" class="modal fade show" id="mobile_number_detail" tabindex="-1" role="dialog" aria-hidden="false" style="display: block">
       <div class="modal-dialog" role="document">
         <div class="modal-content modal_bg box_shadow">
           <div class="modal-header border-0">
@@ -167,11 +167,13 @@ export default {
       axios.post(APP_URL + '/user/send-code', {
           phone_number: self.phone_number, first_name:self.first_name
         }).then(function (response) {
-          console.log('asasasas',response.data);
           if (response.data.type === 'success') {
             Vue.toasted.success(response.data.message , { duration: 3000 })
             self.$parent.verification_code = response.data.code
             self.$parent.patientData = response.data.user
+            if (document.activeElement && document.activeElement.blur) {
+              document.activeElement.blur()
+            }
             self.$parent.bookNowMobile = false
             self.$parent.showFinalModal()
           } else {

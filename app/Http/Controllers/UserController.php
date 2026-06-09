@@ -1946,7 +1946,12 @@ public function generateAppointmentPDFRecept($id)
             abort(404, 'Appointment not found');
         }
 
-        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data'));
+        $patient = DB::table('users')
+            ->select('id', 'first_name', 'last_name', 'phone_number')
+            ->where('id', $get_data->patient_id)
+            ->first();
+
+        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data', 'patient'));
 
         return $pdf->download('patient-appointment-receipt.pdf', [
             'Content-Type' => 'application/pdf',
@@ -1969,7 +1974,12 @@ public function generatePDFRecept($time, $date)
             abort(404, 'Appointment not found');
         }
 
-        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data'));
+        $patient = DB::table('users')
+            ->select('id', 'first_name', 'last_name', 'phone_number')
+            ->where('id', $get_data->patient_id)
+            ->first();
+
+        $pdf = PDF::loadView('front-end.doctors.download-recept', compact('get_data', 'patient'));
 
         return $pdf->download('patient-appointment-receipt.pdf', [
             'Content-Type' => 'application/pdf',

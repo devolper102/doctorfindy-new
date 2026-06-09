@@ -16,6 +16,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Serializable;
 use Auth;
+use DB;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 /**
@@ -115,14 +116,34 @@ class Appointment extends Model
     {
         $json = array();
         if (!empty($request)) {
-            $user_id = Auth::user()->id;
+            $patientId = !empty($request['patient_id'])
+                ? intval($request['patient_id'])
+                : (Auth::check() ? intval(Auth::user()->id) : 0);
+
+            if ($patientId < 1) {
+                $json['type'] = 'error';
+                $json['message'] = 'Patient not found';
+                return $json;
+            }
+
             $user = User::findOrFail($request['user_id']);
             $this->user()->associate($user);
             $this->hospital_id = intval($request['hospital']);
-            $this->patient_id = intval($user_id);
-            if ($request['patient'] == 'someone') {
+            $this->patient_id = $patientId;
+
+            if (!empty($request['patient']) && $request['patient'] == 'someone' && !empty($request['patient_name'])) {
                 $this->patient_name = filter_var($request['patient_name'], FILTER_SANITIZE_STRING);
-                $this->relation = filter_var($request['relation'], FILTER_SANITIZE_STRING);
+                $this->relation = filter_var($request['relation'] ?? '', FILTER_SANITIZE_STRING);
+            } else {
+                $requestPatientName = trim($request['patient_name'] ?? '');
+                if ($requestPatientName !== '') {
+                    $this->patient_name = filter_var($requestPatientName, FILTER_SANITIZE_STRING);
+                } else {
+                    $patientRow = DB::table('users')->where('id', $patientId)->first();
+                    if ($patientRow) {
+                        $this->patient_name = trim(($patientRow->first_name ?? '') . ' ' . ($patientRow->last_name ?? ''));
+                    }
+                }
             }
             $this->services = !empty($request['speciality']) ? serialize($request['speciality']) : null;
             $this->comments = !empty($request['comments']) ? filter_var($request['comments'], FILTER_SANITIZE_STRING) : null;

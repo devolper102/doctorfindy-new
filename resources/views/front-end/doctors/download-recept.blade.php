@@ -54,6 +54,14 @@
 <main>
       @php
     $site_logo =  Helper::getGeneralSettings('site_logo');
+    $patientName = trim($get_data->patient_name ?? '');
+    if ($patientName === '' && !empty($patient)) {
+        $patientName = trim(($patient->first_name ?? '') . ' ' . ($patient->last_name ?? ''));
+    }
+    if ($patientName === '' && !empty($get_data->patient_profile)) {
+        $patientName = trim(($get_data->patient_profile->first_name ?? '') . ' ' . ($get_data->patient_profile->last_name ?? ''));
+    }
+    $patientPhone = $patient->phone_number ?? optional($get_data->patient_profile)->phone_number ?? null;
   @endphp
 {{--     <table style="width: 95%; margin: 150px auto 0;font-family: sans-serif;">
         <thead>
@@ -159,6 +167,24 @@
         <div class="verification-text-phone-number"
         style="width:100%;display:inline-block;
         padding: 10px 0 10px 40px;">
+            <div class="patient_summary"
+            style="padding-bottom: 8px;">
+                <span style="width:50%;font-size:17px;font-weight: bold;display: inline-block;">
+                    Patient Name
+                </span>
+                <span style="width:40%;font-size:17px;
+                    float: right;">{{ $patientName ?: 'N/A' }}
+                </span>
+            </div>
+            <div class="patient_summary"
+            style="padding-bottom: 8px;">
+                <span style="width:50%;font-size:17px;font-weight: bold;display: inline-block;">
+                    Phone Number
+                </span>
+                <span style="width:40%;font-size:17px;
+                    float: right;">{{ $patientPhone ?: 'N/A' }}
+                </span>
+            </div>
             <div class="patient_summary" 
             style="padding-bottom: 8px;">
                 <span style="width:50%;font-size:17px;font-weight: bold;display: inline-block;">

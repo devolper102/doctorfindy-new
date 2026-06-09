@@ -80033,6 +80033,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    patientName: function patientName() {
+      var patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      if (!patient) {
+        return 'N/A';
+      }
+      var name = [patient.first_name, patient.last_name].filter(Boolean).join(' ').trim();
+      return name || 'N/A';
+    },
+    patientPhone: function patientPhone() {
+      var patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      return patient && patient.phone_number ? patient.phone_number : 'N/A';
+    },
     downloadUrl: function downloadUrl() {
       var appointmentId = this.appointmentId || this.$parent && this.$parent.appointment_last_id;
       if (!appointmentId) {
@@ -80061,18 +80073,22 @@ __webpack_require__.r(__webpack_exports__);
       this.$parent.onClose();
       this.$parent.bookNowMobile = false;
       var element = document.querySelector('.modal-backdrop');
-      element.remove(element.classList);
+      if (element) {
+        element.remove(element.classList);
+      }
     },
     printme: function printme() {
-      document.querySelector('#closed').classList.add('addRemove');
-      document.querySelector('#removed').classList.add('addRemove');
-      document.querySelector('#paybotton').classList.add('addRemove');
-      document.querySelector('#logoed').classList.remove('logo');
+      var toggleClass = function toggleClass(selector, className) {
+        var add = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+        document.querySelectorAll(selector).forEach(function (element) {
+          element.classList[add ? 'add' : 'remove'](className);
+        });
+      };
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', true);
+      toggleClass('#logoed', 'logo', false);
       window.print();
-      document.querySelector('#closed').classList.remove('addRemove');
-      document.querySelector('#removed').classList.remove('addRemove');
-      document.querySelector('#paybotton').classList.remove('addRemove');
-      document.querySelector('#logoed').classList.add('logo');
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', false);
+      toggleClass('#logoed', 'logo', true);
     }
   }
 });
@@ -80153,13 +80169,15 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a);
         phone_number: self.phone_number,
         first_name: self.first_name
       }).then(function (response) {
-        console.log('asasasas', response.data);
         if (response.data.type === 'success') {
           Vue.toasted.success(response.data.message, {
             duration: 3000
           });
           self.$parent.verification_code = response.data.code;
           self.$parent.patientData = response.data.user;
+          if (document.activeElement && document.activeElement.blur) {
+            document.activeElement.blur();
+          }
           self.$parent.bookNowMobile = false;
           self.$parent.showFinalModal();
         } else {
@@ -83511,7 +83529,7 @@ var render = function render() {
       id: "book_now_final",
       tabindex: "-1",
       role: "dialog",
-      "aria-hidden": "true"
+      "aria-hidden": "false"
     }
   }, [_c("div", {
     staticClass: "modal-dialog",
@@ -83628,6 +83646,18 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "verification-text-phone-number w-65 w-md-100 m-auto pt-3 text_20 text_xs_13"
   }, [_c("div", {
+    staticClass: "patient_summary mb-2 w-100 d-inline-block"
+  }, [_c("span", {
+    staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                    Patient Name")]), _vm._v(" "), _c("span", {
+    staticClass: "w-60 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                  " + _vm._s(_vm.patientName))])]), _vm._v(" "), _c("div", {
+    staticClass: "patient_summary mb-2 w-100 d-inline-block"
+  }, [_c("span", {
+    staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                    Phone Number")]), _vm._v(" "), _c("span", {
+    staticClass: "w-60 d-inline-block text_15 float-left"
+  }, [_vm._v("\r\n                  " + _vm._s(_vm.patientPhone))])]), _vm._v(" "), _c("div", {
     staticClass: "patient_summary mb-2 w-100 d-inline-block"
   }, [_c("span", {
     staticClass: "text_black font-weight-bold w-40 d-inline-block text_15 float-left"
@@ -83792,7 +83822,7 @@ var render = function render() {
       id: "mobile_number_detail",
       tabindex: "-1",
       role: "dialog",
-      "aria-hidden": "true"
+      "aria-hidden": "false"
     }
   }, [_c("div", {
     staticClass: "modal-dialog",

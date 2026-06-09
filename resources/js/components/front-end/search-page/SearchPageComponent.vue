@@ -2165,6 +2165,22 @@ import moment from 'moment';
           self.loading = false;
         }).catch(function () {
           self.loading = false;
+          if (self.appointment_last_id) {
+            self.bookNowFinal = true;
+
+            const mobileModal = document.querySelector('#mobile_number_detail');
+            if (mobileModal) {
+              mobileModal.style.display = 'none';
+              mobileModal.classList.remove('show');
+            }
+
+            const finalModal = document.querySelector('#book_now_final');
+            if (finalModal) {
+              finalModal.classList.add('show');
+              finalModal.style.display = 'block';
+            }
+            return;
+          }
           Vue.toasted.error('Unable to book appointment. Please try again.', { duration: 3000 });
         });
       },
@@ -2176,7 +2192,9 @@ import moment from 'moment';
           date : self.selected_appointment_date,
           day : self.selected_appointment_day,
           hospital : self.selectedHospital.id,
-          patient_name : self.appointment.patient_name,
+          patient_name : self.patientData
+            ? [self.patientData.first_name, self.patientData.last_name].filter(Boolean).join(' ').trim()
+            : (self.appointment.patient_name || null),
           time : self.selected_time,
           total_charges : self.hospitalFees,
           type : self.bookNowType,

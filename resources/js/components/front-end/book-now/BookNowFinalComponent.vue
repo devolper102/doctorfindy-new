@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Start Selected appointment Modal -->
-    <div :class="$parent.bookNowMobile === false ? 'feedback_modle':''" class="modal fade show" id="book_now_final" tabindex="-1" role="dialog" aria-hidden="true" style="display: block">
+    <div :class="$parent.bookNowMobile === false ? 'feedback_modle':''" class="modal fade show" id="book_now_final" tabindex="-1" role="dialog" aria-hidden="false" style="display: block">
       <div class="modal-dialog" role="document">
         <div class="modal-content box_radius modal_bg box_shadow">
           <div class="modal-header border-0">
@@ -72,6 +72,22 @@
             </div>
             <div class="knockdoc_border w-100">
               <div class="verification-text-phone-number w-65 w-md-100 m-auto pt-3 text_20 text_xs_13">
+                <div class="patient_summary mb-2 w-100
+                d-inline-block">
+                  <span class="text_black font-weight-bold w-40 d-inline-block text_15 float-left">
+                    Patient Name</span>
+                  <span class="w-60 d-inline-block text_15
+                  float-left">
+                  {{ patientName }}</span>
+                </div>
+                <div class="patient_summary mb-2 w-100
+                d-inline-block">
+                  <span class="text_black font-weight-bold w-40 d-inline-block text_15 float-left">
+                    Phone Number</span>
+                  <span class="w-60 d-inline-block text_15
+                  float-left">
+                  {{ patientPhone }}</span>
+                </div>
                 <div class="patient_summary mb-2 w-100 
                 d-inline-block">
                   <span class="text_black font-weight-bold w-40 d-inline-block text_15 float-left"> 
@@ -162,6 +178,19 @@ export default {
     }
   },
   computed: {
+    patientName() {
+      const patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      if (!patient) {
+        return 'N/A';
+      }
+
+      const name = [patient.first_name, patient.last_name].filter(Boolean).join(' ').trim();
+      return name || 'N/A';
+    },
+    patientPhone() {
+      const patient = this.$parent && this.$parent.patientData ? this.$parent.patientData : null;
+      return patient && patient.phone_number ? patient.phone_number : 'N/A';
+    },
     downloadUrl() {
       const appointmentId = this.appointmentId || (this.$parent && this.$parent.appointment_last_id);
       if (!appointmentId) {
@@ -193,18 +222,24 @@ export default {
       this.$parent.onClose()
       this.$parent.bookNowMobile = false
       let element = document.querySelector('.modal-backdrop')
-      element.remove(element.classList);
+      if (element) {
+        element.remove(element.classList);
+      }
     },
-          printme(){ 
-document.querySelector('#closed').classList.add('addRemove')
-document.querySelector('#removed').classList.add('addRemove')
-document.querySelector('#paybotton').classList.add('addRemove')
-document.querySelector('#logoed').classList.remove('logo')
-        window.print()
-document.querySelector('#closed').classList.remove('addRemove')
-document.querySelector('#removed').classList.remove('addRemove')
-document.querySelector('#paybotton').classList.remove('addRemove')
-document.querySelector('#logoed').classList.add('logo')
+    printme(){
+      const toggleClass = (selector, className, add = true) => {
+        document.querySelectorAll(selector).forEach((element) => {
+          element.classList[add ? 'add' : 'remove'](className)
+        })
+      }
+
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', true)
+      toggleClass('#logoed', 'logo', false)
+
+      window.print()
+
+      toggleClass('#closed, #removed, #paybotton', 'addRemove', false)
+      toggleClass('#logoed', 'logo', true)
       },
   }
 }

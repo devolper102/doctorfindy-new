@@ -104,6 +104,7 @@ class CodeController extends Controller
 
             if ($userRow) {
                 DB::table('users')->where('id', $userRow->id)->update([
+                    'first_name' => $firstName,
                     'verification_code' => $otc,
                     'updated_at' => Carbon::now(),
                 ]);
