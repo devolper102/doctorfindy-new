@@ -63,10 +63,10 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <a v-if="screenSize === 'Desktop'" class="navbar-brand w-sm-30 w-15 d-flex" href="/">
-               <img v-lazy="basePath+'/uploads/settings/general/'+ main_logo" alt="Site Logo" name="Site Logo"  class="site-logo"/>
+               <img v-lazy="uploadedAsset('uploads/settings/general/'+ main_logo)" alt="Site Logo" name="Site Logo"  class="site-logo"/>
             </a>
              <a v-else class="navbar-brand w-sm-30 w-15 d-flex logo-responsive" href="/">
-               <img v-lazy="basePath+'/uploads/settings/general/white-header-logo.svg'" alt="Site Logo" name="Site Logo" />
+               <img v-lazy="uploadedAsset('uploads/settings/general/white-header-logo.svg')" alt="Site Logo" name="Site Logo" />
             </a>
             <!-- <div class="float-left d-block d-lg-none d-xl-none mr-2 product-login" v-if="!isLoggedIn">
               <a href="/login" class="float-left text-white applink pr-3">
@@ -5935,6 +5935,10 @@ export default {
     },
  
   methods: {
+    uploadedAsset(path) {
+      const assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    },
     showdropdownLab(id){
       var newid = 'labdrop';
       var check = document.getElementById("labdrop").style.display;

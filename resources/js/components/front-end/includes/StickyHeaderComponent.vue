@@ -10,7 +10,7 @@
           <div class="sticky_main d-flex w-100">
             <div class="sticklogo w-sm-30 w-15 d-flex">
               <a href="/" class="navbar-brand w-sm-40 d-flex w-100">
-                <img v-lazy="basePath+'/uploads/settings/general/'+ main_logo" alt="Site Logo" name="Site Logo" />
+                <img v-lazy="uploadedAsset('uploads/settings/general/'+ main_logo)" alt="Site Logo" name="Site Logo" />
               </a>
             </div>
              <form class="form-inline d-lg-flex m-0 w-65">
@@ -276,6 +276,10 @@ created() {
       }
   },
   methods: {
+    uploadedAsset(path) {
+      const assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    },
     logout() {
       axios.post(APP_URL + '/logout')
           .then(function (response) {

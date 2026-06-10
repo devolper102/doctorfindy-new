@@ -383,7 +383,16 @@ class Helper extends Model
      */
     public static function uploadsBaseUrl()
     {
-        return rtrim(env('UPLOADS_BASE_URL', 'https://doctorfindy.com'), '/');
+        $uploadsBaseUrl = env('UPLOADS_BASE_URL');
+        if (!empty($uploadsBaseUrl)) {
+            return rtrim($uploadsBaseUrl, '/');
+        }
+
+        if (config('filesystems.default') === 'production' || env('FILESYSTEM_DRIVER') === 'production') {
+            return rtrim(\Illuminate\Support\Facades\Storage::disk('s3')->url(''), '/');
+        }
+
+        return rtrim(url('/'), '/');
     }
 
     public static function uploadedAsset($path)
