@@ -389,7 +389,10 @@ class Helper extends Model
         }
 
         if (config('filesystems.default') === 'production' || env('FILESYSTEM_DRIVER') === 'production') {
-            return rtrim(\Illuminate\Support\Facades\Storage::disk('s3')->url(''), '/');
+            $placeholder = '__doctorfindy_uploads_base__';
+            $placeholderUrl = \Illuminate\Support\Facades\Storage::disk('s3')->url($placeholder);
+
+            return rtrim(str_replace('/' . $placeholder, '', $placeholderUrl), '/');
         }
 
         return rtrim(url('/'), '/');
@@ -397,6 +400,18 @@ class Helper extends Model
 
     public static function uploadedAsset($path)
     {
+        if (empty($path)) {
+            return self::uploadsBaseUrl();
+        }
+
+        if (preg_match('/^(https?:)?\/\//', $path)) {
+            return $path;
+        }
+
+        if (config('filesystems.default') === 'production' || env('FILESYSTEM_DRIVER') === 'production') {
+            return \Illuminate\Support\Facades\Storage::disk('s3')->url(ltrim($path, '/'));
+        }
+
         return self::uploadsBaseUrl() . '/' . ltrim($path, '/');
     }
 
