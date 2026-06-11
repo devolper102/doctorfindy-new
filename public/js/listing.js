@@ -80629,7 +80629,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     showdropdownLab: function showdropdownLab(id) {
@@ -80962,7 +80962,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     logout: function logout() {
@@ -250092,6 +250092,16 @@ var csrfToken = document.head.querySelector('meta[name="csrf-token"]');
 if (csrfToken) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
 }
+window.assetUrl = function (path) {
+  if (!path) {
+    return (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  }
+  if (/^(https?:)?\/\//.test(path)) {
+    return path;
+  }
+  var assetBaseUrl = (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  return "".concat(assetBaseUrl, "/").concat(String(path).replace(/^\/+/, ''));
+};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

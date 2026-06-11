@@ -6,8 +6,8 @@
         <div class="doctor_data d-inline-block w-100">
             <div class="doctor_image position-relative float-left w-20">
               <div class="position-relative mb-1">
-              <img v-if="doc.profile.avatar" v-lazy="basePath+'/uploads/users/'+doc.id+'/medium-'+doc.profile.avatar" :alt="doc.first_name + ' ' + doc.last_name" :name="doc.first_name + ' ' + doc.last_name" class="img-fluid rounded-circle h_50 w_60px h_md_60">
-              <img v-else v-lazy="basePath+'/uploads/users/default/doctor.svg'" :alt="doc.first_name + ' ' + doc.last_name" :name="doc.first_name + ' ' + doc.last_name" class="img-fluid rounded-circle h_50 w_60px">
+              <img v-if="doc.profile.avatar" v-lazy="assetUrl('uploads/users/'+doc.id+'/medium-'+doc.profile.avatar)" :alt="doc.first_name + ' ' + doc.last_name" :name="doc.first_name + ' ' + doc.last_name" class="img-fluid rounded-circle h_50 w_60px h_md_60">
+              <img v-else v-lazy="assetUrl('uploads/users/default/doctor.svg')" :alt="doc.first_name + ' ' + doc.last_name" :name="doc.first_name + ' ' + doc.last_name" class="img-fluid rounded-circle h_50 w_60px">
               <a v-if="doc.profile.willing_video" href="javascript:void(0)" class="position-absolute d-table video_icon" style="bottom: 0px;right: 0px;">
                 <p class="w_20px h_20 rounded-circle text_14 text-center d-table-cell align-middle text-white bg-blue">
                   <i class="fas fa-video text_12" aria-hidden="true"></i>
@@ -123,6 +123,9 @@ export default {
   mounted(){
   },
   methods: {
+    assetUrl(path) {
+      return window.assetUrl(path);
+    },
     getExperienceInNumbers(years) {
         const parts = years.split(' ');
         const number = parts[0];

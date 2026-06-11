@@ -28,6 +28,19 @@ if (csrfToken) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
 }
 
+window.assetUrl = function (path) {
+    if (!path) {
+        return (window.APP_ASSET_URL || '').replace(/\/$/, '');
+    }
+
+    if (/^(https?:)?\/\//.test(path)) {
+        return path;
+    }
+
+    const assetBaseUrl = (window.APP_ASSET_URL || '').replace(/\/$/, '');
+    return `${assetBaseUrl}/${String(path).replace(/^\/+/, '')}`;
+};
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

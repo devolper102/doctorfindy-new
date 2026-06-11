@@ -2640,6 +2640,10 @@ Vue.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vu
     }
   },
   methods: {
+    assetUrl: function assetUrl(path) {
+      var assetBaseUrl = window.APP_ASSET_URL || '';
+      return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
+    },
     addToLike: function addToLike(id) {
       var self = this;
       if (self.patient.length !== 0) {
@@ -2731,6 +2735,10 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     this.hide_show = JSON.parse(this.download.meta_value).show_app_sec;
   },
   methods: {
+    assetUrl: function assetUrl(path) {
+      var assetBaseUrl = window.APP_ASSET_URL || '';
+      return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
+    },
     isNumber: function isNumber(e) {
       var _char = String.fromCharCode(e.keyCode);
       if (/^[0-9]+$/.test(_char)) return true;else e.preventDefault();
@@ -2872,6 +2880,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
+    assetUrl: function assetUrl(path) {
+      var assetBaseUrl = window.APP_ASSET_URL || '';
+      return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
+    },
     showNext: function showNext() {
       this.$refs.settings.next();
     },
@@ -3041,31 +3053,27 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     }
     // window.addEventListener('scroll', this.handleScroll);
     document.addEventListener('textChange', this.handleTextChange);
-    this.home_slider = this.managements.find(function (pf) {
-      return pf.meta_key === 'home_slider';
-    });
-    this.slides = JSON.parse(this.home_slider.meta_value);
-    this.home_search_banner = this.managements.find(function (pf) {
-      return pf.meta_key === 'home_search_banner';
-    });
-    this.search_form_title = JSON.parse(this.home_search_banner.meta_value).search_form_title;
-    this.search_banner_heading = JSON.parse(this.home_search_banner.meta_value).search_banner_heading;
-    this.image = JSON.parse(this.home_search_banner.meta_value).hidden_search_banner_img;
-    this.small_devices = this.managements.find(function (pf) {
-      return pf.meta_key === 'small_devices_top_section';
-    });
-    this.small_title = JSON.parse(this.small_devices.meta_value).title;
-    this.small_description = JSON.parse(this.small_devices.meta_value).description;
-    this.small_btn = JSON.parse(this.small_devices.meta_value).button;
-    this.small_url = JSON.parse(this.small_devices.meta_value).url;
-    this.small_img = JSON.parse(this.small_devices.meta_value).hidden_small_device_img;
-    this.small_hide_show = JSON.parse(this.small_devices.meta_value).show_smalldevice_sec;
-    this.small_title1 = JSON.parse(this.small_devices.meta_value).title1;
-    this.small_description1 = JSON.parse(this.small_devices.meta_value).description1;
-    this.small_btn1 = JSON.parse(this.small_devices.meta_value).button1;
-    this.small_url1 = JSON.parse(this.small_devices.meta_value).url1;
-    this.small_img1 = JSON.parse(this.small_devices.meta_value).hidden_small_device_img1;
-    this.small_hide_show = JSON.parse(this.small_devices.meta_value).show_smalldevice_sec;
+    this.home_slider = this.findManagement('home_slider');
+    this.slides = this.parseManagement(this.home_slider, []);
+    this.home_search_banner = this.findManagement('home_search_banner');
+    var searchBanner = this.parseManagement(this.home_search_banner, {});
+    this.search_form_title = searchBanner.search_form_title || this.search_form_title;
+    this.search_banner_heading = searchBanner.search_banner_heading || this.search_banner_heading;
+    this.image = searchBanner.hidden_search_banner_img || this.image;
+    this.small_devices = this.findManagement('small_devices_top_section');
+    var smallDevices = this.parseManagement(this.small_devices, {});
+    this.small_title = smallDevices.title || this.small_title;
+    this.small_description = smallDevices.description || this.small_description;
+    this.small_btn = smallDevices.button || this.small_btn;
+    this.small_url = smallDevices.url || this.small_url;
+    this.small_img = smallDevices.hidden_small_device_img || this.small_img;
+    this.small_hide_show = smallDevices.show_smalldevice_sec || this.small_hide_show;
+    this.small_title1 = smallDevices.title1 || this.small_title1;
+    this.small_description1 = smallDevices.description1 || this.small_description1;
+    this.small_btn1 = smallDevices.button1 || this.small_btn1;
+    this.small_url1 = smallDevices.url1 || this.small_url1;
+    this.small_img1 = smallDevices.hidden_small_device_img1 || this.small_img1;
+    this.small_hide_show = smallDevices.show_smalldevice_sec || this.small_hide_show;
     // this.labDiscountData();
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
@@ -3086,6 +3094,22 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     }
   }
 }), "methods", {
+  findManagement: function findManagement(key) {
+    var managements = Array.isArray(this.managements) ? this.managements : [];
+    return managements.find(function (item) {
+      return item.meta_key === key;
+    });
+  },
+  parseManagement: function parseManagement(item, fallback) {
+    if (!item || !item.meta_value) {
+      return fallback;
+    }
+    try {
+      return JSON.parse(item.meta_value);
+    } catch (error) {
+      return fallback;
+    }
+  },
   formatPhoneNumber: function formatPhoneNumber() {
     if (this.phone_number.startsWith('0')) {
       this.phone_number = '92' + this.phone_number.slice(1);
@@ -4135,7 +4159,13 @@ __webpack_require__.r(__webpack_exports__);
       this.basePath = '';
     }
   },
-  created: function created() {}
+  created: function created() {},
+  methods: {
+    assetUrl: function assetUrl(path) {
+      var assetBaseUrl = window.APP_ASSET_URL || '';
+      return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
+    }
+  }
 });
 
 /***/ }),
@@ -4546,7 +4576,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     showdropdownLab: function showdropdownLab(id) {
@@ -4879,7 +4909,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     logout: function logout() {
@@ -5372,8 +5402,8 @@ var render = function render() {
       directives: [{
         name: "lazy",
         rawName: "v-lazy",
-        value: _vm.basePath + "/uploads/users/" + article.author.id + "/articles/" + article.image,
-        expression: "basePath+'/uploads/users/'+article.author.id+'/articles/'+article.image"
+        value: _vm.assetUrl("uploads/users/" + article.author.id + "/articles/" + article.image),
+        expression: "assetUrl('uploads/users/'+article.author.id+'/articles/'+article.image)"
       }],
       staticClass: "img-fluid w-100 blog_img_border",
       attrs: {
@@ -5386,8 +5416,8 @@ var render = function render() {
       directives: [{
         name: "lazy",
         rawName: "v-lazy",
-        value: _vm.basePath + "/uploads/users/" + article.author.id + "/" + article.author.profile.avatar,
-        expression: "basePath+'/uploads/users/'+article.author.id+'/'+article.author.profile.avatar"
+        value: _vm.assetUrl("uploads/users/" + article.author.id + "/" + article.author.profile.avatar),
+        expression: "assetUrl('uploads/users/'+article.author.id+'/'+article.author.profile.avatar)"
       }],
       staticClass: "w-20 rounded-circle img-fluid float-left",
       attrs: {
@@ -5557,8 +5587,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.ios_img,
-      expression: "basePath+'/uploads/settings/home/'+ ios_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.ios_img),
+      expression: "assetUrl('uploads/settings/home/'+ ios_img)"
     }],
     staticClass: "img-fluid",
     attrs: {
@@ -5575,8 +5605,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.android_img,
-      expression: "basePath+'/uploads/settings/home/'+ android_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.android_img),
+      expression: "assetUrl('uploads/settings/home/'+ android_img)"
     }],
     staticClass: "img-fluid",
     attrs: {
@@ -5591,8 +5621,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.app_sec_img,
-      expression: "basePath+'/uploads/settings/home/'+ app_sec_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.app_sec_img),
+      expression: "assetUrl('uploads/settings/home/'+ app_sec_img)"
     }],
     staticClass: "img-fluid w-70 w-md-100",
     attrs: {
@@ -5859,8 +5889,8 @@ var render = function render() {
       directives: [{
         name: "lazy",
         rawName: "v-lazy",
-        value: _vm.basePath + "/uploads/users/" + feedback.patient.id + "/" + feedback.patient.profile.avatar,
-        expression: "basePath+'/uploads/users/'+feedback.patient.id+'/'+feedback.patient.profile.avatar"
+        value: _vm.assetUrl("uploads/users/" + feedback.patient.id + "/" + feedback.patient.profile.avatar),
+        expression: "assetUrl('uploads/users/'+feedback.patient.id+'/'+feedback.patient.profile.avatar)"
       }],
       staticClass: "d-block img-fluid rounded-circle border-white border border-3 border w_110px",
       attrs: {
@@ -5871,8 +5901,8 @@ var render = function render() {
       directives: [{
         name: "lazy",
         rawName: "v-lazy",
-        value: _vm.basePath + "/uploads/users/default/patient.svg",
-        expression: "basePath+'/uploads/users/default/patient.svg'"
+        value: _vm.assetUrl("uploads/users/default/patient.svg"),
+        expression: "assetUrl('uploads/users/default/patient.svg')"
       }],
       staticClass: "d-block img-fluid rounded-circle border-white border border-3 border w_110px",
       attrs: {
@@ -8173,8 +8203,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/kidney-transplant.svg",
-      expression: "basePath+'/uploads/procedure/kidney-transplant.svg'"
+      value: _vm.assetUrl("uploads/procedure/kidney-transplant.svg"),
+      expression: "assetUrl('uploads/procedure/kidney-transplant.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8201,8 +8231,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/normal-delivery.svg",
-      expression: "basePath+'/uploads/procedure/normal-delivery.svg'"
+      value: _vm.assetUrl("uploads/procedure/normal-delivery.svg"),
+      expression: "assetUrl('uploads/procedure/normal-delivery.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8229,8 +8259,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/hernia-surgery.svg",
-      expression: "basePath+'/uploads/procedure/hernia-surgery.svg'"
+      value: _vm.assetUrl("uploads/procedure/hernia-surgery.svg"),
+      expression: "assetUrl('uploads/procedure/hernia-surgery.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8257,8 +8287,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/liver-transplant.svg",
-      expression: "basePath+'/uploads/procedure/liver-transplant.svg'"
+      value: _vm.assetUrl("uploads/procedure/liver-transplant.svg"),
+      expression: "assetUrl('uploads/procedure/liver-transplant.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8285,8 +8315,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/prp-hair-transplnt.svg",
-      expression: "basePath+'/uploads/procedure/prp-hair-transplnt.svg'"
+      value: _vm.assetUrl("uploads/procedure/prp-hair-transplnt.svg"),
+      expression: "assetUrl('uploads/procedure/prp-hair-transplnt.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8313,8 +8343,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/procedure/bypass.svg",
-      expression: "basePath+'/uploads/procedure/bypass.svg'"
+      value: _vm.assetUrl("uploads/procedure/bypass.svg"),
+      expression: "assetUrl('uploads/procedure/bypass.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8341,8 +8371,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/images/root-canal.svg",
-      expression: "basePath+'/images/root-canal.svg'"
+      value: _vm.assetUrl("images/root-canal.svg"),
+      expression: "assetUrl('images/root-canal.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -8369,8 +8399,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/images/appendix.svg",
-      expression: "basePath+'/images/appendix.svg'"
+      value: _vm.assetUrl("images/appendix.svg"),
+      expression: "assetUrl('images/appendix.svg')"
     }],
     staticClass: "img-fluid w_50px overflow-hidden",
     attrs: {
@@ -99363,6 +99393,16 @@ var csrfToken = document.head.querySelector('meta[name="csrf-token"]');
 if (csrfToken) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
 }
+window.assetUrl = function (path) {
+  if (!path) {
+    return (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  }
+  if (/^(https?:)?\/\//.test(path)) {
+    return path;
+  }
+  var assetBaseUrl = (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  return "".concat(assetBaseUrl, "/").concat(String(path).replace(/^\/+/, ''));
+};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

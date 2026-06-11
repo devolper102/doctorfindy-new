@@ -7,8 +7,8 @@
             <!-- <img src="/images/video-cam-icon.svg" alt="pictire"> -->
             <i class="fas fa-video text_12" aria-hidden="true"></i>
           </span>
-          <img v-if="doctor.profile.avatar" v-lazy="basePath+'/uploads/users/'+doctor.id+'/'+doctor.profile.avatar" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_60 w_60px h_md_60">
-          <img v-else v-lazy="basePath+'/uploads/users/default/doctor.svg'" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_50 w_60px">
+          <img v-if="doctor.profile.avatar" v-lazy="assetUrl('uploads/users/'+doctor.id+'/'+doctor.profile.avatar)" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_60 w_60px h_md_60">
+          <img v-else v-lazy="assetUrl('uploads/users/default/doctor.svg')" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_50 w_60px">
           <a :href="'/doctors/'+doctor.location.slug+'/'+doctor.specialities[0].slug+'/'+doctor.slug" class="circle_anchor position-absolute mb-2"></a>
         </div>
        <!--  <div class="total_rating w-80 m-auto mt-2 mb-2">
@@ -94,6 +94,9 @@ export default {
     this.rating = this.doctor.feedbacks.length > 0 ? parseFloat(((avgRating/parseFloat(this.doctor.feedbacks.length))/5).toFixed(1)) : 0
   },
   methods: {
+    assetUrl(path) {
+      return window.assetUrl(path);
+    },
     averageRating(value) {
       let avgRating = 0.0
       if (value.length > 0) {

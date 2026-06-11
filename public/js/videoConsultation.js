@@ -79641,6 +79641,10 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_0___default.a);
     this.hide_show = JSON.parse(this.download.meta_value).show_app_sec;
   },
   methods: {
+    assetUrl: function assetUrl(path) {
+      var assetBaseUrl = window.APP_ASSET_URL || '';
+      return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
+    },
     isNumber: function isNumber(e) {
       var _char = String.fromCharCode(e.keyCode);
       if (/^[0-9]+$/.test(_char)) return true;else e.preventDefault();
@@ -80609,7 +80613,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     showdropdownLab: function showdropdownLab(id) {
@@ -80942,7 +80946,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     logout: function logout() {
@@ -81953,8 +81957,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.ios_img,
-      expression: "basePath+'/uploads/settings/home/'+ ios_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.ios_img),
+      expression: "assetUrl('uploads/settings/home/'+ ios_img)"
     }],
     staticClass: "img-fluid",
     attrs: {
@@ -81971,8 +81975,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.android_img,
-      expression: "basePath+'/uploads/settings/home/'+ android_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.android_img),
+      expression: "assetUrl('uploads/settings/home/'+ android_img)"
     }],
     staticClass: "img-fluid",
     attrs: {
@@ -81987,8 +81991,8 @@ var render = function render() {
     directives: [{
       name: "lazy",
       rawName: "v-lazy",
-      value: _vm.basePath + "/uploads/settings/home/" + _vm.app_sec_img,
-      expression: "basePath+'/uploads/settings/home/'+ app_sec_img"
+      value: _vm.assetUrl("uploads/settings/home/" + _vm.app_sec_img),
+      expression: "assetUrl('uploads/settings/home/'+ app_sec_img)"
     }],
     staticClass: "img-fluid w-70 w-md-100",
     attrs: {

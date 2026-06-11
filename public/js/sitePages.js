@@ -79858,7 +79858,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     showdropdownLab: function showdropdownLab(id) {
@@ -80191,7 +80191,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadedAsset: function uploadedAsset(path) {
-      var assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      var assetBaseUrl = window.APP_ASSET_URL || '';
       return "".concat(assetBaseUrl.replace(/\/$/, ''), "/").concat(path.replace(/^\/+/, ''));
     },
     logout: function logout() {

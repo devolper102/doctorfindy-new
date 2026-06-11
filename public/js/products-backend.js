@@ -230668,6 +230668,16 @@ var csrfToken = document.head.querySelector('meta[name="csrf-token"]');
 if (csrfToken) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
 }
+window.assetUrl = function (path) {
+  if (!path) {
+    return (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  }
+  if (/^(https?:)?\/\//.test(path)) {
+    return path;
+  }
+  var assetBaseUrl = (window.APP_ASSET_URL || '').replace(/\/$/, '');
+  return "".concat(assetBaseUrl, "/").concat(String(path).replace(/^\/+/, ''));
+};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

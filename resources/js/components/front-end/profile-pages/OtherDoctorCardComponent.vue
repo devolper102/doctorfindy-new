@@ -7,8 +7,8 @@
           <div class="doctor_data d-flex w-100">
       <div class="doctor_image position-relative float-left">
         <div class="position-relative mb-1">
-          <img v-if="doctor.profile && doctor.profile.avatar != null && doctor.profile.avatar != ' '" v-lazy="basePath+'/uploads/users/'+doctor.id+'/small-'+doctor.profile.avatar" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_90 w_90px w_md_60px h_md_60">
-          <img v-else v-lazy="basePath+'/uploads/users/default/doctor.svg'" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_90 w_90px w_md_60px h_md_60">
+          <img v-if="doctor.profile && doctor.profile.avatar != null && doctor.profile.avatar != ' '" v-lazy="assetUrl('uploads/users/'+doctor.id+'/small-'+doctor.profile.avatar)" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_90 w_90px w_md_60px h_md_60">
+          <img v-else v-lazy="assetUrl('uploads/users/default/doctor.svg')" :alt="doctor.first_name + ' ' + doctor.last_name" :name="doctor.first_name + ' ' + doctor.last_name"class="img-fluid rounded-circle h_90 w_90px w_md_60px h_md_60">
           <div v-if="userVideoWilling(doctor) === 'on'" href="#" class="position-absolute video_icon doctor-video-box" style="bottom: 7px;right: 10px;">
             <a href="javascript:void(0)" class="w_20px h_20 rounded-circle text_14 text-center d-inline-block text-white bg-blue position-relative">
               <i class="fas fa-video position-absolute doctor-video-icon" aria-hidden="true"></i>
@@ -361,6 +361,9 @@ export default {
     }
   },
   methods: {
+    assetUrl(path) {
+      return window.assetUrl(path);
+    },
     userVideoWilling(user){
       if(user.onlines.length > 0)
         return "on";
