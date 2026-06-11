@@ -27,7 +27,7 @@
         :site_logo = "{{json_encode($site_logo, true)}}"
     ></login-component>
 </div>
-<script type="text/javascript" defer src="{{ asset('js/login.min.js') }}"></script>
+<script type="text/javascript" defer src="{{ asset('js/login.js') }}"></script>
 <script>
 function showPass() {
   var x = document.getElementById("passwordnumber");
