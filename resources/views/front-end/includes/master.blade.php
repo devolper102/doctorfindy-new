@@ -32,7 +32,10 @@
     <link rel="stylesheet" rel=" preload" type="text/css" href="{{ asset('css/font-family.css') }}" >
     <script defer src="https://kit.fontawesome.com/0904c46e05.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      const APP_URL = {!! json_encode(url('/')) !!};
+      window.APP_URL = {!! json_encode(url('/')) !!};
+      window.APP_ASSET_URL = {!! json_encode(Helper::uploadsBaseUrl()) !!};
+      var APP_URL = window.APP_URL;
+      var APP_ASSET_URL = window.APP_ASSET_URL;
     </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

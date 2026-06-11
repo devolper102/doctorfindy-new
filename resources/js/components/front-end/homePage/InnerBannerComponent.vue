@@ -1016,27 +1016,29 @@ export default {
       }
      // window.addEventListener('scroll', this.handleScroll);
       document.addEventListener('textChange', this.handleTextChange);
-    this.home_slider = this.managements.find(pf =>pf.meta_key ==='home_slider')
-    this.slides = JSON.parse(this.home_slider.meta_value);
+    this.home_slider = this.findManagement('home_slider')
+    this.slides = this.parseManagement(this.home_slider, []);
 
-     this.home_search_banner = this.managements.find(pf =>pf.meta_key ==='home_search_banner')
-      this.search_form_title = JSON.parse(this.home_search_banner.meta_value).search_form_title;
-       this.search_banner_heading = JSON.parse(this.home_search_banner.meta_value).search_banner_heading;
-       this.image = JSON.parse(this.home_search_banner.meta_value).hidden_search_banner_img;
+     this.home_search_banner = this.findManagement('home_search_banner')
+      const searchBanner = this.parseManagement(this.home_search_banner, {});
+      this.search_form_title = searchBanner.search_form_title || this.search_form_title;
+       this.search_banner_heading = searchBanner.search_banner_heading || this.search_banner_heading;
+       this.image = searchBanner.hidden_search_banner_img || this.image;
 
-     this.small_devices = this.managements.find(pf =>pf.meta_key ==='small_devices_top_section')
-     this.small_title = JSON.parse(this.small_devices.meta_value).title;
-     this.small_description = JSON.parse(this.small_devices.meta_value).description;
-     this.small_btn = JSON.parse(this.small_devices.meta_value).button;
-     this.small_url = JSON.parse(this.small_devices.meta_value).url;
-     this.small_img = JSON.parse(this.small_devices.meta_value).hidden_small_device_img;
-     this.small_hide_show = JSON.parse(this.small_devices.meta_value).show_smalldevice_sec;
-     this.small_title1 = JSON.parse(this.small_devices.meta_value).title1;
-     this.small_description1 = JSON.parse(this.small_devices.meta_value).description1;
-     this.small_btn1 = JSON.parse(this.small_devices.meta_value).button1;
-     this.small_url1 = JSON.parse(this.small_devices.meta_value).url1;
-     this.small_img1 = JSON.parse(this.small_devices.meta_value).hidden_small_device_img1;
-     this.small_hide_show = JSON.parse(this.small_devices.meta_value).show_smalldevice_sec;
+     this.small_devices = this.findManagement('small_devices_top_section')
+     const smallDevices = this.parseManagement(this.small_devices, {});
+     this.small_title = smallDevices.title || this.small_title;
+     this.small_description = smallDevices.description || this.small_description;
+     this.small_btn = smallDevices.button || this.small_btn;
+     this.small_url = smallDevices.url || this.small_url;
+     this.small_img = smallDevices.hidden_small_device_img || this.small_img;
+     this.small_hide_show = smallDevices.show_smalldevice_sec || this.small_hide_show;
+     this.small_title1 = smallDevices.title1 || this.small_title1;
+     this.small_description1 = smallDevices.description1 || this.small_description1;
+     this.small_btn1 = smallDevices.button1 || this.small_btn1;
+     this.small_url1 = smallDevices.url1 || this.small_url1;
+     this.small_img1 = smallDevices.hidden_small_device_img1 || this.small_img1;
+     this.small_hide_show = smallDevices.show_smalldevice_sec || this.small_hide_show;
      // this.labDiscountData();
      this.updateScreenSize();
      window.addEventListener('resize', this.updateScreenSize);
@@ -1059,6 +1061,21 @@ export default {
 },
 
   methods: {
+    findManagement(key) {
+      const managements = Array.isArray(this.managements) ? this.managements : [];
+      return managements.find((item) => item.meta_key === key);
+    },
+    parseManagement(item, fallback) {
+      if (!item || !item.meta_value) {
+        return fallback;
+      }
+
+      try {
+        return JSON.parse(item.meta_value);
+      } catch (error) {
+        return fallback;
+      }
+    },
     formatPhoneNumber() {
       if (this.phone_number.startsWith('0')) {
         this.phone_number = '92' + this.phone_number.slice(1);

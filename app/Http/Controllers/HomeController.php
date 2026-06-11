@@ -46,7 +46,7 @@ class HomeController extends Controller
     ];
      $doctors = [];
     // Cache meta values for a day
-    $managements = Cache::remember('site_managements', 86400, function () use ($meta_values) {
+    $managements = Cache::remember('home_site_managements', 86400, function () use ($meta_values) {
         return SiteManagement::whereIn('meta_key', $meta_values)->get();
     });
 

@@ -5936,7 +5936,7 @@ export default {
  
   methods: {
     uploadedAsset(path) {
-      const assetBaseUrl = typeof APP_ASSET_URL !== 'undefined' ? APP_ASSET_URL : '';
+      const assetBaseUrl = window.APP_ASSET_URL || '';
       return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
     },
     showdropdownLab(id){
