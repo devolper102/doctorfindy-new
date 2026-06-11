@@ -43,8 +43,8 @@
             <div class="row">
               <div class="col-4">
                  <div class="w-100 d-inline-block text-center">
-                <img v-if="feedback.patient.profile.avatar !== null" v-lazy="basePath+'/uploads/users/'+feedback.patient.id+'/'+feedback.patient.profile.avatar" class="d-block img-fluid rounded-circle border-white border border-3 border w_110px" :alt="feedback.patient.first_name +' '+  feedback.patient.last_name" :name="feedback.patient.first_name +' '+  feedback.patient.last_name">
-              <img v-else v-lazy="basePath+'/uploads/users/default/patient.svg'" class="d-block img-fluid rounded-circle border-white border border-3 border w_110px" :alt="feedback.patient.first_name +' '+  feedback.patient.last_name" :name="feedback.patient.first_name +' '+  feedback.patient.last_name">
+                <img v-if="feedback.patient.profile.avatar !== null" v-lazy="assetUrl('uploads/users/'+feedback.patient.id+'/'+feedback.patient.profile.avatar)" class="d-block img-fluid rounded-circle border-white border border-3 border w_110px" :alt="feedback.patient.first_name +' '+  feedback.patient.last_name" :name="feedback.patient.first_name +' '+  feedback.patient.last_name">
+              <img v-else v-lazy="assetUrl('uploads/users/default/patient.svg')" class="d-block img-fluid rounded-circle border-white border border-3 border w_110px" :alt="feedback.patient.first_name +' '+  feedback.patient.last_name" :name="feedback.patient.first_name +' '+  feedback.patient.last_name">
               </div>
               </div>
               <div class="col-8">
@@ -142,6 +142,10 @@ export default {
     
   },
   methods: {
+    assetUrl(path) {
+      const assetBaseUrl = window.APP_ASSET_URL || '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    },
     showNext() {
       this.$refs.settings.next()
     },

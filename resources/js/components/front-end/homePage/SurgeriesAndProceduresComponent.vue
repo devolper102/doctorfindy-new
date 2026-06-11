@@ -36,7 +36,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[0]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/kidney-transplant.svg'" alt="kidney-transplant" name="kidney-transplant">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/kidney-transplant.svg')" alt="kidney-transplant" name="kidney-transplant">
                     </span>
                   </div>
                   </div>
@@ -48,7 +48,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[1]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/normal-delivery.svg'" alt="normal-delivery" name="normal-delivery">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/normal-delivery.svg')" alt="normal-delivery" name="normal-delivery">
                     </span>
                   </div>
                   </div>
@@ -60,7 +60,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[2]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/hernia-surgery.svg'" alt="hernia-surgery" name="hernia-surgery">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/hernia-surgery.svg')" alt="hernia-surgery" name="hernia-surgery">
                     </span>
                   </div>
                   </div>
@@ -72,7 +72,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[3]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/liver-transplant.svg'" alt="liver-transplant" name="liver-transplant">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/liver-transplant.svg')" alt="liver-transplant" name="liver-transplant">
                     </span>
                   </div>
                   </div>
@@ -84,7 +84,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[4]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/prp-hair-transplnt.svg'" alt="prp-hair-transplant" name="prp-hair-transplant">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/prp-hair-transplnt.svg')" alt="prp-hair-transplant" name="prp-hair-transplant">
                     </span>
                   </div>
                   </div>
@@ -96,7 +96,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[5]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/uploads/procedure/bypass.svg'" alt="by-pass" name="by-pass">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('uploads/procedure/bypass.svg')" alt="by-pass" name="by-pass">
                     </span>
                   </div>
                   </div>
@@ -108,7 +108,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[6]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/images/root-canal.svg'" alt="root-canal" name="root-canal">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('images/root-canal.svg')" alt="root-canal" name="root-canal">
                     </span>
                   </div>
                   </div>
@@ -120,7 +120,7 @@
                   <div class="w-100 d-inline-block text-center">
                     <div :class="colors[7]" class="p-2 m-auto rounded-circle h_75 w_75px d-table border-white border-3 surgeries-box">
                     <span class="d-inline-block text-center">
-                      <img class="img-fluid w_50px overflow-hidden" v-lazy="basePath+'/images/appendix.svg'" alt="appendix-surgery" name="appendix-surgery">
+                      <img class="img-fluid w_50px overflow-hidden" v-lazy="assetUrl('images/appendix.svg')" alt="appendix-surgery" name="appendix-surgery">
                     </span>
                   </div>
                   </div>
@@ -170,6 +170,12 @@ export default {
   },
   created() {
     
+  },
+  methods: {
+    assetUrl(path) {
+      const assetBaseUrl = window.APP_ASSET_URL || '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    }
   }
 }
 </script>

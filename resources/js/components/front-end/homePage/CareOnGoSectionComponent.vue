@@ -91,18 +91,18 @@
           <div class="apps_img mt-3 w-100 text-xs-center d-inline-block w-100">
             <span class="ios_img float-right float-xs-none d-xs-inline-block w-sm-30">
               <a :href="ios_url">
-                <img v-lazy="basePath+'/uploads/settings/home/'+ ios_img" alt="IOS image" name="IOS image" class="img-fluid"  /></a>
+                <img v-lazy="assetUrl('uploads/settings/home/'+ ios_img)" alt="IOS image" name="IOS image" class="img-fluid"  /></a>
             </span>
             <span class="android_img mr-4 float-right float-xs-none d-xs-inline-block w-sm-30">
               <a :href="android_url">
-                <img v-lazy="basePath+'/uploads/settings/home/'+ android_img" alt="Google Play image" name="Google Play image" class="img-fluid"/>
+                <img v-lazy="assetUrl('uploads/settings/home/'+ android_img)" alt="Google Play image" name="Google Play image" class="img-fluid"/>
               </a>
           </span>
           </div>
           </div>
           <div class="col-10 mx-auto col-lg-6 col-md-6 p-0">
             <div class="mobile_app_img text-md-center mt-4">
-              <img v-lazy="basePath+'/uploads/settings/home/'+ app_sec_img" class="img-fluid w-70 w-md-100" alt="Mobile App section Image" />
+              <img v-lazy="assetUrl('uploads/settings/home/'+ app_sec_img)" class="img-fluid w-70 w-md-100" alt="Mobile App section Image" />
             </div>
           </div>
         </div>
@@ -161,6 +161,10 @@ export default {
       this.hide_show = JSON.parse(this.download.meta_value).show_app_sec; 
   },
   methods:{
+    assetUrl(path) {
+      const assetBaseUrl = window.APP_ASSET_URL || '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    },
      isNumber(e) {
       let char = String.fromCharCode(e.keyCode);
       if (/^[0-9]+$/.test(char)) return true;

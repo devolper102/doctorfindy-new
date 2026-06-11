@@ -13,9 +13,9 @@
             position-relative box_radius">
               <div class="blog_img position-relative 
               overflow-hidden">
-                <img v-lazy="basePath+'/uploads/users/'+article.author.id+'/articles/'+article.image" :alt="article.image" :name="article.image" class="img-fluid w-100 blog_img_border">
+                <img v-lazy="assetUrl('uploads/users/'+article.author.id+'/articles/'+article.image)" :alt="article.image" :name="article.image" class="img-fluid w-100 blog_img_border">
                 <span class="rounded-pill bg-white position-absolute blog_sm_img w-70 p-1 w-xs-70">
-								<img v-lazy="basePath+'/uploads/users/'+article.author.id+'/'+article.author.profile.avatar" :alt="article.author.first_name+' '+article.author.last_name" :name="article.author.first_name+' '+article.author.last_name" class="w-20 rounded-circle img-fluid float-left">
+								<img v-lazy="assetUrl('uploads/users/'+article.author.id+'/'+article.author.profile.avatar)" :alt="article.author.first_name+' '+article.author.last_name" :name="article.author.first_name+' '+article.author.last_name" class="w-20 rounded-circle img-fluid float-left">
                   <!-- {{article.author.last_name}} -->
 								<span class="ml-2"> {{article.author.first_name}} {{article.author.last_name}}</span>
 							</span>
@@ -120,6 +120,10 @@ export default {
       }
   },
   methods:{
+    assetUrl(path) {
+      const assetBaseUrl = window.APP_ASSET_URL || '';
+      return `${assetBaseUrl.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+    },
     addToLike(id) {
       let self = this;
       if (self.patient.length !== 0) {
