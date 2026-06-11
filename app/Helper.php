@@ -381,14 +381,19 @@ class Helper extends Model
      *
      * @return string
      */
+    public static function usingRemoteUploads()
+    {
+        return config('filesystems.default') === 'production';
+    }
+
     public static function uploadsBaseUrl()
     {
-        $uploadsBaseUrl = env('UPLOADS_BASE_URL');
-        if (!empty($uploadsBaseUrl)) {
-            return rtrim($uploadsBaseUrl, '/');
-        }
+        if (self::usingRemoteUploads()) {
+            $uploadsBaseUrl = env('UPLOADS_BASE_URL');
+            if (!empty($uploadsBaseUrl)) {
+                return rtrim($uploadsBaseUrl, '/');
+            }
 
-        if (config('filesystems.default') === 'production' || env('FILESYSTEM_DRIVER') === 'production') {
             $placeholder = '__doctorfindy_uploads_base__';
             $placeholderUrl = \Illuminate\Support\Facades\Storage::disk('s3')->url($placeholder);
 
@@ -408,7 +413,7 @@ class Helper extends Model
             return $path;
         }
 
-        if (config('filesystems.default') === 'production' || env('FILESYSTEM_DRIVER') === 'production') {
+        if (self::usingRemoteUploads()) {
             return \Illuminate\Support\Facades\Storage::disk('s3')->url(ltrim($path, '/'));
         }
 
@@ -421,7 +426,7 @@ class Helper extends Model
         // dd($path, $image);
 
         $image_output = '';
-        if(env('FILESYSTEM_DRIVER') === 'production'){
+        if(self::usingRemoteUploads()){
             if (!empty($path) && !empty($image)) {
                 $image_output = self::uploadedAsset($path . '/' . $size . $image);
             } else {
